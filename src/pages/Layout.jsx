@@ -1,4 +1,4 @@
-import { getColor, rem } from '@/theme/utils';
+import { getFontStyle, getColor, rem } from '@/theme/utils';
 import { Outlet } from 'react-router';
 import styled from 'styled-components/macro';
 
@@ -15,6 +15,7 @@ export const StBaseLayout = styled.div`
   padding: 0 ${rem(70)};
   margin-left: auto;
   margin-right: auto;
+  ${getFontStyle('headingXXL')};
   @media (max-width: ${rem(768)}) {
     padding: 0 ${rem(40)};
   }
