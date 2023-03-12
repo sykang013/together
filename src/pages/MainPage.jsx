@@ -1,3 +1,10 @@
-export default function MainPage() {
-  return <div>hi react</div>;
-}
+import Header from '@/components/header/Header';
+
+const MainPage = () => {
+  return (
+    <>
+      <Header />
+    </>
+  );
+};
+export default MainPage;
