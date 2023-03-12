@@ -1,35 +1,7 @@
 import styled, { css } from 'styled-components';
 import { getColor, getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
-import { StA11yHidden } from '../A11yHidden';
-
-const Header = () => {
-  return (
-    <StHeader>
-      <StGnb>
-        <StLogo to="/">
-          <StA11yHidden>타잉</StA11yHidden>
-        </StLogo>
-        <StTab icon="live">실시간</StTab>
-        <StTab>TV프로그램</StTab>
-        <StTab>영화</StTab>
-        <StTab icon="paramount">
-          <StA11yHidden>파라마운트</StA11yHidden>
-        </StTab>
-      </StGnb>
-      <StGnb>
-        <StSearch tabIndex={0}>
-          <StA11yHidden>검색</StA11yHidden>
-        </StSearch>
-        <StProfile>
-          <StA11yHidden>프로필</StA11yHidden>
-        </StProfile>
-      </StGnb>
-    </StHeader>
-  );
-};
-
-export default Header;
+import StA11yHidden from '@/components/A11yHidden';
 
 const StHeader = styled.nav`
   display: flex;
@@ -174,3 +146,31 @@ const StProfile = styled(Link)`
     height: 42px;
   }
 `;
+
+const Header = () => {
+  return (
+    <StHeader>
+      <StGnb>
+        <StLogo to="/">
+          <StA11yHidden>타잉</StA11yHidden>
+        </StLogo>
+        <StTab icon="live">실시간</StTab>
+        <StTab>TV프로그램</StTab>
+        <StTab>영화</StTab>
+        <StTab icon="paramount">
+          <StA11yHidden>파라마운트</StA11yHidden>
+        </StTab>
+      </StGnb>
+      <StGnb>
+        <StSearch tabIndex={0}>
+          <StA11yHidden>검색</StA11yHidden>
+        </StSearch>
+        <StProfile>
+          <StA11yHidden>프로필</StA11yHidden>
+        </StProfile>
+      </StGnb>
+    </StHeader>
+  );
+};
+
+export default Header;

@@ -1,8 +1,8 @@
-import { getFontStyle, getColor, rem } from '@/theme/utils';
+import { getColor, rem } from '@/theme/utils';
 import { Outlet } from 'react-router';
 import styled from 'styled-components/macro';
 
-export const StBaseLayout = styled.div`
+const StBaseLayout = styled.div`
   font-size: ${rem(16)};
   font-family: 'Pretendard Variable', Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
@@ -24,10 +24,12 @@ export const StBaseLayout = styled.div`
   }
 `;
 
-export default function BaseLayout() {
+const BaseLayout = () => {
   return (
     <StBaseLayout>
       <Outlet />
     </StBaseLayout>
   );
-}
+};
+
+export default BaseLayout;

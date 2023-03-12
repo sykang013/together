@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const StA11yHidden = styled.span`
+const StA11yHidden = styled.span`
   overflow: hidden;
   position: ${(props) => (props.as === 'caption' ? 'static' : 'absolute')};
   clip: rect(1px, 1px, 1px, 1px);
@@ -27,3 +27,5 @@ export const StA11yHidden = styled.span`
       `}
   }
 `;
+
+export default StA11yHidden;

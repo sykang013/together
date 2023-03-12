@@ -40,13 +40,13 @@ const routesConfig = [
 
 const router = createBrowserRouter(routesConfig);
 
-function App() {
+const App = () => {
   return (
     <>
       <ResetCss />
       <RouterProvider router={router} />
     </>
   );
-}
+};
 
 export default App;
