@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 const StA11yHidden = styled.span`
   overflow: hidden;
   position: ${(props) => (props.as === 'caption' ? 'static' : 'absolute')};
-  clip: rect(10px, 10px, 10px, 10px);
+  clip: rect(1px, 1px, 1px, 1px);
   clip-path: circle(0);
   width: 1px;
   height: 1px;
