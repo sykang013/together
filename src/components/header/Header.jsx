@@ -67,12 +67,12 @@ const StLogo = styled(Link)`
     display: inline-block;
     content: '';
     @media (min-width: ${rem(768)}) {
-      background: url('/src/assets/sprites.png') no-repeat -208px -318px;
+      background-position: -208px -318px;
       width: 75px;
       height: 20px;
     }
     @media (min-width: ${rem(1920)}) {
-      background: url('/src/assets/sprites.png') no-repeat -208px -364px;
+      background-position: -208px -364px;
       width: 132px;
       height: 33px;
     }
@@ -123,7 +123,6 @@ const StTab = styled(Link)`
         content: '';
 
         @media (min-width: ${rem(1920)}) {
-          background: url('/src/assets/sprites.png') no-repeat;
           background-position: ${(props) =>
             props.icon === 'live' ? '-30px -574px' : '-570px -179px'};
           width: ${(props) => (props.icon === 'live' ? '34px' : '111px')};
@@ -139,12 +138,12 @@ const StSearch = styled.div`
   height: 15px;
   cursor: pointer;
   @media (min-width: ${rem(768)}) {
-    background: url('/src/assets/sprites.png') no-repeat -584px -705px;
+    background-position: -584px -705px;
     width: 18px;
     height: 19px;
   }
   @media (min-width: ${rem(1920)}) {
-    background: url('/src/assets/sprites.png') no-repeat -587px -752px;
+    background-position: -587px -752px;
     width: 29px;
     height: 30px;
   }
@@ -165,12 +164,12 @@ const StProfile = styled(Link)`
   width: 18px;
   height: 18px;
   @media (min-width: ${rem(768)}) {
-    background: url('/src/assets/sprites.png') no-repeat -1086px -68px;
+    background-position: -1086px -68px;
     width: 24px;
     height: 24px;
   }
   @media (min-width: ${rem(1920)}) {
-    background: url('/src/assets/sprites.png') no-repeat -1085px -111px;
+    background-position: -1085px -111px;
     width: 42px;
     height: 42px;
   }
