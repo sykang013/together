@@ -45,6 +45,7 @@ function App() {
     <>
       <ResetCss />
       <RouterProvider router={router} />
+      <MainPage />
     </>
   );
 }
