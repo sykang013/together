@@ -8,14 +8,10 @@ const StBaseLayout = styled.div`
     BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
     'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-  background-color: ${getColor('--black')};
   color: ${getColor('--white')};
-  max-width: ${rem(1920)};
-  height: 100vh;
   margin-left: auto;
   margin-right: auto;
   padding: 0 ${rem(8)};
-
   @media (min-width: ${rem(768)}) {
     padding: 0 ${rem(40)};
   }
