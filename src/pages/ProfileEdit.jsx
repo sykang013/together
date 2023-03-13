@@ -7,6 +7,7 @@ import {
   StProfileButton,
 } from '@/components/profile/Profile';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ProfilePage = () => {
   return (
@@ -31,7 +32,9 @@ const ProfilePage = () => {
           <p>test</p>
         </StProfileItem>
       </StProfileItems>
-      <StProfileButton select>완료</StProfileButton>
+      <Link to="/">
+        <StProfileButton select>완료</StProfileButton>
+      </Link>
     </>
   );
 };
