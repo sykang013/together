@@ -54,3 +54,19 @@ export const StProfileItems = styled.ul`
     gap: ${rem(52)};
   }
 `;
+
+export const StProfileItem = styled.li`
+  p {
+    ${getFontStyle('ParagraphS')};
+    text-align: center;
+    margin-top: ${rem(12)};
+    color: ${getColor('--gray300')};
+    @media (min-width: ${rem(768)}) {
+      margin-bottom: ${rem(44)};
+    }
+    @media (min-width: ${rem(1920)}) {
+      ${getFontStyle('ParagraphXL')};
+      margin-top: ${rem(16)};
+    }
+  }
+`;

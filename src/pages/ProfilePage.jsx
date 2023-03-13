@@ -2,6 +2,7 @@ import {
   StProfileTitle,
   StProfileSubTitle,
   StProfileItems,
+  StProfileItem,
 } from '@/components/profile/Profile';
 import React from 'react';
 
@@ -11,10 +12,18 @@ const ProfilePage = () => {
       <StProfileTitle>프로필 선택</StProfileTitle>
       <StProfileSubTitle>시청할 프로필을 선택해주세요.</StProfileSubTitle>
       <StProfileItems>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
-        <li>test</li>
+        <StProfileItem>
+          <p>test</p>
+        </StProfileItem>
+        <StProfileItem>
+          <p>test</p>
+        </StProfileItem>
+        <StProfileItem>
+          <p>test</p>
+        </StProfileItem>
+        <StProfileItem>
+          <p>test</p>
+        </StProfileItem>
       </StProfileItems>
     </>
   );
