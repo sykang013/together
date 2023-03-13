@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { getFontStyle, rem } from '@/theme/utils';
+import { getFontStyle, rem, getColor } from '@/theme/utils';
 
 export const StProfileTitle = styled.h3`
   ${getFontStyle('headingM')};
@@ -12,5 +12,20 @@ export const StProfileTitle = styled.h3`
   @media (min-width: ${rem(1920)}) {
     ${getFontStyle('headingXXL')};
     padding-top: ${rem(130)};
+  }
+`;
+
+export const StProfileSubTitle = styled.h4`
+  ${getFontStyle('LabelS')};
+  text-align: center;
+  padding: ${rem(16)} ${rem(0)};
+  color: ${getColor('--gray200')};
+  @media (min-width: ${rem(768)}) {
+    ${getFontStyle('LabelM')};
+    padding-top: ${rem(8)};
+  }
+  @media (min-width: ${rem(1920)}) {
+    ${getFontStyle('LabelXL')};
+    padding-top: ${rem(20)};
   }
 `;
