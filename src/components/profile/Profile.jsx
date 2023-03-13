@@ -92,3 +92,44 @@ export const StProfileImage = styled(Link)`
     cursor: pointer;
   }
 `;
+
+export const StProfileButton = styled.button`
+  display: block;
+  margin: ${rem(32)} auto 0 auto;
+  width: ${rem(135)};
+  height: ${rem(42)};
+  background-color: ${(props) => {
+    if (props.select) return `${getColor('--black')}`;
+    else return `${getColor('--gray100')}`;
+  }};
+  color: ${(props) => {
+    if (props.select) return `${getColor('--gray100')}`;
+    else return `${getColor('--black')}`;
+  }};
+  border: 1px solid ${getColor('--gray600')};
+  border-radius: 4px;
+  padding: ${rem(12)} 0;
+  ${getFontStyle('LabelS')};
+  @media (min-width: ${rem(768)}) {
+    margin: 0 auto;
+    width: ${rem(156)};
+    height: ${rem(50)};
+  }
+  @media (min-width: ${rem(1920)}) {
+    margin: 0 auto;
+    width: ${rem(272)};
+    height: ${rem(86)};
+    ${getFontStyle('LabelXL')};
+  }
+  &: active;
+  &:hover {
+    background-color: ${(props) => {
+      if (props.select) return `${getColor('--gray100')}`;
+      else return `${getColor('--black')}`;
+    }};
+    color: ${(props) => {
+      if (props.select) return `${getColor('--black')}`;
+      else return `${getColor('--gray100')}`;
+    }};
+  }
+`;

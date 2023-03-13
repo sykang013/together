@@ -4,6 +4,7 @@ import {
   StProfileItems,
   StProfileItem,
   StProfileImage,
+  StProfileButton,
 } from '@/components/profile/Profile';
 import React from 'react';
 
@@ -30,6 +31,7 @@ const ProfilePage = () => {
           <p>test</p>
         </StProfileItem>
       </StProfileItems>
+      <StProfileButton select>프로필 편집</StProfileButton>
     </>
   );
 };
