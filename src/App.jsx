@@ -2,6 +2,7 @@ import { Reset as ResetCss } from 'styled-reset';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './pages/Layout';
 import MainPage from './pages/MainPage';
+import GlobalStyle from './styles/GlobalStyle';
 
 const routesConfig = [
   {
@@ -44,6 +45,7 @@ const App = () => {
   return (
     <>
       <ResetCss />
+      <GlobalStyle />
       <RouterProvider router={router} />
     </>
   );
