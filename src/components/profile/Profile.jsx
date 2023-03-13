@@ -29,3 +29,28 @@ export const StProfileSubTitle = styled.h4`
     padding-top: ${rem(20)};
   }
 `;
+
+export const StProfileItems = styled.ul`
+  display: grid;
+  padding: ${rem(16)} ${rem(0)};
+  margin: 0 auto;
+  width: ${rem(252)};
+  height: auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: ${rem(32)};
+  @media (min-width: ${rem(768)}) {
+    width: ${rem(624)};
+    padding: 0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: ${rem(32)};
+  }
+  @media (min-width: ${rem(1920)}) {
+    width: ${rem(1092)};
+    padding: 0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: ${rem(52)};
+  }
+`;
