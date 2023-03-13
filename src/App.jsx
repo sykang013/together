@@ -2,7 +2,7 @@ import { Reset as ResetCss } from 'styled-reset';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './pages/Layout';
 import MainPage from './pages/MainPage';
-import GlobalStyle from './style/GlobalStyle';
+import GlobalStyle from './styles/GlobalStyle';
 
 const routesConfig = [
   {
