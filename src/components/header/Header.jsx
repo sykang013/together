@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components/macro';
 import { getColor, getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
-import StA11yHidden from '@/components/A11yHidden/A11yHidden';
+import StA11yHidden from '@/components/a11yhidden/A11yHidden';
 
 const StHeader = styled.nav`
   display: flex;
