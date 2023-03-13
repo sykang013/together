@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem, getColor } from '@/theme/utils';
+import { Link } from 'react-router-dom';
 
 export const StProfileTitle = styled.h3`
   ${getFontStyle('headingM')};
@@ -68,5 +69,26 @@ export const StProfileItem = styled.li`
       ${getFontStyle('ParagraphXL')};
       margin-top: ${rem(16)};
     }
+  }
+`;
+
+export const StProfileImage = styled(Link)`
+  display: block;
+  width: ${rem(114)};
+  height: ${rem(114)};
+  max-width: 100%;
+  border-radius: ${rem(4)};
+  background-color: white;
+  @media (min-width: ${rem(768)}) {
+    width: ${rem(132)};
+    height: ${rem(132)};
+  }
+  @media (min-width: ${rem(1920)}) {
+    width: ${rem(234)};
+    height: ${rem(234)};
+  }
+  &:hover {
+    border: 5px solid ${getColor('--secondary')};
+    cursor: pointer;
   }
 `;
