@@ -7,9 +7,15 @@ import {
   StProfileButton,
 } from '@/components/profile/Profile';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+
+  const GoToMainPage = () => {
+    navigate('/');
+  };
+
   return (
     <>
       <StProfileTitle>프로필 편집</StProfileTitle>
@@ -32,9 +38,7 @@ const ProfilePage = () => {
           <p>test</p>
         </StProfileItem>
       </StProfileItems>
-      <Link to="/">
-        <StProfileButton select>완료</StProfileButton>
-      </Link>
+      <StProfileButton onClick={GoToMainPage}>완료</StProfileButton>
     </>
   );
 };

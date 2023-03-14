@@ -98,6 +98,7 @@ export const StProfileButton = styled.button`
   margin: ${rem(32)} auto 0 auto;
   width: ${rem(135)};
   height: ${rem(42)};
+  cursor: pointer;
   background-color: ${(props) => {
     if (props.select) return `${getColor('--black')}`;
     else return `${getColor('--gray100')}`;
