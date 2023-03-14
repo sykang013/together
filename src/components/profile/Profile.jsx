@@ -2,102 +2,99 @@ import styled from 'styled-components/macro';
 import { getFontStyle, rem, getColor } from '@/theme/utils';
 import { Link } from 'react-router-dom';
 
+export const StLayoutProfile = styled.div`
+  width: 78.75%;
+  margin: 0 auto;
+  @media (min-width: 768px) {
+    width: 81.25%;
+  }
+  @media (min-width: 1920px) {
+    width: 56.86%;
+  }
+`;
+
 export const StProfileTitle = styled.h3`
   ${getFontStyle('headingM')};
   text-align: center;
-  padding-top: ${rem(72)};
-  @media (min-width: ${rem(768)}) {
+  margin-top: ${rem(72)};
+  @media (min-width: 768px) {
     ${getFontStyle('headingXL')};
-    padding-top: ${rem(130)};
+    margin-top: ${rem(130)};
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     ${getFontStyle('headingXXL')};
-    padding-top: ${rem(130)};
+    margin-top: ${rem(130)};
   }
 `;
 
 export const StProfileSubTitle = styled.h4`
   ${getFontStyle('LabelS')};
   text-align: center;
-  padding: ${rem(16)} ${rem(0)};
+  margin: ${rem(16)} ${rem(0)};
   color: ${getColor('--gray200')};
-  @media (min-width: ${rem(768)}) {
+  @media (min-width: 768px) {
     ${getFontStyle('LabelM')};
-    padding-top: ${rem(8)};
+    margin-top: ${rem(8)};
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     ${getFontStyle('LabelXL')};
-    padding-top: ${rem(20)};
+    margin-top: ${rem(20)};
   }
 `;
 
 export const StProfileItems = styled.ul`
-  display: grid;
-  padding: ${rem(16)} ${rem(0)};
-  margin: 0 auto;
-  width: ${rem(252)};
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
   height: auto;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: ${rem(32)};
-  @media (min-width: ${rem(768)}) {
-    width: ${rem(624)};
-    padding: 0;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: ${rem(32)};
+  justify-content: space-between;
+  @media (min-width: 768px) {
   }
-  @media (min-width: ${rem(1920)}) {
-    width: ${rem(1092)};
-    padding: 0;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    gap: ${rem(52)};
+  @media (min-width: 1920px) {
+    padding-top: ${rem(44)};
   }
-`;
-
-export const StProfileItem = styled.li`
+  li {
+    width: 45.24%;
+    margin-top: ${rem(32)};
+    @media (min-width: 768px) {
+      width: 21.15%;
+      margin: 0;
+    }
+    @media (min-width: 1920px) {
+      width: 21.15%;
+    }
+  }
   p {
     ${getFontStyle('ParagraphS')};
     text-align: center;
     margin-top: ${rem(12)};
     color: ${getColor('--gray300')};
-    @media (min-width: ${rem(768)}) {
-      margin-bottom: ${rem(44)};
+    @media (min-width: 768px) {
     }
-    @media (min-width: ${rem(1920)}) {
+    @media (min-width: 1920px) {
       ${getFontStyle('ParagraphXL')};
       margin-top: ${rem(16)};
     }
   }
 `;
 
-export const StProfileImage = styled(Link)`
-  display: block;
-  width: ${rem(114)};
-  height: ${rem(114)};
-  max-width: 100%;
-  border-radius: ${rem(4)};
-  background-color: white;
-  @media (min-width: ${rem(768)}) {
-    width: ${rem(132)};
-    height: ${rem(132)};
-  }
-  @media (min-width: ${rem(1920)}) {
-    width: ${rem(234)};
-    height: ${rem(234)};
-  }
-  &:hover {
-    border: 5px solid ${getColor('--secondary')};
-    cursor: pointer;
-  }
+export const StProfileItem = styled.div`
+  width: 100%;
+  aspect-ratio: auto 1/1;
+  /* background-color: white; */
+  /* border: 1px solid blue; */
+`;
+
+export const StProfileImage = styled.img`
+  width: 100%;
+  height: 100%;
 `;
 
 export const StProfileButton = styled.button`
   display: block;
   margin: ${rem(32)} auto 0 auto;
-  width: ${rem(135)};
-  height: ${rem(42)};
+  width: 53.57%;
+  aspect-ratio: auto 1/0.2;
   cursor: pointer;
   background-color: ${(props) => {
     if (props.select) return `${getColor('--black')}`;
@@ -112,14 +109,11 @@ export const StProfileButton = styled.button`
   padding: ${rem(12)} 0;
   ${getFontStyle('LabelS')};
   @media (min-width: ${rem(768)}) {
-    margin: 0 auto;
-    width: ${rem(156)};
-    height: ${rem(50)};
+    margin-top: ${rem(44)};
+    width: 25%;
   }
   @media (min-width: ${rem(1920)}) {
-    margin: 0 auto;
-    width: ${rem(272)};
-    height: ${rem(86)};
+    margin-top: ${rem(66)};
     ${getFontStyle('LabelXL')};
   }
   &: active;
