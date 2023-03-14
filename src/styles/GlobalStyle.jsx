@@ -4,7 +4,8 @@ import { createGlobalStyle } from 'styled-components/macro';
 const GlobalStyle = createGlobalStyle`
   body {
   background-color : ${getColor('--black')};
-  button {cursor: pointer};
+  button,
+  a {cursor: pointer};
 }
   body,
   body::before,

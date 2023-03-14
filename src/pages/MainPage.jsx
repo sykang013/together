@@ -1,11 +1,11 @@
 import Header from '@/components/header/Header';
-import LandingMainBlock from '@/components/landing/LandingMainBlock';
+import IconButton from '@/components/landing/IconButton';
 
 const MainPage = () => {
   return (
     <>
       <Header />
-      <LandingMainBlock />
+      <IconButton />
     </>
   );
 };
