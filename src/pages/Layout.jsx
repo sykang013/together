@@ -12,10 +12,10 @@ const StBaseLayout = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 0 ${rem(8)};
-  @media (min-width: ${rem(768)}) {
+  @media (min-width: 768px) {
     padding: 0 ${rem(40)};
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     padding: 0 ${rem(70)};
   }
 `;
