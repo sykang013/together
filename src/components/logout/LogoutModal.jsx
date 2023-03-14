@@ -1,13 +1,13 @@
 import styled from 'styled-components/macro';
 import React from 'react';
 import { getColor, getFontStyle, rem } from '@/theme/utils';
-import ModalPortal from '../modalpotal/ModalPortal';
+import ModalPortal from '@/components/modal/ModalPortal';
 
 const StLogoutModal = styled.div`
   width: ${rem(196)};
   height: ${rem(91)};
   background-color: ${getColor('--dark-bg2')};
-  border-radius: ${rem(4)};
+  border-radius: 4px;
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
