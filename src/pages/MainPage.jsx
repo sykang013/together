@@ -5,6 +5,7 @@ const MainPage = () => {
   return (
     <>
       <Header />
+      <LogoutModal />
     </>
   );
 };
