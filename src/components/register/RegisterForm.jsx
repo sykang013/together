@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { getColor, getFontStyle, rem } from '@/theme/utils';
 import styled from 'styled-components/macro';
 import FormButton from '../button/FormButton';
-import { FormInput } from '../formInput/FormInput';
+import { FormInput } from '../forminput/FormInput';
 import { useAuthState, useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
 import { Navigate } from 'react-router';
