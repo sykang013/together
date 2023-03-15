@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem, getColor } from '@/theme/utils';
-import { Link } from 'react-router-dom';
 
 export const StLayoutProfile = styled.div`
   width: 78.75%;
@@ -47,7 +46,10 @@ export const StProfileItems = styled.ul`
   flex-flow: row wrap;
   width: 100%;
   height: auto;
-  justify-content: space-between;
+  justify-content: ${(props) => {
+    if (props.children.length > 3) return 'space-between';
+    else return 'space-evenly';
+  }};
   @media (min-width: 768px) {
   }
   @media (min-width: 1920px) {
@@ -81,13 +83,16 @@ export const StProfileItems = styled.ul`
 export const StProfileItem = styled.div`
   width: 100%;
   aspect-ratio: auto 1/1;
-  /* background-color: white; */
-  /* border: 1px solid blue; */
+  border-radius: 4px;
 `;
 
 export const StProfileImage = styled.img`
   width: 100%;
   height: 100%;
+  cursor: pointer;
+  &:hover {
+    border: 4px solid ${getColor('--primary')};
+  }
 `;
 
 export const StProfileButton = styled.button`
@@ -108,11 +113,11 @@ export const StProfileButton = styled.button`
   border-radius: 4px;
   padding: ${rem(12)} 0;
   ${getFontStyle('LabelS')};
-  @media (min-width: ${rem(768)}) {
+  @media (min-width: 768px) {
     margin-top: ${rem(44)};
     width: 25%;
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     margin-top: ${rem(66)};
     ${getFontStyle('LabelXL')};
   }

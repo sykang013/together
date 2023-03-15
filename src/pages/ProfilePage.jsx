@@ -7,9 +7,8 @@ import {
   StProfileButton,
   StLayoutProfile,
 } from '@/components/profile/Profile';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ImageTest from '@/assets/profile_1.png';
+import { useDownloadURL } from '@/firebase/storage';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -17,6 +16,14 @@ const ProfilePage = () => {
   const GoToProfileEdit = () => {
     navigate('/ProfileEdit');
   };
+
+  const GoToMainPage = () => {
+    navigate('/');
+  };
+
+  const { downloadURL } = useDownloadURL(
+    'profiles/defaults/profile1/desktop/profile_1.png'
+  );
 
   return (
     <>
@@ -26,25 +33,28 @@ const ProfilePage = () => {
         <StProfileItems>
           <li>
             <StProfileItem>
-              <StProfileImage src={ImageTest} />
+              <StProfileImage
+                onClick={GoToMainPage}
+                src={`https://firebasestorage.googleapis.com/v0/b/together-de6e5.appspot.com/o/profiles%2Fdefaults%2Fprofile1%2Fdesktop%2Fprofile_1.png?alt=media&token=131dd17f-a849-40b6-bb9d-6fd953b97d81`}
+              />
             </StProfileItem>
             <p>test</p>
           </li>
           <li>
             <StProfileItem>
-              <StProfileImage src={ImageTest} />
+              <StProfileImage />
             </StProfileItem>
             <p>test</p>
           </li>
           <li>
             <StProfileItem>
-              <StProfileImage src={ImageTest} />
+              <StProfileImage />
             </StProfileItem>
             <p>test</p>
           </li>
           <li>
             <StProfileItem>
-              <StProfileImage src={ImageTest} />
+              <StProfileImage />
             </StProfileItem>
             <p>test</p>
           </li>
