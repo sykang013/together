@@ -1,27 +1,4 @@
 /** @type { import('@storybook/react').Preview } */
-import ko from 'axe-core/locales/ko.json';
-
-export const parameters = {
-  a11y: { 
-    config: { locale: ko } 
-  },
-};
-
-// export const parameters = {
-//   controls: {
-//     exclude: ['role'],
-//   },
-//   a11y: {
-//     config: { locale: ko,
-//       rules: [
-//         {
-//           id: 'color-contrast',
-//           enabled: false,
-//         },
-//       ],
-//     },
-//   },
-// }
 
 const customViewports = {
   mobile: {
