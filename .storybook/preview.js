@@ -1,4 +1,15 @@
 /** @type { import('@storybook/react').Preview } */
+import { withRouter } from 'storybook-addon-react-router-v6';
+
+export const decorators = [
+  withRouter
+];
+
+export const parameters = {
+  reactRouter: {
+    routePath: '/',
+  },
+};
 
 const customViewports = {
   mobile: {
