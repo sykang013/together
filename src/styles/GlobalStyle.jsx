@@ -3,7 +3,8 @@ import { createGlobalStyle } from 'styled-components/macro';
 
 const GlobalStyle = createGlobalStyle`
 body {
-  background-color : ${getColor('--white')};
+  background-color : ${getColor('--black')};
+  color: ${getColor('--white')};
   button {cursor: pointer};
 }
   body,
