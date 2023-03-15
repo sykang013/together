@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
 import { getColor, getFontStyle, rem } from '@/theme/utils';
 import styled from 'styled-components/macro';
-import FormButton from '../button/FormButton';
-import { FormInput } from '../forminput/FormInput';
+import FormButton from '@/components/button/FormButton';
+import FormInput from '@/components/forminput/FormInput';
 import { useAuthState, useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
 import { Navigate } from 'react-router';
@@ -73,10 +73,10 @@ const StForm = styled.form`
 const StEmailDescription = styled.p`
   color: ${(props) => (props.isEmail ? getColor('--gray500') : 'red')};
   ${getFontStyle('ParagraphS')};
-  @media (min-width: ${rem(768)}) {
+  @media (min-width: 768px) {
     ${getFontStyle('ParagraphM')};
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     ${getFontStyle('ParagraphL')};
   }
 `;
@@ -84,10 +84,10 @@ const StEmailDescription = styled.p`
 const StPwDescription = styled.p`
   color: ${(props) => (props.isPassword ? getColor('--gray500') : 'red')};
   ${getFontStyle('ParagraphS')};
-  @media (min-width: ${rem(768)}) {
+  @media (min-width: 768px) {
     ${getFontStyle('ParagraphM')};
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     ${getFontStyle('ParagraphL')};
   }
 `;
@@ -96,10 +96,10 @@ const StPwConfirmDescription = styled.p`
   color: ${(props) =>
     props.isPasswordConfirm ? getColor('--gray500') : 'red'};
   ${getFontStyle('ParagraphS')};
-  @media (min-width: ${rem(768)}) {
+  @media (min-width: 768px) {
     ${getFontStyle('ParagraphM')};
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     ${getFontStyle('ParagraphL')};
   }
 `;

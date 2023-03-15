@@ -1,6 +1,6 @@
 import { getColor, getFontStyle, rem } from '@/theme/utils';
 import { string } from 'prop-types';
-import styled, { css } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 
 const StButton = styled.button`
   display: flex;
@@ -8,18 +8,10 @@ const StButton = styled.button`
   align-items: center;
   height: ${rem(42)};
   padding: ${rem(16)};
-  background-color: ${getColor('--gray700')};
-  color: ${getColor('--gray400')};
-  ${(props) =>
-    props.isActive
-      ? css`
-          background-color: ${getColor('--primary')};
-          color: ${getColor('--white')};
-        `
-      : css`
-          background-color: ${getColor('--gray700')};
-          color: ${getColor('--gray400')};
-        `};
+  background-color: ${(props) =>
+    props.isActive ? getColor('--primary') : getColor('--gray700')};
+  color: ${(props) =>
+    props.isActive ? getColor('--white') : getColor('--gray400')};
   border: none;
   border-radius: 4px;
   font-size: ${rem(16)};
@@ -27,11 +19,11 @@ const StButton = styled.button`
   &:hover {
     background-color: ${getColor('--gray600')};
   }
-  @media (min-width: ${rem(768)}) {
+  @media (min-width: 768px) {
     height: ${rem(50)};
     ${getFontStyle('LabelM')};
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     height: ${rem(86)};
     ${getFontStyle('LabelXL')};
   }

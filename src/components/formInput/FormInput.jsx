@@ -2,7 +2,7 @@ import { getColor, getFontStyle, rem } from '@/theme/utils';
 import { string } from 'prop-types';
 import { useId } from 'react';
 import styled from 'styled-components/macro';
-import StA11yHidden from '../a11yhidden/A11yHidden';
+import StA11yHidden from '@/components/a11yhidden/A11yHidden';
 
 const StFormInput = styled.input`
   padding: ${rem(16)};
@@ -11,10 +11,10 @@ const StFormInput = styled.input`
   background-color: ${getColor('--dark-bg2')};
   color: ${getColor('--white')};
   ${getFontStyle('ParagraphM')};
-  @media (min-width: ${rem(768)}) {
+  @media (min-width: 768px) {
     ${getFontStyle('ParagraphL')};
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     ${getFontStyle('ParagraphXL')};
   }
 
@@ -24,7 +24,7 @@ const StFormInput = styled.input`
   }
 `;
 
-export function FormInput({ type, placeholder, label, ...restProps }) {
+const FormInput = ({ type, placeholder, label, ...restProps }) => {
   const id = useId();
   return (
     <div>
@@ -38,7 +38,7 @@ export function FormInput({ type, placeholder, label, ...restProps }) {
       />
     </div>
   );
-}
+};
 
 FormInput.defaultProps = {
   type: 'text',
@@ -51,10 +51,12 @@ FormInput.propTypes = {
   placeholder: string.isRequired,
 };
 
-function renderLabel(id, label) {
+const renderLabel = (id, label) => {
   return (
     <StA11yHidden as="label" htmlFor={id}>
       {label}
     </StA11yHidden>
   );
-}
+};
+
+export default FormInput;
