@@ -2,8 +2,12 @@ import styled, { css } from 'styled-components/macro';
 import { getColor, getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
 import StA11yHidden from '@/components/a11yhidden/A11yHidden';
+import { useState } from 'react';
+import SearchModal from '@/components/search/SearchModal';
 
 const StHeader = styled.nav`
+  position: relative;
+  background-color: tomato;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
@@ -148,28 +152,36 @@ const StProfile = styled(Link)`
 `;
 
 const Header = () => {
+  const [isModal, setIsModal] = useState(false);
+
+  const openSearchModal = () => {
+    setIsModal(true);
+  };
   return (
-    <StHeader>
-      <StGnb>
-        <StLogo to="/">
-          <StA11yHidden>타잉</StA11yHidden>
-        </StLogo>
-        <StTab icon="live">실시간</StTab>
-        <StTab>TV프로그램</StTab>
-        <StTab>영화</StTab>
-        <StTab icon="paramount">
-          <StA11yHidden>파라마운트</StA11yHidden>
-        </StTab>
-      </StGnb>
-      <StGnb>
-        <StSearch tabIndex={0}>
-          <StA11yHidden>검색</StA11yHidden>
-        </StSearch>
-        <StProfile>
-          <StA11yHidden>프로필</StA11yHidden>
-        </StProfile>
-      </StGnb>
-    </StHeader>
+    <>
+      <StHeader>
+        <StGnb>
+          <StLogo to="/">
+            <StA11yHidden>타잉</StA11yHidden>
+          </StLogo>
+          <StTab icon="live">실시간</StTab>
+          <StTab>TV프로그램</StTab>
+          <StTab>영화</StTab>
+          <StTab icon="paramount">
+            <StA11yHidden>파라마운트</StA11yHidden>
+          </StTab>
+        </StGnb>
+        <StGnb>
+          <StSearch tabIndex={0} onClick={openSearchModal}>
+            <StA11yHidden>검색</StA11yHidden>
+          </StSearch>
+          <StProfile>
+            <StA11yHidden>프로필</StA11yHidden>
+          </StProfile>
+        </StGnb>
+      </StHeader>
+      {isModal && <SearchModal />}
+    </>
   );
 };
 
