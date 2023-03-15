@@ -5,6 +5,7 @@ import MainPage from './pages/MainPage';
 import GlobalStyle from './styles/GlobalStyle';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEdit from './pages/ProfileEdit';
+import ProfileCRUD from './pages/ProfileCRUD';
 
 const routesConfig = [
   {
@@ -30,11 +31,11 @@ const routesConfig = [
         //     loader: contactLoader,
         //     action: contactEditAction,
       },
-      //   {
-      //     path: '/contacts/:contactId/destory',
-      //     action: destoryAction,
-      //     errorElement: <div role="alert">Oops! There was an error.</div>,
-      //   },
+      {
+        path: '/ProfileCRUD',
+        element: <ProfileCRUD />,
+        //     errorElement: <div role="alert">Oops! There was an error.</div>,
+      },
     ],
   },
   // ],

@@ -98,7 +98,7 @@ export const StProfileImage = styled.img`
 export const StProfileButton = styled.button`
   display: block;
   margin: ${rem(32)} auto 0 auto;
-  width: 53.57%;
+  width: 25%;
   aspect-ratio: auto 1/0.2;
   cursor: pointer;
   background-color: ${(props) => {
@@ -115,7 +115,6 @@ export const StProfileButton = styled.button`
   ${getFontStyle('LabelS')};
   @media (min-width: 768px) {
     margin-top: ${rem(44)};
-    width: 25%;
   }
   @media (min-width: 1920px) {
     margin-top: ${rem(66)};
