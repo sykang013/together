@@ -1,7 +1,9 @@
 import { Reset as ResetCss } from 'styled-reset';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import GlobalStyle from './styles/GlobalStyle';
 import Layout from './pages/Layout';
 import MainPage from './pages/MainPage';
+import RegisterPage from './pages/RegisterPage';
 import GlobalStyle from './styles/GlobalStyle';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEdit from './pages/ProfileEdit';
@@ -19,23 +21,23 @@ const routesConfig = [
       // errorElement: <NotFound />,
       // children: [
       { index: true, element: <MainPage /> },
-      {
-        path: '/ProfilePage',
-        element: <ProfilePage />,
-        //     loader: contactLoader,
-        //     action: contactAction,
-      },
-      {
-        path: '/ProfileEdit',
-        element: <ProfileEdit />,
-        //     loader: contactLoader,
-        //     action: contactEditAction,
-      },
-      {
-        path: '/ProfileCRUD',
-        element: <ProfileCRUD />,
-        //     errorElement: <div role="alert">Oops! There was an error.</div>,
-      },
+      // {
+      //     path: '/contacts/:contactId',
+      //     element: <Contact />,
+      //     loader: contactLoader,
+      //     action: contactAction,
+      //   },
+      //   {
+      //     path: '/contacts/:contactId/edit',
+      //     element: <ContactEdit />,
+      //     loader: contactLoader,
+      //     action: contactEditAction,
+      //   },
+      //   {
+      //     path: '/contacts/:contactId/destory',
+      //     action: destoryAction,
+      //     errorElement: <div role="alert">Oops! There was an error.</div>,
+      //   },
     ],
   },
   // ],
