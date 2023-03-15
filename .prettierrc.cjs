@@ -8,7 +8,7 @@ module.exports = {
   quoteProps: 'as-needed',
   semi: true,
   singleQuote: true,
-  parser: 'flow',
+  parser: 'typescript',
   tabWidth: 2,
   trailingComma: 'es5',
   useTabs: false,

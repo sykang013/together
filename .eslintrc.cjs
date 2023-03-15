@@ -13,7 +13,9 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:storybook/recommended',
     'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -21,7 +23,13 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', 'jsx-a11y', 'prettier'],
+  plugins: [
+    'react',
+    'react-hooks',
+    'jsx-a11y',
+    'prettier',
+    '@typescript-eslint',
+  ],
   // 개별 규칙 (사용자 정의)
   rules: {
     'no-unused-vars': 'warn',

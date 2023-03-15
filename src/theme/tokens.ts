@@ -1,4 +1,15 @@
-export const tokens = {
+interface ITokens {
+  colors: {
+    [key: string]: string;
+  };
+  fonts: {
+    [key: string]: {
+      [key: string]: string;
+    };
+  };
+}
+
+export const tokens: ITokens = {
   colors: {
     '--black': '#000000',
     '--white': '#ffffff',
