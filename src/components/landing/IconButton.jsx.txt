@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'; //Link를 사용하려면 리액트 라우터 돔에서 불러와야한다
 import styled from 'styled-components/macro'; //스타일드 컴포넌트 macro
 import { getColor, getFontStyle, rem } from '@/theme/utils'; //절대경로@(src) 사용
-import StA11yHidden from '@/components/a11yhidden/A11yHidden';
 
 const StIconButton = styled.div`
   background-color: ${getColor('--primary')};
