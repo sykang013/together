@@ -3,6 +3,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 import { createGlobalStyle } from 'styled-components';
 import { getColor } from '../src/theme/utils';
+import { Reset as ResetCss } from 'styled-reset';
 
 const GlobalStyles = createGlobalStyle`
 body {
@@ -30,8 +31,7 @@ body {
   video {
     width: 100%;
     height: auto;
-}
-
+  }
   :root{
     --black: #000000;
     --white: #ffffff;
@@ -55,6 +55,7 @@ export const decorators = [
   withRouter,
   withThemeFromJSXProvider({
     GlobalStyles, // Adds your GlobalStyle component to all stories
+    ResetCss,
   }),
 ];
 

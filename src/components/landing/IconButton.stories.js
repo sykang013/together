@@ -4,7 +4,7 @@ import IconButton from './IconButton'; //스토리 작성할 컴포넌트 불러
 //메타정보는 default로 내보내야합니다(API 약속)
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
 export default {
-  title: '메인페이지/아이콘버튼', //왼쪽 사이드바에 표시될 카테고리,컴포넌트 이름
+  title: '컴포넌트/랜딩페이지/아이콘버튼', //왼쪽 사이드바에 표시될 카테고리,컴포넌트 이름
   component: IconButton, //Story를 작성할 컴포넌트 설정
   tags: ['autodocs'],
   argTypes: {
@@ -21,34 +21,31 @@ export default {
 export const Primary = {
   args: {
     primary: true,
-    label: '느엉느엉',
+    label: '프라이머리 기본값',
   },
 };
 
 export const Secondary = {
   args: {
     primary: false,
-    label: '부엉부엉',
+    label: '세컨더리 기본값',
   },
 };
 
 export const Mobile = {
   args: {
     size: 'mobile',
-    label: '모바일 버튼입니다',
   },
 };
 
 export const Tablet = {
   args: {
     size: 'tablet',
-    label: '태블릿 버튼입니다',
   },
 };
 
 export const Desktop = {
   args: {
     size: 'desktop',
-    label: '데스크탑 버튼입니다',
   },
 };

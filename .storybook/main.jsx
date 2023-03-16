@@ -1,4 +1,6 @@
 /** @type { import('@storybook/react-vite').StorybookConfig } */
+import { mergeConfig } from 'vite';
+
 const config = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -10,6 +12,18 @@ const config = {
     'storybook-addon-react-router-v6',
     '@storybook/addon-styling',
   ],
+  core: {
+    builder: '@storybook/builder-vite', // 👈 The builder enabled here.
+  },
+  async viteFinal(config) {
+    // Merge custom configuration into the default config
+    return mergeConfig(config, {
+      // Add dependencies to pre-optimization
+      optimizeDeps: {
+        include: ['storybook-dark-mode'],
+      },
+    });
+  },
   framework: {
     name: '@storybook/react-vite',
     options: {},
