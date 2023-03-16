@@ -48,7 +48,7 @@ const StPopUp = styled.div`
   }
 `;
 
-const Stbutton = styled.div`
+const StButton = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -62,17 +62,23 @@ const Popup = () => {
     <ModalPortal>
       <StPopUp role="dialog">
         <picture>
-          <source srcSet="src/assets/desktop.png" media="(min-width:1920px" />
-          <source srcSet="src/assets/tablet.png" media="(min-width:768px" />
+          <source
+            srcSet="src/assets/popup/desktop.png"
+            media="(min-width:1920px)"
+          />
+          <source
+            srcSet="src/assets/popup/tablet.png"
+            media="(min-width:768px)"
+          />
           <img
-            src="src/assets/mobile.png"
+            src="src/assets/popup/mobile.png"
             alt="기대해 재미 가득한 라인업 광고 팝업"
           />
         </picture>
-        <Stbutton>
+        <StButton>
           <button type="button">오늘 하루 보지 않기</button>
           <button type="button">닫기</button>
-        </Stbutton>
+        </StButton>
       </StPopUp>
     </ModalPortal>
   );
