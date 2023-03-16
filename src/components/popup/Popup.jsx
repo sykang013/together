@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { getColor, getFontStyle, rem } from '@/theme/utils';
+import { getFontStyle, rem } from '@/theme/utils';
 import ModalPortal from '@/components/modal/ModalPortal';
 
 const StPopUp = styled.div`
@@ -10,7 +10,6 @@ const StPopUp = styled.div`
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  color: ${getColor('--white')};
   button {
     border: transparent;
     background-color: transparent;
@@ -54,20 +53,20 @@ const Stbutton = styled.div`
   flex-direction: row;
   align-items: center;
   button:nth-child(2) {
-    border-left: 1px solid ${getColor('--gray400')};
+    border-left: 1px solid var(--gray400);
   }
 `;
 
 const Popup = () => {
   return (
     <ModalPortal>
-      <StPopUp>
+      <StPopUp role="dialog">
         <picture>
           <source srcSet="src/assets/desktop.png" media="(min-width:1920px" />
           <source srcSet="src/assets/tablet.png" media="(min-width:768px" />
           <img
             src="src/assets/mobile.png"
-            alt="기대해 재미 가득 라인업 광고 팝업"
+            alt="기대해 재미 가득한 라인업 광고 팝업"
           />
         </picture>
         <Stbutton>
