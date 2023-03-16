@@ -1,4 +1,4 @@
-import { IconButton } from './IconButton'; //스토리 작성할 컴포넌트 불러오기
+import IconButton from './IconButton'; //스토리 작성할 컴포넌트 불러오기
 
 //메타 정보
 //메타정보는 default로 내보내야합니다(API 약속)
