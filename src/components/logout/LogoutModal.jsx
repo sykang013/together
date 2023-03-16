@@ -8,7 +8,7 @@ const StLogoutModal = styled.div`
   height: ${rem(91)};
   background-color: var(--dark-bg2);
   border-radius: 4px;
-  position: absolute;
+  position: fixed;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
@@ -64,7 +64,7 @@ const StOverlay = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.9);
   top: 0;
   left: 0;
 `;
