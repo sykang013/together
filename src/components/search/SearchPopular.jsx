@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 
 const StPopular = styled.div`
-  width: 100%;
+  width: 50%;
   padding-left: ${rem(30)};
   height: ${rem(340)};
 
@@ -12,21 +12,21 @@ const StPopular = styled.div`
     color: var(--gray200);
   }
 
-  p:last-child {
+  li:last-child {
     ${getFontStyle('ParagraphS')};
     display: block;
     color: var(--gray500);
     margin-top: ${rem(16)};
   }
 
-  div {
+  ul {
     padding-top: ${rem(11)};
   }
 
   @media (min-width: 768px) {
     height: ${rem(351)};
 
-    p:last-child {
+    li:last-child {
       ${getFontStyle('ParagraphM')};
     }
   }
@@ -34,11 +34,11 @@ const StPopular = styled.div`
   @media (min-width: 1920px) {
     height: ${rem(613)};
 
-    p:last-child {
+    li:last-child {
       ${getFontStyle('ParagraphL')};
     }
 
-    div {
+    ul {
       padding-top: ${rem(18)};
     }
 
@@ -48,30 +48,38 @@ const StPopular = styled.div`
   }
 `;
 
-const StKeyword = styled.p`
+const StKeyword = styled.li`
   display: flex;
   height: ${rem(18)};
   margin-top: ${rem(9)};
 
-  span:first-child {
+  span {
     ${getFontStyle('LabelS')};
     color: var(--primary);
     width: ${rem(18)};
   }
 
-  span:last-child {
+  button {
     ${getFontStyle('LabelS')};
     color: var(--gray300);
+    border: 0;
+    background-color: transparent;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    &:hover {
+      color: var(--white);
+    }
   }
 
   @media (min-width: 1920px) {
     margin-top: ${rem(18)};
     height: ${rem(32)};
-    span:first-child {
+    span {
       width: ${rem(34)};
       ${getFontStyle('ParagraphL')};
     }
-    span:last-child {
+    button {
       ${getFontStyle('ParagraphL')};
     }
   }
@@ -94,15 +102,15 @@ const SearchPopular = () => {
   return (
     <StPopular>
       <h2>실시간 인기 검색어</h2>
-      <div>
+      <ul>
         {popular.map((title, index) => (
           <StKeyword key={index}>
             <span>{+index + 1}</span>
-            <span>{title}</span>
+            <button>{title}</button>
           </StKeyword>
         ))}
-        <p>2023.03.15 오후 03:46 기준</p>
-      </div>
+        <li>2023.03.15 오후 03:46 기준</li>
+      </ul>
     </StPopular>
   );
 };

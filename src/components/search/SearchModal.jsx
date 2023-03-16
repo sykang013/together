@@ -1,47 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ModalPortal from '@/components/modal/ModalPortal';
 import styled from 'styled-components/macro';
-import { getFontStyle, rem } from '@/theme/utils';
+import { rem } from '@/theme/utils';
 import SearchBar from '@/components/search/SearchBar';
 import SearchHistory from '@/components/search/SearchHistory';
 import SearchPopular from './SearchPopular';
 
 const StSearchModal = styled.div`
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   background-color: var(--dark-bg1);
   color: var(--white);
   position: absolute;
+  top: 0;
   left: 0;
   width: 100%;
-  height: ${rem(535)};
-  padding: ${rem(20)} ${rem(47)};
+  max-height: 100vh;
+  padding: ${rem(58)} ${rem(47)};
 
   @media (min-width: 768px) {
-    padding: ${rem(28)} ${rem(122)} ${rem(52)} ${rem(122)};
+    padding: ${rem(84)} ${rem(122)} ${rem(52)} ${rem(122)};
   }
 
   @media (min-width: 1920px) {
-    height: ${rem(945)};
-    padding: ${rem(52)} ${rem(220)} ${rem(93)} ${rem(220)};
-    top: ${rem(100)};
+    padding: ${rem(152)} ${rem(220)} ${rem(93)} ${rem(220)};
   }
 `;
 
 const StSearchModalOverlay = styled.div`
-  position: absolute;
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  @media (min-width: 1920px) {
-    top: ${rem(100)};
-  }
-  div {
-    background-color: rgba(0, 0, 0, 0.5);
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const StSearchContent = styled.div`
@@ -56,16 +51,21 @@ const StSearchContent = styled.div`
 
 const StKeyword = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
 `;
 
 const SearchModal = () => {
+  useEffect(() => {
+    document.body.style.cssText = `
+    overflow:hidden;`;
+    return () => {
+      document.body.style.removeProperty('overflow');
+    };
+  }, []);
   return (
     <ModalPortal>
-      <StSearchModalOverlay>
-        <div></div>
-      </StSearchModalOverlay>
+      <StSearchModalOverlay />
       <StSearchModal>
         <SearchBar />
         <StSearchContent>
