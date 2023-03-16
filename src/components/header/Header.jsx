@@ -7,7 +7,6 @@ import SearchModal from '@/components/search/SearchModal';
 
 const StHeader = styled.nav`
   position: relative;
-  background-color: tomato;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;

@@ -8,18 +8,32 @@ const StSearchInput = styled.div`
   border-bottom: 3px solid var(--white);
   display: flex;
   justify-content: space-between;
+  height: ${rem(24)};
+  padding: ${rem(8.5)} 0;
+
   @media (min-width: 768px) {
-    height: ${rem(56)};
+    height: ${rem(32)};
     padding: ${rem(12)} 0;
   }
+
   @media (min-width: 1920px) {
     height: ${rem(57)};
     padding: ${rem(16)} 0;
   }
 
   div {
-    width: ${rem(50)};
-    height: ${rem(50)};
+    width: ${rem(22)};
+    height: ${rem(22)};
+
+    @media (min-width: 768px) {
+      width: ${rem(28)};
+      height: ${rem(28)};
+    }
+
+    @media (min-width: 1920px) {
+      width: ${rem(50)};
+      height: ${rem(50)};
+    }
   }
 
   use {
@@ -32,18 +46,21 @@ const StSearchInput = styled.div`
     background-color: transparent;
     color: var(--white);
     border: 0;
+    ${getFontStyle('LabelM')}
 
     :focus {
       outline: none;
     }
+    ::placeholder {
+      color: var(--gray700);
+    }
 
     @media (min-width: 768px) {
+      ${getFontStyle('LabelL')}
     }
+
     @media (min-width: 1920px) {
       ${getFontStyle('LabelXXL')}
-      ::placeholder {
-        color: var(--gray700);
-      }
     }
   }
 `;

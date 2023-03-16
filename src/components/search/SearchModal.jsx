@@ -2,7 +2,9 @@ import React from 'react';
 import ModalPortal from '@/components/modal/ModalPortal';
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
-import SearchBar from './SearchBar';
+import SearchBar from '@/components/search/SearchBar';
+import SearchHistory from '@/components/search/SearchHistory';
+import SearchPopular from './SearchPopular';
 
 const StSearchModal = styled.div`
   background-color: var(--dark-bg1);
@@ -11,7 +13,11 @@ const StSearchModal = styled.div`
   left: 0;
   width: 100%;
   height: ${rem(535)};
-  padding: ${rem(28)} ${rem(132)} ${rem(52)} ${rem(132)};
+  padding: ${rem(20)} ${rem(47)};
+
+  @media (min-width: 768px) {
+    padding: ${rem(28)} ${rem(122)} ${rem(52)} ${rem(122)};
+  }
 
   @media (min-width: 1920px) {
     height: ${rem(945)};
@@ -21,118 +27,51 @@ const StSearchModal = styled.div`
 `;
 
 const StSearchModalOverlay = styled.div`
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
+  position: absolute;
   left: 0;
   width: 100%;
   height: 100%;
   @media (min-width: 1920px) {
     top: ${rem(100)};
   }
+  div {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const StSearchContent = styled.div`
-  margin-top: ${rem(98)};
+  margin-top: ${rem(40)};
+  @media (min-width: 786px) {
+    margin-top: ${rem(48)};
+  }
+  @media (min-width: 1920px) {
+    margin-top: ${rem(98)};
+  }
 `;
 
 const StKeyword = styled.div`
   display: flex;
   justify-content: space-between;
   height: 100%;
-  h2 {
-    ${getFontStyle('LabelXL')};
-    color: var(--gray200);
-  }
-`;
-
-const StRecent = styled.div`
-  width: 100%;
-  padding-right: ${rem(30)};
-  border-right: 1px solid var(--gray800);
-  @media (min-width: 1920px) {
-    height: ${rem(613)};
-  }
-
-  div {
-    margin-top: ${rem(20)};
-    ${getFontStyle('ParagraphL')};
-    color: var(--gray300);
-  }
-`;
-
-const StPopular = styled.div`
-  width: 100%;
-  padding-left: ${rem(30)};
-
-  @media (min-width: 1920px) {
-    height: ${rem(613)};
-  }
-
-  div {
-    padding-top: ${rem(18)};
-  }
-
-  p {
-    display: flex;
-    margin-top: ${rem(18)};
-    height: ${rem(32)};
-    span:first-child {
-      font-weight: 700;
-      font-size: ${rem(21.328)};
-      line-height: 160%;
-      color: var(--primary);
-      width: ${rem(34)};
-    }
-
-    span:last-child {
-      ${getFontStyle('ParagraphL')};
-      color: var(--gray300);
-    }
-  }
-
-  p:last-child {
-    ${getFontStyle('ParagraphL')};
-    display: block;
-    color: var(--gray500);
-  }
 `;
 
 const SearchModal = () => {
-  const popular = [
-    '재벌집 막내아들',
-    '미스터트롯2: 새로운 전설의 시작',
-    '유 퀴즈 온 더 블럭',
-    '대행사',
-    'SHOW ME THE MONEY 11',
-    '미씽: 그들이 있었다2',
-    '술꾼도시여자들2',
-    '캐나다 체크인',
-    '미씽: 그들이 있었다 - 그들을 다만나다',
-    '술꾼도시여자들',
-  ];
   return (
     <ModalPortal>
-      <StSearchModalOverlay />
+      <StSearchModalOverlay>
+        <div></div>
+      </StSearchModalOverlay>
       <StSearchModal>
         <SearchBar />
         <StSearchContent>
           <StKeyword>
-            <StRecent>
-              <h2>최근 검색어</h2>
-              <div>검색 내역이 없습니다.</div>
-            </StRecent>
-            <StPopular>
-              <h2>실시간 인기 검색어</h2>
-              <div>
-                {popular.map((title, index) => (
-                  <p key={index}>
-                    <span>{+index + 1}</span>
-                    <span>{title}</span>
-                  </p>
-                ))}
-                <p>2023.03.15 오후 03:46 기준</p>
-              </div>
-            </StPopular>
+            <SearchHistory />
+            <SearchPopular />
           </StKeyword>
         </StSearchContent>
       </StSearchModal>
