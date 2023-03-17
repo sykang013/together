@@ -4,6 +4,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import Layout from './pages/Layout';
 import MainPage from './pages/MainPage';
 import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
 
 const routesConfig = [
   {
@@ -21,6 +22,10 @@ const routesConfig = [
       {
         path: 'register',
         element: <RegisterPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
       },
       //   {
       //     path: '/contacts/:contactId/edit',
