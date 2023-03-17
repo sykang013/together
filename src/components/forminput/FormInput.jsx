@@ -10,11 +10,14 @@ const StFormInput = styled.input`
   border-radius: ${rem(4)};
   background-color: ${getColor('--dark-bg2')};
   color: ${getColor('--white')};
+  width: ${rem(288)};
   ${getFontStyle('ParagraphM')};
   @media (min-width: 768px) {
+    width: ${rem(416)};
     ${getFontStyle('ParagraphL')};
   }
   @media (min-width: 1920px) {
+    width: ${rem(732)};
     ${getFontStyle('ParagraphXL')};
   }
 

@@ -15,15 +15,18 @@ const StButton = styled.button`
   border: none;
   border-radius: 4px;
   font-size: ${rem(16)};
+  width: ${rem(288)};
   ${getFontStyle('LabelS')};
   &:hover {
     background-color: ${getColor('--gray600')};
   }
   @media (min-width: 768px) {
+    width: ${rem(416)};
     height: ${rem(50)};
     ${getFontStyle('LabelM')};
   }
   @media (min-width: 1920px) {
+    width: ${rem(732)};
     height: ${rem(86)};
     ${getFontStyle('LabelXL')};
   }
