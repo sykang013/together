@@ -29,7 +29,7 @@ export function useSignIn() {
 
       setUser(userCredentials);
     } catch (error) {
-      setError(error);
+      setError(alert('일치하는 회원정보가 없습니다.'));
     } finally {
       setIsLoading(false);
     }
