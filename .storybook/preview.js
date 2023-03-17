@@ -3,6 +3,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 import { createGlobalStyle } from 'styled-components';
 import { getColor, getFontStyle, rem } from '../src/theme/utils';
+import { Reset as ResetCss } from 'styled-reset';
 
 const GlobalStyles = createGlobalStyle`
 body {
@@ -51,11 +52,21 @@ body {
   }
 `;
 
+// export const decorators = [
+//   withRouter,
+//   withThemeFromJSXProvider({
+//     GlobalStyles, // Adds your GlobalStyle component to all stories
+//     ResetCss,
+//   }),
+// ];
+
 export const decorators = [
-  withRouter,
-  withThemeFromJSXProvider({
-    GlobalStyles, // Adds your GlobalStyle component to all stories
-  }),
+  (Story) => (
+    <>
+      <GlobalStyle />
+      <Story />
+    </>
+  ),
 ];
 
 export const parameters = {
