@@ -1,22 +1,23 @@
-import Header from '@/components/header/Header';
-import ScrollSectionTitle from '@/containers/ScrollSectionTitle';
-import MessageTitle2 from '@/components/landing/MessageTitle2';
+import { rem } from '@/theme/utils';
 import styled from 'styled-components/macro';
+import ScrollSectionTitle from '@/containers/ScrollSectionTitle';
+import ScrollSectionOriginal from '@/containers/ScrollSectionOriginal';
+import ScrollSectionAd from '@/containers/ScrollSectionAd';
+// import TestSlider from '@/components/landing/TestSlider';
 
 const StLandingPage = styled.div`
-  .landingImg {
-    background-color: pink;
-    width: 200px;
-    height: 200px;
-    display: inline-block;
-  }
+  display: flex;
+  flex-flow: column nowrap;
+  /* gap: ${rem(48)}; */
 `;
+
 const LandingPage = () => {
   return (
-    <StLandingPage className="landingImg">
-      <Header />
+    <StLandingPage>
       <ScrollSectionTitle />
-      <MessageTitle2 />
+      <ScrollSectionOriginal />
+      <ScrollSectionAd />
+      {/* <TestSlider /> */}
     </StLandingPage>
   );
 };
