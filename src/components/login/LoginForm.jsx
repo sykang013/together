@@ -4,7 +4,7 @@ import { getFontStyle, rem } from '@/theme/utils';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import FormInput from '../forminput/FormInput';
+import FormInput from '@/components/forminput/FormInput';
 
 const StLoading = styled.figure`
   margin: 0;
@@ -12,7 +12,7 @@ const StLoading = styled.figure`
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  font-size: 20px;
+  font-size: ${rem(20)};
   text-align: center;
   color: var(--primary);
 `;
@@ -36,10 +36,6 @@ const StInfo = styled.p`
       color: var(--gray100);
     }
   }
-`;
-
-const StShowPw = styled.button`
-  background-color: red;
 `;
 
 const StFind = styled.p`
@@ -85,7 +81,6 @@ const StButton = styled.button`
   color: var(--white);
   border: none;
   border-radius: 4px;
-  font-size: ${rem(16)};
   width: ${rem(288)};
   ${getFontStyle('LabelS')};
   &:hover {

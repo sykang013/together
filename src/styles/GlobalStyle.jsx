@@ -49,7 +49,7 @@ body {
     font-size: 1.3vw;
 
     * {
-      transition: 1ms
+      transition: 1ms;
     } 
   }
 `;

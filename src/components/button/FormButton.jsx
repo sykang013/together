@@ -14,7 +14,6 @@ const StButton = styled.button`
     props.isActive ? getColor('--white') : getColor('--gray400')};
   border: none;
   border-radius: 4px;
-  font-size: ${rem(16)};
   width: ${rem(288)};
   ${getFontStyle('LabelS')};
   &:hover {

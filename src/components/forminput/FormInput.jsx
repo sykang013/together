@@ -7,7 +7,7 @@ import StA11yHidden from '@/components/a11yhidden/A11yHidden';
 const StFormInput = styled.input`
   padding: ${rem(16)};
   border: none;
-  border-radius: ${rem(4)};
+  border-radius: 4px;
   background-color: ${getColor('--dark-bg2')};
   color: ${getColor('--white')};
   width: ${rem(288)};

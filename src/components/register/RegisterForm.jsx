@@ -16,9 +16,9 @@ import { Navigate } from 'react-router';
 
 const StHeaderDescription = styled.p`
   color: ${getColor('--gray400')};
-  ${getFontStyle('LabelSmall')};
+  ${getFontStyle('LabelS')};
   @media (min-width: 768px) {
-    ${getFontStyle('LabelMedium')};
+    ${getFontStyle('LabelM')};
   }
   @media (min-width: 1920px) {
     ${getFontStyle('LabelXL')};
