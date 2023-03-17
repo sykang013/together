@@ -91,7 +91,7 @@ export const StProfileImage = styled.img`
   height: 100%;
   cursor: pointer;
   &:hover {
-    border: 4px solid ${getColor('--primary')};
+    border: 8px solid ${getColor('--primary')};
   }
 `;
 
