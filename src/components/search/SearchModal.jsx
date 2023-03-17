@@ -5,6 +5,7 @@ import { rem } from '@/theme/utils';
 import SearchBar from '@/components/search/SearchBar';
 import SearchHistory from '@/components/search/SearchHistory';
 import SearchPopular from './SearchPopular';
+import { func } from 'prop-types';
 
 const StSearchModal = styled.div`
   overflow-y: auto;
@@ -55,7 +56,7 @@ const StKeyword = styled.div`
   height: 100%;
 `;
 
-const SearchModal = () => {
+const SearchModal = ({ toggleModal }) => {
   useEffect(() => {
     document.body.style.cssText = `
     overflow:hidden;`;
@@ -65,7 +66,7 @@ const SearchModal = () => {
   }, []);
   return (
     <ModalPortal>
-      <StSearchModalOverlay />
+      <StSearchModalOverlay onClick={toggleModal} />
       <StSearchModal>
         <SearchBar />
         <StSearchContent>
@@ -80,3 +81,7 @@ const SearchModal = () => {
 };
 
 export default SearchModal;
+
+SearchModal.propTypes = {
+  toggleModal: func,
+};

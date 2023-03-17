@@ -153,11 +153,13 @@ const StProfile = styled(Link)`
 const Header = () => {
   const [isModal, setIsModal] = useState(false);
 
-  const openSearchModal = () => {
-    setIsModal(true);
+  const toggleSearchModal = () => {
+    setIsModal((isModal) => setIsModal(!isModal));
   };
+
   return (
     <>
+      {isModal && <SearchModal toggleModal={toggleSearchModal} />}
       <StHeader>
         <StGnb>
           <StLogo to="/">
@@ -171,7 +173,7 @@ const Header = () => {
           </StTab>
         </StGnb>
         <StGnb>
-          <StSearch tabIndex={0} onClick={openSearchModal}>
+          <StSearch tabIndex={0} onClick={toggleSearchModal}>
             <StA11yHidden>검색</StA11yHidden>
           </StSearch>
           <StProfile>
@@ -179,7 +181,6 @@ const Header = () => {
           </StProfile>
         </StGnb>
       </StHeader>
-      {isModal && <SearchModal />}
     </>
   );
 };

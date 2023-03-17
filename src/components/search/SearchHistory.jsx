@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
+import { useRecoilState } from 'recoil';
+import { searchHistoryState } from '@/store/searchHistoryState';
 
 const StRecent = styled.div`
   width: 50%;
@@ -11,6 +13,7 @@ const StRecent = styled.div`
   button {
     border: 0;
     background-color: transparent;
+    ${getFontStyle('LabelS')};
   }
 
   div:first-child {
@@ -34,6 +37,7 @@ const StRecent = styled.div`
     display: flex;
     align-items: center;
     gap: ${rem(16)};
+    ${getFontStyle('ParagraphS')};
   }
 
   @media (min-width: 768px) {
@@ -57,19 +61,22 @@ const StRecent = styled.div`
 
     li {
       margin-top: ${rem(16)};
+      ${getFontStyle('ParagraphL')};
+    }
+
+    button {
+      ${getFontStyle('LabelL')};
     }
   }
 `;
 
 const StRemoveAll = styled.button`
-  ${getFontStyle('LabelS')};
   color: var(--gray600);
   display: flex;
   align-items: center;
   gap: ${rem(4)};
 
   @media (min-width: 1920px) {
-    ${getFontStyle('LabelL')};
     gap: ${rem(12)};
   }
 `;
@@ -81,41 +88,48 @@ const StRemove = styled.button`
 
 const StKeyword = styled.button`
   color: inherit;
-  ${getFontStyle('LabelS')};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   &:hover {
     color: var(--white);
   }
-
-  @media (min-width: 1920px) {
-    ${getFontStyle('LabelL')};
-  }
 `;
 
 const SearchHistory = () => {
-  const searchKeyword = ['검색어1', '검색어2', '검색어3'];
+  const [keywords, setKeywords] = useRecoilState(searchHistoryState);
+
+  const removeKeyword = (id) => {
+    setKeywords((keywords) => keywords.filter((keyword) => keyword.id !== id));
+  };
+
+  const removeKeywordAll = () => {
+    setKeywords([]);
+  };
+
   return (
     <StRecent>
       <div>
         <h2>최근 검색어</h2>
-        <StRemoveAll>
-          모두 지우기
-          <Svg
-            id="delete-filled"
-            desktopW={20}
-            desktopH={20}
-            width={12}
-            height={12}
-          />
-        </StRemoveAll>
+        {keywords.length > 0 && (
+          <StRemoveAll type="button" onClick={removeKeywordAll}>
+            모두 지우기
+            <Svg
+              id="delete-filled"
+              desktopW={20}
+              desktopH={20}
+              width={12}
+              height={12}
+            />
+          </StRemoveAll>
+        )}
       </div>
       <ul>
-        {searchKeyword.map((keyword, index) => (
-          <li key={index}>
-            <StKeyword>{keyword}</StKeyword>
-            <StRemove>
+        {keywords.length === 0 && <li>검색 내역이 없습니다.</li>}
+        {keywords?.map((keyword) => (
+          <li key={keyword.id}>
+            <StKeyword>{keyword.keyword}</StKeyword>
+            <StRemove type="button" onClick={() => removeKeyword(keyword.id)}>
               <Svg
                 id="delete-not-filled"
                 desktopW={20}

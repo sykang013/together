@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/macro';
 import Svg from '@/components/svg/Svg';
 import { getFontStyle, rem } from '@/theme/utils';
+import { searchHistoryState } from '@/store/searchHistoryState';
+import { useRecoilState } from 'recoil';
 
 const StSearchInput = styled.div`
   box-sizing: content-box;
@@ -52,13 +54,37 @@ const StSearchInput = styled.div`
 `;
 
 const SearchBar = () => {
+  const [keywords, setKeywords] = useRecoilState(searchHistoryState);
+  const searchInput = useRef();
+  const saveNewKeyword = () => {
+    let uuid = self.crypto.randomUUID();
+    const newKeyword = {
+      id: uuid,
+      keyword: searchInput.current.value,
+    };
+    setKeywords((keywords) => [...keywords, newKeyword]);
+    searchInput.current.value = '';
+  };
+
+  useEffect(() => {
+    const keywordList = JSON.parse(localStorage.getItem('keywords'));
+    if (keywordList) {
+      setKeywords((keywords) => [...keywords, ...keywordList]);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('keywords', JSON.stringify(keywords));
+  }, [keywords]);
+
   return (
     <StSearchInput>
       <input
         type="text"
         placeholder="TV프로그램, 영화 제목 및 출연진으로 검색해보세요"
+        ref={searchInput}
       />
-      <button>
+      <button type="button" onClick={saveNewKeyword}>
         <Svg
           id="search-hover"
           width={22}
