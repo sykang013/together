@@ -2,10 +2,57 @@
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 import { createGlobalStyle } from 'styled-components';
-import { getColor, getFontStyle, rem } from '../src/theme/utils';
-import { Reset as ResetCss } from 'styled-reset';
+import { getColor } from '../src/theme/utils';
+import ko from 'axe-core/locales/ko.json';
 
 const GlobalStyles = createGlobalStyle`
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, menu, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+main, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+  display: block;
+}
+/* HTML5 hidden-attribute fix for newer browsers */
+*[hidden] {
+    display: none;
+}
+body {
+  line-height: 1;
+}
+menu, ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 body {
   background-color : ${getColor('--black')};
   button,
@@ -32,7 +79,6 @@ body {
     width: 100%;
     height: auto;
 }
-
   :root{
     --black: #000000;
     --white: #ffffff;
@@ -52,26 +98,23 @@ body {
   }
 `;
 
-// export const decorators = [
-//   withRouter,
-//   withThemeFromJSXProvider({
-//     GlobalStyles, // Adds your GlobalStyle component to all stories
-//     ResetCss,
-//   }),
-// ];
-
 export const decorators = [
-  (Story) => (
-    <>
-      <GlobalStyle />
-      <Story />
-    </>
-  ),
+  withThemeFromJSXProvider({
+    GlobalStyles,
+  }),
+  withRouter,
 ];
 
 export const parameters = {
   reactRouter: {
     routePath: '/',
+  },
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
   },
 };
 
@@ -101,15 +144,12 @@ const customViewports = {
 
 const preview = {
   parameters: {
+    a11y: {
+      config: { locale: ko },
+    },
+    layout: 'centered',
     backgrounds: {
       default: 'light',
-    },
-    actions: { argTypesRegex: '^on[A-Z].*' },
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/,
-      },
     },
     viewport: {
       viewports: customViewports,

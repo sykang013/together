@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import { getFontStyle, rem } from '@/theme/utils';
+import { getFontStyle, rem } from '../../theme/utils';
+import Svg from './Svg';
 
 const StIconButton = styled.div`
   &:hover {
@@ -24,7 +26,7 @@ const StIconButton = styled.div`
   }
   a {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: top;
     width: 100%;
     height: 100%;
@@ -34,25 +36,11 @@ const StIconButton = styled.div`
   }
 `;
 
-const IconButton = () => {
-  const StSprite = styled.div`
-    height: 80%;
-    svg {
-      height: 100%;
-      padding: 0 ${rem(4)} 0 0;
-    }
-  `;
-  const Sprite = ({ id, viewBox }) => (
-    <svg viewBox={`${viewBox}`}>
-      <use href={`src/assets/sprites.svg#${id}`} />
-    </svg>
-  );
+const IconButton = (props) => {
   return (
     <StIconButton role="group">
-      <Link to="/login">
-        <StSprite>
-          <Sprite id="symbol-logo" viewBox="0 0 63 63" />
-        </StSprite>
+      <Link to={props.path}>
+        <Svg id="symbol-logo" width={'15%'} height={'80%'}></Svg>
         <h3>새로워진 타잉을 만나보세요!</h3>
       </Link>
     </StIconButton>
@@ -60,3 +48,14 @@ const IconButton = () => {
 };
 
 export default IconButton;
+
+IconButton.propTypes = {
+  /**
+   * 문자로 된 라우팅 주소 값을 꼭 넣어주세요
+   */
+  path: PropTypes.string.isRequired,
+};
+
+IconButton.defaultProps = {
+  path: '/login',
+};
