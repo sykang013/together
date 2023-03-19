@@ -5,6 +5,7 @@ import Layout from './pages/Layout';
 import MainPage from './pages/MainPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
+import SearchPage from './pages/SearchPage';
 
 const routesConfig = [
   {
@@ -26,6 +27,10 @@ const routesConfig = [
       {
         path: 'login',
         element: <LoginPage />,
+      },
+      {
+        path: '/search',
+        element: <SearchPage />,
       },
       //   {
       //     path: '/contacts/:contactId/edit',
