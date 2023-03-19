@@ -46,10 +46,10 @@ body {
     --dark-bg1: #191919;
     --dark-bg2: #212121;
 
-    font-size: 1.3vw;
+    font-size: calc(8px + 0.5vw);
 
     * {
-      transition: 1ms;
+      transition: 0.1ms;
     } 
   }
 `;
