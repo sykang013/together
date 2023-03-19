@@ -2,5 +2,5 @@ import { atom } from 'recoil';
 
 export const searchHistoryState = atom({
   key: 'searchHistoryState',
-  default: [],
+  default: JSON.parse(localStorage.getItem('keywords')) || [],
 });

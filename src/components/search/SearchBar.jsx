@@ -2,13 +2,19 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import Svg from '@/components/svg/Svg';
 import { getFontStyle, rem } from '@/theme/utils';
-import { searchHistoryState } from '@/store/searchHistoryState';
-import { useRecoilState } from 'recoil';
+import {
+  searchDataState,
+  searchHistoryState,
+  searchKeywordState,
+} from '@/store/search/index';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import useDebounce from '@/hooks/useDebounce';
 import useReadSearchData from '@/firebase/firestore/useReadSearchData';
 import Modal from '@/components/modal/Modal';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { func } from 'prop-types';
 
-const StSearchInput = styled.div`
+const StSearchInput = styled.form`
   box-sizing: content-box;
   border-bottom: 3px solid var(--white);
   display: flex;
@@ -56,22 +62,26 @@ const StSearchInput = styled.div`
   }
 `;
 
-const SearchBar = () => {
+const SearchBar = ({ toggleModal }) => {
   const [keywords, setKeywords] = useRecoilState(searchHistoryState);
-  const [keyword, setKeyword] = useState('');
-  const [isModal, setIsModal] = useState(false);
+  const [keyword, setKeyword] = useRecoilState(searchKeywordState);
+  const setSearchData = useSetRecoilState(searchDataState);
+  const [isGuideModal, setIsGuideModal] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
-  const toggleModal = () => {
-    setIsModal((isModal) => !isModal);
+  const toggleGuideModal = () => {
+    setIsGuideModal((isGuideModal) => !isGuideModal);
   };
 
   const onChangeKeyword = (e) => {
     setKeyword(e.target.value);
   };
 
-  const searchKeyword = () => {
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
     if (!keyword) {
-      toggleModal();
+      toggleGuideModal();
       return;
     }
 
@@ -81,7 +91,9 @@ const SearchBar = () => {
       keyword: keyword,
     };
     setKeywords((keywords) => [...keywords, newKeyword]);
-    setKeyword('');
+    setSearchData([]);
+    toggleModal();
+    navigate(`/search?keyword=${keyword}`);
   };
 
   const { readSearchData, isLoading, error } = useReadSearchData(
@@ -98,20 +110,16 @@ const SearchBar = () => {
   );
 
   useEffect(() => {
-    const keywordList = JSON.parse(localStorage.getItem('keywords'));
-    if (keywordList) {
-      setKeywords((keywords) => [...keywords, ...keywordList]);
-    }
-  }, []);
-
-  useEffect(() => {
     localStorage.setItem('keywords', JSON.stringify(keywords));
   }, [keywords]);
 
   return (
     <>
-      {isModal && (
-        <Modal message="검색어를 입력해주세요." onClickHandler={toggleModal} />
+      {isGuideModal && (
+        <Modal
+          message="검색어를 입력해주세요."
+          onClickHandler={toggleGuideModal}
+        />
       )}
       <StSearchInput>
         <input
@@ -120,7 +128,7 @@ const SearchBar = () => {
           value={keyword}
           onChange={onChangeKeyword}
         />
-        <button type="button" onClick={searchKeyword}>
+        <button onClick={onSubmitHandler}>
           <Svg
             id="search-hover"
             width={22}
@@ -137,3 +145,7 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+
+SearchBar.propTypes = {
+  toggleModal: func,
+};

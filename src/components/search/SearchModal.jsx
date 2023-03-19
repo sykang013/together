@@ -6,7 +6,7 @@ import SearchBar from '@/components/search/SearchBar';
 import SearchHistory from '@/components/search/SearchHistory';
 import SearchPopular from './SearchPopular';
 import { func } from 'prop-types';
-import { searchDataState } from '@/store/searchDataState';
+import { searchDataState } from '@/store/search/searchDataState';
 import { useRecoilValue } from 'recoil';
 import SearchResult from '@/components/search/SearchResult';
 
@@ -73,7 +73,7 @@ const SearchModal = ({ toggleModal }) => {
     <ModalPortal>
       <StSearchModalOverlay onClick={toggleModal} />
       <StSearchModal>
-        <SearchBar />
+        <SearchBar toggleModal={toggleModal} />
         {searchData.length === 0 && (
           <StSearchContent>
             <StKeyword>

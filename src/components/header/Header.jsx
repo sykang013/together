@@ -154,7 +154,7 @@ const Header = () => {
   const [isModal, setIsModal] = useState(false);
 
   const toggleSearchModal = () => {
-    setIsModal((isModal) => setIsModal(!isModal));
+    setIsModal((isModal) => !isModal);
   };
 
   return (

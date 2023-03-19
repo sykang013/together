@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
 import { useRecoilState } from 'recoil';
-import { searchHistoryState } from '@/store/searchHistoryState';
+import { searchHistoryState } from '@/store/search/index';
 
 const StRecent = styled.div`
   width: 50%;
