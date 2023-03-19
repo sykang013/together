@@ -1,105 +1,108 @@
+import { PropTypes } from 'prop-types';
 import styled from 'styled-components/macro';
-import { getFontStyle, rem } from '@/theme/utils';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const StCarouselAd = styled.section`
-  color: var(--black);
-  background: beige;
-  img {
-    border-radius: 4px;
+const Container = styled.div`
+  width: 100%;
+  overflow: hidden;
+`;
+
+const StSlider = styled(Slider)`
+  background: tomato;
+  .slick-slide div {
+    outline: none;
+    margin: 0 ${`0.5vw`};
   }
 `;
 
-const CarouselAd = () => {
+const ImageContainer = styled.li`
+  list-style: none;
+  width: 100%;
+`;
+
+const Image = styled.img`
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 1vw;
+`;
+
+const ListItem = (props) => {
+  const imagePath =
+    'src/assets/landing-img/contents-img/' + props.image + '.png';
+  return (
+    <ImageContainer>
+      <Image src={imagePath} alt={props.alt} />
+    </ImageContainer>
+  );
+};
+
+ListItem.propTypes = {
+  image: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+};
+
+const CarouselAd = (props) => {
   const settings = {
-    dots: true,
+    pauseOnHover: false,
+    swipe: false,
+    dots: false,
     infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToShow: 5,
     autoplay: true,
-    speed: 4000,
-    autoplaySpeed: 4000,
+    speed: props.speed,
+    autoplaySpeed: 0,
+    initialSlide: props.startImgIndex,
     cssEase: 'linear',
     rows: 1,
+    responsive: [
+      {
+        breakpoint: 1920,
+        settings: {
+          slidesToShow: 4.5,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4.5,
+        },
+      },
+      {
+        breakpoint: 320,
+        settings: {
+          slidesToShow: 2.5,
+        },
+      },
+    ],
   };
+
   return (
-    <StCarouselAd>
-      <Slider {...settings}>
-        <div>
-          <h3>1</h3>
-          <img
-            src="src/assets/landing-img/contents-img/fun-food-mob-and-tabl.png"
-            alt="Slide 1"
-          />
-        </div>
-        <div>
-          <h3>2</h3>
-          <img
-            src="src/assets/landing-img/contents-img/fun-letmein-mob-and-tabl.png"
-            alt="Slide 2"
-          />
-        </div>
-        <div>
-          <h3>3</h3>
-          <img
-            src="src/assets/landing-img/contents-img/fun-manager-mob-and-tabl.png"
-            alt="Slide 3"
-          />
-        </div>
-        <div>
-          <h3>4</h3>
-          <img
-            src="src/assets/landing-img/contents-img/fun-quiz-mob-and-tabl.png"
-            alt="Slide 3"
-          />
-        </div>
-        <div>
-          <h3>5</h3>
-          <img
-            src="src/assets/landing-img/contents-img/fun-shurup-mob-and-tabl.png"
-            alt="Slide 3"
-          />
-        </div>
-        <div>
-          <h3>6</h3>
-          <img
-            src="src/assets/landing-img/contents-img/fun-food-mob-and-tabl.png"
-            alt="Slide 1"
-          />
-        </div>
-        <div>
-          <h3>7</h3>
-          <img
-            src="src/assets/landing-img/contents-img/fun-letmein-mob-and-tabl.png"
-            alt="Slide 2"
-          />
-        </div>
-        <div>
-          <h3>8</h3>
-          <img
-            src="src/assets/landing-img/contents-img/fun-manager-mob-and-tabl.png"
-            alt="Slide 3"
-          />
-        </div>
-        <div>
-          <h3>9</h3>
-          <img
-            src="src/assets/landing-img/contents-img/fun-quiz-mob-and-tabl.png"
-            alt="Slide 3"
-          />
-        </div>
-        <div>
-          <h3>10</h3>
-          <img
-            src="src/assets/landing-img/contents-img/fun-shurup-mob-and-tabl.png"
-            alt="Slide 3"
-          />
-        </div>
-      </Slider>
-    </StCarouselAd>
+    <Container>
+      <StSlider {...settings}>
+        <ListItem image="fun-food-mob-and-tabl" alt="푸드크로니클" />
+        <ListItem image="fun-letmein-mob-and-tabl" alt="렛미인" />
+        <ListItem
+          image="fun-manager-mob-and-tabl"
+          alt="연예인 매니저로 살아남기"
+        />
+        <ListItem image="fun-quiz-mob-and-tabl" alt="유퀴즈 온더 블럭" />
+        <ListItem image="fun-shurup-mob-and-tabl" alt="슈룹" />
+      </StSlider>
+    </Container>
   );
 };
 
 export default CarouselAd;
+
+CarouselAd.propTypes = {
+  /**
+   * 캐러셀 자동재생 속도: 숫자만 입력가능
+   */
+  speed: PropTypes.number.isRequired,
+  /**
+   * 시작점에 위치할 이미지 인덱스: 숫자만 입력가능
+   */
+  startImgIndex: PropTypes.number.isRequired,
+};

@@ -1,7 +1,6 @@
 import styled from 'styled-components/macro';
 import MessageAd from '@/components/landing/MessageAd';
 import CarouselAd from '@/components/landing/CarouselAd';
-import { rem } from '@/theme/utils';
 
 const StScrollSectionAd = styled.section`
   background: orange;
@@ -15,7 +14,8 @@ const ScrollSectionAd = () => {
   return (
     <StScrollSectionAd>
       <MessageAd />
-      <CarouselAd />
+      <CarouselAd speed={5000} startImgIndex={0} />
+      <CarouselAd speed={4500} startImgIndex={2} />
     </StScrollSectionAd>
   );
 };

@@ -8,7 +8,7 @@ const StScrollSectionTitle = styled.section`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  background: top / no-repeat;
+  background: top no-repeat;
   background-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0),
@@ -25,7 +25,6 @@ const StScrollSectionTitle = styled.section`
         rgba(0, 0, 0, 1)
       ),
       url(src/assets/landing-img/bg-tablet.png);
-    background-size: 100%;
   }
   @media (min-width: 1920px) {
     height: ${rem(980)};
@@ -35,7 +34,6 @@ const StScrollSectionTitle = styled.section`
         rgba(0, 0, 0, 1)
       ),
       url(src/assets/landing-img/bg-desktop.png);
-    background-size: 100%;
   }
 `;
 
