@@ -6,6 +6,9 @@ import SearchBar from '@/components/search/SearchBar';
 import SearchHistory from '@/components/search/SearchHistory';
 import SearchPopular from './SearchPopular';
 import { func } from 'prop-types';
+import { searchDataState } from '@/store/searchDataState';
+import { useRecoilValue } from 'recoil';
+import SearchResult from '@/components/search/SearchResult';
 
 const StSearchModal = styled.div`
   overflow-y: auto;
@@ -57,6 +60,8 @@ const StKeyword = styled.div`
 `;
 
 const SearchModal = ({ toggleModal }) => {
+  const searchData = useRecoilValue(searchDataState);
+
   useEffect(() => {
     document.body.style.cssText = `
     overflow:hidden;`;
@@ -69,12 +74,15 @@ const SearchModal = ({ toggleModal }) => {
       <StSearchModalOverlay onClick={toggleModal} />
       <StSearchModal>
         <SearchBar />
-        <StSearchContent>
-          <StKeyword>
-            <SearchHistory />
-            <SearchPopular />
-          </StKeyword>
-        </StSearchContent>
+        {searchData.length === 0 && (
+          <StSearchContent>
+            <StKeyword>
+              <SearchHistory />
+              <SearchPopular />
+            </StKeyword>
+          </StSearchContent>
+        )}
+        {searchData.length > 0 && <SearchResult />}
       </StSearchModal>
     </ModalPortal>
   );
