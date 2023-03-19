@@ -116,7 +116,7 @@ const Footer = () => {
           <span>사업자등록번호 : 188-88-01893</span>
           <span>통신판매신고번호 : 2020-서울마포-3641호</span>
         </StCopyrightli>
-        <StCopyrightli>
+        <StCopyrightli as={'address'}>
           <span>
             사업장 : 서울특별시 마포구 상암산로 34, DMC디지털큐브 15층(상암동)
           </span>
@@ -138,7 +138,7 @@ const Footer = () => {
       </StCopyrightUl>
       <StIconBox>
         <Svg
-          id={'youtube'}
+          id="youtube"
           width={24}
           height={24}
           tabletW={30}
@@ -147,7 +147,7 @@ const Footer = () => {
           desktopH={38}
         />
         <Svg
-          id={'instagram'}
+          id="instagram"
           width={24}
           height={24}
           tabletW={30}
@@ -156,25 +156,27 @@ const Footer = () => {
           desktopH={38}
         />
         <Svg
-          id={'twitter'}
+          id="twitter"
           width={24}
           height={24}
           tabletW={30}
           tabletH={30}
           desktopW={38}
           desktopH={38}
-        ></Svg>
+        />
         <Svg
-          id={'facebook'}
+          id="facebook"
           width={24}
           height={24}
           tabletW={30}
           tabletH={30}
           desktopW={38}
           desktopH={38}
-        ></Svg>
+        />
       </StIconBox>
-      <StCopyright>Copyright Ⓒ 주식회사 티빙 All right reserved</StCopyright>
+      <StCopyright>
+        <small>Copyright Ⓒ 주식회사 티빙 All right reserved</small>
+      </StCopyright>
     </StContainer>
   );
 };
