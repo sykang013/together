@@ -8,9 +8,9 @@ const config = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    '@storybook/addon-a11y',
     'storybook-addon-react-router-v6',
     '@storybook/addon-styling',
+    '@storybook/addon-a11y',
   ],
   core: {
     builder: '@storybook/builder-vite',
