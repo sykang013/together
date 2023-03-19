@@ -1,13 +1,13 @@
 import styled from 'styled-components/macro';
 import React from 'react';
-import { getColor, getFontStyle, rem } from '@/theme/utils';
+import { getFontStyle, rem } from '@/theme/utils';
 import ModalPortal from '@/components/modal/ModalPortal';
 import { string, func } from 'prop-types';
 
 const StModal = styled.div`
   width: ${rem(196)};
   height: ${rem(91)};
-  background-color: ${getColor('--dark-bg2')};
+  background-color: var(--dark-bg2);
   border-radius: 4px;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -15,7 +15,7 @@ const StModal = styled.div`
   left: 50%;
   p {
     ${getFontStyle('ParagraphS')};
-    color: ${getColor('--white')};
+    color: var(--white);
     height: ${rem(51)};
     display: flex;
     align-items: center;
@@ -27,7 +27,7 @@ const StModal = styled.div`
     margin-top: ${rem(10.5)};
     border: transparent;
     background-color: transparent;
-    color: ${getColor('--gray300')};
+    color: var(--gray300);
     ${getFontStyle('ParagraphS')};
     &:hover {
       color: var(--white);
@@ -60,7 +60,7 @@ const StButton = styled.div`
   align-items: center;
   justify-content: center;
   button:nth-child(2) {
-    border-left: 1px solid ${getColor('--gray400')};
+    border-left: 1px solid var(--gray400);
   }
 `;
 
