@@ -1,7 +1,7 @@
-/** @type { import('@storybook/react-vite').StorybookConfig } */
-// import type { StorybookConfig } from '@storybook/types';
 import { mergeConfig } from 'vite';
+import { resolve } from 'node:path';
 
+/** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -12,18 +12,20 @@ const config = {
     'storybook-addon-react-router-v6',
     '@storybook/addon-styling',
   ],
-  // core: {
-  //   builder: '@storybook/builder-vite', // 👈 The builder enabled here.
-  // },
-  // async viteFinal(config) {
-  //   // Merge custom configuration into the default config
-  //   return mergeConfig(config, {
-  //     // Add dependencies to pre-optimization
-  //     optimizeDeps: {
-  //       include: ['storybook-dark-mode'],
-  //     },
-  //   });
-  // },
+  core: {
+    builder: '@storybook/builder-vite',
+  },
+  async viteFinal(config) {
+    console.log(config);
+    return mergeConfig(config, {
+      resolve: {
+        alias: {
+          ...config.resolve.alias,
+          '@': resolve(__dirname, '../src'),
+        },
+      },
+    });
+  },
   framework: {
     name: '@storybook/react-vite',
     options: {},

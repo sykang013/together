@@ -1,5 +1,4 @@
-import IconButton from './IconButton';
-// import { IconButton } from '@/components/landing/IconButton';
+import IconButton from '@/components/landing/IconButton';
 
 export default {
   title: 'LadingPage/Button',

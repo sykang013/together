@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import { getFontStyle, rem } from '../../theme/utils';
-import Svg from './Svg';
+import { getFontStyle, rem } from '@/theme/utils';
+import Svg from '@/components/landing/Svg';
 
 const StIconButton = styled.div`
   &:hover {
@@ -51,7 +51,7 @@ export default IconButton;
 
 IconButton.propTypes = {
   /**
-   * 문자로 된 라우팅 주소 값을 꼭 넣어주세요
+   * 문자로 된 라우팅 주소 값을 꼭 넣어주세요.
    */
   path: PropTypes.string.isRequired,
 };

@@ -1,6 +1,6 @@
-import { string, number } from 'prop-types';
+import { string, number, oneOfType } from 'prop-types';
 import styled, { css } from 'styled-components/macro';
-import { rem } from '../../theme/utils';
+import { rem } from '@/theme/utils';
 
 const StSvg = styled.svg`
   width: ${(props) => rem(props.width)};
@@ -47,12 +47,10 @@ export default Svg;
 
 Svg.propTypes = {
   id: string.isRequired,
-  desktopW: number,
-  desktopH: number,
-  tabletW: number,
-  tabletH: number,
-  /* 퍼센테이지를 사용해야해서 string으로 바꿨습니다 */
-  width: string.isRequired,
-  /* width: oneOf([number, string]).isRequired, */
-  height: string.isRequired,
+  desktopW: oneOfType([number, string]),
+  desktopH: oneOfType([number, string]),
+  tabletW: oneOfType([number, string]),
+  tabletH: oneOfType([number, string]),
+  width: oneOfType([number, string]).isRequired,
+  height: oneOfType([number, string]).isRequired,
 };
