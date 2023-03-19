@@ -1,10 +1,11 @@
+import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
-import { IconButton } from '@/components/landing/IconButton';
 
 const MainPage = () => {
   return (
     <>
       <Header />
+      <Footer />
     </>
   );
 };
