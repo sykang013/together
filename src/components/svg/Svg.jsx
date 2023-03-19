@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, number } from 'prop-types';
+import { string, number, oneOfType } from 'prop-types';
 import styled, { css } from 'styled-components/macro';
 import { rem } from '@/theme/utils';
 
@@ -38,6 +38,7 @@ const Svg = ({ id, desktopW, desktopH, tabletW, tabletH, width, height }) => {
       tabletH={tabletH}
       desktopW={desktopW}
       desktopH={desktopH}
+      aria-label={id}
     >
       <use href={`src/assets/sprite.svg#${id}`} />
     </StSvg>
@@ -48,10 +49,10 @@ export default Svg;
 
 Svg.propTypes = {
   id: string.isRequired,
-  desktopW: number,
-  desktopH: number,
-  tabletW: number,
-  tabletH: number,
+  desktopW: oneOfType([number, string]),
+  desktopH: oneOfType([number, string]),
+  tabletW: oneOfType([number, string]),
+  tabletH: oneOfType([number, string]),
   width: number.isRequired,
   height: number.isRequired,
 };
