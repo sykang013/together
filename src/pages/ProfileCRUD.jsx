@@ -1,6 +1,6 @@
 import { StLayoutProfile, StProfileButton } from '@/components/profile/Profile';
 import { useCreateData, useDataState } from '@/firebase/firestore';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 
 const StUploadImageView = styled.div`
@@ -15,7 +15,6 @@ const StUploadImage = styled.img`
 `;
 
 const StImageFile = styled.input`
-  border: 1px solid red;
   width: 50%;
   height: 30px;
   display: block;

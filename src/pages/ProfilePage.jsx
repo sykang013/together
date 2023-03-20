@@ -40,24 +40,6 @@ const ProfilePage = () => {
             </StProfileItem>
             <p>test</p>
           </li>
-          <li>
-            <StProfileItem>
-              <StProfileImage />
-            </StProfileItem>
-            <p>test</p>
-          </li>
-          <li>
-            <StProfileItem>
-              <StProfileImage />
-            </StProfileItem>
-            <p>test</p>
-          </li>
-          <li>
-            <StProfileItem>
-              <StProfileImage />
-            </StProfileItem>
-            <p>test</p>
-          </li>
         </StProfileItems>
 
         <StProfileButton select onClick={GoToProfileEdit}>

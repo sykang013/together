@@ -81,6 +81,7 @@ export const StProfileItems = styled.ul`
 `;
 
 export const StProfileItem = styled.div`
+  position: relative;
   width: 100%;
   aspect-ratio: auto 1/1;
   border-radius: 4px;
@@ -89,6 +90,20 @@ export const StProfileItem = styled.div`
 export const StProfileImage = styled.img`
   width: 100%;
   height: 100%;
+  cursor: pointer;
+  &:hover {
+    border: 8px solid ${getColor('--primary')};
+  }
+`;
+
+export const StProfileEditImage = styled.img`
+  position: absolute;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: lime;
   cursor: pointer;
   &:hover {
     border: 8px solid ${getColor('--primary')};
