@@ -1,55 +1,69 @@
 import styled, { css } from 'styled-components/macro';
-import { getColor, getFontStyle, rem } from '@/theme/utils';
+import { getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
-import StA11yHidden from '@/components/a11yhidden/A11yHidden';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchModal from '@/components/search/SearchModal';
+import Svg from '@/components/svg/Svg';
+import useThrottle from '@/hooks/useThrottle';
 
 const StHeader = styled.nav`
-  position: relative;
+  position: sticky;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
   height: 38px;
-  padding: ${rem(10)} 0;
+  padding: ${rem(10)} ${rem(12)};
+  z-index: 9999;
+  background: linear-gradient(var(--black), 20%, rgba(0, 0, 0, 0.05));
+  transition: backdrop-filter 0.1s ease;
+
+  ${(props) =>
+    props.backgroundColor === 'gradient' &&
+    css`
+      backdrop-filter: blur(100px) brightness(30%) opacity(0);
+    `}
+
+  ${(props) =>
+    props.backgroundColor === 'black' &&
+    css`
+      backdrop-filter: blur(100px) brightness(30%) opacity(1);
+    `}
+
+  button {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+  }
+
   @media (min-width: ${rem(768)}) {
     height: 56px;
-    padding: ${rem(16)} 0;
+    padding: ${rem(16)} ${rem(40)};
   }
   @media (min-width: ${rem(1920)}) {
     height: 100px;
-    padding: ${rem(29)} 0;
+    padding: ${rem(29)} ${rem(70)};
   }
 `;
 
 const StGnb = styled.div`
   display: flex;
-  gap: ${rem(14)};
+  gap: ${(props) => (props.direction === 'left' ? rem(14) : rem(16))};
   align-items: center;
   @media (min-width: ${rem(768)}) {
-    gap: ${rem(28)};
+    gap: ${(props) => (props.direction === 'left' ? rem(28) : rem(24))};
   }
   @media (min-width: ${rem(1920)}) {
-    gap: ${rem(52)};
+    gap: ${(props) => (props.direction === 'left' ? rem(52) : rem(40))};
   }
-`;
 
-const StLogo = styled(Link)`
-  &::before {
-    background: url('/src/assets/sprites.png') no-repeat -208px -282px;
-    width: 46px;
-    height: 13px;
-    display: inline-block;
-    content: '';
-    @media (min-width: ${rem(768)}) {
-      background-position: -208px -318px;
-      width: 75px;
-      height: 20px;
-    }
-    @media (min-width: ${rem(1920)}) {
-      background-position: -208px -364px;
-      width: 132px;
-      height: 33px;
+  button {
+    svg {
+      color: #c4c4c4;
+      &:hover {
+        color: var(--white);
+      }
     }
   }
 `;
@@ -57,10 +71,15 @@ const StLogo = styled(Link)`
 const StTab = styled(Link)`
   ${getFontStyle('ParagraphS')}
   text-decoration: none;
-  color: ${getColor('--gray200')};
+  color: var(--gray200);
   display: flex;
   align-items: center;
   gap: ${rem(4)};
+
+  &:hover {
+    color: var(--white);
+  }
+
   @media (min-width: ${rem(768)}) {
     ${getFontStyle('ParagraphM')}
   }
@@ -68,117 +87,107 @@ const StTab = styled(Link)`
     ${getFontStyle('ParagraphL')}
     gap: ${rem(10)};
   }
-
-  &:hover {
-    color: ${getColor('--white')};
-    ${(props) =>
-      props.icon &&
-      css`
-        &:: before {
-          background-position: ${(props) =>
-            props.icon === 'live' ? '-98px -532px' : '-1270px -22px'};
-          @media (min-width: ${rem(1920)}) {
-            background-position: ${(props) =>
-              props.icon === 'live' ? '-136px -574px' : '-702px -179px'};
-          }
-        }
-      `}
-  }
-
-  ${(props) =>
-    props.icon &&
-    css`
-      &::before {
-        background: url('/src/assets/sprites.png') no-repeat;
-        background-position: ${(props) =>
-          props.icon === 'live' ? '-30px -532px' : '-569px -141px'};
-        width: ${(props) => (props.icon === 'live' ? '20px' : '65px')};
-        height: ${(props) => (props.icon === 'live' ? '17px' : '15px')};
-        display: inline-block;
-        content: '';
-
-        @media (min-width: ${rem(1920)}) {
-          background-position: ${(props) =>
-            props.icon === 'live' ? '-30px -574px' : '-570px -179px'};
-          width: ${(props) => (props.icon === 'live' ? '34px' : '111px')};
-          height: ${(props) => (props.icon === 'live' ? '27px' : '26px')};
-        }
-      }
-    `};
-`;
-
-const StSearch = styled.div`
-  background: url('/src/assets/sprites.png') no-repeat -1180px -133px;
-  width: 14px;
-  height: 15px;
-  cursor: pointer;
-  @media (min-width: ${rem(768)}) {
-    background-position: -584px -705px;
-    width: 18px;
-    height: 19px;
-  }
-  @media (min-width: ${rem(1920)}) {
-    background-position: -587px -752px;
-    width: 29px;
-    height: 30px;
-  }
-
-  &:hover {
-    background-position: -1216px -133px;
-    @media (min-width: ${rem(768)}) {
-      background-position: -628px -705px;
-    }
-    @media (min-width: ${rem(1920)}) {
-      background-position: -647px -752px;
-    }
-  }
-`;
-
-const StProfile = styled(Link)`
-  background: url('/src/assets/sprites.png') no-repeat -1086px -30px;
-  width: 18px;
-  height: 18px;
-  @media (min-width: ${rem(768)}) {
-    background-position: -1086px -68px;
-    width: 24px;
-    height: 24px;
-  }
-  @media (min-width: ${rem(1920)}) {
-    background-position: -1085px -111px;
-    width: 42px;
-    height: 42px;
-  }
 `;
 
 const Header = () => {
   const [isModal, setIsModal] = useState(false);
+  const [isBlackBackground, setIsBlackBackground] = useState(false);
 
   const toggleSearchModal = () => {
     setIsModal((isModal) => !isModal);
   };
 
+  const toggleBackgroundColor = () => {
+    if (window.pageYOffset > 0) {
+      setIsBlackBackground(true);
+    } else {
+      setIsBlackBackground(false);
+    }
+  };
+
+  const throttleScroll = useThrottle(toggleBackgroundColor, 500);
+
+  useEffect(() => {
+    window.addEventListener('scroll', throttleScroll);
+    return () => window.removeEventListener('scroll', throttleScroll);
+  }, []);
+
   return (
     <>
       {isModal && <SearchModal toggleModal={toggleSearchModal} />}
-      <StHeader>
-        <StGnb>
-          <StLogo to="/">
-            <StA11yHidden>타잉</StA11yHidden>
-          </StLogo>
-          <StTab icon="live">실시간</StTab>
+      <StHeader backgroundColor={isBlackBackground ? 'black' : 'gradient'}>
+        <StGnb direction="left">
+          <h1>
+            <button type="button">
+              <Svg
+                id="logo"
+                width={46}
+                height={13}
+                tabletW={77}
+                tabletH={24}
+                desktopW={132}
+                desktopH={42}
+              />
+            </button>
+          </h1>
+          <StTab>
+            <Svg
+              id="live-default"
+              width={20}
+              height={20}
+              desktopW={34}
+              desktopH={34}
+            />
+            실시간
+          </StTab>
           <StTab>TV프로그램</StTab>
           <StTab>영화</StTab>
-          <StTab icon="paramount">
-            <StA11yHidden>파라마운트</StA11yHidden>
+          <StTab>
+            <Svg
+              id="paramount-default"
+              width={60}
+              height={20}
+              desktopW={112}
+              desktopH={34}
+            />
           </StTab>
         </StGnb>
-        <StGnb>
-          <StSearch tabIndex={0} onClick={toggleSearchModal}>
-            <StA11yHidden>검색</StA11yHidden>
-          </StSearch>
-          <StProfile>
-            <StA11yHidden>프로필</StA11yHidden>
-          </StProfile>
+        <StGnb direction="right">
+          <button onClick={toggleSearchModal} type="button">
+            {!isModal && (
+              <Svg
+                id="search-default"
+                width={18}
+                height={18}
+                tabletW={24}
+                tabletH={24}
+                desktopW={40}
+                desktopH={40}
+              />
+            )}
+            {isModal && (
+              <Svg
+                id="cancel-default"
+                width={18}
+                height={18}
+                tabletW={24}
+                tabletH={24}
+                desktopW={40}
+                desktopH={40}
+              />
+            )}
+          </button>
+          <button type="button">
+            <Svg
+              id="profile"
+              width={18}
+              height={18}
+              tabletW={24}
+              tabletH={24}
+              desktopW={40}
+              desktopH={40}
+            />
+          </button>
         </StGnb>
       </StHeader>
     </>
