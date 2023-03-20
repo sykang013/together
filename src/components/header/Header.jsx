@@ -11,8 +11,6 @@ const StHeader = styled.nav`
   top: 0;
   left: 0;
   display: flex;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
   justify-content: space-between;
   box-sizing: border-box;
   height: 38px;
@@ -122,7 +120,7 @@ const Header = () => {
           <h1>
             <StTab to="/">
               <Svg
-                id="logo"
+                id="tving-logo"
                 width={46}
                 height={13}
                 tabletW={77}
