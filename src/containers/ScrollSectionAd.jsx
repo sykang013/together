@@ -3,7 +3,7 @@ import MessageAd from '@/components/landing/MessageAd';
 import CarouselAd from '@/components/landing/CarouselAd';
 
 const StScrollSectionAd = styled.section`
-  background: orange;
+  border: 1px solid green;
   @media (min-width: 768px) {
   }
   @media (min-width: 1920px) {

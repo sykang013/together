@@ -50,7 +50,7 @@ const CarouselAd = (props) => {
     dots: false,
     infinite: true,
     slidesToShow: 5,
-    autoplay: true,
+    autoplay: false,
     speed: props.speed,
     autoplaySpeed: 0,
     initialSlide: props.startImgIndex,

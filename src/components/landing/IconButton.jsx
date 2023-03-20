@@ -4,45 +4,47 @@ import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import Svg from '@/components/landing/Svg';
 
-const StIconButton = styled.div`
+const StIconButton = styled(Link)`
   &:hover {
     background-color: var(--secondary);
   }
   background-color: var(--primary);
   border-radius: 4px;
-  width: ${rem(188)};
-  height: ${rem(34)};
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: top;
+  align-items: center;
   margin-top: ${rem(16)};
-  ${getFontStyle('LabelS')}
+  ${getFontStyle('LabelS')};
+  width: ${rem(240)};
+  height: ${rem(38)};
   @media (min-width: 768px) {
+    ${getFontStyle('LabelM')};
     width: ${rem(283)};
     height: ${rem(48)};
-    ${getFontStyle('LabelM')}
   }
   @media (min-width: 1920px) {
-    width: ${rem(500)};
+    ${getFontStyle('LabelXL')};
+    width: ${rem(506)};
     height: ${rem(80)};
-    ${getFontStyle('LabelXL')}
-  }
-  a {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: top;
-    width: 100%;
-    height: 100%;
   }
   h3 {
-    line-height: 300%;
+    transform: translateY(25%);
+    padding-right: 1.5vw;
+    @media (min-width: 768px) {
+      transform: translateY(50%);
+    }
   }
+  /* svg {
+    padding-right: 0.5vw;
+  } */
 `;
 
 const IconButton = (props) => {
   return (
-    <StIconButton role="group">
-      <Link to={props.path}>
-        <Svg id="symbol-logo" width={'15%'} height={'80%'}></Svg>
-        <h3>새로워진 타잉을 만나보세요!</h3>
-      </Link>
+    <StIconButton to={props.path}>
+      <Svg id="symbol-logo" width={'15%'} height={'80%'} />
+      <h3>새로워진 타잉을 만나보세요!</h3>
     </StIconButton>
   );
 };
