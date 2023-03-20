@@ -57,6 +57,15 @@ const StGnb = styled.div`
   @media (min-width: ${rem(1920)}) {
     gap: ${(props) => (props.direction === 'left' ? rem(52) : rem(40))};
   }
+
+  button {
+    svg {
+      color: #c4c4c4;
+      &:hover {
+        color: var(--white);
+      }
+    }
+  }
 `;
 
 const StTab = styled(Link)`

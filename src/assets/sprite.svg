@@ -46,7 +46,7 @@
   <symbol id="cancel-default" viewBox="0 0 50 50">
     <g clip-path="url(#a)">
       <path
-        fill="#C4C4C4"
+        fill="currentColor"
         d="M34.115 35.88l-9.116-9.115-9.116 9.116a1.227 1.227 0 0 1-.884.369 1.25 1.25 0 0 1-.884-2.137l9.116-9.116-9.116-9.116a1.249 1.249 0 0 1 1.768-1.768l9.116 9.117 9.116-9.117a1.251 1.251 0 0 1 1.767 1.768l-9.116 9.116 9.117 9.116a1.248 1.248 0 0 1-.395 2.056 1.254 1.254 0 0 1-1.373-.288z"
       />
     </g>
@@ -172,14 +172,14 @@
   viewBox="0 0 34 34"
 >
   <path
-    fill="#C4C4C4"
-    stroke="#C4C4C4"
+    fill="currentColor"
+    stroke="currentColor"
     stroke-linejoin="round"
     stroke-width=".2"
     d="M11 23.37H6.517v-7.226h1.122v6.252h3.363L11 23.37zm1.484 0v-7.226h1.122v7.226h-1.122zm5.179 0l-2.577-7.226h1.217l1.966 5.962h.031l1.972-5.962h1.198l-2.58 7.226h-1.228zm9.873 0H22.95v-7.226h4.585v.967h-3.463v2.112h3.279v.926h-3.279v2.243h3.463v.977z"
   />
   <path
-    stroke="#C4C4C4"
+    stroke="currentColor"
     stroke-linecap="round"
     stroke-linejoin="round"
     stroke-width="1.2"
@@ -285,7 +285,7 @@
   </symbol>
   <symbol id="paramount-default" viewBox="0 0 112 34">
     <g
-      fill="#C4C4C4"
+      fill="currentColor"
       fill-rule="evenodd"
       clip-path="url(#a)"
       clip-rule="evenodd"
@@ -415,7 +415,7 @@
     </defs>
   </symbol>
   <symbol id="search-default" viewBox="0 0 40 40" fill="none">
-    <g stroke="#C4C4C4" stroke-width="1.5" clip-path="url(#a)" >
+    <g stroke="currentColor" stroke-width="1.5" clip-path="url(#a)" >
       <path
         stroke-linecap="round"
         stroke-miterlimit="10"
@@ -489,7 +489,7 @@
   <symbol id="youtube" viewBox="0 0 52 52">
     <rect width="52" height="52" fill="#2B2B2B" rx="26" />
     <path
-      fill="#6B6B6B"
+      fill="currentColor"
       d="M40.99 18.27c-.36-1.385-1.42-2.477-2.766-2.847C35.784 14.75 26 14.75 26 14.75s-9.784 0-12.224.673c-1.347.37-2.407 1.462-2.767 2.847-.654 2.512-.654 7.753-.654 7.753s0 5.24.654 7.752a3.917 3.917 0 0 0 2.767 2.802c2.44.673 12.224.673 12.224.673s9.784 0 12.224-.673a3.917 3.917 0 0 0 2.767-2.802c.653-2.512.653-7.752.653-7.752s0-5.24-.653-7.753zM22.8 30.78v-9.515l8.178 4.758L22.8 30.78z"
     />
   </symbol>
