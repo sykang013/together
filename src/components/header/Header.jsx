@@ -37,11 +37,11 @@ const StHeader = styled.nav`
     padding: 0;
   }
 
-  @media (min-width: ${rem(768)}) {
+  @media (min-width: 768px) {
     height: 56px;
     padding: ${rem(16)} ${rem(40)};
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     height: 100px;
     padding: ${rem(29)} ${rem(70)};
   }
@@ -51,16 +51,16 @@ const StGnb = styled.div`
   display: flex;
   gap: ${(props) => (props.direction === 'left' ? rem(14) : rem(16))};
   align-items: center;
-  @media (min-width: ${rem(768)}) {
+  @media (min-width: 768px) {
     gap: ${(props) => (props.direction === 'left' ? rem(28) : rem(24))};
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     gap: ${(props) => (props.direction === 'left' ? rem(52) : rem(40))};
   }
 
   button {
     svg {
-      color: #c4c4c4;
+      color: var(--gray200);
       &:hover {
         color: var(--white);
       }
@@ -80,10 +80,10 @@ const StTab = styled(Link)`
     color: var(--white);
   }
 
-  @media (min-width: ${rem(768)}) {
+  @media (min-width: 768px) {
     ${getFontStyle('ParagraphM')}
   }
-  @media (min-width: ${rem(1920)}) {
+  @media (min-width: 1920px) {
     ${getFontStyle('ParagraphL')}
     gap: ${rem(10)};
   }
