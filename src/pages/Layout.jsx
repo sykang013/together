@@ -1,3 +1,4 @@
+import Header from '@/components/header/Header';
 import { getColor, rem } from '@/theme/utils';
 import { Outlet } from 'react-router';
 import styled from 'styled-components/macro';
@@ -22,9 +23,12 @@ const StBaseLayout = styled.div`
 
 const BaseLayout = () => {
   return (
-    <StBaseLayout>
-      <Outlet />
-    </StBaseLayout>
+    <>
+      <Header />
+      <StBaseLayout>
+        <Outlet />
+      </StBaseLayout>
+    </>
   );
 };
 
