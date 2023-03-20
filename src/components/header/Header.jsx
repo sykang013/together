@@ -11,6 +11,8 @@ const StHeader = styled.nav`
   top: 0;
   left: 0;
   display: flex;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   justify-content: space-between;
   box-sizing: border-box;
   height: 38px;
@@ -118,7 +120,7 @@ const Header = () => {
       <StHeader backgroundColor={isBlackBackground ? 'black' : 'gradient'}>
         <StGnb direction="left">
           <h1>
-            <button type="button">
+            <StTab to="/">
               <Svg
                 id="logo"
                 width={46}
@@ -128,7 +130,7 @@ const Header = () => {
                 desktopW={132}
                 desktopH={42}
               />
-            </button>
+            </StTab>
           </h1>
           <StTab>
             <Svg
