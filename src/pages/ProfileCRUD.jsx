@@ -1,6 +1,5 @@
 import { StLayoutProfile, StProfileButton } from '@/components/profile/Profile';
-import { useCreateData, useDataState } from '@/firebase/firestore';
-import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components/macro';
 
 const StUploadImageView = styled.div`
@@ -30,21 +29,12 @@ const StName = styled.input`
 
 const StCRUD = () => {
   const [text, setText] = useState('');
-  const { createData, docId, isLoading, error } = useCreateData('test');
   const [fileImage, setFileImage] = useState('');
 
   const saveFileImage = (e) => {
     const ImageURL = URL.createObjectURL(e.target.files[0]);
     setFileImage(ImageURL);
   };
-
-  async function handleCreateData() {
-    const data = {
-      name: text,
-    };
-
-    await createData(data);
-  }
 
   const onChangeName = (e) => {
     setText(e.target.value);
@@ -57,7 +47,7 @@ const StCRUD = () => {
       </StUploadImageView>
       <StImageFile type="file" onChange={saveFileImage} />
       <StName onChange={onChangeName} value={text} />
-      <StProfileButton onClick={handleCreateData}>저장</StProfileButton>
+      <StProfileButton>저장</StProfileButton>
     </>
   );
 };

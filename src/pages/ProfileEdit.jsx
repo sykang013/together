@@ -8,7 +8,6 @@ import {
   StLayoutProfile,
   StProfileEditImage,
 } from '@/components/profile/Profile';
-import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ImageTest from '@/assets/profile_1.png';
 
