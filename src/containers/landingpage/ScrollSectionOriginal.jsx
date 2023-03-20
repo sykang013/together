@@ -1,8 +1,9 @@
 import styled from 'styled-components/macro';
 import MessageAd from '@/components/landing/MessageAd';
+import gsap from 'gsap';
 
 const StScrollSectionOriginal = styled.section`
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
   @media (min-width: 768px) {
   }
   @media (min-width: 1920px) {

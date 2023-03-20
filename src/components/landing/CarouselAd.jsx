@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 const StSlider = styled(Slider)`
-  background: tomato;
+  /* background: tomato; */
   .slick-slide div {
     outline: none;
     margin: 0 ${`0.5vw`};
@@ -50,7 +50,7 @@ const CarouselAd = (props) => {
     dots: false,
     infinite: true,
     slidesToShow: 5,
-    autoplay: false,
+    autoplay: true,
     speed: props.speed,
     autoplaySpeed: 0,
     initialSlide: props.startImgIndex,

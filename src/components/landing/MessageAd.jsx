@@ -10,10 +10,11 @@ const StMessageAd = styled.div`
   ${getFontStyle('headingL')};
   .sub {
     ${getFontStyle('ParagraphS')};
-    color: var(--gray200);
     margin-top: ${rem(4)};
+    color: var(--gray200);
   }
   .detail {
+    ${getFontStyle('ParagraphS')};
     margin-top: 0;
     color: var(--gray200);
   }
@@ -40,6 +41,7 @@ const StMessageAd = styled.div`
 const MessageAd = (props) => {
   return (
     <StMessageAd
+      className="StMessageAd"
       title={props.mainText}
       sub={props.subText}
       detail={props.detailText}

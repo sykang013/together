@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
+import { gsap } from 'gsap';
 
 const StMessageTitle = styled.div`
   display: flex;
@@ -26,9 +27,9 @@ const StMessageTitle = styled.div`
   }
 `;
 
-const MessageTitle = () => {
+function MessageTitle() {
   return (
-    <StMessageTitle>
+    <StMessageTitle className="StMessageTitle">
       <span className="main">타잉 오리지널 콘텐츠,</span>
       <span className="main">방송, 영화, 해외시리즈까지!</span>
       <span className="main">재미를 플레이해보세요.</span>
@@ -37,6 +38,6 @@ const MessageTitle = () => {
       </span>
     </StMessageTitle>
   );
-};
+}
 
 export default MessageTitle;

@@ -29,15 +29,9 @@ const StIconButton = styled(Link)`
     height: ${rem(80)};
   }
   h3 {
-    transform: translateY(25%);
+    transform: translateY(0.6em);
     padding-right: 1.5vw;
-    @media (min-width: 768px) {
-      transform: translateY(50%);
-    }
   }
-  /* svg {
-    padding-right: 0.5vw;
-  } */
 `;
 
 const IconButton = (props) => {
