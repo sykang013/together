@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import ModalPortal from '@/components/modal/ModalPortal';
@@ -57,7 +57,36 @@ const StButton = styled.div`
   }
 `;
 
-const Popup = () => {
+const Popup = ({ OnClose }) => {
+  const VisitedBeforeDate = localStorage.getItem('VisitCookie');
+
+  const VisitedNowDate = Math.floor(new Date().getDate());
+
+  useEffect(() => {
+    if (VisitedBeforeDate !== null) {
+      if (VisitedBeforeDate === VisitedNowDate) {
+        localStorage.removeItem('VisitCookie');
+        OnClose(true);
+      }
+
+      if (VisitedBeforeDate !== VisitedNowDate) {
+        OnClose(false);
+      }
+    }
+  }, [VisitedBeforeDate]);
+
+  const Dayclose = (e) => {
+    if (OnClose) {
+      OnClose(e);
+
+      const expiry = new Date();
+
+      const expiryDate = expiry.getDate() + 1;
+
+      localStorage.setItem('VisitCookie', expiryDate);
+    }
+  };
+
   return (
     <ModalPortal>
       <StPopUp role="dialog">
@@ -76,8 +105,17 @@ const Popup = () => {
           />
         </picture>
         <StButton>
-          <button type="button">오늘 하루 보지 않기</button>
-          <button type="button">닫기</button>
+          <button type="button" onClick={Dayclose}>
+            오늘 하루 보지 않기
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              OnClose(false);
+            }}
+          >
+            닫기
+          </button>
         </StButton>
       </StPopUp>
     </ModalPortal>
