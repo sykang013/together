@@ -16,7 +16,7 @@ const StBaseLayout = styled.div`
   @media (min-width: 768px) {
     padding: 0 ${rem(40)};
   }
-  @media (min-width: 1900px) {
+  @media (min-width: 1920px) {
     padding: 0 ${rem(70)};
   }
 `;

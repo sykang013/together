@@ -57,7 +57,7 @@ export default MessageAd;
 
 MessageAd.propTypes = {
   /**
-   * 메인, 서브, 디테일 텍스트는 모두 문자열이어야합니다.
+   * 문자열만 가능합니다.
    */
   mainText: PropTypes.string.isRequired,
   subText: PropTypes.string,

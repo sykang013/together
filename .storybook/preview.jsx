@@ -58,7 +58,7 @@ body {
   button,
   a {cursor: pointer};
   color: ${getColor('--white')};
-}
+  }
   body,
   body::before,
   body::after,
@@ -78,7 +78,8 @@ body {
   video {
     width: 100%;
     height: auto;
-}
+  }
+
   :root{
     --black: #000000;
     --white: #ffffff;
@@ -95,12 +96,13 @@ body {
     --secondary: #1728C0;
     --dark-bg1: #191919;
     --dark-bg2: #212121;
+
     font-size: calc(8px + 0.5vw);
 
     * {
       transition: 0.1ms;
-    } 
-  }
+    };
+  };
 `;
 
 export const decorators = [
@@ -128,21 +130,21 @@ const customViewports = {
     name: 'mobile_min:320px',
     styles: {
       width: '320px',
-      height: '100vh',
+      height: '50vh',
     },
   },
   tablet: {
     name: 'tablet_min:768px',
     styles: {
       width: '768px',
-      height: '100vh',
+      height: '50vh',
     },
   },
   desktop: {
     name: 'desktop_min:1920px',
     styles: {
       width: '1920px',
-      height: '100vh',
+      height: '50vh',
     },
   },
 };
@@ -154,7 +156,17 @@ const preview = {
     },
     layout: 'centered',
     backgrounds: {
-      default: 'light',
+      default: 'dark',
+      values: [
+        {
+          name: 'dark',
+          value: '#000000',
+        },
+        {
+          name: 'light',
+          value: '#E1E1E1',
+        },
+      ],
     },
     viewport: {
       viewports: customViewports,

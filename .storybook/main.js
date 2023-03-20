@@ -12,6 +12,7 @@ const config = {
     '@storybook/addon-styling',
     '@storybook/addon-a11y',
   ],
+  // staticDirs: ['../src'], //정적 서빙serving 디렉토리 설정
   core: {
     builder: '@storybook/builder-vite',
   },

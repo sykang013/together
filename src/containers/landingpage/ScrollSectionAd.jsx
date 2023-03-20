@@ -15,7 +15,11 @@ const StScrollSectionAd = styled.section`
 const ScrollSectionAd = () => {
   return (
     <StScrollSectionAd>
-      <MessageAd />
+      <MessageAd
+        mainText="내가 찾던 재미"
+        subText="보고 싶은 콘텐츠를 발견하세요!"
+        detailText="최신, 인기 TV프로그램, 영화, 해외시리즈, 파라마운트+ 오리지널 및 독점"
+      />
       <CarouselAd speed={5000} startImgIndex={0} />
       <CarouselAd speed={4500} startImgIndex={2} />
     </StScrollSectionAd>
