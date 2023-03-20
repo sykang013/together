@@ -24,8 +24,8 @@ const StBaseLayout = styled.div`
 const BaseLayout = () => {
   return (
     <>
-      <Header />
       <StBaseLayout>
+        <Header />
         <Outlet />
       </StBaseLayout>
     </>
