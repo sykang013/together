@@ -120,13 +120,14 @@ const Header = () => {
           <h1>
             <StTab to="/">
               <Svg
-                id="tving-logo"
+                id="logo"
                 width={46}
                 height={13}
                 tabletW={77}
                 tabletH={24}
                 desktopW={132}
                 desktopH={42}
+                aria-label="티빙"
               />
             </StTab>
           </h1>
@@ -137,6 +138,7 @@ const Header = () => {
               height={20}
               desktopW={34}
               desktopH={34}
+              aria-label="실시간 방송"
             />
             실시간
           </StTab>
@@ -149,6 +151,7 @@ const Header = () => {
               height={20}
               desktopW={112}
               desktopH={34}
+              aria-label="파라마운트"
             />
           </StTab>
         </StGnb>
@@ -163,6 +166,7 @@ const Header = () => {
                 tabletH={24}
                 desktopW={40}
                 desktopH={40}
+                aria-label="검색"
               />
             )}
             {isModal && (
@@ -174,6 +178,7 @@ const Header = () => {
                 tabletH={24}
                 desktopW={40}
                 desktopH={40}
+                aria-label="닫기"
               />
             )}
           </button>
@@ -186,6 +191,7 @@ const Header = () => {
               tabletH={24}
               desktopW={40}
               desktopH={40}
+              aria-label="프로필"
             />
           </button>
         </StGnb>
