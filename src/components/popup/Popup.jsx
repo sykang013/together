@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import ModalPortal from '@/components/modal/ModalPortal';
+import propTypes from 'prop-types';
 
 const StPopUp = styled.div`
   width: ${rem(252)};
@@ -57,7 +58,15 @@ const StButton = styled.div`
   }
 `;
 
-const Popup = () => {
+const Popup = ({ closeModal }) => {
+  const dayClose = () => {
+    const expiry = new Date();
+    const expiryTime = expiry.getTime() + 1000 * 60 * 60 * 24;
+    localStorage.setItem('visitCookieExpiry', JSON.stringify(expiryTime));
+
+    closeModal();
+  };
+
   return (
     <ModalPortal>
       <StPopUp role="dialog">
@@ -76,8 +85,12 @@ const Popup = () => {
           />
         </picture>
         <StButton>
-          <button type="button">오늘 하루 보지 않기</button>
-          <button type="button">닫기</button>
+          <button type="button" onClick={dayClose}>
+            오늘 하루 보지 않기
+          </button>
+          <button type="button" onClick={closeModal}>
+            닫기
+          </button>
         </StButton>
       </StPopUp>
     </ModalPortal>
@@ -85,3 +98,7 @@ const Popup = () => {
 };
 
 export default Popup;
+
+Popup.propTypes = {
+  closeModal: propTypes.func,
+};
