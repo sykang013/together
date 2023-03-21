@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import ModalPortal from '@/components/modal/ModalPortal';
+import propTypes from 'prop-types';
 
 const StPopUp = styled.div`
   width: ${rem(252)};
@@ -57,43 +58,15 @@ const StButton = styled.div`
   }
 `;
 
-const Popup = (props) => {
-  const { OnClose } = props;
+const Popup = ({ closeModal }) => {
+  const dayClose = () => {
+    const expiry = new Date();
+    const expiryTime = expiry.getTime() + 1000 * 60 * 60 * 24;
+    localStorage.setItem('visitCookieExpiry', JSON.stringify(expiryTime));
 
-  const handleCancel = () => {
-    OnClose(false);
+    closeModal();
   };
 
-  const visitedBeforeDate = JSON.parse(localStorage.getItem('visitCookie'));
-  const visitedNowDate = Math.floor(new Date().getDate());
-
-  useEffect(() => {
-    if (visitedBeforeDate !== null) {
-      const expiryDate = JSON.parse(localStorage.getItem('visitCookieExpiry'));
-      const currentDate = new Date().getTime();
-
-      if (currentDate < expiryDate) {
-        OnClose(true);
-      } else {
-        localStorage.removeItem('visitCookie');
-        localStorage.removeItem('visitCookieExpiry');
-        OnClose(false);
-      }
-    }
-  }, []);
-
-  const Dayclose = (e) => {
-    if (OnClose) {
-      OnClose(e);
-
-      const expiry = new Date();
-      expiry.setDate(expiry.getDate() + 1);
-
-      const expiryTime = expiry.getTime();
-      localStorage.setItem('visitCookie', JSON.stringify(visitedNowDate));
-      localStorage.setItem('visitCookieExpiry', JSON.stringify(expiryTime));
-    }
-  };
   return (
     <ModalPortal>
       <StPopUp role="dialog">
@@ -112,10 +85,10 @@ const Popup = (props) => {
           />
         </picture>
         <StButton>
-          <button type="button" onClick={Dayclose}>
+          <button type="button" onClick={dayClose}>
             오늘 하루 보지 않기
           </button>
-          <button type="button" onClick={handleCancel}>
+          <button type="button" onClick={closeModal}>
             닫기
           </button>
         </StButton>
@@ -125,3 +98,7 @@ const Popup = (props) => {
 };
 
 export default Popup;
+
+Popup.propTypes = {
+  closeModal: propTypes.func,
+};
