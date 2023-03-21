@@ -57,36 +57,43 @@ const StButton = styled.div`
   }
 `;
 
-const Popup = ({ OnClose }) => {
-  const VisitedBeforeDate = localStorage.getItem('VisitCookie');
+const Popup = (props) => {
+  const { OnClose } = props;
 
-  const VisitedNowDate = Math.floor(new Date().getDate());
+  const handleCancel = () => {
+    OnClose(false);
+  };
+
+  const visitedBeforeDate = JSON.parse(localStorage.getItem('visitCookie'));
+  const visitedNowDate = Math.floor(new Date().getDate());
 
   useEffect(() => {
-    if (VisitedBeforeDate !== null) {
-      if (VisitedBeforeDate === VisitedNowDate) {
-        localStorage.removeItem('VisitCookie');
-        OnClose(true);
-      }
+    if (visitedBeforeDate !== null) {
+      const expiryDate = JSON.parse(localStorage.getItem('visitCookieExpiry'));
+      const currentDate = new Date().getTime();
 
-      if (VisitedBeforeDate !== VisitedNowDate) {
+      if (currentDate < expiryDate) {
+        OnClose(true);
+      } else {
+        localStorage.removeItem('visitCookie');
+        localStorage.removeItem('visitCookieExpiry');
         OnClose(false);
       }
     }
-  }, [VisitedBeforeDate]);
+  }, []);
 
   const Dayclose = (e) => {
     if (OnClose) {
       OnClose(e);
 
       const expiry = new Date();
+      expiry.setDate(expiry.getDate() + 1);
 
-      const expiryDate = expiry.getDate() + 1;
-
-      localStorage.setItem('VisitCookie', expiryDate);
+      const expiryTime = expiry.getTime();
+      localStorage.setItem('visitCookie', JSON.stringify(visitedNowDate));
+      localStorage.setItem('visitCookieExpiry', JSON.stringify(expiryTime));
     }
   };
-
   return (
     <ModalPortal>
       <StPopUp role="dialog">
@@ -108,12 +115,7 @@ const Popup = ({ OnClose }) => {
           <button type="button" onClick={Dayclose}>
             오늘 하루 보지 않기
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              OnClose(false);
-            }}
-          >
+          <button type="button" onClick={handleCancel}>
             닫기
           </button>
         </StButton>
