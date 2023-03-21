@@ -29,7 +29,16 @@ const StSvg = styled.svg`
     `}
 `;
 
-const Svg = ({ id, desktopW, desktopH, tabletW, tabletH, width, height }) => {
+const Svg = ({
+  id,
+  desktopW,
+  desktopH,
+  tabletW,
+  tabletH,
+  width,
+  height,
+  ...restProps
+}) => {
   return (
     <StSvg
       width={width}
@@ -38,7 +47,7 @@ const Svg = ({ id, desktopW, desktopH, tabletW, tabletH, width, height }) => {
       tabletH={tabletH}
       desktopW={desktopW}
       desktopH={desktopH}
-      aria-label={id}
+      {...restProps}
     >
       <use href={`src/assets/sprite.svg#${id}`} />
     </StSvg>
