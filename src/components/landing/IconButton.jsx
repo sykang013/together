@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
-import Svg from '@/components/landing/Svg';
+import Svg from '../svg/Svg';
 
 const StIconButton = styled(Link)`
   &:hover {
