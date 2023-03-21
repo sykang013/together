@@ -37,7 +37,7 @@ const StIconButton = styled(Link)`
 const IconButton = (props) => {
   return (
     <StIconButton to={props.path}>
-      <Svg id="symbol-logo" width={'15%'} height={'80%'} />
+      <Svg id="symbol-logo" width="15%" height="80%" />
       <h3>새로워진 타잉을 만나보세요!</h3>
     </StIconButton>
   );
