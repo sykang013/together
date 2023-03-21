@@ -3,12 +3,23 @@ import Header from '@/components/header/Header';
 import Popup from '@/components/popup/Popup';
 import React, { useState } from 'react';
 const MainPage = () => {
-  const [popup, setPopup] = useState(true);
+  const [showModal, setShowModal] = useState(true);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <Header />
       <Footer />
-      {popup ? <Popup OnClose={setPopup} /> : null}
+      {showModal && (
+        <Popup
+          OnClose={() => {
+            handleCloseModal();
+          }}
+        />
+      )}
     </>
   );
 };
