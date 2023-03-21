@@ -23,17 +23,20 @@ const StPrimaryButton = styled(Link)`
   @media (min-width: 1920px) {
     ${getFontStyle('LabelXL')};
   }
-  .svg {
-    position: absolute;
-    top: 0;
-    left: 0.9em;
-  }
+`;
+
+const StSvg = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0.9em;
 `;
 
 const PrimaryButton = ({ children }) => {
   return (
-    <StPrimaryButton className="primaryBtn">
-      <Svg className="svg" id="symbol-logo" width="2.4em" height="2.4em" />
+    <StPrimaryButton>
+      <StSvg>
+        <Svg id="symbol-logo" width="2.4em" height="2.4em" />
+      </StSvg>
       {children}
     </StPrimaryButton>
   );

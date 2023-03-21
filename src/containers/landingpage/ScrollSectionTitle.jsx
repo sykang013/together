@@ -41,18 +41,18 @@ const StScrollSectionTitle = styled.section`
 `;
 
 const ScrollSectionTitle = () => {
-  useLayoutEffect(() => {
-    gsap.fromTo(
-      '.messageTitle > span, .primaryBtn',
-      { y: 100, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        stagger: { each: 0.1, from: 'start' },
-      }
-    );
-  }, []);
+  // useLayoutEffect(() => {
+  //   gsap.fromTo(
+  //     '.messageTitle > span, .primaryBtn', //클래스네임 변경 필요
+  //     { y: 100, opacity: 0 },
+  //     {
+  //       y: 0,
+  //       opacity: 1,
+  //       duration: 1.2,
+  //       stagger: { each: 0.1, from: 'start' },
+  //     }
+  //   );
+  // }, []);
   return (
     <StScrollSectionTitle>
       <MessageTitle />

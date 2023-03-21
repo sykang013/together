@@ -8,31 +8,31 @@ const StMessageAd = styled.div`
   color: var(--white);
   text-align: center;
   ${getFontStyle('headingL')};
-  .sub {
+  span:nth-child(2) {
     ${getFontStyle('ParagraphS')};
     margin-top: ${rem(4)};
     color: var(--gray200);
   }
-  .detail {
+  span:nth-child(3) {
     ${getFontStyle('ParagraphS')};
     margin-top: 0;
     color: var(--gray200);
   }
   @media (min-width: 768px) {
     ${getFontStyle('headingXL')};
-    .sub {
+    span:nth-child(2) {
       ${getFontStyle('LabelM')};
     }
-    .detail {
+    span:nth-child(3) {
       ${getFontStyle('LabelS')};
     }
   }
   @media (min-width: 1920px) {
     ${getFontStyle('headingXXXL')};
-    .sub {
+    span:nth-child(2) {
       ${getFontStyle('LabelXL')};
     }
-    .detail {
+    span:nth-child(3) {
       ${getFontStyle('ParagraphL')};
     }
   }
@@ -41,14 +41,13 @@ const StMessageAd = styled.div`
 const MessageAd = (props) => {
   return (
     <StMessageAd
-      className="messageAd"
       title={props.mainText}
       sub={props.subText}
       detail={props.detailText}
     >
       <span>{props.mainText}</span>
-      <span className="sub">{props.subText}</span>
-      <span className="detail">{props.detailText}</span>
+      <span>{props.subText}</span>
+      <span>{props.detailText}</span>
     </StMessageAd>
   );
 };

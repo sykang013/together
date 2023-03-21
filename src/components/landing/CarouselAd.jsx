@@ -10,8 +10,10 @@ const Container = styled.div`
 `;
 
 const StSlider = styled(Slider)`
-  /* background: tomato; */
+  background: tomato;
   .slick-slide div {
+    //GSAP으로 수정 필요
+    //class 제거 미적용
     outline: none;
     margin: 0 ${`0.5vw`};
   }

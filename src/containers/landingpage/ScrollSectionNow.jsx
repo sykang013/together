@@ -17,15 +17,18 @@ const StScrollSectionNow = styled.section`
   @media (min-width: 1920px) {
     ${getFontStyle('headingXXXL')};
   }
-  .wow {
-    width: clamp(${rem(83)}, 50vw, ${rem(279)});
-  }
+`;
+
+const StSvg = styled.div`
+  width: clamp(${rem(83)}, 50vw, ${rem(279)});
 `;
 
 const ScrollSectionNow = () => {
   return (
     <StScrollSectionNow>
-      <Svg className="wow" id="logo2" width="100%" height="100%" />
+      <StSvg>
+        <Svg id="logo2" width="100%" height="100%" />
+      </StSvg>
       <span>지금 시작해보세요</span>
       <PrimaryButton>새로워진 타잉을 만나보세요!</PrimaryButton>
     </StScrollSectionNow>
