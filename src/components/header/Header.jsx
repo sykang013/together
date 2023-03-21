@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SearchModal from '@/components/search/SearchModal';
 import Svg from '@/components/svg/Svg';
 import useThrottle from '@/hooks/useThrottle';
+import LogoModal from './LogoModal';
 
 const StHeader = styled.nav`
   position: sticky;
@@ -59,6 +60,7 @@ const StGnb = styled.div`
   }
 
   button {
+    position: relative;
     svg {
       color: var(--gray200);
       &:hover {
@@ -86,6 +88,19 @@ const StTab = styled(Link)`
   @media (min-width: 1920px) {
     ${getFontStyle('ParagraphL')}
     gap: ${rem(10)};
+  }
+`;
+
+const StProfile = styled.div`
+  div {
+    visibility: hidden;
+  }
+
+  &:hover,
+  :focus {
+    div {
+      visibility: visible;
+    }
   }
 `;
 
@@ -182,17 +197,20 @@ const Header = () => {
               />
             )}
           </button>
-          <button type="button">
-            <Svg
-              id="profile"
-              width={18}
-              height={18}
-              tabletW={24}
-              tabletH={24}
-              desktopW={40}
-              desktopH={40}
-              aria-label="프로필"
-            />
+          <button>
+            <StProfile>
+              <Svg
+                id="profile"
+                width={18}
+                height={18}
+                tabletW={24}
+                tabletH={24}
+                desktopW={40}
+                desktopH={40}
+                aria-label="프로필"
+              />
+              <LogoModal />
+            </StProfile>
           </button>
         </StGnb>
       </StHeader>
