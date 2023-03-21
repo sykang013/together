@@ -41,7 +41,7 @@ const StMessageAd = styled.div`
 const MessageAd = (props) => {
   return (
     <StMessageAd
-      className="StMessageAd"
+      className="messageAd"
       title={props.mainText}
       sub={props.subText}
       detail={props.detailText}

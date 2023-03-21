@@ -1,11 +1,12 @@
 import { useLayoutEffect } from 'react';
 import styled from 'styled-components/macro';
 import MessageTitle from '@/components/landing/MessageTitle';
-import IconButton from '@/components/landing/IconButton';
 import { rem } from '@/theme/utils';
 import { gsap } from 'gsap';
+import PrimaryButton from '@/components/landing/PrimaryButton';
 
 const StScrollSectionTitle = styled.section`
+  border: 1px solid yellow;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -42,27 +43,20 @@ const StScrollSectionTitle = styled.section`
 const ScrollSectionTitle = () => {
   useLayoutEffect(() => {
     gsap.fromTo(
-      'section',
+      '.messageTitle > span, .primaryBtn',
       { y: 100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.2, stagger: { each: 0.1, from: 'start' } }
-    );
-
-    gsap.fromTo(
-      '.StMessageTitle span, a ',
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, stagger: { each: 0.1, from: 'start' } }
-    );
-
-    gsap.fromTo(
-      '.StMessageAd span',
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, stagger: { each: 0.1, from: 'start' } }
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        stagger: { each: 0.1, from: 'start' },
+      }
     );
   }, []);
   return (
     <StScrollSectionTitle>
       <MessageTitle />
-      <IconButton />
+      <PrimaryButton>새로워진 타잉을 만나보세요!</PrimaryButton>
     </StScrollSectionTitle>
   );
 };

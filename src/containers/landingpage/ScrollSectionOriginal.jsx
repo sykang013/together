@@ -1,9 +1,10 @@
 import styled from 'styled-components/macro';
 import MessageAd from '@/components/landing/MessageAd';
 import gsap from 'gsap';
+import { useLayoutEffect } from 'react';
 
 const StScrollSectionOriginal = styled.section`
-  /* border: 1px solid orange; */
+  border: 1px solid pink;
   @media (min-width: 768px) {
   }
   @media (min-width: 1920px) {
@@ -11,6 +12,18 @@ const StScrollSectionOriginal = styled.section`
 `;
 
 const ScrollSectionOriginal = () => {
+  useLayoutEffect(() => {
+    gsap.fromTo(
+      '.messageTitle > span, .primaryBtn',
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        stagger: { each: 0.1, from: 'start' },
+      }
+    );
+  }, []);
   return (
     <StScrollSectionOriginal>
       <MessageAd
