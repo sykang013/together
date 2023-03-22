@@ -109,6 +109,36 @@ const routesConfig = [
   },
   // ],
   // },
+  {
+    path: '/',
+    element: <BaseLayoutForLanding />,
+    // errorElement: <NotFound />,
+    // loader: rootLoader,
+    // action: rootAction,
+    children: [
+      // {
+      // errorElement: <NotFound />,
+      // children: [
+      // { index: true, element: <MainPage /> },
+      {
+        path: 'landing',
+        element: <LandingPage />,
+      },
+      //   {
+      //     path: '/contacts/:contactId/edit',
+      //     element: <ContactEdit />,
+      //     loader: contactLoader,
+      //     action: contactEditAction,
+      //   },
+      //   {
+      //     path: '/contacts/:contactId/destory',
+      //     action: destoryAction,
+      //     errorElement: <div role="alert">Oops! There was an error.</div>,
+      //   },
+    ],
+  },
+  // ],
+  // },
 ];
 
 const router = createBrowserRouter(routesConfig);
