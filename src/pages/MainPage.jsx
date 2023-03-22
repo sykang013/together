@@ -1,7 +1,6 @@
-import Footer from '@/components/footer/Footer';
-import Header from '@/components/header/Header';
 import Popup from '@/components/popup/Popup';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 const MainPage = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -29,8 +28,13 @@ const MainPage = () => {
 
   return (
     <>
-      <Header />
-      <Footer />
+      <Helmet>
+        <title>타잉 메인</title>
+        <meta
+          name="description"
+          content="타잉의 컨텐츠들을 즐길 수 있는 메인 페이지 입니다."
+        />
+      </Helmet>
       {showModal && <Popup closeModal={closeModal} />}
     </>
   );
