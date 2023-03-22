@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { getFontStyle, rem, getColor } from '@/theme/utils';
+import { getFontStyle, rem } from '@/theme/utils';
 
 export const StLayoutProfile = styled.div`
   width: 78.75%;
@@ -30,7 +30,7 @@ export const StProfileSubTitle = styled.h4`
   ${getFontStyle('LabelS')};
   text-align: center;
   margin: ${rem(16)} ${rem(0)};
-  color: ${getColor('--gray200')};
+  color: var(--gray200);
   @media (min-width: 768px) {
     ${getFontStyle('LabelM')};
     margin-top: ${rem(8)};
@@ -70,7 +70,7 @@ export const StProfileItems = styled.ul`
     ${getFontStyle('ParagraphS')};
     text-align: center;
     margin-top: ${rem(12)};
-    color: ${getColor('--gray300')};
+    color: var(--gray300);
     @media (min-width: 768px) {
     }
     @media (min-width: 1920px) {
@@ -92,7 +92,7 @@ export const StProfileImage = styled.img`
   height: 100%;
   cursor: pointer;
   &:hover {
-    border: 8px solid ${getColor('--primary')};
+    border: 4px solid var(--primary);
   }
 `;
 
@@ -106,7 +106,7 @@ export const StProfileEditImage = styled.img`
   background: lime;
   cursor: pointer;
   &:hover {
-    border: 8px solid ${getColor('--primary')};
+    border: 4px solid var(--primary);
   }
 `;
 
@@ -115,16 +115,9 @@ export const StProfileButton = styled.button`
   margin: ${rem(32)} auto 0 auto;
   width: 25%;
   aspect-ratio: auto 1/0.2;
-  cursor: pointer;
-  background-color: ${(props) => {
-    if (props.select) return `${getColor('--black')}`;
-    else return `${getColor('--gray100')}`;
-  }};
-  color: ${(props) => {
-    if (props.select) return `${getColor('--gray100')}`;
-    else return `${getColor('--black')}`;
-  }};
-  border: 1px solid ${getColor('--gray600')};
+  background-color: var(--black);
+  color: var(--gray100);
+  border: 1px solid var(--gray600);
   border-radius: 4px;
   padding: ${rem(12)} 0;
   ${getFontStyle('LabelS')};
@@ -135,15 +128,9 @@ export const StProfileButton = styled.button`
     margin-top: ${rem(66)};
     ${getFontStyle('LabelXL')};
   }
-  &: active;
   &:hover {
-    background-color: ${(props) => {
-      if (props.select) return `${getColor('--gray100')}`;
-      else return `${getColor('--black')}`;
-    }};
-    color: ${(props) => {
-      if (props.select) return `${getColor('--black')}`;
-      else return `${getColor('--gray100')}`;
-    }};
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
   }
 `;

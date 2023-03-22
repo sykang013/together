@@ -6,6 +6,7 @@ const StUploadImageView = styled.div`
   width: 50%;
   aspect-ratio: auto 1/1;
   margin: 50px auto;
+  border: 1px solid var(--gray600);
 `;
 
 const StUploadImage = styled.img`
@@ -43,7 +44,11 @@ const StCRUD = () => {
   return (
     <>
       <StUploadImageView>
-        <StUploadImage src={fileImage} alt="" ImageURL />
+        <StUploadImage
+          src={fileImage}
+          alt="변경할 프로필 사진입니다."
+          ImageURL
+        />
       </StUploadImageView>
       <StImageFile type="file" onChange={saveFileImage} />
       <StName onChange={onChangeName} value={text} />
