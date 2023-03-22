@@ -93,15 +93,16 @@ const StTab = styled(Link)`
 const StProfile = styled.div`
   position: relative;
   div {
+    opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease-in;
   }
 
   &:hover,
-  :focus {
+  :focus-within {
     div {
       visibility: visible;
-      scale: 103%;
+      opacity: 1;
     }
   }
 `;

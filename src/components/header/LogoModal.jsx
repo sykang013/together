@@ -1,10 +1,12 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import LogoutModal from '../logout/LogoutModal';
 
 const StModalContainer = styled.div`
-  width: ${rem(159)};
-  height: ${rem(101)};
+  width: ${rem(180)};
+  height: ${rem(120)};
   border: 1px solid var(--gray800);
   border-radius: 2px;
   background: var(--dark-bg1);
@@ -15,8 +17,8 @@ const StModalContainer = styled.div`
 `;
 
 const StProfileBox = styled(Link)`
-  width: ${rem(156)};
-  height: ${rem(61)};
+  width: ${rem(177)};
+  height: ${rem(70)};
   padding: ${rem(8)};
   border-bottom: 1px solid var(--dark-bg2);
   display: flex;
@@ -28,6 +30,9 @@ const StProfileIcon = styled.div`
   height: ${rem(45)};
   border-radius: 2px;
   background: var(--black);
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: ${rem(4)};
 `;
 
 const StProfileImage = styled.img`
@@ -51,10 +56,10 @@ const StProfileName = styled.div`
 const StLogoutBox = styled.div`
   display: flex;
   width: ${rem(159)};
-  height: ${rem(40)};
+  height: ${rem(47)};
 `;
 
-const StLogoutLink = styled(Link)`
+const StLogoutLink = styled.button`
   ${getFontStyle('ParagraphS')};
   color: var(--gray200);
   margin-left: ${rem(13)};
@@ -63,6 +68,8 @@ const StLogoutLink = styled(Link)`
 `;
 
 const LogoModal = () => {
+  const [isModal, setIsModal] = useState(false);
+
   return (
     <StModalContainer>
       <StProfileBox aria-label="프로필 페이지로 이동합니다.">
@@ -73,13 +80,17 @@ const LogoModal = () => {
           />
         </StProfileIcon>
         <StProfileName>
-          강수영님
+          강수영
           <p>프로필 전환</p>
         </StProfileName>
       </StProfileBox>
       <StLogoutBox>
-        <StLogoutLink aria-label="로그아웃 페이지로 이동합니다.">
+        <StLogoutLink
+          aria-label="로그아웃 페이지로 이동합니다."
+          onClick={() => setIsModal(true)}
+        >
           로그아웃
+          {isModal && <LogoutModal />}
         </StLogoutLink>
       </StLogoutBox>
     </StModalContainer>
