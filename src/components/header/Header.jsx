@@ -60,7 +60,6 @@ const StGnb = styled.div`
   }
 
   button {
-    position: relative;
     svg {
       color: var(--gray200);
       &:hover {
@@ -92,6 +91,7 @@ const StTab = styled(Link)`
 `;
 
 const StProfile = styled.div`
+  position: relative;
   div {
     visibility: hidden;
   }
@@ -197,21 +197,19 @@ const Header = () => {
               />
             )}
           </button>
-          <button>
-            <StProfile>
-              <Svg
-                id="profile"
-                width={18}
-                height={18}
-                tabletW={24}
-                tabletH={24}
-                desktopW={40}
-                desktopH={40}
-                aria-label="프로필"
-              />
-              <LogoModal />
-            </StProfile>
-          </button>
+          <StProfile tabIndex={0}>
+            <Svg
+              id="profile"
+              width={18}
+              height={18}
+              tabletW={24}
+              tabletH={24}
+              desktopW={40}
+              desktopH={40}
+              aria-label="프로필"
+            />
+            <LogoModal />
+          </StProfile>
         </StGnb>
       </StHeader>
     </>
