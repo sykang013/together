@@ -118,7 +118,7 @@ const Header = () => {
       <StHeader backgroundColor={isBlackBackground ? 'black' : 'gradient'}>
         <StGnb direction="left">
           <h1>
-            <StTab to="/">
+            <StTab to="/main">
               <Svg
                 id="logo"
                 width={46}
