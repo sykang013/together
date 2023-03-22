@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { getColor, getFontStyle, rem } from '@/theme/utils';
+import { getColor, getFontStyle } from '@/theme/utils';
 import {
   StContainer,
   StForm,
@@ -12,7 +12,7 @@ import FormButton from '@/components/button/FormButton';
 import FormInput from '@/components/forminput/FormInput';
 import { useAuthState, useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
-import { Navigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const StHeaderDescription = styled.p`
   color: ${getColor('--gray400')};
@@ -81,7 +81,7 @@ const RegisterForm = () => {
 
   const formStateRef = useRef(initialFormState);
   const { email, password, passwordConfirm } = formStateRef.current;
-
+  const navigate = useNavigate();
   const handleChangeEmail = (e) => {
     const { name, value } = e.target;
     formStateRef.current[name] = value;
@@ -153,8 +153,7 @@ const RegisterForm = () => {
     await createAuthUser(user);
 
     alert('회원가입 및 유저 생성');
-    // const navigate = Navigate();
-    // navigate('/login');
+    return navigate('/main');
   };
 
   if (isLoading) {

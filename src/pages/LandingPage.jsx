@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
+
 const LandingPage = () => {
   return (
-    <>
-      <div>hi</div>
-    </>
+    <div>
+      landing <Link to="/main">main</Link>
+    </div>
   );
 };
 

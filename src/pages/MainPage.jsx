@@ -1,11 +1,9 @@
-import Footer from '@/components/footer/Footer';
-import Header from '@/components/header/Header';
 import LogoutModal from '@/components/logout/LogoutModal';
 import Popup from '@/components/popup/Popup';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 const MainPage = () => {
   const [isPopupModal, setIsPopupModal] = useState(false);
-  const [isLogoutModal, setIsLogoutModal] = useState(true);
 
   const openModal = () => {
     setIsPopupModal(true);
@@ -13,10 +11,6 @@ const MainPage = () => {
 
   const closeModal = () => {
     setIsPopupModal(false);
-  };
-
-  const logoutCloseModal = () => {
-    setIsLogoutModal(false);
   };
 
   useEffect(() => {
@@ -35,10 +29,14 @@ const MainPage = () => {
 
   return (
     <>
-      <Header />
-      <Footer />
+      <Helmet>
+        <title>타잉 메인</title>
+        <meta
+          name="description"
+          content="타잉의 컨텐츠들을 즐길 수 있는 메인 페이지 입니다."
+        />
+      </Helmet>
       {isPopupModal && <Popup closeModal={closeModal} />}
-      {isLogoutModal && <LogoutModal isLogoutModal={logoutCloseModal} />}
     </>
   );
 };

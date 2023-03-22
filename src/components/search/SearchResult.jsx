@@ -1,5 +1,4 @@
 import { searchDataState } from '@/store/search/searchDataState';
-import React from 'react';
 import styled from 'styled-components/macro';
 import { useRecoilValue } from 'recoil';
 import { getFontStyle, rem } from '@/theme/utils';

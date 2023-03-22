@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import ModalPortal from '@/components/modal/ModalPortal';
@@ -19,12 +18,6 @@ const StPopUp = styled.div`
     ${getFontStyle('ParagraphS')};
     width: ${rem(252)};
   }
-  button:nth-child(1) {
-    width: ${rem(180)};
-  }
-  button:nth-child(2) {
-    width: ${rem(82)};
-  }
   @media (min-width: 768px) {
     width: ${rem(328)};
     height: ${rem(407)};
@@ -39,12 +32,6 @@ const StPopUp = styled.div`
     button {
       height: ${rem(66)};
       ${getFontStyle('ParagraphL')};
-    }
-    button:nth-child(1) {
-      width: ${rem(326)};
-    }
-    button:nth-child(2) {
-      width: ${rem(190)};
     }
   }
 `;
