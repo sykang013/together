@@ -10,7 +10,7 @@ const StMessageTitle = styled.div`
   span:last-child {
     ${getFontStyle('ParagraphS')};
     color: var(--gray400);
-    margin-top: ${rem(4)};
+    margin-top: var(--spacingXXS);
   }
   @media (min-width: 768px) {
     ${getFontStyle('headingL')};

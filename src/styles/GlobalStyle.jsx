@@ -1,4 +1,4 @@
-import { getColor } from '@/theme/utils';
+import { getColor, rem } from '@/theme/utils';
 import { createGlobalStyle } from 'styled-components/macro';
 
 const GlobalStyle = createGlobalStyle`
@@ -45,6 +45,14 @@ body {
     --secondary: #1728C0;
     --dark-bg1: #191919;
     --dark-bg2: #212121;
+
+    --spacingXXS: ${rem(4)};
+    --spacingXS: ${rem(12)};;
+    --spacingS: ${rem(21)};
+    --spacingM: ${rem(40)};
+
+    --paddingL: 11vh 0 ;
+
 
     font-size: calc(8px + 0.5vw);
 

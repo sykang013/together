@@ -12,12 +12,6 @@ const StBaseLayoutForLanding = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 0;
-  @media (min-width: 768px) {
-    padding: 0;
-  }
-  @media (min-width: 1920px) {
-    padding: 0;
-  }
 `;
 
 const BaseLayoutForLanding = () => {

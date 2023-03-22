@@ -5,18 +5,17 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { rem } from '@/theme/utils';
 
 const StCarouselScroll = styled.section`
-  border: 2px solid red;
-  position: relative; //이걸 줘야 자식이 absolute함
-  overflow: hidden; //hidden으로 해야 밑에 스크롤이 안생김
-  margin-top: 2rem;
-  height: 400px; //높이 고정
-  @media (min-width: 769px) {
-    height: 501px; //높이 고정
+  border: 1px solid red;
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  @media (min-width: 1000px) {
+    height: 501px;
   }
 `;
 
 const StScrollContainer = styled.div`
-  border: px solid yellow;
+  border: 1px solid yellow;
   background-color: blue;
   object-fit: contain;
   width: contain;
@@ -24,7 +23,7 @@ const StScrollContainer = styled.div`
   height: 400px;
   position: relative;
   left: 50vw;
-  @media (min-width: 769px) {
+  @media (min-width: 1000px) {
     height: 501px;
   }
 `;
@@ -36,19 +35,18 @@ const StImgContainer = styled.div`
   height: 400px;
   position: absolute;
   left: -${278 / 2}px;
-  @media (min-width: 769px) {
+  @media (min-width: 1000px) {
     height: 501px;
     left: -${904 / 2}px;
   }
 `;
 
 const StImgItem = styled.picture`
-  border-radius: 4px; //이미지 귀도리
-  height: 400px; //모바일-태블릿 높이 고정값
-  min-width: 278px; //모바일-태블릿 너비 최소 고정값
-  margin-right: 0.8rem; //오른쪽 gap
-  left: 10px;
-  @media (min-width: 769px) {
+  border-radius: 4px;
+  height: 400px;
+  min-width: 278px;
+  margin-right: 0.8rem;
+  @media (min-width: 1000px) {
     height: 501px;
     min-width: 904px;
   }
@@ -83,11 +81,11 @@ const CarouselScroll = () => {
           <StImgItem>
             <source
               srcset="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
-              media="(max-width: 768px)"
+              media="(max-width: 999px)"
             />
             <source
               srcset="src/assets/landing-img/contents-img/org-love-desktop.png"
-              media="(min-width: 769px)"
+              media="(min-width: 1000px)"
             />
             <img
               src="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
@@ -97,11 +95,11 @@ const CarouselScroll = () => {
           <StImgItem>
             <source
               srcset="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
-              media="(max-width: 768px)"
+              media="(max-width: 999px)"
             />
             <source
               srcset="src/assets/landing-img/contents-img/org-bomul-desktop.png"
-              media="(min-width: 769px)"
+              media="(min-width: 1000px)"
             />
             <img
               src="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
@@ -111,11 +109,11 @@ const CarouselScroll = () => {
           <StImgItem>
             <source
               srcset="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
-              media="(max-width: 768px)"
+              media="(max-width: 999px)"
             />
             <source
               srcset="src/assets/landing-img/contents-img/org-love-desktop.png"
-              media="(min-width: 769px)"
+              media="(min-width: 1000px)"
             />
             <img
               src="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
@@ -125,11 +123,11 @@ const CarouselScroll = () => {
           <StImgItem className="last">
             <source
               srcset="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
-              media="(max-width: 768px)"
+              media="(max-width: 999px)"
             />
             <source
               srcset="src/assets/landing-img/contents-img/org-bomul-desktop.png"
-              media="(min-width: 769px)"
+              media="(min-width: 1000px)"
             />
             <img
               src="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"

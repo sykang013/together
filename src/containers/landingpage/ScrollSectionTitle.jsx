@@ -6,8 +6,9 @@ import { gsap } from 'gsap';
 import PrimaryButton from '@/components/landing/PrimaryButton';
 
 const StScrollSectionTitle = styled.section`
-  border: 1px solid yellow;
   display: flex;
+  padding: var(--paddingL);
+  padding-top: 20vh;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
@@ -19,9 +20,7 @@ const StScrollSectionTitle = styled.section`
     ),
     url(src/assets/landing-img/bg-mobile-modified.png);
   background-size: 100%;
-  height: ${rem(600)};
   @media (min-width: 768px) {
-    height: ${rem(480)};
     background-image: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0),
@@ -30,7 +29,6 @@ const StScrollSectionTitle = styled.section`
       url(src/assets/landing-img/bg-tablet.png);
   }
   @media (min-width: 1920px) {
-    height: ${rem(980)};
     background-image: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0),

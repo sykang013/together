@@ -7,10 +7,11 @@ const StMessageAd = styled.div`
   flex-flow: column nowrap;
   color: var(--white);
   text-align: center;
+  padding-bottom: var(--spacingM);
   ${getFontStyle('headingL')};
   span:nth-child(2) {
     ${getFontStyle('ParagraphS')};
-    margin-top: ${rem(4)};
+    margin-top: var(--spacingXXS);
     color: var(--gray200);
   }
   span:nth-child(3) {

@@ -9,6 +9,7 @@ const StPrimaryButton = styled(Link)`
     background-color: var(--secondary);
   }
   background-color: var(--primary);
+  margin-top: var(--spacingS);
   padding: 0.7em 1.6em 0.7em 4.5em;
   border-radius: 4px;
   display: flex;
