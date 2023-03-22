@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import SearchModal from '@/components/search/SearchModal';
 import Svg from '@/components/svg/Svg';
 import useThrottle from '@/hooks/useThrottle';
-import LogoModal from './LogoModal';
+import LogoModal from '@/components/header/LogoModal';
 
 const StHeader = styled.nav`
   position: sticky;

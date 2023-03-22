@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import LogoutModal from '../logout/LogoutModal';
+import LogoutModal from '@/components/logout/LogoutModal';
 
 const StModalContainer = styled.div`
   width: ${rem(180)};
@@ -59,7 +59,7 @@ const StLogoutBox = styled.div`
   height: ${rem(47)};
 `;
 
-const StLogoutLink = styled.button`
+const StLogoutButton = styled.button`
   ${getFontStyle('ParagraphS')};
   color: var(--gray200);
   margin-left: ${rem(13)};
@@ -71,29 +71,31 @@ const LogoModal = () => {
   const [isModal, setIsModal] = useState(false);
 
   return (
-    <StModalContainer>
-      <StProfileBox aria-label="프로필 페이지로 이동합니다.">
-        <StProfileIcon>
-          <StProfileImage
-            src="src/assets/profile_4.png"
-            alt="계정 프로필 이미지"
-          />
-        </StProfileIcon>
-        <StProfileName>
-          강수영
-          <p>프로필 전환</p>
-        </StProfileName>
-      </StProfileBox>
-      <StLogoutBox>
-        <StLogoutLink
-          aria-label="로그아웃 페이지로 이동합니다."
-          onClick={() => setIsModal(true)}
-        >
-          로그아웃
-          {isModal && <LogoutModal />}
-        </StLogoutLink>
-      </StLogoutBox>
-    </StModalContainer>
+    <>
+      {isModal && <LogoutModal />}
+      <StModalContainer>
+        <StProfileBox aria-label="프로필 페이지로 이동합니다.">
+          <StProfileIcon>
+            <StProfileImage
+              src="src/assets/profile_4.png"
+              alt="계정 프로필 이미지"
+            />
+          </StProfileIcon>
+          <StProfileName>
+            강수영
+            <p>프로필 전환</p>
+          </StProfileName>
+        </StProfileBox>
+        <StLogoutBox>
+          <StLogoutButton
+            aria-label="로그아웃 페이지로 이동합니다."
+            onClick={() => setIsModal(true)}
+          >
+            로그아웃
+          </StLogoutButton>
+        </StLogoutBox>
+      </StModalContainer>
+    </>
   );
 };
 
