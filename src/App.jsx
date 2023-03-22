@@ -4,6 +4,9 @@ import GlobalStyle from './styles/GlobalStyle';
 import Layout from './pages/Layout';
 import MainPage from './pages/MainPage';
 import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import SearchPage from './pages/SearchPage';
+import Landigpage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEdit from './pages/ProfileEdit';
 import ProfileCRUD from './pages/ProfileCRUD';
@@ -25,6 +28,29 @@ const routesConfig = [
         path: 'register',
         element: <RegisterPage />,
       },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+      {
+        path: '/search',
+        element: <SearchPage />,
+      },
+      {
+        path: 'landing',
+        element: <Landigpage />,
+      },
+      //   {
+      //     path: '/contacts/:contactId/edit',
+      //     element: <ContactEdit />,
+      //     loader: contactLoader,
+      //     action: contactEditAction,
+      //   },
+      //   {
+      //     path: '/contacts/:contactId/destory',
+      //     action: destoryAction,
+      //     errorElement: <div role="alert">Oops! There was an error.</div>,
+      //   },
       {
         path: 'profilePage',
         element: <ProfilePage />,

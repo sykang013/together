@@ -45,6 +45,12 @@ body {
     --secondary: #1728C0;
     --dark-bg1: #191919;
     --dark-bg2: #212121;
+
+    font-size: calc(8px + 0.5vw);
+
+    * {
+      transition: 0.1ms;
+    } 
   }
 `;
 
