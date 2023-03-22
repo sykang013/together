@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro';
-import React from 'react';
 import { getFontStyle, rem } from '@/theme/utils';
 import ModalPortal from '@/components/modal/ModalPortal';
 
