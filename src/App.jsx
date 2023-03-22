@@ -6,6 +6,7 @@ import MainPage from './pages/MainPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import SearchPage from './pages/SearchPage';
+import Landigpage from './pages/LandingPage';
 
 const routesConfig = [
   {
@@ -31,6 +32,10 @@ const routesConfig = [
       {
         path: '/search',
         element: <SearchPage />,
+      },
+      {
+        path: 'landing',
+        element: <Landigpage />,
       },
       //   {
       //     path: '/contacts/:contactId/edit',
