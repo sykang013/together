@@ -37,7 +37,6 @@ const MainPage = () => {
     <>
       <Header />
       <Footer />
-      {/* <LogoutModal closeModal={closeModal} /> */}
       {showModal && <Popup closeModal={closeModal} />}
       {hideModal && <LogoutModal hideModal={logoutCloseModal} />}
     </>
