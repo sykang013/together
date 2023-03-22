@@ -1,10 +1,14 @@
 import styled, { css } from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
-import { Link } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SearchModal from '@/components/search/SearchModal';
 import Svg from '@/components/svg/Svg';
 import useThrottle from '@/hooks/useThrottle';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { searchKeywordState } from '@/store/search/index';
+import { modalAtomFamily } from '@/store/modalState';
+import useModal from '@/hooks/useModal';
 import LogoModal from '@/components/header/LogoModal';
 
 const StHeader = styled.nav`
@@ -69,7 +73,7 @@ const StGnb = styled.div`
   }
 `;
 
-const StTab = styled(Link)`
+const StTab = styled.button`
   ${getFontStyle('ParagraphS')}
   text-decoration: none;
   color: var(--gray200);
@@ -108,11 +112,24 @@ const StProfile = styled.div`
 `;
 
 const Header = () => {
-  const [isModal, setIsModal] = useState(false);
+  const isSearchModal = useRecoilValue(modalAtomFamily('search'));
+  const { openModal, closeModal } = useModal('search');
   const [isBlackBackground, setIsBlackBackground] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const setSearchKeyword = useSetRecoilState(searchKeywordState);
+  const navigate = useNavigate();
 
-  const toggleSearchModal = () => {
-    setIsModal((isModal) => !isModal);
+  const closeSearchModal = () => {
+    if (!searchParams.get('keyword')) {
+      setSearchKeyword('');
+    }
+    closeModal();
+  };
+
+  const navigateToPage = (page) => {
+    closeModal();
+    setSearchKeyword('');
+    navigate(page);
   };
 
   const toggleBackgroundColor = () => {
@@ -132,11 +149,11 @@ const Header = () => {
 
   return (
     <>
-      {isModal && <SearchModal toggleModal={toggleSearchModal} />}
+      {isSearchModal.isOpen && <SearchModal />}
       <StHeader backgroundColor={isBlackBackground ? 'black' : 'gradient'}>
         <StGnb direction="left">
           <h1>
-            <StTab to="/">
+            <StTab onClick={() => navigateToPage('/')}>
               <Svg
                 id="logo"
                 width={46}
@@ -174,8 +191,11 @@ const Header = () => {
           </StTab>
         </StGnb>
         <StGnb direction="right">
-          <button onClick={toggleSearchModal} type="button">
-            {!isModal && (
+          <button
+            onClick={isSearchModal.isOpen ? closeSearchModal : openModal}
+            type="button"
+          >
+            {!isSearchModal.isOpen && (
               <Svg
                 id="search-default"
                 width={18}
@@ -187,7 +207,7 @@ const Header = () => {
                 aria-label="검색"
               />
             )}
-            {isModal && (
+            {isSearchModal.isOpen && (
               <Svg
                 id="cancel-default"
                 width={18}
