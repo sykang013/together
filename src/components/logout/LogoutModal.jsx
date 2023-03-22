@@ -2,6 +2,10 @@ import styled from 'styled-components/macro';
 import React from 'react';
 import { getFontStyle, rem } from '@/theme/utils';
 import ModalPortal from '@/components/modal/ModalPortal';
+import { useNavigate } from 'react-router-dom';
+import App from '@/App';
+import propTypes from 'prop-types';
+import { useSignOut } from '@/firebase/auth';
 
 const StLogoutModal = styled.div`
   width: ${rem(196)};
@@ -68,15 +72,32 @@ const StOverlay = styled.div`
   top: 0;
   left: 0;
 `;
-const LogoutModal = () => {
+
+const LogoutModal = ({ hideModal }) => {
+  const navigate = useNavigate();
+  const { signOut } = useSignOut();
+
+  const handleLogout = () => {
+    handleSignOut();
+    navigate('/register');
+  };
+
+  const handleSignOut = async () => {
+    signOut();
+  };
+
   return (
     <ModalPortal>
       <StOverlay />
       <StLogoutModal role="dialog">
         <p>로그아웃 하시겠습니까?</p>
         <Stbutton>
-          <button type="button">확인</button>
-          <button type="button">취소</button>
+          <button type="button" onClick={handleLogout}>
+            확인
+          </button>
+          <button type="button" onClick={hideModal}>
+            취소
+          </button>
         </Stbutton>
       </StLogoutModal>
     </ModalPortal>
@@ -84,3 +105,7 @@ const LogoutModal = () => {
 };
 
 export default LogoutModal;
+
+LogoutModal.propTypes = {
+  hideModal: propTypes.func,
+};

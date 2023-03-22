@@ -1,9 +1,11 @@
 import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
+import LogoutModal from '@/components/logout/LogoutModal';
 import Popup from '@/components/popup/Popup';
 import React, { useState, useEffect } from 'react';
 const MainPage = () => {
   const [showModal, setShowModal] = useState(false);
+  const [hideModal, setHideModal] = useState(true);
 
   const openModal = () => {
     setShowModal(true);
@@ -11,6 +13,10 @@ const MainPage = () => {
 
   const closeModal = () => {
     setShowModal(false);
+  };
+
+  const logoutCloseModal = () => {
+    setHideModal(false);
   };
 
   useEffect(() => {
@@ -31,7 +37,9 @@ const MainPage = () => {
     <>
       <Header />
       <Footer />
+      {/* <LogoutModal closeModal={closeModal} /> */}
       {showModal && <Popup closeModal={closeModal} />}
+      {hideModal && <LogoutModal hideModal={logoutCloseModal} />}
     </>
   );
 };
