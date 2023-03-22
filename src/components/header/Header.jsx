@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import SearchModal from '@/components/search/SearchModal';
 import Svg from '@/components/svg/Svg';
 import useThrottle from '@/hooks/useThrottle';
+import LogoModal from './LogoModal';
 
 const StHeader = styled.nav`
   position: sticky;
@@ -86,6 +87,23 @@ const StTab = styled(Link)`
   @media (min-width: 1920px) {
     ${getFontStyle('ParagraphL')}
     gap: ${rem(10)};
+  }
+`;
+
+const StProfile = styled.div`
+  position: relative;
+  div {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in;
+  }
+
+  &:hover,
+  :focus-within {
+    div {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 `;
 
@@ -182,7 +200,7 @@ const Header = () => {
               />
             )}
           </button>
-          <button type="button">
+          <StProfile tabIndex={0}>
             <Svg
               id="profile"
               width={18}
@@ -193,7 +211,8 @@ const Header = () => {
               desktopH={40}
               aria-label="프로필"
             />
-          </button>
+            <LogoModal />
+          </StProfile>
         </StGnb>
       </StHeader>
     </>
