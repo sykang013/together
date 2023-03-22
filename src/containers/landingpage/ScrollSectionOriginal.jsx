@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 import MessageAd from '@/components/landing/MessageAd';
 import gsap from 'gsap';
 import { useLayoutEffect } from 'react';
+import CarouselScroll from '@/components/landing/CarouselScroll';
 
 const StScrollSectionOriginal = styled.section`
   border: 1px solid pink;
@@ -31,6 +32,7 @@ const ScrollSectionOriginal = () => {
         subText="오리지널 콘텐츠를 만나보세요!"
         detailText="차별화된 웰메이드 오리지널 콘텐츠"
       />
+      <CarouselScroll></CarouselScroll>
     </StScrollSectionOriginal>
   );
 };
