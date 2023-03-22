@@ -67,7 +67,10 @@ const LogoModal = () => {
     <StModalContainer>
       <StProfileBox aria-label="프로필 페이지로 이동합니다.">
         <StProfileIcon>
-          <StProfileImage src="src/assets/profile_4.png" />
+          <StProfileImage
+            src="src/assets/profile_4.png"
+            alt="계정 프로필 이미지"
+          />
         </StProfileIcon>
         <StProfileName>
           강수영님

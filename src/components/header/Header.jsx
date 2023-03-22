@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchModal from '@/components/search/SearchModal';
 import Svg from '@/components/svg/Svg';
 import useThrottle from '@/hooks/useThrottle';
@@ -94,12 +94,14 @@ const StProfile = styled.div`
   position: relative;
   div {
     visibility: hidden;
+    transition: all 0.3s ease-in;
   }
 
   &:hover,
   :focus {
     div {
       visibility: visible;
+      scale: 103%;
     }
   }
 `;
