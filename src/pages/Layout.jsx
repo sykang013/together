@@ -12,13 +12,6 @@ const StBaseLayout = styled.div`
   color: ${getColor('--white')};
   margin-left: auto;
   margin-right: auto;
-  padding: 0 ${rem(8)};
-  @media (min-width: 768px) {
-    padding: 0 ${rem(40)};
-  }
-  @media (min-width: 1920px) {
-    padding: 0 ${rem(70)};
-  }
 `;
 
 const BaseLayout = () => {
