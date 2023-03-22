@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components/macro';
 import Svg from '@/components/svg/Svg';
-import { getFontStyle, rem } from '@/theme/utils';
+import { StSearchInput } from '@/styles/SearchBarStyles';
 import {
-  searchDataState,
+  searchBarDataState,
   searchHistoryState,
   searchKeywordState,
 } from '@/store/search/index';
@@ -11,63 +10,16 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import useDebounce from '@/hooks/useDebounce';
 import useReadSearchData from '@/firebase/firestore/useReadSearchData';
 import Modal from '@/components/modal/Modal';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { func } from 'prop-types';
+import useModal from '@/hooks/useModal';
 
-const StSearchInput = styled.form`
-  box-sizing: content-box;
-  border-bottom: 3px solid var(--white);
-  display: flex;
-  justify-content: space-between;
-  height: ${rem(24)};
-  padding: ${rem(8.5)} 0;
-
-  @media (min-width: 768px) {
-    height: ${rem(32)};
-    padding: ${rem(12)} 0;
-  }
-
-  @media (min-width: 1920px) {
-    height: ${rem(57)};
-    padding: ${rem(16)} 0;
-  }
-
-  input {
-    height: 100%;
-    width: 100%;
-    background-color: transparent;
-    color: var(--white);
-    border: 0;
-    ${getFontStyle('LabelM')}
-
-    :focus {
-      outline: none;
-    }
-    ::placeholder {
-      color: var(--gray700);
-    }
-
-    @media (min-width: 768px) {
-      ${getFontStyle('LabelL')}
-    }
-
-    @media (min-width: 1920px) {
-      ${getFontStyle('LabelXXL')}
-    }
-  }
-
-  button {
-    border: 0;
-    background-color: transparent;
-  }
-`;
-
-const SearchBar = ({ toggleModal }) => {
+const SearchBar = ({ openModal }) => {
   const [keywords, setKeywords] = useRecoilState(searchHistoryState);
   const [keyword, setKeyword] = useRecoilState(searchKeywordState);
-  const setSearchData = useSetRecoilState(searchDataState);
+  const setSearchData = useSetRecoilState(searchBarDataState);
   const [isGuideModal, setIsGuideModal] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { toggleModal } = useModal('search');
   const navigate = useNavigate();
 
   const toggleGuideModal = () => {
@@ -90,7 +42,12 @@ const SearchBar = ({ toggleModal }) => {
       id: uuid,
       keyword: keyword,
     };
-    setKeywords((keywords) => [...keywords, newKeyword]);
+
+    if (keywords.length === 10) {
+      setKeywords((keywords) => keywords.slice(0, 9));
+    }
+
+    setKeywords((keywords) => [newKeyword, ...keywords]);
     setSearchData([]);
     toggleModal();
     navigate(`/search?keyword=${keyword}`);
@@ -98,7 +55,8 @@ const SearchBar = ({ toggleModal }) => {
 
   const { readSearchData, isLoading, error } = useReadSearchData(
     'programs',
-    keyword
+    keyword,
+    'searchBarDataState'
   );
 
   useDebounce(
@@ -125,8 +83,9 @@ const SearchBar = ({ toggleModal }) => {
         <input
           type="text"
           placeholder="TV프로그램, 영화 제목 및 출연진으로 검색해보세요"
-          value={keyword}
+          value={keyword || ''}
           onChange={onChangeKeyword}
+          onClick={openModal}
         />
         <button onClick={onSubmitHandler}>
           <Svg
@@ -147,5 +106,5 @@ const SearchBar = ({ toggleModal }) => {
 export default SearchBar;
 
 SearchBar.propTypes = {
-  toggleModal: func,
+  openModal: func,
 };
