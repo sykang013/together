@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components/macro';
 import Svg from '@/components/svg/Svg';
 import { StSearchInput } from '@/styles/SearchBarStyles';
 import {

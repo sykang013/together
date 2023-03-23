@@ -1,3 +1,4 @@
+import Footer from '@/components/footer/Footer';
 import Header from '@/components/header/Header';
 import { getColor, rem } from '@/theme/utils';
 import { Outlet } from 'react-router';
@@ -21,6 +22,7 @@ const BaseLayout = () => {
       <StBaseLayout>
         <Outlet />
       </StBaseLayout>
+      <Footer />
     </>
   );
 };

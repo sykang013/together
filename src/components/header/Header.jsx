@@ -96,6 +96,7 @@ const StTab = styled.button`
 
 const StProfile = styled.div`
   position: relative;
+  cursor: pointer;
   div {
     opacity: 0;
     visibility: hidden;

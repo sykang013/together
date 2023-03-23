@@ -1,67 +1,38 @@
 import { Reset as ResetCss } from 'styled-reset';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GlobalStyle from './styles/GlobalStyle';
 import Layout from './pages/Layout';
 import MainPage from './pages/MainPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
-import SearchPage from './pages/SearchPage';
-import Landigpage from './pages/LandingPage';
-
-const routesConfig = [
-  {
-    path: '/',
-    element: <Layout />,
-    // errorElement: <NotFound />,
-    // loader: rootLoader,
-    // action: rootAction,
-    children: [
-      // {
-      // errorElement: <NotFound />,
-      // children: [
-      { index: true, element: <MainPage /> },
-
-      {
-        path: 'register',
-        element: <RegisterPage />,
-      },
-      {
-        path: 'login',
-        element: <LoginPage />,
-      },
-      {
-        path: '/search',
-        element: <SearchPage />,
-      },
-      {
-        path: 'landing',
-        element: <Landigpage />,
-      },
-      //   {
-      //     path: '/contacts/:contactId/edit',
-      //     element: <ContactEdit />,
-      //     loader: contactLoader,
-      //     action: contactEditAction,
-      //   },
-      //   {
-      //     path: '/contacts/:contactId/destory',
-      //     action: destoryAction,
-      //     errorElement: <div role="alert">Oops! There was an error.</div>,
-      //   },
-    ],
-  },
-  // ],
-  // },
-];
-
-const router = createBrowserRouter(routesConfig);
+import LandingPage from './pages/LandingPage';
+import PrivateRoute from './PrivateRoute';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
     <>
-      <ResetCss />
-      <GlobalStyle />
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <ResetCss />
+        <GlobalStyle />
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<LandingPage />} />
+            <Route path="landing" element={<LandingPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route
+              path="main"
+              element={
+                <PrivateRoute>
+                  <MainPage />
+                </PrivateRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };

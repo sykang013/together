@@ -3,12 +3,13 @@ import propTypes from 'prop-types';
 import { useSignOut } from '@/firebase/auth';
 import Modal from '@/components/modal/Modal';
 
-const LogoutModal = ({ isLogoutModal }) => {
+const LogoutModal = ({ closeLogoutModal }) => {
   const navigate = useNavigate();
   const { signOut } = useSignOut();
 
   const handleSignOut = () => {
     signOut();
+    closeLogoutModal();
     navigate('/Landing');
   };
 
@@ -16,7 +17,7 @@ const LogoutModal = ({ isLogoutModal }) => {
     <Modal
       message="로그아웃 하시겠습니까?"
       onClickHandler={handleSignOut}
-      cancelHandler={isLogoutModal}
+      cancelHandler={closeLogoutModal}
     />
   );
 };
@@ -24,5 +25,5 @@ const LogoutModal = ({ isLogoutModal }) => {
 export default LogoutModal;
 
 LogoutModal.propTypes = {
-  isLogoutModal: propTypes.func,
+  closeLogoutModal: propTypes.func,
 };

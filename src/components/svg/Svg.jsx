@@ -1,4 +1,3 @@
-import React from 'react';
 import { string, number, oneOfType } from 'prop-types';
 import styled, { css } from 'styled-components/macro';
 import { rem } from '@/theme/utils';
