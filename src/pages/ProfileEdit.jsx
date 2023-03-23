@@ -11,7 +11,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import ImageTest from '@/assets/profile_1.png';
 
-const ProfilePage = () => {
+const ProfileEdit = () => {
   const navigate = useNavigate();
 
   const GoToMainPage = () => {
@@ -40,4 +40,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default ProfileEdit;
