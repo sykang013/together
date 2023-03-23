@@ -7,9 +7,6 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import SearchPage from './pages/SearchPage';
 import Landigpage from './pages/LandingPage';
-import ProfilePage from './pages/ProfilePage';
-import ProfileEdit from './pages/ProfileEdit';
-import ProfileCRUD from './pages/ProfileCRUD';
 
 const routesConfig = [
   {
@@ -51,24 +48,6 @@ const routesConfig = [
       //     action: destoryAction,
       //     errorElement: <div role="alert">Oops! There was an error.</div>,
       //   },
-      {
-        path: 'profilePage',
-        element: <ProfilePage />,
-        //     loader: contactLoader,
-        //     action: contactAction,
-      },
-      {
-        path: 'profileEdit',
-        element: <ProfileEdit />,
-        //     loader: contactLoader,
-        //     action: contactEditAction,
-      },
-      {
-        path: 'profileCRUD',
-        element: <ProfileCRUD />,
-        //     action: destoryAction,
-        //     errorElement: <div role="alert">Oops! There was an error.</div>,
-      },
     ],
   },
   // ],

@@ -28,7 +28,7 @@ const StName = styled.input`
   margin: 10px auto 0 auto;
 `;
 
-const StCRUD = () => {
+const ProfileCRUD = () => {
   const [text, setText] = useState('');
   const [fileImage, setFileImage] = useState('');
 
@@ -42,7 +42,7 @@ const StCRUD = () => {
   };
 
   return (
-    <>
+    <StLayoutProfile>
       <StUploadImageView>
         <StUploadImage
           src={fileImage}
@@ -53,14 +53,6 @@ const StCRUD = () => {
       <StImageFile type="file" onChange={saveFileImage} />
       <StName onChange={onChangeName} value={text} />
       <StProfileButton>저장</StProfileButton>
-    </>
-  );
-};
-
-const ProfileCRUD = () => {
-  return (
-    <StLayoutProfile>
-      <StCRUD />
     </StLayoutProfile>
   );
 };

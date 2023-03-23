@@ -22,23 +22,21 @@ const ProfilePage = () => {
   };
 
   return (
-    <>
-      <StLayoutProfile>
-        <StProfileTitle>프로필 편집</StProfileTitle>
-        <StProfileSubTitle>편집할 프로필을 선택해주세요.</StProfileSubTitle>
-        <StProfileItems>
-          <li>
-            <StProfileItem onClick={GoToProfileCRUD}>
-              <StProfileImage src={ImageTest} />
-              <StProfileEditImage />
-            </StProfileItem>
-            <p>test</p>
-          </li>
-        </StProfileItems>
+    <StLayoutProfile>
+      <StProfileTitle>프로필 편집</StProfileTitle>
+      <StProfileSubTitle>편집할 프로필을 선택해주세요.</StProfileSubTitle>
+      <StProfileItems>
+        <li>
+          <StProfileItem onClick={GoToProfileCRUD}>
+            <StProfileImage src={ImageTest} />
+            <StProfileEditImage />
+          </StProfileItem>
+          <p>test</p>
+        </li>
+      </StProfileItems>
 
-        <StProfileButton onClick={GoToMainPage}>완료</StProfileButton>
-      </StLayoutProfile>
-    </>
+      <StProfileButton onClick={GoToMainPage}>완료</StProfileButton>
+    </StLayoutProfile>
   );
 };
 

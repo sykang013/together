@@ -12,7 +12,7 @@ export const StLayoutProfile = styled.div`
   }
 `;
 
-export const StProfileTitle = styled.h3`
+export const StProfileTitle = styled.h2`
   ${getFontStyle('headingM')};
   text-align: center;
   margin-top: ${rem(72)};
@@ -26,7 +26,7 @@ export const StProfileTitle = styled.h3`
   }
 `;
 
-export const StProfileSubTitle = styled.h4`
+export const StProfileSubTitle = styled.h3`
   ${getFontStyle('LabelS')};
   text-align: center;
   margin: ${rem(16)} ${rem(0)};
@@ -65,17 +65,17 @@ export const StProfileItems = styled.ul`
     @media (min-width: 1920px) {
       width: 21.15%;
     }
-  }
-  p {
-    ${getFontStyle('ParagraphS')};
-    text-align: center;
-    margin-top: ${rem(12)};
-    color: var(--gray300);
-    @media (min-width: 768px) {
-    }
-    @media (min-width: 1920px) {
-      ${getFontStyle('ParagraphXL')};
-      margin-top: ${rem(16)};
+    p {
+      ${getFontStyle('ParagraphS')};
+      text-align: center;
+      margin-top: ${rem(12)};
+      color: var(--gray300);
+      @media (min-width: 768px) {
+      }
+      @media (min-width: 1920px) {
+        ${getFontStyle('ParagraphXL')};
+        margin-top: ${rem(16)};
+      }
     }
   }
 `;
