@@ -6,38 +6,38 @@ import {
   StProfileImage,
   StProfileButton,
   StLayoutProfile,
+  StProfileEditImage,
 } from '@/components/profile/Profile';
 import { useNavigate } from 'react-router-dom';
+import ImageTest from '@/assets/profile_1.png';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
 
-  const GoToProfileEdit = () => {
-    navigate('/ProfileEdit');
-  };
-
   const GoToMainPage = () => {
     navigate('/');
+  };
+  const GoToProfileCRUD = () => {
+    navigate('/ProfileCRUD');
   };
 
   return (
     <StLayoutProfile>
-      <StProfileTitle>프로필 선택</StProfileTitle>
-      <StProfileSubTitle>시청할 프로필을 선택해주세요.</StProfileSubTitle>
+      <StProfileTitle>프로필 편집</StProfileTitle>
+      <StProfileSubTitle>편집할 프로필을 선택해주세요.</StProfileSubTitle>
       <StProfileItems>
         <li>
-          <StProfileItem>
-            <StProfileImage onClick={GoToMainPage} />
+          <StProfileItem onClick={GoToProfileCRUD}>
+            <StProfileImage src={ImageTest} />
+            <StProfileEditImage />
           </StProfileItem>
           <p>test</p>
         </li>
       </StProfileItems>
-      <StProfileButton select onClick={GoToProfileEdit}>
-        프로필 편집
-      </StProfileButton>
+
+      <StProfileButton onClick={GoToMainPage}>완료</StProfileButton>
     </StLayoutProfile>
   );
-
 };
 
 export default ProfilePage;
