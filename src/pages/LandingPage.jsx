@@ -27,11 +27,11 @@ const LandingPage = () => {
   useLayoutEffect(() => {
     gsap.fromTo(
       '.landingElementAnimation',
-      { y: 100, opacity: 0 },
+      { y: 20, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        duration: 1.3,
+        duration: 0.6,
         stagger: { each: 0.1, from: 'start' },
       }
     );
