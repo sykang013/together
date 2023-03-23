@@ -92,6 +92,7 @@ const StTab = styled(Link)`
 
 const StProfile = styled.div`
   position: relative;
+  cursor: pointer;
   div {
     opacity: 0;
     visibility: hidden;
@@ -136,7 +137,7 @@ const Header = () => {
       <StHeader backgroundColor={isBlackBackground ? 'black' : 'gradient'}>
         <StGnb direction="left">
           <h1>
-            <StTab to="/">
+            <StTab to="/main">
               <Svg
                 id="logo"
                 width={46}

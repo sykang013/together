@@ -70,9 +70,13 @@ const StLogoutButton = styled.button`
 const LogoModal = () => {
   const [isModal, setIsModal] = useState(false);
 
+  const closeLogoutModal = () => {
+    setIsModal(false);
+  };
+
   return (
     <>
-      {isModal && <LogoutModal />}
+      {isModal && <LogoutModal closeLogoutModal={closeLogoutModal} />}
       <StModalContainer>
         <StProfileBox aria-label="프로필 페이지로 이동합니다.">
           <StProfileIcon>

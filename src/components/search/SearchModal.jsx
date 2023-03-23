@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import ModalPortal from '@/components/modal/ModalPortal';
 import styled from 'styled-components/macro';
 import { rem } from '@/theme/utils';

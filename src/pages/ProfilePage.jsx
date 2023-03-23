@@ -37,6 +37,7 @@ const ProfilePage = () => {
       </StProfileButton>
     </StLayoutProfile>
   );
+
 };
 
 export default ProfilePage;

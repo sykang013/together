@@ -1,19 +1,27 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import Svg from '@/components/svg/Svg';
 
-const StContainer = styled.footer`
+const StFooter = styled.footer`
   color: var(--gray500);
-  border-top: 1px solid var(--gray800);
-  padding-top: ${rem(13)};
-  padding-bottom: ${rem(100)};
+  margin-top: ${rem(80)};
+  padding: ${rem(10)} ${rem(12)};
+  ${getFontStyle('ParagraphS')};
   @media (min-width: 768px) {
+    padding: ${rem(16)} ${rem(40)};
     ${getFontStyle('ParagraphS')};
   }
   @media (min-width: 1920px) {
+    padding: ${rem(29)} ${rem(70)};
     ${getFontStyle('ParagraphM')};
   }
+`;
+const StContainer = styled.div`
+  border-top: 1px solid var(--gray800);
+  padding-top: ${rem(13)};
+  padding-bottom: ${rem(100)};
 `;
 
 const StUtil = styled.div`
@@ -78,6 +86,9 @@ const StIconBox = styled.div`
   svg {
     cursor: pointer;
   }
+  svg:hover {
+    color: var(--gray200);
+  }
 `;
 
 const StCopyright = styled.p`
@@ -86,98 +97,100 @@ const StCopyright = styled.p`
 
 const Footer = () => {
   return (
-    <StContainer>
-      <StUtil>
-        <StUtilList>
-          <Link to="/">고객센터</Link>
-        </StUtilList>
-        <StUtilList>
-          <Link to="/">이용약관</Link>
-        </StUtilList>
-        <StUtilList>
-          <Link to="/">개인정보처리방침</Link>
-        </StUtilList>
-        <StUtilList>
-          <Link to="/">청소년 보호정책</Link>
-        </StUtilList>
-        <StUtilList>
-          <Link to="/">법적고지</Link>
-        </StUtilList>
-        <StUtilList>
-          <Link to="/">인재채용</Link>
-        </StUtilList>
-      </StUtil>
-      <StCopyrightUl>
-        <StCopyrightli>
-          <span>대표이사 : YANG JIEUL</span>
-          <span>
-            <StLink>사업자정보확인</StLink>
-          </span>
-          <span>사업자등록번호 : 188-88-01893</span>
-          <span>통신판매신고번호 : 2020-서울마포-3641호</span>
-        </StCopyrightli>
-        <StCopyrightli as={'address'}>
-          <span>
-            사업장 : 서울특별시 마포구 상암산로 34, DMC디지털큐브 15층(상암동)
-          </span>
-          <span>호스팅사업자 : 씨제이올리브네트웍스(주)</span>
-        </StCopyrightli>
-        <StCopyrightli>
-          <span>
-            <StLink>고객문의 바로가기</StLink>
-          </span>
-          <span>대표메일 : tving@cj.net</span>
-          <span>고객센터 : 1670-1525 (평일/주말 09시~18시, 공휴일 휴무)</span>
-        </StCopyrightli>
-        <StCopyrightli>
-          <span>
-            ENM 시청자 상담실(편성 문의 및 시청자 의견) : 080-080-0780
-          </span>
-          <span>Mnet 고객센터(방송송편성문의) : 1855-1631</span>
-        </StCopyrightli>
-      </StCopyrightUl>
-      <StIconBox>
-        <Svg
-          id="youtube"
-          width={24}
-          height={24}
-          tabletW={30}
-          tabletH={30}
-          desktopW={38}
-          desktopH={38}
-        />
-        <Svg
-          id="instagram"
-          width={24}
-          height={24}
-          tabletW={30}
-          tabletH={30}
-          desktopW={38}
-          desktopH={38}
-        />
-        <Svg
-          id="twitter"
-          width={24}
-          height={24}
-          tabletW={30}
-          tabletH={30}
-          desktopW={38}
-          desktopH={38}
-        />
-        <Svg
-          id="facebook"
-          width={24}
-          height={24}
-          tabletW={30}
-          tabletH={30}
-          desktopW={38}
-          desktopH={38}
-        />
-      </StIconBox>
-      <StCopyright>
-        <small>Copyright Ⓒ 주식회사 티빙 All right reserved</small>
-      </StCopyright>
-    </StContainer>
+    <StFooter>
+      <StContainer>
+        <StUtil>
+          <StUtilList>
+            <Link to="/">고객센터</Link>
+          </StUtilList>
+          <StUtilList>
+            <Link to="/">이용약관</Link>
+          </StUtilList>
+          <StUtilList>
+            <Link to="/">개인정보처리방침</Link>
+          </StUtilList>
+          <StUtilList>
+            <Link to="/">청소년 보호정책</Link>
+          </StUtilList>
+          <StUtilList>
+            <Link to="/">법적고지</Link>
+          </StUtilList>
+          <StUtilList>
+            <Link to="/">인재채용</Link>
+          </StUtilList>
+        </StUtil>
+        <StCopyrightUl>
+          <StCopyrightli>
+            <span>대표이사 : YANG JIEUL</span>
+            <span>
+              <StLink>사업자정보확인</StLink>
+            </span>
+            <span>사업자등록번호 : 188-88-01893</span>
+            <span>통신판매신고번호 : 2020-서울마포-3641호</span>
+          </StCopyrightli>
+          <StCopyrightli as="address">
+            <span>
+              사업장 : 서울특별시 마포구 상암산로 34, DMC디지털큐브 15층(상암동)
+            </span>
+            <span>호스팅사업자 : 씨제이올리브네트웍스(주)</span>
+          </StCopyrightli>
+          <StCopyrightli>
+            <span>
+              <StLink>고객문의 바로가기</StLink>
+            </span>
+            <span>대표메일 : tving@cj.net</span>
+            <span>고객센터 : 1670-1525 (평일/주말 09시~18시, 공휴일 휴무)</span>
+          </StCopyrightli>
+          <StCopyrightli>
+            <span>
+              ENM 시청자 상담실(편성 문의 및 시청자 의견) : 080-080-0780
+            </span>
+            <span>Mnet 고객센터(방송송편성문의) : 1855-1631</span>
+          </StCopyrightli>
+        </StCopyrightUl>
+        <StIconBox>
+          <Svg
+            id="youtube"
+            width={24}
+            height={24}
+            tabletW={30}
+            tabletH={30}
+            desktopW={38}
+            desktopH={38}
+          />
+          <Svg
+            id="instagram"
+            width={24}
+            height={24}
+            tabletW={30}
+            tabletH={30}
+            desktopW={38}
+            desktopH={38}
+          />
+          <Svg
+            id="twitter"
+            width={24}
+            height={24}
+            tabletW={30}
+            tabletH={30}
+            desktopW={38}
+            desktopH={38}
+          />
+          <Svg
+            id="facebook"
+            width={24}
+            height={24}
+            tabletW={30}
+            tabletH={30}
+            desktopW={38}
+            desktopH={38}
+          />
+        </StIconBox>
+        <StCopyright>
+          <small>Copyright Ⓒ 주식회사 티빙 All right reserved</small>
+        </StCopyright>
+      </StContainer>
+    </StFooter>
   );
 };
 

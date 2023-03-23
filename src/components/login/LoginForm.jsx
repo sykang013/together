@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useAuthState, useSignIn, useSignOut } from '@/firebase/auth';
 import { StContainer, StForm, StInner, StTitle } from '@/styles/FormStyles';
 import { getFontStyle, rem } from '@/theme/utils';
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import FormInput from '@/components/forminput/FormInput';
 
@@ -23,7 +24,6 @@ const StInfo = styled.p`
   font-size: ${rem(14)};
   ${getFontStyle('ParagraphS')};
   @media (min-width: 768px) {
-    width: ${rem(416)};
     ${getFontStyle('ParagraphM')};
   }
   @media (min-width: 1920px) {
@@ -56,7 +56,6 @@ const StFind = styled.p`
     content: '';
     border: 1px solid var(--gray800);
     margin: 0 ${rem(40)};
-    aria-hidden: true;
   }
 `;
 
@@ -134,18 +133,22 @@ const LoginForm = () => {
   if (error) {
     return <div role="alert">오류! {error.message}</div>;
   }
+
   if (user) {
-    return (
-      <StContainer>
-        <StTitle>TVING 회원 정보</StTitle>
-        <div>{user.displayName}</div>
-        <div>{user.email}</div>
-        <StButton secondary onClick={handleSignOut}>
-          로그아웃
-        </StButton>
-      </StContainer>
-    );
+    // return (
+    //   <StContainer>
+    //     <StTitle>TVING 회원 정보</StTitle>
+    //     <div>{user.displayName}</div>
+    //     <div>{user.email}</div>
+    //     <StButton secondary onClick={handleSignOut}>
+    //       로그아웃
+    //     </StButton>
+    //   </StContainer>
+    // );
+
+    return <Navigate to="/main" replace={true} />;
   }
+
   return (
     <StContainer>
       <StInner>
