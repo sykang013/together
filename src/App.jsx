@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage';
 import LandingPage from './pages/LandingPage';
 import PrivateRoute from './PrivateRoute';
 import NotFound from './pages/NotFound';
+import BaseLayoutForLanding from './pages/LayoutForLanding';
 
 const App = () => {
   return (
@@ -16,9 +17,23 @@ const App = () => {
         <ResetCss />
         <GlobalStyle />
         <Routes>
+          <Route
+            index
+            element={
+              <BaseLayoutForLanding>
+                <LandingPage />
+              </BaseLayoutForLanding>
+            }
+          />
+          <Route
+            path="landing"
+            element={
+              <BaseLayoutForLanding>
+                <LandingPage />
+              </BaseLayoutForLanding>
+            }
+          />
           <Route element={<Layout />}>
-            <Route index element={<LandingPage />} />
-            <Route path="landing" element={<LandingPage />} />
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route
