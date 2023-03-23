@@ -5,7 +5,6 @@ import ScrollSectionAd from '@/containers/landingpage/ScrollSectionAd';
 import gsap from 'gsap';
 import ScrollSectionNow from '@/containers/landingpage/ScrollSectionNow';
 import { useLayoutEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 const StLandingPage = styled.div`
   display: flex;
@@ -13,18 +12,30 @@ const StLandingPage = styled.div`
 `;
 
 const LandingPage = () => {
-  // useLayoutEffect(() => {
-  //   gsap.fromTo(
-  //     'section',
-  //     { y: 100, opacity: 0 },
-  //     {
-  //       y: 0,
-  //       opacity: 1,
-  //       duration: 1.2,
-  //       stagger: { each: 0.1, from: 'start' },
-  //     }
-  //   );
-  // }, []);
+  useLayoutEffect(() => {
+    gsap.fromTo(
+      '.landingSectionAnimation',
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        stagger: { each: 0.1, from: 'start' },
+      }
+    );
+  }, []);
+  useLayoutEffect(() => {
+    gsap.fromTo(
+      '.landingElementAnimation',
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.3,
+        stagger: { each: 0.1, from: 'start' },
+      }
+    );
+  }, []);
   return (
     <StLandingPage>
       <ScrollSectionTitle />

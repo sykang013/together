@@ -1,8 +1,4 @@
 import styled from 'styled-components/macro';
-import gsap from 'gsap';
-import { useLayoutEffect } from 'react';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import { rem } from '@/theme/utils';
 
 const StCarouselAuto = styled.section`
   /* border: 1px solid red; */
@@ -47,8 +43,8 @@ const CarouselAuto = () => {
   //   gsap.to('.landingStAutoContainer', { x: 100 });
   // }, []);
   return (
-    <StCarouselAuto>
-      <StAutoContainer className="landingStAutoContainer">
+    <StCarouselAuto className="landingElementAnimation">
+      <StAutoContainer>
         <StImgItem>
           <source
             srcSet="src/assets/landing-img/contents-img/fun-food-mob-and-tabl.png"

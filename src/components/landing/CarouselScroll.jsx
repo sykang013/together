@@ -1,8 +1,4 @@
 import styled from 'styled-components/macro';
-import gsap from 'gsap';
-import { useLayoutEffect } from 'react';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import { rem } from '@/theme/utils';
 
 const StCarouselScroll = styled.section`
   /* border: 1px solid red; */
@@ -78,8 +74,8 @@ const CarouselScroll = () => {
   //   });
   // }, []);
   return (
-    <StCarouselScroll>
-      <StScrollContainer id="landingScrollTrigger">
+    <StCarouselScroll className="landingElementAnimation">
+      <StScrollContainer>
         <StImgContainer>
           <StImgItem>
             <source

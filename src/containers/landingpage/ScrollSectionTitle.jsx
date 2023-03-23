@@ -1,8 +1,5 @@
-import { useLayoutEffect } from 'react';
 import styled from 'styled-components/macro';
 import MessageTitle from '@/components/landing/MessageTitle';
-import { rem } from '@/theme/utils';
-import { gsap } from 'gsap';
 import PrimaryButton from '@/components/landing/PrimaryButton';
 
 const StScrollSectionTitle = styled.section`
@@ -39,20 +36,8 @@ const StScrollSectionTitle = styled.section`
 `;
 
 const ScrollSectionTitle = () => {
-  // useLayoutEffect(() => {
-  //   gsap.fromTo(
-  //     '.messageTitle > span, .primaryBtn', //클래스네임 변경 필요
-  //     { y: 100, opacity: 0 },
-  //     {
-  //       y: 0,
-  //       opacity: 1,
-  //       duration: 1.2,
-  //       stagger: { each: 0.1, from: 'start' },
-  //     }
-  //   );
-  // }, []);
   return (
-    <StScrollSectionTitle>
+    <StScrollSectionTitle className="landingSectionAnimation">
       <MessageTitle />
       <PrimaryButton>새로워진 타잉을 만나보세요!</PrimaryButton>
     </StScrollSectionTitle>

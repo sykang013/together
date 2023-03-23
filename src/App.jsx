@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound';
 import ProfilePage from './pages/ProfilePage';
 import ProfileCRUD from './pages/ProfileCRUD';
 import ProfileEdit from './pages/ProfileEdit';
+import SearchPage from './pages/SearchPage';
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
                 </PrivateRoute>
               }
             />
+            <Route path="search" element={<SearchPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

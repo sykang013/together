@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro';
 import MessageAd from '@/components/landing/MessageAd';
-import { rem } from '@/theme/utils';
 import CarouselAuto from '@/components/landing/CarouselAuto';
 
 const StScrollSectionAd = styled.section`
@@ -15,7 +14,7 @@ const StScrollSectionAd = styled.section`
 
 const ScrollSectionAd = () => {
   return (
-    <StScrollSectionAd>
+    <StScrollSectionAd className="landingSectionAnimation">
       <MessageAd
         mainText="내가 찾던 재미"
         subText="보고 싶은 콘텐츠를 발견하세요!"

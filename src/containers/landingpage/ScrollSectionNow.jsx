@@ -25,8 +25,9 @@ const StScrollSectionNow = styled.section`
 
 const ScrollSectionNow = () => {
   return (
-    <StScrollSectionNow>
+    <StScrollSectionNow className="landingSectionAnimation">
       <Svg
+        className="landingElementAnimation"
         id="logo2"
         width="83"
         height="32"
@@ -35,7 +36,7 @@ const ScrollSectionNow = () => {
         desktopW="279"
         desktopH="110"
       />
-      <span>지금 시작해보세요</span>
+      <span className="landingElementAnimation">지금 시작해보세요</span>
       <PrimaryButton>새로워진 타잉을 만나보세요!</PrimaryButton>
     </StScrollSectionNow>
   );
