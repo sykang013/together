@@ -4,7 +4,7 @@ import { rem } from '@/theme/utils';
 import CarouselAuto from '@/components/landing/CarouselAuto';
 
 const StScrollSectionAd = styled.section`
-  border: 1px solid green;
+  /* border: 1px solid green; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;

@@ -5,7 +5,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { rem } from '@/theme/utils';
 
 const StCarouselScroll = styled.section`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   position: relative;
   overflow: hidden;
   height: 400px;
@@ -15,8 +15,8 @@ const StCarouselScroll = styled.section`
 `;
 
 const StScrollContainer = styled.div`
-  border: 1px solid yellow;
-  background-color: blue;
+  /* border: 1px solid yellow;
+  background-color: blue; */
   object-fit: contain;
   width: contain;
   display: flex;
@@ -54,9 +54,9 @@ const StImgItem = styled.picture`
     border-radius: 4px;
   }
 `;
-const last = document.querySelector('.last')?.offsetLeft;
+// const last = document.querySelector('.last')?.offsetLeft;
 
-console.log(last); //302일땐 857, 768일땐 862, 1200일땐 2746, 1920일땐 2754
+// console.log(last); //302일땐 857, 768일땐 862, 1200일땐 2746, 1920일땐 2754
 
 // gsap.registerPlugin(ScrollTrigger); //스크롤트리거 플러그인 불러와야함
 
@@ -83,11 +83,11 @@ const CarouselScroll = () => {
         <StImgContainer>
           <StImgItem>
             <source
-              srcset="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
+              srcSet="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
               media="(max-width: 999px)"
             />
             <source
-              srcset="src/assets/landing-img/contents-img/org-love-desktop.png"
+              srcSet="src/assets/landing-img/contents-img/org-love-desktop.png"
               media="(min-width: 1000px)"
             />
             <img
@@ -97,11 +97,11 @@ const CarouselScroll = () => {
           </StImgItem>
           <StImgItem>
             <source
-              srcset="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
+              srcSet="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
               media="(max-width: 999px)"
             />
             <source
-              srcset="src/assets/landing-img/contents-img/org-bomul-desktop.png"
+              srcSet="src/assets/landing-img/contents-img/org-bomul-desktop.png"
               media="(min-width: 1000px)"
             />
             <img
@@ -111,11 +111,11 @@ const CarouselScroll = () => {
           </StImgItem>
           <StImgItem>
             <source
-              srcset="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
+              srcSet="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
               media="(max-width: 999px)"
             />
             <source
-              srcset="src/assets/landing-img/contents-img/org-love-desktop.png"
+              srcSet="src/assets/landing-img/contents-img/org-love-desktop.png"
               media="(min-width: 1000px)"
             />
             <img
@@ -125,11 +125,11 @@ const CarouselScroll = () => {
           </StImgItem>
           <StImgItem className="last">
             <source
-              srcset="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
+              srcSet="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
               media="(max-width: 999px)"
             />
             <source
-              srcset="src/assets/landing-img/contents-img/org-bomul-desktop.png"
+              srcSet="src/assets/landing-img/contents-img/org-bomul-desktop.png"
               media="(min-width: 1000px)"
             />
             <img

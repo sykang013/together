@@ -34,7 +34,7 @@ const StSvg = styled.div`
 
 const PrimaryButton = ({ children }) => {
   return (
-    <StPrimaryButton>
+    <StPrimaryButton to="/">
       <StSvg>
         <Svg id="symbol-logo" width="2.4em" height="2.4em" />
       </StSvg>

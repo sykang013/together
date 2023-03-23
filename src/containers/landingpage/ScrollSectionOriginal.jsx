@@ -5,7 +5,7 @@ import { useLayoutEffect } from 'react';
 import CarouselScroll from '@/components/landing/CarouselScroll';
 
 const StScrollSectionOriginal = styled.section`
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
   padding: var(--paddingL);
 `;
 

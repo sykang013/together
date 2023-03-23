@@ -5,7 +5,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { rem } from '@/theme/utils';
 
 const StCarouselAuto = styled.section`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   position: relative;
   overflow: hidden;
   height: 102px+0.8rem;
@@ -16,7 +16,7 @@ const StCarouselAuto = styled.section`
 
 const StAutoContainer = styled.div`
   /* border: 1px solid yellow; */
-  background-color: blue;
+  /* background-color: blue; */
   object-fit: contain;
   width: contain;
   display: flex;
@@ -51,11 +51,11 @@ const CarouselAuto = () => {
       <StAutoContainer className="landingStAutoContainer">
         <StImgItem>
           <source
-            srcset="src/assets/landing-img/contents-img/fun-food-mob-and-tabl.png"
+            srcSet="src/assets/landing-img/contents-img/fun-food-mob-and-tabl.png"
             media="(max-width: 999px)"
           />
           <source
-            srcset="src/assets/landing-img/contents-img/fun-food-desktop.png"
+            srcSet="src/assets/landing-img/contents-img/fun-food-desktop.png"
             media="(min-width: 1000px)"
           />
           <img
@@ -65,11 +65,11 @@ const CarouselAuto = () => {
         </StImgItem>
         <StImgItem>
           <source
-            srcset="src/assets/landing-img/contents-img/fun-letmein-mob-and-tabl.png"
+            srcSet="src/assets/landing-img/contents-img/fun-letmein-mob-and-tabl.png"
             media="(max-width: 999px)"
           />
           <source
-            srcset="src/assets/landing-img/contents-img/fun-letmein-desktop.png"
+            srcSet="src/assets/landing-img/contents-img/fun-letmein-desktop.png"
             media="(min-width: 1000px)"
           />
           <img
@@ -79,11 +79,11 @@ const CarouselAuto = () => {
         </StImgItem>
         <StImgItem>
           <source
-            srcset="src/assets/landing-img/contents-img/fun-manager-mob-and-tabl.png"
+            srcSet="src/assets/landing-img/contents-img/fun-manager-mob-and-tabl.png"
             media="(max-width: 999px)"
           />
           <source
-            srcset="src/assets/landing-img/contents-img/fun-manager-desktop.png"
+            srcSet="src/assets/landing-img/contents-img/fun-manager-desktop.png"
             media="(min-width: 1000px)"
           />
           <img
@@ -93,11 +93,11 @@ const CarouselAuto = () => {
         </StImgItem>
         <StImgItem>
           <source
-            srcset="src/assets/landing-img/contents-img/fun-quiz-mob-and-tabl.png"
+            srcSet="src/assets/landing-img/contents-img/fun-quiz-mob-and-tabl.png"
             media="(max-width: 999px)"
           />
           <source
-            srcset="src/assets/landing-img/contents-img/fun-quiz-desktop.png"
+            srcSet="src/assets/landing-img/contents-img/fun-quiz-desktop.png"
             media="(min-width: 1000px)"
           />
           <img
@@ -107,11 +107,11 @@ const CarouselAuto = () => {
         </StImgItem>
         <StImgItem>
           <source
-            srcset="src/assets/landing-img/contents-img/fun-shurup-mob-and-tabl.png"
+            srcSet="src/assets/landing-img/contents-img/fun-shurup-mob-and-tabl.png"
             media="(max-width: 999px)"
           />
           <source
-            srcset="src/assets/landing-img/contents-img/fun-shurup-desktop.png"
+            srcSet="src/assets/landing-img/contents-img/fun-shurup-desktop.png"
             media="(min-width: 1000px)"
           />
           <img
