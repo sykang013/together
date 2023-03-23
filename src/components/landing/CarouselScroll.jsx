@@ -38,7 +38,6 @@ const StImgContainer = styled.div`
 `;
 
 const StImgItem = styled.picture`
-  border-radius: 4px;
   height: 400px;
   min-width: 278px;
   margin-right: 0.8rem;
