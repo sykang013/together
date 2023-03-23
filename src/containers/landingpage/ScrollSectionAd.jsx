@@ -3,7 +3,6 @@ import MessageAd from '@/components/landing/MessageAd';
 import CarouselAuto from '@/components/landing/CarouselAuto';
 
 const StScrollSectionAd = styled.section`
-  /* border: 1px solid green; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -20,8 +19,8 @@ const ScrollSectionAd = () => {
         subText="보고 싶은 콘텐츠를 발견하세요!"
         detailText="최신, 인기 TV프로그램, 영화, 해외시리즈, 파라마운트+ 오리지널 및 독점"
       />
-      <CarouselAuto></CarouselAuto>
-      <CarouselAuto></CarouselAuto>
+      <CarouselAuto speed="28s"></CarouselAuto>
+      <CarouselAuto speed="26s"></CarouselAuto>
     </StScrollSectionAd>
   );
 };

@@ -1,63 +1,69 @@
-import styled from 'styled-components/macro';
-
+import styled, { keyframes } from 'styled-components/macro';
+import { string } from 'prop-types';
 const StCarouselAuto = styled.section`
-  /* border: 1px solid red; */
   position: relative;
   overflow: hidden;
   height: (102+8) px;
+  width: 100%;
   @media (min-width: 1000px) {
     height: (264+16) px;
   }
 `;
 
-//얘가 옆으로 움직여야됨
+const autoPlayM = keyframes`
+  0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-189px * 5));
+    }
+`;
+
+const autoPlayL = keyframes`
+  0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-486px * 5));
+    }
+`;
+
 const StAutoContainer = styled.div`
-  /* border: 1px solid yellow; */
-  /* background-color: blue; */
   object-fit: contain;
-  width: contain;
+  width: calc(189px * 10);
   display: flex;
   height: (102+8) px;
   position: relative;
+  animation: ${autoPlayM} linear infinite;
+  animation-duration: ${(props) => props.speed};
   @media (min-width: 1000px) {
+    width: calc(486px * 10);
     min-height: (264+16) px;
+    animation: ${autoPlayL} linear infinite;
   }
 `;
-
-// const StImgContainer = styled.div`
-//   object-fit: contain;
-//   width: contain;
-//   display: flex;
-//   height: (102+8) px;
-//   @media (min-width: 1000px) {
-//     height: (264+16) px;
-//   }
-// `;
 
 const StImgItem = styled.picture`
   height: (102+8) px;
   min-width: 181px;
   margin: 8px 8px 0 0;
+  img {
+    border-radius: 4px;
+  }
   @media (min-width: 1000px) {
     height: (264+16) px;
     min-width: 470px;
     margin: 16px 16px 0 0;
-  }
-  img {
-    border-radius: 4px;
+    img {
+      border-radius: 8px;
+    }
   }
 `;
 
-const CarouselAuto = () => {
-  // const tl = gsap.timeline(); //gsap의 타임라인을 실행해서 객체를 tl에 할당
-  // //타임라인에 스크롤트리거 엮어쓰기 가능
-  // useLayoutEffect(() => {
-  //   gsap.to('.landingStAutoContainer', { x: 100 });
-  // }, []);
+const CarouselAuto = ({ speed }) => {
   return (
     <StCarouselAuto className="landingElementAnimation">
-      <StAutoContainer>
-        {/* <StImgContainer> */}
+      <StAutoContainer speed={speed} className="landingAutoContainerAnimation">
         <StImgItem>
           <source
             srcSet="src/assets/landing-img/contents-img/fun-food-mob-and-tabl.png"
@@ -198,10 +204,20 @@ const CarouselAuto = () => {
             alt="슈룹"
           />
         </StImgItem>
-        {/* </StImgContainer> */}
       </StAutoContainer>
     </StCarouselAuto>
   );
 };
 
 export default CarouselAuto;
+
+CarouselAuto.propTypes = {
+  /**
+   * 문자만 가능합니다. ex)'20s'
+   */
+  speed: string.isRequired,
+};
+
+CarouselAuto.defaultProps = {
+  speed: '30s',
+};
