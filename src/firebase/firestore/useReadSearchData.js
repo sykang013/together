@@ -1,23 +1,24 @@
 import { useCallback, useMemo, useState } from 'react';
 import { dbService } from '@/firebase/app';
 import { useSetRecoilState } from 'recoil';
-import { searchDataState } from '@/store/search/searchDataState';
-import { useSearchParams } from 'react-router-dom';
+import {
+  searchDataState,
+  searchBarDataState,
+} from '@/store/search/searchDataState';
 
-const useReadSearchData = (collectionKey, keyword) => {
+const useReadSearchData = (collectionKey, keyword, atomState) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [searchParams] = useSearchParams();
-  const setData = useSetRecoilState(searchDataState);
+  const setData = useSetRecoilState(
+    atomState === 'searchDataState' ? searchDataState : searchBarDataState
+  );
 
   const readSearchData = useCallback(async () => {
     if (!keyword) return;
-    if (searchParams.get('keyword') === keyword) return;
-
+    setData([]);
     setIsLoading(true);
 
     try {
-      setData([]);
       const collectionRef = dbService.collection(collectionKey);
       const snapshot = await collectionRef
         .where('title', '>=', keyword)

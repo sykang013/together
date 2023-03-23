@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
+import { Link } from 'react-router-dom';
 
 const StPopular = styled.div`
   width: 50%;
@@ -49,16 +50,18 @@ const StPopular = styled.div`
 
 const StKeyword = styled.li`
   display: flex;
+  justify-content: start;
+  align-items: center;
   height: ${rem(18)};
   margin-top: ${rem(9)};
 
   span {
     ${getFontStyle('LabelS')};
     color: var(--primary);
-    width: ${rem(18)};
+    width: ${rem(24)};
   }
 
-  button {
+  a {
     ${getFontStyle('LabelS')};
     color: var(--gray300);
     border: 0;
@@ -78,7 +81,7 @@ const StKeyword = styled.li`
       width: ${rem(34)};
       ${getFontStyle('ParagraphL')};
     }
-    button {
+    a {
       ${getFontStyle('ParagraphL')};
     }
   }
@@ -105,7 +108,7 @@ const SearchPopular = () => {
         {popular.map((title, index) => (
           <StKeyword key={index}>
             <span>{+index + 1}</span>
-            <button>{title}</button>
+            <Link>{title}</Link>
           </StKeyword>
         ))}
         <li>2023.03.15 오후 03:46 기준</li>

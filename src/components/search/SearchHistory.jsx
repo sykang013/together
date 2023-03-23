@@ -3,6 +3,8 @@ import { getFontStyle, rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
 import { useRecoilState } from 'recoil';
 import { searchHistoryState } from '@/store/search/index';
+import { useNavigate } from 'react-router-dom';
+import useModal from '@/hooks/useModal';
 
 const StRecent = styled.div`
   width: 50%;
@@ -97,6 +99,8 @@ const StKeyword = styled.button`
 
 const SearchHistory = () => {
   const [keywords, setKeywords] = useRecoilState(searchHistoryState);
+  const { toggleModal } = useModal('search');
+  const navigate = useNavigate();
 
   const removeKeyword = (id) => {
     setKeywords((keywords) => keywords.filter((keyword) => keyword.id !== id));
@@ -104,6 +108,11 @@ const SearchHistory = () => {
 
   const removeKeywordAll = () => {
     setKeywords([]);
+  };
+
+  const searchKeyword = (keyword) => {
+    toggleModal();
+    navigate(`/search?keyword=${keyword}`);
   };
 
   return (
@@ -127,7 +136,12 @@ const SearchHistory = () => {
         {keywords.length === 0 && <li>검색 내역이 없습니다.</li>}
         {keywords?.map((keyword) => (
           <li key={keyword.id}>
-            <StKeyword>{keyword.keyword}</StKeyword>
+            <StKeyword
+              type="button"
+              onClick={() => searchKeyword(keyword.keyword)}
+            >
+              {keyword.keyword}
+            </StKeyword>
             <StRemove type="button" onClick={() => removeKeyword(keyword.id)}>
               <Svg
                 id="delete-not-filled"

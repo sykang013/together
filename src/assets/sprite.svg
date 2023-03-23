@@ -29,7 +29,7 @@
   </symbol>
   <symbol id="banner-arrow-left" viewBox="0 0 70 70">
     <g
-      stroke="#898989"
+      stroke="currentColor"
       stroke-linecap="square"
       stroke-width="2"
       clip-path="url(#a)"
@@ -78,7 +78,7 @@
   </symbol>
   <symbol id="banner-arrow-right" viewBox="0 0 70 70">
     <g
-      stroke="#898989"
+      stroke="currentColor"
       stroke-linecap="square"
       stroke-width="2"
       clip-path="url(#a)"

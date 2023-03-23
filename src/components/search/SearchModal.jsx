@@ -6,15 +6,15 @@ import SearchBar from '@/components/search/SearchBar';
 import SearchHistory from '@/components/search/SearchHistory';
 import SearchPopular from './SearchPopular';
 import { func } from 'prop-types';
-import { searchDataState } from '@/store/search/searchDataState';
+import { searchBarDataState, searchKeywordState } from '@/store/search/index';
 import { useRecoilValue } from 'recoil';
 import SearchResult from '@/components/search/SearchResult';
+import useModal from '@/hooks/useModal';
 
 const StSearchModal = styled.div`
   overflow-y: auto;
-  -ms-overflow-style: none;
   ::-webkit-scrollbar {
-    display: none;
+    background: var(--dark-bg1);
   }
   background-color: var(--dark-bg1);
   color: var(--white);
@@ -59,8 +59,10 @@ const StKeyword = styled.div`
   height: 100%;
 `;
 
-const SearchModal = ({ toggleModal }) => {
-  const searchData = useRecoilValue(searchDataState);
+const SearchModal = () => {
+  const { closeModal } = useModal('search');
+  const searchData = useRecoilValue(searchBarDataState);
+  const searchKeyword = useRecoilValue(searchKeywordState);
 
   useEffect(() => {
     document.body.style.cssText = `
@@ -71,10 +73,10 @@ const SearchModal = ({ toggleModal }) => {
   }, []);
   return (
     <ModalPortal>
-      <StSearchModalOverlay onClick={toggleModal} />
+      <StSearchModalOverlay onClick={closeModal} />
       <StSearchModal>
-        <SearchBar toggleModal={toggleModal} />
-        {searchData.length === 0 && (
+        <SearchBar />
+        {(searchKeyword.length === 0 || searchData.length === 0) && (
           <StSearchContent>
             <StKeyword>
               <SearchHistory />

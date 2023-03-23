@@ -61,6 +61,6 @@ Svg.propTypes = {
   desktopH: oneOfType([number, string]),
   tabletW: oneOfType([number, string]),
   tabletH: oneOfType([number, string]),
-  width: number.isRequired,
-  height: number.isRequired,
+  width: oneOfType([number, string]).isRequired,
+  height: oneOfType([number, string]).isRequired,
 };

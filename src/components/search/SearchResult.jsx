@@ -1,4 +1,4 @@
-import { searchDataState } from '@/store/search/searchDataState';
+import { searchBarDataState } from '@/store/search/searchDataState';
 import styled from 'styled-components/macro';
 import { useRecoilValue } from 'recoil';
 import { getFontStyle, rem } from '@/theme/utils';
@@ -71,7 +71,7 @@ const StListContents = styled.ul`
 `;
 
 const SearchResult = () => {
-  const searchData = useRecoilValue(searchDataState);
+  const searchData = useRecoilValue(searchBarDataState);
 
   return (
     <div>
