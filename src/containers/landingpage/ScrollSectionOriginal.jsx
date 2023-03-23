@@ -7,10 +7,6 @@ import CarouselScroll from '@/components/landing/CarouselScroll';
 const StScrollSectionOriginal = styled.section`
   border: 1px solid pink;
   padding: var(--paddingL);
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 1920px) {
-  }
 `;
 
 const ScrollSectionOriginal = () => {

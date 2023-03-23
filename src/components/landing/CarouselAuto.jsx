@@ -8,40 +8,47 @@ const StCarouselAuto = styled.section`
   border: 1px solid red;
   position: relative;
   overflow: hidden;
-  height: 102px;
+  height: 102px+0.8rem;
   @media (min-width: 1000px) {
-    height: 264px;
+    height: 264px+0.8rem;
   }
 `;
 
 const StAutoContainer = styled.div`
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   background-color: blue;
   object-fit: contain;
   width: contain;
   display: flex;
-  height: 102px;
+  height: 102px+0.8rem;
   position: relative;
   @media (min-width: 1000px) {
-    height: 264px;
+    height: 264px+0.8rem;
   }
 `;
 
 const StImgItem = styled.picture`
-  border-radius: 4px;
-  height: 102px;
+  height: 102px+0.8rem;
   min-width: 181px;
   margin: 0.8rem 0.8rem 0 0;
   @media (min-width: 1000px) {
-    height: 264px;
-    min-width: 470px;
+    height: 264px+0.8rem;
+    min-width: 470px+0.8rem;
+  }
+  img {
+    border-radius: 4px;
   }
 `;
 
 const CarouselAuto = () => {
+  // const tl = gsap.timeline(); //gsap의 타임라인을 실행해서 객체를 tl에 할당
+  // //타임라인에 스크롤트리거 엮어쓰기 가능
+  // useLayoutEffect(() => {
+  //   gsap.to('.landingStAutoContainer', { x: 100 });
+  // }, []);
   return (
     <StCarouselAuto>
-      <StAutoContainer>
+      <StAutoContainer className="landingStAutoContainer">
         <StImgItem>
           <source
             srcset="src/assets/landing-img/contents-img/fun-food-mob-and-tabl.png"

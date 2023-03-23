@@ -50,6 +50,9 @@ const StImgItem = styled.picture`
     height: 501px;
     min-width: 904px;
   }
+  img {
+    border-radius: 4px;
+  }
 `;
 const last = document.querySelector('.last')?.offsetLeft;
 

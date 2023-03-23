@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro';
 import MessageAd from '@/components/landing/MessageAd';
-import CarouselAd from '@/components/landing/CarouselAd';
 import { rem } from '@/theme/utils';
 import CarouselAuto from '@/components/landing/CarouselAuto';
 
@@ -11,6 +10,7 @@ const StScrollSectionAd = styled.section`
   justify-content: center;
   align-items: center;
   padding: var(--paddingL);
+  overflow: hidden;
 `;
 
 const ScrollSectionAd = () => {
