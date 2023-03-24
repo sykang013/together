@@ -3,6 +3,7 @@ import MessageAd from '@/components/landing/MessageAd';
 import CarouselAuto from '@/components/landing/CarouselAuto';
 
 const StScrollSectionAd = styled.section`
+  border: 1px solid yellow;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;

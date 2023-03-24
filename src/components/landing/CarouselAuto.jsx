@@ -40,6 +40,7 @@ const StAutoContainer = styled.div`
     width: calc(486px * 10);
     min-height: (264+16) px;
     animation: ${autoPlayL} linear infinite;
+    animation-duration: ${(props) => props.speed};
   }
 `;
 
