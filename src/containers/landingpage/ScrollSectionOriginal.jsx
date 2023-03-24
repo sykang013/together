@@ -6,7 +6,7 @@ const StScrollSectionOriginal = styled.section`
   border: 1px solid orange;
   padding: var(--paddingL);
   //스크롤트리거를 주려면 실제 스크롤이 길어야함
-  padding-bottom: 700vh;
+  padding-bottom: 90vw;
 `;
 
 const ScrollSectionOriginal = () => {
