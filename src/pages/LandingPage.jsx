@@ -1,10 +1,48 @@
-import { Link } from 'react-router-dom';
+import styled from 'styled-components/macro';
+import ScrollSectionTitle from '@/containers/landingpage/ScrollSectionTitle';
+import ScrollSectionOriginal from '@/containers/landingpage/ScrollSectionOriginal';
+import ScrollSectionAd from '@/containers/landingpage/ScrollSectionAd';
+import gsap from 'gsap';
+import ScrollSectionNow from '@/containers/landingpage/ScrollSectionNow';
+import { useLayoutEffect } from 'react';
+
+const StLandingPage = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+`;
 
 const LandingPage = () => {
+  useLayoutEffect(() => {
+    gsap.fromTo(
+      '.landingSectionAnimation',
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        stagger: { each: 0.1, from: 'start' },
+      }
+    );
+  }, []);
+  useLayoutEffect(() => {
+    gsap.fromTo(
+      '.landingElementAnimation',
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.3,
+        stagger: { each: 0.1, from: 'start' },
+      }
+    );
+  }, []);
   return (
-    <div>
-      landing <Link to="/main">main</Link>
-    </div>
+    <StLandingPage>
+      <ScrollSectionTitle />
+      <ScrollSectionOriginal />
+      <ScrollSectionAd />
+      <ScrollSectionNow />
+    </StLandingPage>
   );
 };
 

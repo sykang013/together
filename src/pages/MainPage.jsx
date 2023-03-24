@@ -4,6 +4,7 @@ import { rem } from '@/theme/utils';
 import { useState, useEffect, useId } from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components/macro';
+import MainBanner from '@/components/carousel/MainBanner';
 
 const StCarouselLayout = styled.main`
   display: flex;
@@ -796,6 +797,7 @@ const MainPage = () => {
           content="타잉의 컨텐츠들을 즐길 수 있는 메인 페이지 입니다."
         />
       </Helmet>
+      <MainBanner />
       {isPopupModal && <Popup closeModal={closeModal} />}
       <StCarouselLayout>
         <Carousel title="티빙에서 꼭 봐야하는 콘텐츠" data={data} />
