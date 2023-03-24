@@ -1,4 +1,3 @@
-import LogoutModal from '@/components/logout/LogoutModal';
 import Popup from '@/components/popup/Popup';
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';

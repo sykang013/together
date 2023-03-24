@@ -78,7 +78,10 @@ const LogoModal = () => {
     <>
       {isModal && <LogoutModal closeLogoutModal={closeLogoutModal} />}
       <StModalContainer>
-        <StProfileBox aria-label="프로필 페이지로 이동합니다.">
+        <StProfileBox
+          aria-label="프로필 페이지로 이동합니다."
+          to="/profile-page"
+        >
           <StProfileIcon>
             <StProfileImage
               src="src/assets/profile_4.png"
