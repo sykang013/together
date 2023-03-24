@@ -16,11 +16,11 @@ import ProfileDeleteModal from '@/components/profile/ProfileDeleteModal';
 const ProfileEdit = () => {
   const navigate = useNavigate();
 
-  const GoToMainPage = () => {
+  const goToMainPage = () => {
     navigate('/');
   };
-  const GoToProfileCRUD = () => {
-    navigate('/Profile-crud');
+  const goToProfileCRUD = () => {
+    navigate('/profile-crud');
   };
 
   const [isProfileDeleteModal, setIsProfileDeleteModal] = useState(false);
@@ -44,7 +44,7 @@ const ProfileEdit = () => {
         <StProfileSubTitle>편집할 프로필을 선택해주세요.</StProfileSubTitle>
         <StProfileItems>
           <li>
-            <StProfileItem onClick={GoToProfileCRUD}>
+            <StProfileItem onClick={goToProfileCRUD}>
               <StProfileImage src={ImageTest} />
               <StProfileEditImage />
             </StProfileItem>
@@ -52,7 +52,7 @@ const ProfileEdit = () => {
           </li>
         </StProfileItems>
 
-        <StProfileButton onClick={GoToMainPage}>완료</StProfileButton>
+        <StProfileButton onClick={goToMainPage}>완료</StProfileButton>
         <StProfileButton onClick={openProfileDeleteModal}>
           프로필 삭제
         </StProfileButton>
