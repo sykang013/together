@@ -9,39 +9,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 
 //-------GSAP 스크롤트리거 불러옴
 gsap.registerPlugin(ScrollTrigger);
-//기본값 설정
-gsap.defaults({ ease: 'none', duration: 10 });
-
-const tl = gsap.timeline();
-tl.to('.imgContainer', { x: -286 })
-  .to('.imgContainer', { x: -572 })
-  .to('.imgContainer', { x: -858 });
-
-ScrollTrigger.create({
-  animation: tl,
-  trigger: '.triggerOriginal',
-  start: 'top top',
-  end: 'bottom 75%',
-  scrub: true,
-  // snap: 1,
-  pin: true,
-  //빠른스크롤시 지연되어보이는것 방지
-  anticipatePin: 1,
-  markers: true,
-});
-// gsap.to('.imgContainer', {
-//   scrollTrigger: {
-//     trigger: '.triggerOriginal',
-//     start: 'top top',
-//     end: 'bottom 75%',
-//     scrub: true,
-//     pin: true,
-//     markers: true,
-//   },
-//   x: -231,
-//   ease: 'none',
-//   duration: 3,
-// });
+// gsap.defaults({ ease: 'none', duration: 10 });
 
 const StLandingPage = styled.div`
   display: flex;
@@ -70,6 +38,38 @@ const LandingPage = () => {
         stagger: { each: 0.1, from: 'start' },
       }
     );
+    gsap.to('.imgContainer', {
+      scrollTrigger: {
+        trigger: '.triggerOriginal',
+        start: 'top top',
+        end: 'bottom 75%',
+        scrub: true,
+        pin: '.triggerOriginal',
+        markers: true,
+      },
+      x: -858,
+    });
+    // const tl = gsap.timeline();
+    // tl.to('.imgContainer', { x: -286, duration: 5 })
+    //   .to('.imgContainer', { x: -572, duration: 5 })
+    //   .to('.imgContainer', { x: -858, duration: 5 });
+
+    // ScrollTrigger.create({
+    //   animation: tl,
+    //   //애니메이션 스타트포인트의 트리거오리지널 기준으로 계산되는듯...??
+    //   //
+    //   trigger: '.triggerOriginal',
+    //   //
+    //   start: 'top top',
+    //   end: '+=2000',
+    //   // end: 'bottom 75%',
+    //   //
+    //   scrub: true,
+    //   //
+    //   pin: '.triggerOriginal',
+    //   anticipatePin: 1,
+    //   markers: true,
+    // });
   }, []);
   return (
     <StLandingPage>

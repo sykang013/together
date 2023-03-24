@@ -12,12 +12,12 @@ const StCarouselScroll = styled.section`
   min-width: 100%;
 `;
 
-//이걸 움직여야댐
+// 이걸 움직여야댐
 const StScrollContainer = styled.div`
   border: 1px dashed violet;
   /* background-color: blue; */
-  object-fit: contain;
-  width: contain;
+  /* object-fit: contain; */
+  width: 100%;
   display: flex;
   height: 400px;
   position: relative;
@@ -28,7 +28,7 @@ const StScrollContainer = styled.div`
 `;
 
 const StImgContainer = styled.div`
-  /* border: 1px dashed yellow; */
+  border: 1px dashed yellow;
   object-fit: contain;
   width: contain;
   display: flex;

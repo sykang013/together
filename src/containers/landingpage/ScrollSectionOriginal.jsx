@@ -5,8 +5,15 @@ import CarouselScroll from '@/components/landing/CarouselScroll';
 const StScrollSectionOriginal = styled.section`
   border: 1px solid orange;
   padding: var(--paddingL);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  width: 100%;
+  /* height: 100vh; */
+  /* height: 80vw; */
   //스크롤트리거를 주려면 실제 스크롤이 길어야함
-  padding-bottom: 90vw;
+  padding-bottom: 130vh;
+  /* overflow: hidden; */
 `;
 
 const ScrollSectionOriginal = () => {
