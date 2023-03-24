@@ -1,4 +1,4 @@
-import LogoutModal from '@/components/logout/LogoutModal';
+import MainBanner from '@/components/carousel/MainBanner';
 import Popup from '@/components/popup/Popup';
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -36,6 +36,7 @@ const MainPage = () => {
           content="타잉의 컨텐츠들을 즐길 수 있는 메인 페이지 입니다."
         />
       </Helmet>
+      <MainBanner />
       {isPopupModal && <Popup closeModal={closeModal} />}
     </>
   );
