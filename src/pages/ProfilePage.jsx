@@ -17,9 +17,6 @@ const ProfilePage = () => {
   const { user } = useAuthState();
   const [userData, setUserData] = useState(null);
   const [profiles, setProfiles] = useState([]);
-  const { user } = useAuthState();
-  const [userData, setUserData] = useState(null);
-  const [profiles, setProfiles] = useState([]);
 
   const GoToProfileEdit = () => {
     navigate('/profile-edit');
