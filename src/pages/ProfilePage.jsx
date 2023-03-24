@@ -18,11 +18,11 @@ const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
   const [profiles, setProfiles] = useState([]);
 
-  const GoToProfileEdit = () => {
-    navigate('/Profile-edit');
+  const goToProfileEdit = () => {
+    navigate('/profile-edit');
   };
 
-  const GoToMainPage = () => {
+  const goToMainPage = () => {
     navigate('/');
   };
 
@@ -57,13 +57,13 @@ const ProfilePage = () => {
         {profiles.map((profile) => (
           <li key={profile.id}>
             <StProfileItem>
-              <StProfileImage onClick={GoToMainPage} />
+              <StProfileImage onClick={goToMainPage} />
             </StProfileItem>
             <p>{profile.name}</p>
           </li>
         ))}
       </StProfileItems>
-      <StProfileButton select onClick={GoToProfileEdit}>
+      <StProfileButton select onClick={goToProfileEdit}>
         프로필 편집
       </StProfileButton>
     </StLayoutProfile>
