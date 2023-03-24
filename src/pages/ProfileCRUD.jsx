@@ -70,7 +70,7 @@ const ProfileCRUD = () => {
       </StUploadImageView>
       <StImageFile type="file" onChange={saveFileImage} />
       <StName type="text" onChange={onChangeName} value={text} />
-      <StProfileButton type="submit" value="Update Profile" onClick={onClick}>
+      <StProfileButton type="submit" onClick={onClick}>
         저장
       </StProfileButton>
     </StLayoutProfile>
