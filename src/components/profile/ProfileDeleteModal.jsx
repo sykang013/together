@@ -7,7 +7,7 @@ import { useAuthState } from '@/firebase/auth';
 const ProfileDeleteModal = ({ closeProfileDeleteModal, profile }) => {
   const navigate = useNavigate();
   const { user } = useAuthState();
-  const handleProfileDelet = async () => {
+  const handleProfileDelete = async () => {
     try {
       await dbService
         .collection('users')
@@ -28,7 +28,7 @@ const ProfileDeleteModal = ({ closeProfileDeleteModal, profile }) => {
   return (
     <Modal
       message="정말 프로필을 삭제하시겠습니까?"
-      onClickHandler={handleProfileDelet}
+      onClickHandler={handleProfileDelete}
       cancelHandler={closeProfileDeleteModal}
     />
   );
