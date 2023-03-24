@@ -133,19 +133,16 @@ export const tokens = {
     CarouselNumberS: {
       'font-family': 'Noto Sans KR',
       'font-size': '34px',
-      'line-height': '160%',
       'font-weight': '700',
     },
     CarouselNumberM: {
       'font-family': 'Noto Sans KR',
       'font-size': '46px',
-      'line-height': '160%',
       'font-weight': '700',
     },
     CarouselNumberL: {
       'font-family': 'Noto Sans KR',
       'font-size': '70px',
-      'line-height': '160%',
       'font-weight': '700',
     },
   },

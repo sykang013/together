@@ -11,6 +11,13 @@ import { number } from 'prop-types';
 const StArrow = styled.div`
   position: absolute;
   top: 50%;
+  width: ${rem(8)};
+  @media (min-width: 768px) {
+    width: ${rem(40)};
+  }
+  @media (min-width: 1920px) {
+    width: ${rem(70)};
+  }
   ${(props) =>
     props.direction === 'prev' &&
     css`
@@ -75,13 +82,15 @@ const StCarouselContainer = styled.div`
   }
 
   .slick-track {
-    /* padding-right: ${rem(8)};
+    display: flex;
+    justify-content: flex-start;
+    padding-right: ${rem(8)};
     @media (min-width: 768px) {
       padding-right: ${rem(40)};
     }
     @media (min-width: 1920px) {
       padding-right: ${rem(70)};
-    } */
+    }
   }
 
   h2 {
@@ -122,7 +131,15 @@ const StSlider = styled(Slider)`
     padding-right: ${rem(8)};
     transition: transform 0.3s ease-in-out;
     position: relative;
-
+    &:last-child {
+      margin-right: ${rem(8)};
+      @media (min-width: 768px) {
+        margin-right: ${rem(40)};
+      }
+      @media (min-width: 1920px) {
+        margin-right: ${rem(70)};
+      }
+    }
     svg {
       position: absolute;
       top: 5px;
@@ -204,12 +221,11 @@ const StSlider = styled(Slider)`
 `;
 
 const StInfo = styled.div`
-  margin-top: ${rem(10)};
+  margin-top: ${rem(8)};
   ${(props) =>
     props.number &&
     css`
       position: relative;
-      top: ${rem(-40)};
     `};
 `;
 
@@ -239,6 +255,7 @@ const StNumber = styled.span`
   @media (min-width: 1920px) {
     ${getFontStyle('CarouselNumberL')};
   }
+  line-height: 0;
 `;
 
 const Carousel = ({
