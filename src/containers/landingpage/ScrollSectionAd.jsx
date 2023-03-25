@@ -3,7 +3,7 @@ import MessageAd from '@/components/landing/MessageAd';
 import CarouselAuto from '@/components/landing/CarouselAuto';
 
 const StScrollSectionAd = styled.section`
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -14,7 +14,7 @@ const StScrollSectionAd = styled.section`
 
 const ScrollSectionAd = () => {
   return (
-    <StScrollSectionAd className="landingSectionAnimation">
+    <StScrollSectionAd className="landingSectionAnimation pinned">
       <MessageAd
         mainText="내가 찾던 재미"
         subText="보고 싶은 콘텐츠를 발견하세요!"

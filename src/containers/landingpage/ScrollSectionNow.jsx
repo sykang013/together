@@ -4,7 +4,7 @@ import { getFontStyle } from '@/theme/utils';
 import PrimaryButton from '@/components/landing/PrimaryButton';
 
 const StScrollSectionNow = styled.section`
-  border: 1px solid green;
+  /* border: 1px solid green; */
   position: relative;
   display: flex;
   flex-flow: column nowrap;
@@ -25,7 +25,7 @@ const StScrollSectionNow = styled.section`
 
 const ScrollSectionNow = () => {
   return (
-    <StScrollSectionNow className="landingSectionAnimation">
+    <StScrollSectionNow className="landingSectionAnimation pinned">
       <Svg
         className="landingElementAnimation"
         id="logo2"

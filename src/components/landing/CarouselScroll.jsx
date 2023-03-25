@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 const StCarouselScroll = styled.section`
-  border: 1px dashed blue;
+  /* border: 1px dashed blue; */
   position: relative;
   overflow: hidden;
   height: 400px;
@@ -12,11 +12,8 @@ const StCarouselScroll = styled.section`
   min-width: 100%;
 `;
 
-// 이걸 움직여야댐
 const StScrollContainer = styled.div`
-  border: 1px dashed violet;
-  /* background-color: blue; */
-  /* object-fit: contain; */
+  /* border: 1px dashed violet; */
   width: 100%;
   display: flex;
   height: 400px;
@@ -28,23 +25,21 @@ const StScrollContainer = styled.div`
 `;
 
 const StImgContainer = styled.div`
-  border: 1px dashed yellow;
+  /* border: 1px dashed yellow; */
   object-fit: contain;
   width: contain;
   display: flex;
   height: 400px;
   position: absolute;
-  /* left: 50vw; */
   left: -${(278 + 8) / 2}px;
   @media (min-width: 1000px) {
     height: 510px;
-    /* left: 50vw; */
     left: -${(907 + 16) / 2}px;
   }
 `;
 
 const StImgItem = styled.picture`
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   height: 400px;
   min-width: 278px;
   margin-right: 8px;
@@ -59,10 +54,6 @@ const StImgItem = styled.picture`
       border-radius: 8px;
     }
   }
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-  /* scroll-snap-align: start; */
 `;
 const CarouselScroll = () => {
   return (

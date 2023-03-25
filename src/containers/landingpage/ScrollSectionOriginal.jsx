@@ -3,22 +3,20 @@ import MessageAd from '@/components/landing/MessageAd';
 import CarouselScroll from '@/components/landing/CarouselScroll';
 
 const StScrollSectionOriginal = styled.section`
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
   padding: var(--paddingL);
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   width: 100%;
   /* height: 100vh; */
-  /* height: 80vw; */
-  //스크롤트리거를 주려면 실제 스크롤이 길어야함
-  padding-bottom: 130vh;
-  /* overflow: hidden; */
+  /* padding-bottom: 100vw; */
+  padding-bottom: 100vh;
 `;
 
 const ScrollSectionOriginal = () => {
   return (
-    <StScrollSectionOriginal className="landingSectionAnimation triggerOriginal">
+    <StScrollSectionOriginal className="landingSectionAnimation triggerOriginal pinned">
       <MessageAd
         mainText="티빙에만 있는 재미"
         subText="오리지널 콘텐츠를 만나보세요!"
