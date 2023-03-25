@@ -4,9 +4,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { getFontStyle, rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
-import { array, bool, func, string } from 'prop-types';
+import { bool, func, string } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { number } from 'prop-types';
+import { useEffect } from 'react';
+import { useReadData } from '@/firebase/firestore';
 
 const StArrow = styled.div`
   position: absolute;
@@ -84,6 +86,7 @@ const StCarouselContainer = styled.div`
   .slick-track {
     display: flex;
     justify-content: flex-start;
+    gap: ${rem(5)};
     padding-right: ${rem(8)};
     @media (min-width: 768px) {
       padding-right: ${rem(40)};
@@ -91,6 +94,7 @@ const StCarouselContainer = styled.div`
     @media (min-width: 1920px) {
       padding-right: ${rem(70)};
     }
+    margin: 0;
   }
 
   h2 {
@@ -128,7 +132,6 @@ const StSlider = styled(Slider)`
   }
 
   .slick-slide {
-    padding-right: ${rem(8)};
     transition: transform 0.3s ease-in-out;
     position: relative;
     &:last-child {
@@ -261,9 +264,9 @@ const StNumber = styled.span`
 const Carousel = ({
   title,
   count,
-  data,
-  mobileSlides = 3,
-  tabletSlides = 5,
+  dataName,
+  mobileSlides = 4,
+  tabletSlides = 6,
   desktopSlides = 7,
   vod,
   number,
@@ -296,12 +299,21 @@ const Carousel = ({
     ],
   };
 
+  const { readData, data } = useReadData(dataName);
+  // const { readSearchData } = useReadData();
+
+  useEffect(() => {
+    if (dataName) {
+      readData();
+    }
+  }, []);
+
   return (
     <StCarouselContainer>
       <h2>{title}</h2>
       {count && <StCount>{data.length}개</StCount>}
       <StSlider {...settings}>
-        {data.slice(0, 20).map((data, index) => {
+        {data?.slice(0, 20).map((data, index) => {
           return (
             <Link key={data.id}>
               <picture>
@@ -326,7 +338,7 @@ export default Carousel;
 
 Carousel.propTypes = {
   title: string,
-  data: array,
+  dataName: string,
   count: bool,
   mobileSlides: number,
   tabletSlides: number,

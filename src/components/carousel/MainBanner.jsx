@@ -1,4 +1,4 @@
-import { useId, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -6,6 +6,7 @@ import styled, { css } from 'styled-components/macro';
 import { rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
 import { func, string } from 'prop-types';
+import { useReadData } from '@/firebase/firestore';
 
 const StArrow = styled.div`
   position: absolute;
@@ -60,15 +61,37 @@ const StSlider = styled(Slider)`
     position: relative;
   }
 
+  .slick-slide {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 20%;
+      background: linear-gradient(to bottom, transparent, 70%, var(--black));
+    }
+  }
+
   .slick-dots {
     position: absolute;
     display: flex;
     width: ${rem(122)};
     justify-content: start;
     align-items: center;
-    bottom: ${rem(60)};
-    left: ${rem(60)};
-    margin-top: ${rem(20)};
+    bottom: 5%;
+    left: 4%;
+    @media (min-width: 1920px) {
+      bottom: 10%;
+      left: 5%;
+    }
+  }
+
+  .slick-dots li {
+    margin: 0;
+    @media (min-width: 768px) {
+      margin: auto;
+    }
   }
 
   .slick-dots button:before {
@@ -87,13 +110,8 @@ const StSlider = styled(Slider)`
   }
 `;
 
-const StImage = styled.div`
-  width: 100%;
-  height: ${rem(800)};
-  background: linear-gradient(to bottom, transparent, 90%, var(--black)),
-    url(${(props) => props.url});
-  background-repeat: no-repeat;
-  background-size: cover;
+const StImage = styled.img`
+  object-fit: cover;
 `;
 
 const StDescription = styled.span`
@@ -103,11 +121,11 @@ const StDescription = styled.span`
   color: var(--white);
   font-weight: 300;
   position: absolute;
-  bottom: ${rem(100)};
-  left: ${rem(65)};
+  bottom: 15%;
+  left: 5%;
 `;
 
-export default function MainPage() {
+const MainBanner = () => {
   const [isPaused, setIsPaused] = useState(false);
 
   const sliderRef = useRef(null);
@@ -182,43 +200,24 @@ export default function MainPage() {
     ],
   };
 
-  const data = [
-    {
-      id: useId(),
-      imgUrl: `https://image.tving.com/upload/fe/highlight/2023/0324/20230324102359banner_image_url_u.jpg/dims/resize/F_webp,1920`,
-      title: '서진이네',
-      description: '설명입니다.',
-    },
-    {
-      id: useId(),
-      imgUrl: `https://image.tving.com/upload/fe/highlight/2023/0324/20230324102106banner_image_url_u.jpg/dims/resize/F_webp,1920`,
-      title: '도시어부',
-      description: '설명입니다.',
-    },
-    {
-      id: useId(),
-      imgUrl: `https://image.tving.com/upload/fe/highlight/2023/0324/20230324102314banner_image_url_u.jpg/dims/resize/F_webp,1920`,
-      title: '거인',
-      description: '설명입니다.',
-    },
-    {
-      id: useId(),
-      imgUrl: `https://image.tving.com/upload/fe/highlight/2023/0324/20230324102032banner_image_url_u.jpg/dims/resize/F_webp,1920`,
-      title: '마더',
-      description: '설명입니다.',
-    },
-  ];
+  const { readData, data } = useReadData('banner');
+
+  useEffect(() => {
+    readData();
+  }, []);
 
   return (
     <StSlider ref={sliderRef} {...settings}>
-      {data.map((data) => {
+      {data?.map((data) => {
         return (
           <div key={data.id}>
-            <StImage url={data.imgUrl} alt={data.title} />
+            <StImage src={data.imgUrl} alt={data.title} />
             <StDescription>{data.description}</StDescription>
           </div>
         );
       })}
     </StSlider>
   );
-}
+};
+
+export default MainBanner;
