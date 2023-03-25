@@ -46,6 +46,7 @@ export const StProfileItems = styled.ul`
   flex-flow: row wrap;
   width: 100%;
   height: auto;
+  margin-top: ${rem(20)};
   justify-content: ${(props) => {
     if (props.children.length > 3) return 'space-between';
     else return 'space-evenly';
@@ -71,6 +72,7 @@ export const StProfileItems = styled.ul`
       margin-top: ${rem(12)};
       color: var(--gray300);
       @media (min-width: 768px) {
+        ${getFontStyle('ParagraphM')};
       }
       @media (min-width: 1920px) {
         ${getFontStyle('ParagraphXL')};
@@ -113,7 +115,7 @@ export const StProfileEditImage = styled.img`
 export const StProfileButton = styled.button`
   display: block;
   margin: ${rem(32)} auto 0 auto;
-  width: 25%;
+  width: 50%;
   aspect-ratio: auto 1/0.2;
   background-color: var(--black);
   color: var(--gray100);
@@ -126,10 +128,54 @@ export const StProfileButton = styled.button`
   }
   @media (min-width: 1920px) {
     margin-top: ${rem(66)};
-    ${getFontStyle('LabelXL')};
+    width: 75%;
+    ${getFontStyle('LabelL')};
   }
   &:hover {
     background-color: var(--primary);
+    color: var(--white);
+    border: none;
+  }
+`;
+
+export const StProfileInput = styled.input`
+  padding: ${rem(16)};
+  margin-top: ${rem(20)};
+  border: none;
+  border-radius: 4px;
+  background-color: var(--dark-bg2);
+  color: var(--white);
+  width: 100%;
+  height: 50%;
+  ${getFontStyle('ParagraphM')};
+  @media (min-width: 768px) {
+    ${getFontStyle('ParagraphL')};
+  }
+  @media (min-width: 1920px) {
+    ${getFontStyle('ParagraphXL')};
+  }
+
+  &:hover {
+    border: 1px solid;
+  }
+`;
+
+export const StProfileEditButton = styled.button`
+  width: 100%;
+  margin-top: ${rem(20)};
+  background-color: var(--primary);
+  color: var(--gray100);
+  border-radius: 4px;
+  ${getFontStyle('ParagraphM')};
+  @media (min-width: 768px) {
+    ${getFontStyle('ParagraphL')};
+  }
+  @media (min-width: 1920px) {
+    ${getFontStyle('ParagraphXL')};
+  }
+
+  &:hover {
+    background-color: var(--secondary);
     color: var(--white);
     border: none;
   }

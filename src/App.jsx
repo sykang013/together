@@ -21,13 +21,48 @@ const App = () => {
         <GlobalStyle />
         <Routes>
           <Route element={<Layout />}>
-            <Route index element={<LandingPage />} />
-            <Route path="landing" element={<LandingPage />} />
+            <Route
+              index
+              element={
+                <PrivateRoute>
+                  <LandingPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="landing"
+              element={
+                <PrivateRoute>
+                  <LandingPage />
+                </PrivateRoute>
+              }
+            />
             <Route path="register" element={<RegisterPage />} />
             <Route path="login" element={<LoginPage />} />
-            <Route path="profile-page" element={<ProfilePage />} />
-            <Route path="profile-edit" element={<ProfileEdit />} />
-            <Route path="profile-crud" element={<ProfileCRUD />} />
+            <Route
+              path="profile-page"
+              element={
+                <PrivateRoute>
+                  <ProfilePage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="profile-edit"
+              element={
+                <PrivateRoute>
+                  <ProfileEdit />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="profile-crud"
+              element={
+                <PrivateRoute>
+                  <ProfileCRUD />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="main"
               element={
