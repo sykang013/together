@@ -10,10 +10,18 @@ const PrivateRoute = ({ children }) => {
   }
 
   if (user) {
-    return children;
+    if (children.type.name == 'LandingPage') {
+      return <Navigate to="/main" />;
+    } else {
+      return children;
+    }
+  } else {
+    if (children.type.name == 'LandingPage') {
+      return children;
+    } else {
+      return <Navigate to="/login" />;
+    }
   }
-
-  return <Navigate to="/login" />;
 };
 
 PrivateRoute.propTypes = {
