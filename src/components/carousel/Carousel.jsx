@@ -8,6 +8,7 @@ import { bool, func, string, number } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useReadData } from '@/firebase/firestore';
+import SkeletonCarousel from '@/components/loading/SkeletonCarousel';
 
 const StArrow = styled.div`
   position: absolute;
@@ -298,7 +299,7 @@ const Carousel = ({
     ],
   };
 
-  const { readData, data } = useReadData(dataName);
+  const { isLoading, readData, data } = useReadData(dataName);
   // const { readSearchData } = useReadData();
 
   useEffect(() => {
@@ -308,28 +309,39 @@ const Carousel = ({
   }, []);
 
   return (
-    <StCarouselContainer>
-      <h2>{title}</h2>
-      {count && <StCount>{data.length}개</StCount>}
-      <StSlider {...settings}>
-        {data?.slice(0, 20).map((data, index) => {
-          return (
-            <Link key={data.id}>
-              <picture>
-                <source srcSet={data.desktopUrl} media="(min-width:1920px)" />
-                <source srcSet={data.tabletUrl} media="(min-width:768px)" />
-                <img src={data.mobileUrl} alt={data.title} />
-              </picture>
-              <StInfo number={number}>
-                {number && <StNumber>{index + 1}</StNumber>}
-                {data.title && <StTitle number={number}>{data.title}</StTitle>}
-              </StInfo>
-              {vod && <Svg id="quick-vod" width={96} height={30} />}
-            </Link>
-          );
-        })}
-      </StSlider>
-    </StCarouselContainer>
+    <>
+      {data && (
+        <StCarouselContainer>
+          <h2>{title}</h2>
+          {count && <StCount>{data.length}개</StCount>}
+          <StSlider {...settings}>
+            {data?.slice(0, 20).map((data, index) => {
+              return (
+                <Link key={data.id}>
+                  <picture>
+                    <source
+                      srcSet={data.desktopUrl}
+                      media="(min-width:1920px)"
+                    />
+                    <source srcSet={data.tabletUrl} media="(min-width:768px)" />
+                    <img src={data.mobileUrl} alt={data.title} />
+                  </picture>
+                  <StInfo number={number}>
+                    {number && <StNumber>{index + 1}</StNumber>}
+                    {data.title && (
+                      <StTitle number={number}>{data.title}</StTitle>
+                    )}
+                  </StInfo>
+                  {vod && <Svg id="quick-vod" width={96} height={30} />}
+                </Link>
+              );
+            })}
+          </StSlider>
+        </StCarouselContainer>
+      )}
+
+      {isLoading && <SkeletonCarousel />}
+    </>
   );
 };
 
