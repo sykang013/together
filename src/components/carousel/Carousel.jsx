@@ -4,9 +4,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { getFontStyle, rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
-import { bool, func, string } from 'prop-types';
+import { bool, func, string, number } from 'prop-types';
 import { Link } from 'react-router-dom';
-import { number } from 'prop-types';
 import { useEffect } from 'react';
 import { useReadData } from '@/firebase/firestore';
 

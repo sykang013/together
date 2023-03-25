@@ -34,7 +34,7 @@ const StSvg = styled.div`
 
 const PrimaryButton = ({ children }) => {
   return (
-    <StPrimaryButton to="/" className="landingElementAnimation">
+    <StPrimaryButton to="/main" className="landingElementAnimation">
       <StSvg>
         <Svg id="symbol-logo" width="2.4em" height="2.4em" />
       </StSvg>
