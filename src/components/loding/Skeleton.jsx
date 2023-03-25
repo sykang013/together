@@ -51,30 +51,3 @@ export const StImageBox = styled(SkeletonAnimation)`
   margin-left: auto;
   margin-right: auto;
 `;
-
-const Skeleton = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (Skeleton) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-    }
-  }, []);
-
-  return (
-    <>
-      {loading ? (
-        <>
-          <SkeletonBanner />
-          <SkeletonCarousel />
-        </>
-      ) : (
-        <>렌더링 할 컴포넌트 넣으세요.</>
-      )}
-    </>
-  );
-};
-
-export default Skeleton;
