@@ -3,6 +3,7 @@ import MessageTitle from '@/components/landing/MessageTitle';
 import PrimaryButton from '@/components/landing/PrimaryButton';
 
 const StScrollSectionTitle = styled.section`
+  /* border: 1px solid red; */
   display: flex;
   padding: var(--paddingL);
   padding-top: 20vh;
