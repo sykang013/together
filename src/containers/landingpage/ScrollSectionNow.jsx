@@ -25,7 +25,7 @@ const StScrollSectionNow = styled.section`
 
 const ScrollSectionNow = () => {
   return (
-    <StScrollSectionNow className="landingSectionAnimation pinned">
+    <StScrollSectionNow className="landingSectionAnimation">
       <Svg
         className="landingElementAnimation"
         id="logo2"

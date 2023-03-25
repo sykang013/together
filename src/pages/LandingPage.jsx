@@ -7,7 +7,6 @@ import { useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-//-------GSAP 스크롤트리거 불러옴
 gsap.registerPlugin(ScrollTrigger);
 gsap.defaults({ ease: 'none', duration: 10 });
 
@@ -40,34 +39,23 @@ const LandingPage = () => {
         opacity: 1,
         duration: 0.6,
         stagger: { each: 0.1, from: 'start' },
-        //애니메이션 완효루 스크롤트리거 애니메이션 실행
         onComplete: () => carouselScrollAnimation(),
       }
     );
-    //스크롤 트리거 애니메이션
     const carouselScrollAnimation = () => {
       gsap.to('.imgContainer', {
         scrollTrigger: {
           trigger: '.triggerOriginal',
           start: 'top top',
-          // end: '+=2000 bottom',
           end: 'bottom 80%',
           scrub: true,
-          pin: '.pinned',
+          pin: '.triggerOriginal',
           anticipatePin: 1,
-          markers: true,
+          // markers: true,
         },
         x: -858,
       });
     };
-    // const tl = gsap.timeline();
-    // tl.to('.imgContainer', { x: -286, duration: 5 })
-    //   .to('.imgContainer', { x: -572, duration: 5 })
-    //   .to('.imgContainer', { x: -858, duration: 5 });
-
-    // ScrollTrigger.create({
-    //   animation: tl,
-    // });
   }, []);
   return (
     <StLandingPage>

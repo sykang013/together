@@ -14,7 +14,7 @@ const StScrollSectionAd = styled.section`
 
 const ScrollSectionAd = () => {
   return (
-    <StScrollSectionAd className="landingSectionAnimation pinned">
+    <StScrollSectionAd className="landingSectionAnimation">
       <MessageAd
         mainText="내가 찾던 재미"
         subText="보고 싶은 콘텐츠를 발견하세요!"

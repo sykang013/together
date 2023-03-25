@@ -16,7 +16,7 @@ const StScrollSectionOriginal = styled.section`
 
 const ScrollSectionOriginal = () => {
   return (
-    <StScrollSectionOriginal className="landingSectionAnimation triggerOriginal pinned">
+    <StScrollSectionOriginal className="landingSectionAnimation triggerOriginal">
       <MessageAd
         mainText="티빙에만 있는 재미"
         subText="오리지널 콘텐츠를 만나보세요!"
