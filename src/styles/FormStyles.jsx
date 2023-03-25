@@ -5,11 +5,14 @@ export const StContainer = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
+  padding-top: ${rem(150)};
 `;
 export const StInner = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+
   gap: ${rem(60)};
   width: ${rem(319)};
   text-align: center;
@@ -35,6 +38,8 @@ export const StTitle = styled.h2`
 export const StForm = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
   gap: ${rem(16)};
   @media (min-width: 768px) {
     gap: ${rem(18)};
@@ -52,4 +57,6 @@ export const StForm = styled.form`
 export const StFormInner = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
 `;

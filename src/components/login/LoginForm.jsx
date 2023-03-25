@@ -135,17 +135,6 @@ const LoginForm = () => {
   }
 
   if (user) {
-    // return (
-    //   <StContainer>
-    //     <StTitle>TVING 회원 정보</StTitle>
-    //     <div>{user.displayName}</div>
-    //     <div>{user.email}</div>
-    //     <StButton secondary onClick={handleSignOut}>
-    //       로그아웃
-    //     </StButton>
-    //   </StContainer>
-    // );
-
     return <Navigate to="/main" replace={true} />;
   }
 
