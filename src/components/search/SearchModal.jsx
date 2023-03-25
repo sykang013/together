@@ -18,7 +18,7 @@ const StSearchModal = styled.div`
   }
   background-color: var(--dark-bg1);
   color: var(--white);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;

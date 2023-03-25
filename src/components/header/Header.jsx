@@ -11,15 +11,8 @@ import { modalAtomFamily } from '@/store/modalState';
 import useModal from '@/hooks/useModal';
 import LogoModal from '@/components/header/LogoModal';
 
-const StHeaderContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-`;
-
-const StHeader = styled.nav`
-  position: sticky;
+const StHeader = styled.header`
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
@@ -159,93 +152,91 @@ const Header = () => {
   return (
     <>
       {isSearchModal.isOpen && <SearchModal />}
-      <StHeaderContainer>
-        <StHeader backgroundColor={isBlackBackground ? 'black' : 'gradient'}>
-          <StGnb direction="left">
-            <h1>
-              <StTab onClick={() => navigateToPage('/')}>
-                <Svg
-                  id="logo"
-                  width={46}
-                  height={13}
-                  tabletW={77}
-                  tabletH={24}
-                  desktopW={132}
-                  desktopH={42}
-                  aria-label="티빙"
-                />
-              </StTab>
-            </h1>
-            <StTab>
+      <StHeader backgroundColor={isBlackBackground ? 'black' : 'gradient'}>
+        <StGnb direction="left">
+          <h1>
+            <StTab onClick={() => navigateToPage('/')}>
               <Svg
-                id="live-default"
-                width={20}
-                height={20}
-                desktopW={34}
-                desktopH={34}
-                aria-label="실시간 방송"
-              />
-              실시간
-            </StTab>
-            <StTab>TV프로그램</StTab>
-            <StTab>영화</StTab>
-            <StTab>
-              <Svg
-                id="paramount-default"
-                width={60}
-                height={20}
-                desktopW={112}
-                desktopH={34}
-                aria-label="파라마운트"
+                id="logo"
+                width={46}
+                height={13}
+                tabletW={77}
+                tabletH={24}
+                desktopW={132}
+                desktopH={42}
+                aria-label="티빙"
               />
             </StTab>
-          </StGnb>
-          <StGnb direction="right">
-            <button
-              onClick={isSearchModal.isOpen ? closeSearchModal : openModal}
-              type="button"
-            >
-              {!isSearchModal.isOpen && (
-                <Svg
-                  id="search-default"
-                  width={18}
-                  height={18}
-                  tabletW={24}
-                  tabletH={24}
-                  desktopW={40}
-                  desktopH={40}
-                  aria-label="검색"
-                />
-              )}
-              {isSearchModal.isOpen && (
-                <Svg
-                  id="cancel-default"
-                  width={18}
-                  height={18}
-                  tabletW={24}
-                  tabletH={24}
-                  desktopW={40}
-                  desktopH={40}
-                  aria-label="닫기"
-                />
-              )}
-            </button>
-            <StProfile tabIndex={0}>
+          </h1>
+          <StTab>
+            <Svg
+              id="live-default"
+              width={20}
+              height={20}
+              desktopW={34}
+              desktopH={34}
+              aria-label="실시간 방송"
+            />
+            실시간
+          </StTab>
+          <StTab>TV프로그램</StTab>
+          <StTab>영화</StTab>
+          <StTab>
+            <Svg
+              id="paramount-default"
+              width={60}
+              height={20}
+              desktopW={112}
+              desktopH={34}
+              aria-label="파라마운트"
+            />
+          </StTab>
+        </StGnb>
+        <StGnb direction="right">
+          <button
+            onClick={isSearchModal.isOpen ? closeSearchModal : openModal}
+            type="button"
+          >
+            {!isSearchModal.isOpen && (
               <Svg
-                id="profile"
+                id="search-default"
                 width={18}
                 height={18}
                 tabletW={24}
                 tabletH={24}
                 desktopW={40}
                 desktopH={40}
-                aria-label="프로필"
+                aria-label="검색"
               />
-              <LogoModal />
-            </StProfile>
-          </StGnb>
-        </StHeader>
-      </StHeaderContainer>
+            )}
+            {isSearchModal.isOpen && (
+              <Svg
+                id="cancel-default"
+                width={18}
+                height={18}
+                tabletW={24}
+                tabletH={24}
+                desktopW={40}
+                desktopH={40}
+                aria-label="닫기"
+              />
+            )}
+          </button>
+          <StProfile tabIndex={0}>
+            <Svg
+              id="profile"
+              width={18}
+              height={18}
+              tabletW={24}
+              tabletH={24}
+              desktopW={40}
+              desktopH={40}
+              aria-label="프로필"
+            />
+            <LogoModal />
+          </StProfile>
+        </StGnb>
+      </StHeader>
     </>
   );
 };
