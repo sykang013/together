@@ -8,7 +8,7 @@ import { bool, func, string, number } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useReadData } from '@/firebase/firestore';
-import SkeletonCarousel from '../loding/SkeletonCarousel';
+import SkeletonCarousel from '@/components/loading/SkeletonCarousel';
 
 const StArrow = styled.div`
   position: absolute;

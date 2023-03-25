@@ -1,4 +1,8 @@
-import { StImageBox, StImageBoxGroup, StTextBox } from './Skeleton';
+import {
+  StImageBox,
+  StImageBoxGroup,
+  StTextBox,
+} from '@/components/loading/Skeleton';
 
 const SkeletonCarousel = () => {
   return (

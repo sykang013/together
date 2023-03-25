@@ -7,7 +7,7 @@ import { rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
 import { func, string } from 'prop-types';
 import { useReadData } from '@/firebase/firestore';
-import SkeletonBanner from '../loding/SkeletonBanner';
+import SkeletonBanner from '@/components/loading/SkeletonBanner';
 
 const StArrow = styled.div`
   position: absolute;
@@ -209,16 +209,18 @@ const MainBanner = () => {
 
   return (
     <>
-      <StSlider ref={sliderRef} {...settings}>
-        {data?.map((data) => {
-          return (
-            <div key={data.id}>
-              <StImage src={data.imgUrl} alt={data.title} />
-              <StDescription>{data.description}</StDescription>
-            </div>
-          );
-        })}
-      </StSlider>
+      {data && (
+        <StSlider ref={sliderRef} {...settings}>
+          {data?.map((data) => {
+            return (
+              <div key={data.id}>
+                <StImage src={data.imgUrl} alt={data.title} />
+                <StDescription>{data.description}</StDescription>
+              </div>
+            );
+          })}
+        </StSlider>
+      )}
       {isLoading && <SkeletonBanner />}
     </>
   );
