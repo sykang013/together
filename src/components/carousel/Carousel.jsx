@@ -4,12 +4,21 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { getFontStyle, rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
-import { array, func, string } from 'prop-types';
+import { bool, func, string, number } from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useReadData } from '@/firebase/firestore';
 
 const StArrow = styled.div`
   position: absolute;
   top: 50%;
+  width: ${rem(8)};
+  @media (min-width: 768px) {
+    width: ${rem(40)};
+  }
+  @media (min-width: 1920px) {
+    width: ${rem(70)};
+  }
   ${(props) =>
     props.direction === 'prev' &&
     css`
@@ -59,24 +68,31 @@ Arrow.propTypes = {
 
 const StCarouselContainer = styled.div`
   position: relative;
-
   .prev,
   .next,
-  .dots-css,
-  > a {
+  .dots-css {
     visibility: hidden;
   }
 
   &:hover {
     .prev,
     .next,
-    .dots-css,
-    > a {
+    .dots-css {
       visibility: visible;
     }
   }
 
   .slick-track {
+    display: flex;
+    justify-content: flex-start;
+    gap: ${rem(5)};
+    padding-right: ${rem(8)};
+    @media (min-width: 768px) {
+      padding-right: ${rem(40)};
+    }
+    @media (min-width: 1920px) {
+      padding-right: ${rem(70)};
+    }
     margin: 0;
   }
 
@@ -87,14 +103,9 @@ const StCarouselContainer = styled.div`
     margin-left: ${rem(8)};
   }
 
-  span {
-    ${getFontStyle('ParagraphS')}
-    color: var(--gray200);
-  }
-
   @media (min-width: 768px) {
     h2 {
-      ${getFontStyle('headingM')}
+      ${getFontStyle('headingL')}
       margin-left: ${rem(40)};
     }
   }
@@ -105,28 +116,6 @@ const StCarouselContainer = styled.div`
       margin-right: ${rem(15)};
       margin-left: ${rem(70)};
     }
-
-    span {
-      ${getFontStyle('ParagraphM')}
-    }
-  }
-`;
-
-const StViewAll = styled(Link)`
-  position: absolute;
-  top: 0;
-  right: ${rem(8)};
-  color: var(--gray200);
-
-  &:hover {
-    color: var(--white);
-  }
-
-  @media (min-width: 768px) {
-    right: ${rem(40)};
-  }
-  @media (min-width: 1920px) {
-    right: ${rem(70)};
   }
 `;
 
@@ -142,8 +131,22 @@ const StSlider = styled(Slider)`
   }
 
   .slick-slide {
-    padding-right: ${rem(8)};
     transition: transform 0.3s ease-in-out;
+    position: relative;
+    &:last-child {
+      margin-right: ${rem(8)};
+      @media (min-width: 768px) {
+        margin-right: ${rem(40)};
+      }
+      @media (min-width: 1920px) {
+        margin-right: ${rem(70)};
+      }
+    }
+    svg {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+    }
 
     img {
       border-radius: 5px;
@@ -151,30 +154,39 @@ const StSlider = styled(Slider)`
 
     figCaption {
       margin-top: ${rem(8)};
-      ${getFontStyle('ParagraphM')}
+      color: var(--gray100);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      ${getFontStyle('CarouselS')};
+      @media (min-width: 768px) {
+        ${getFontStyle('CarouselM')}
+      }
 
       @media (min-width: 1920px) {
-        ${getFontStyle('LabelL')}
+        ${getFontStyle('CarouselL')}
       }
     }
 
     &:hover {
       transform: translateY(-10px);
+      figCaption {
+        color: var(--white);
+      }
     }
   }
 
   .dots-css {
     position: absolute;
     padding: 0;
-    top: ${rem(-40)};
-    right: ${rem(68)};
+    top: ${rem(-30)};
+    right: ${rem(8)};
 
     @media (min-width: 768px) {
-      right: ${rem(100)};
+      right: ${rem(40)};
     }
     @media (min-width: 1920px) {
-      top: ${rem(-53)};
-      right: ${rem(130)};
+      right: ${rem(70)};
     }
   }
 
@@ -210,51 +222,109 @@ const StSlider = styled(Slider)`
   }
 `;
 
-const Carousel = ({ genre, data }) => {
+const StInfo = styled.div`
+  margin-top: ${rem(8)};
+  ${(props) =>
+    props.number &&
+    css`
+      position: relative;
+    `};
+`;
+
+const StTitle = styled.span`
+  ${(props) =>
+    props.number &&
+    css`
+      margin-left: ${rem(10)};
+    `}
+`;
+
+const StCount = styled.span`
+  ${getFontStyle('ParagraphS')}
+  color: var(--gray200);
+
+  @media (min-width: 1920px) {
+    ${getFontStyle('ParagraphM')}
+  }
+`;
+
+const StNumber = styled.span`
+  font-style: italic;
+  ${getFontStyle('CarouselNumberS')};
+  @media (min-width: 768px) {
+    ${getFontStyle('CarouselNumberM')};
+  }
+  @media (min-width: 1920px) {
+    ${getFontStyle('CarouselNumberL')};
+  }
+  line-height: 0;
+`;
+
+const Carousel = ({
+  title,
+  count,
+  dataName,
+  mobileSlides = 4,
+  tabletSlides = 6,
+  desktopSlides = 7,
+  vod,
+  number,
+}) => {
   const settings = {
     dots: true,
     dotsClass: 'dots-css',
     infinite: false,
     speed: 500,
-    slidesToShow: 7,
-    slidesToScroll: 7,
+    rows: 1,
+    slidesToShow: desktopSlides,
+    slidesToScroll: desktopSlides,
     nextArrow: <Arrow direction="next" />,
     prevArrow: <Arrow direction="prev" />,
     responsive: [
       {
         breakpoint: 1920,
         settings: {
-          slidesToShow: 5,
-          slidesToScroll: 5,
+          slidesToShow: tabletSlides,
+          slidesToScroll: tabletSlides,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: mobileSlides,
+          slidesToScroll: mobileSlides,
         },
       },
     ],
   };
 
+  const { readData, data } = useReadData(dataName);
+  // const { readSearchData } = useReadData();
+
+  useEffect(() => {
+    if (dataName) {
+      readData();
+    }
+  }, []);
+
   return (
     <StCarouselContainer>
-      <h2>{genre}</h2>
-      <span>{data.length}개</span>
-      <StViewAll>전체보기</StViewAll>
+      <h2>{title}</h2>
+      {count && <StCount>{data.length}개</StCount>}
       <StSlider {...settings}>
-        {data.map((data) => {
+        {data?.slice(0, 20).map((data, index) => {
           return (
             <Link key={data.id}>
-              <figure>
-                <picture>
-                  <source srcSet={data.desktopUrl} media="(min-width:1920px)" />
-                  <source srcSet={data.tabletUrl} media="(min-width:768px)" />
-                  <img src={data.mobileUrl} alt={data.title} />
-                </picture>
-                <figcaption>{data.title}</figcaption>
-              </figure>
+              <picture>
+                <source srcSet={data.desktopUrl} media="(min-width:1920px)" />
+                <source srcSet={data.tabletUrl} media="(min-width:768px)" />
+                <img src={data.mobileUrl} alt={data.title} />
+              </picture>
+              <StInfo number={number}>
+                {number && <StNumber>{index + 1}</StNumber>}
+                {data.title && <StTitle number={number}>{data.title}</StTitle>}
+              </StInfo>
+              {vod && <Svg id="quick-vod" width={96} height={30} />}
             </Link>
           );
         })}
@@ -266,6 +336,12 @@ const Carousel = ({ genre, data }) => {
 export default Carousel;
 
 Carousel.propTypes = {
-  genre: string,
-  data: array,
+  title: string,
+  dataName: string,
+  count: bool,
+  mobileSlides: number,
+  tabletSlides: number,
+  desktopSlides: number,
+  vod: bool,
+  number: bool,
 };

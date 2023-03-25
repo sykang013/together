@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { getFontStyle, rem } from '@/theme/utils';
+import { getFontStyle } from '@/theme/utils';
 import { PropTypes } from 'prop-types';
 
 const StMessageAd = styled.div`
