@@ -10,7 +10,7 @@ import {
   searchMoviesState,
 } from '@/store/search/index';
 import useModal from '@/hooks/useModal';
-import Carousel from '@/components/search/Carousel';
+import Carousel from '@/components/carousel/Carousel';
 import useReadSearchData from '@/firebase/firestore/useReadSearchData';
 import { StSearchInput } from '@/styles/SearchBarStyles';
 import Svg from '@/components/svg/Svg';
@@ -91,9 +91,9 @@ const SearchPage = () => {
       <StMessage>{countSearchData > 0 ? resultMessage : noMessage}</StMessage>
       <StCarouselLayout>
         {tvPrograms.length > 0 && (
-          <Carousel genre="TV프로그램" data={tvPrograms} />
+          <Carousel title="TV프로그램" data={tvPrograms} />
         )}
-        {movies.length > 0 && <Carousel genre="영화" data={movies} />}
+        {movies.length > 0 && <Carousel title="영화" data={movies} />}
       </StCarouselLayout>
     </>
   );
