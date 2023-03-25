@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react';
 import { rem } from '@/theme/utils';
 import styled from 'styled-components';
-import SkeletonBanner from './SkeletonBanner';
-import SkeletonCarousel from './SkeletonCarousel';
 
 export const SkeletonAnimation = styled.div`
   background: linear-gradient(
