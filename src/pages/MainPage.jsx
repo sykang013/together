@@ -88,16 +88,12 @@ const MainPage = () => {
           tabletSlides={5}
           mobileSlides={4}
         />
-        <StMiniBanner>
-          <source
-            srcSet="src/assets/main/desktop.png"
-            media="(min-width:320px)"
-          />
-          <img
-            src="src/assets/main/mobile.png"
-            alt="TAING sports 경기 생중계"
-          />
-        </StMiniBanner>
+        <Carousel
+          dataName="mini-banner"
+          desktopSlides={1}
+          tabletSlides={1}
+          mobileSlides={1}
+        />
         <Carousel
           title="이벤트"
           dataName="event"

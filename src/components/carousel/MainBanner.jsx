@@ -16,7 +16,6 @@ const StArrow = styled.div`
     props.direction === 'prev' &&
     css`
       left: 0;
-      z-index: 1;
       svg {
         color: var(--gray200);
       }
@@ -58,6 +57,10 @@ Arrow.propTypes = {
 };
 
 const StSlider = styled(Slider)`
+  .slick-list {
+    z-index: -1;
+  }
+
   .slick-slider {
     position: relative;
   }
