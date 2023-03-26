@@ -145,6 +145,31 @@ const StSlider = styled(Slider)`
         }
       }
     }
+
+    ${(props) =>
+      props.desktopSlides === 1 &&
+      css`
+        .slick-track {
+          padding-right: ${rem(8)};
+          @media (min-width: 768px) {
+            padding-right: ${rem(40)};
+          }
+          @media (min-width: 1920px) {
+            padding-right: ${rem(70)};
+          }
+        }
+        .slick-slide {
+          :last-child {
+            margin-right: ${rem(8)};
+            @media (min-width: 768px) {
+              margin-right: ${rem(40)};
+            }
+            @media (min-width: 1920px) {
+              margin-right: ${rem(70)};
+            }
+          }
+        }
+      `}
   }
 
   .slick-slide {
@@ -326,7 +351,7 @@ const Carousel = ({
         <StCarouselContainer>
           <h2>{title}</h2>
           {count && <StCount>{data.length}개</StCount>}
-          <StSlider {...settings}>
+          <StSlider {...settings} desktopSlides={desktopSlides}>
             {(data || dataProp)?.slice(0, 20).map((data, index) => {
               return (
                 <Link key={data.id}>
