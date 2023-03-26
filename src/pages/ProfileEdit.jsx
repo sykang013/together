@@ -16,11 +16,22 @@ import { dbService } from '@/firebase/app';
 import { useAuthState } from '@/firebase/auth';
 import { string } from 'prop-types';
 import StA11yHidden from '@/components/a11yhidden/A11yHidden';
+import ProfileDeleteModal from '@/components/profile/ProfileDeleteModal';
 
 const ProfileNameForm = ({ profileId, defaultName }) => {
   const [name, setName] = useState(defaultName);
   const { user } = useAuthState();
   const navigate = useNavigate();
+
+  const [isProfileDeleteModal, setIsProfileDeleteModal] = useState(false);
+
+  const openProfileDeleteModal = () => {
+    setIsProfileDeleteModal(true);
+  };
+
+  const closeProfileDeleteModal = () => {
+    setIsProfileDeleteModal(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,18 +50,29 @@ const ProfileNameForm = ({ profileId, defaultName }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <StA11yHidden as="label" htmlFor={name}>
-        프로필 이름
-      </StA11yHidden>
-      <StProfileInput
-        type="text"
-        id="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <StProfileEditButton type="submit">편집 완료</StProfileEditButton>
-    </form>
+    <>
+      {isProfileDeleteModal && (
+        <ProfileDeleteModal
+          profileId={profileId}
+          closeProfileDeleteModal={closeProfileDeleteModal}
+        />
+      )}
+      <form onSubmit={handleSubmit}>
+        <StA11yHidden as="label" htmlFor={name}>
+          프로필 이름
+        </StA11yHidden>
+        <StProfileInput
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <StProfileEditButton type="submit">편집 완료</StProfileEditButton>
+      </form>
+      <StProfileEditButton onClick={openProfileDeleteModal}>
+        프로필 삭제
+      </StProfileEditButton>
+    </>
   );
 };
 

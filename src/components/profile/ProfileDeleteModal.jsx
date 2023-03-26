@@ -4,20 +4,20 @@ import { useNavigate } from 'react-router-dom';
 import { dbService } from '@/firebase/app';
 import { useAuthState } from '@/firebase/auth';
 
-const ProfileDeleteModal = ({ closeProfileDeleteModal, profile }) => {
+const ProfileDeleteModal = ({ closeProfileDeleteModal, profileId }) => {
   const navigate = useNavigate();
   const { user } = useAuthState();
+
   const handleProfileDelete = async () => {
     try {
       await dbService
         .collection('users')
         .doc(user.uid)
         .collection('profile')
-        .doc(profile)
+        .doc(profileId)
         .delete();
 
       closeProfileDeleteModal();
-      console.log('Data successfully deleted');
     } catch (error) {
       console.error('Error deleting profile: ', error);
     }
@@ -38,5 +38,5 @@ export default ProfileDeleteModal;
 
 ProfileDeleteModal.propTypes = {
   closeProfileDeleteModal: propTypes.func,
-  profile: propTypes.func,
+  profileId: propTypes.string,
 };

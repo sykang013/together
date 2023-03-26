@@ -56,7 +56,7 @@ const App = () => {
               }
             />
             <Route
-              path="profile-crud"
+              path="profile-create"
               element={
                 <PrivateRoute>
                   <ProfileCRUD />

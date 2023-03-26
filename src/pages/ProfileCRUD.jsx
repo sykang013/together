@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import { dbService } from '@/firebase/app';
 import { collection, addDoc } from 'firebase/firestore';
 import { useAuthState } from '@/firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const StUploadImageView = styled.div`
   width: 50%;
@@ -32,9 +33,13 @@ const StName = styled.input`
 `;
 
 const ProfileCRUD = () => {
+  const navigate = useNavigate();
   const [text, setText] = useState('');
   const [fileImage, setFileImage] = useState('');
   const { user } = useAuthState();
+  const goToProfilePage = () => {
+    navigate('/profile-page');
+  };
 
   const saveFileImage = (e) => {
     const ImageURL = URL.createObjectURL(e.target.files[0]);
@@ -70,7 +75,13 @@ const ProfileCRUD = () => {
       </StUploadImageView>
       <StImageFile type="file" onChange={saveFileImage} />
       <StName type="text" onChange={onChangeName} value={text} />
-      <StProfileButton type="submit" onClick={onClick}>
+      <StProfileButton
+        type="submit"
+        onClick={() => {
+          onClick();
+          goToProfilePage();
+        }}
+      >
         저장
       </StProfileButton>
     </StLayoutProfile>

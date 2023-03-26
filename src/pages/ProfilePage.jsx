@@ -19,6 +19,9 @@ const ProfilePage = () => {
   const goToProfileEdit = (profile) => {
     navigate(`/profile-edit?id=${profile.id}&name=${profile.name}`);
   };
+  const goToProfileCreate = () => {
+    navigate('/profile-create');
+  };
 
   useEffect(() => {
     if (user) {
@@ -58,6 +61,7 @@ const ProfilePage = () => {
           </li>
         ))}
       </StProfileItems>
+      <StProfileButton onClick={goToProfileCreate}>프로필 추가</StProfileButton>
     </StLayoutProfile>
   );
 };
