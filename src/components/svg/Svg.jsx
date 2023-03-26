@@ -48,7 +48,7 @@ const Svg = ({
       desktopH={desktopH}
       {...restProps}
     >
-      <use href={`src/assets/sprite.svg#${id}`} />
+      <use href={`/assets/sprite.svg#${id}`} />
     </StSvg>
   );
 };

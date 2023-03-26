@@ -10,7 +10,7 @@ import {
   StProfileEditButton,
 } from '@/components/profile/Profile';
 import { useLocation, useNavigate } from 'react-router-dom';
-import ImageTest from '@/assets/profile_1.png';
+import ImageTest from '/assets/profile_1.png';
 import { useState } from 'react';
 import { dbService } from '@/firebase/app';
 import { useAuthState } from '@/firebase/auth';

@@ -59,15 +59,12 @@ const Popup = ({ closeModal }) => {
       <StPopUp role="dialog">
         <picture>
           <source
-            srcSet="src/assets/popup/desktop.png"
+            srcSet="/assets/popup/desktop.png"
             media="(min-width:1920px)"
           />
-          <source
-            srcSet="src/assets/popup/tablet.png"
-            media="(min-width:768px)"
-          />
+          <source srcSet="/assets/popup/tablet.png" media="(min-width:768px)" />
           <img
-            src="src/assets/popup/mobile.png"
+            src="/assets/popup/mobile.png"
             alt="기대해 재미 가득한 라인업 광고 팝업"
           />
         </picture>

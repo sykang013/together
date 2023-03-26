@@ -16,7 +16,7 @@ const StScrollSectionTitle = styled.section`
       rgba(0, 0, 0, 0),
       rgba(0, 0, 0, 1)
     ),
-    url(src/assets/landing-img/bg-mobile-modified.png);
+    url(/assets/landing-img/bg-mobile-modified.png);
   background-size: 100%;
   @media (min-width: 768px) {
     background-image: linear-gradient(
@@ -24,7 +24,7 @@ const StScrollSectionTitle = styled.section`
         rgba(0, 0, 0, 0),
         rgba(0, 0, 0, 1)
       ),
-      url(src/assets/landing-img/bg-tablet.png);
+      url(/assets/landing-img/bg-tablet.png);
   }
   @media (min-width: 1920px) {
     background-image: linear-gradient(
@@ -32,7 +32,7 @@ const StScrollSectionTitle = styled.section`
         rgba(0, 0, 0, 0),
         rgba(0, 0, 0, 1)
       ),
-      url(src/assets/landing-img/bg-desktop.png);
+      url(/assets/landing-img/bg-desktop.png);
   }
 `;
 
