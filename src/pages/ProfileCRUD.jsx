@@ -1,6 +1,10 @@
 import { StLayoutProfile, StProfileButton } from '@/components/profile/Profile';
 import { useState } from 'react';
 import styled from 'styled-components/macro';
+import { dbService } from '@/firebase/app';
+import { collection, addDoc } from 'firebase/firestore';
+import { useAuthState } from '@/firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const StUploadImageView = styled.div`
   width: 50%;
@@ -29,8 +33,13 @@ const StName = styled.input`
 `;
 
 const ProfileCRUD = () => {
+  const navigate = useNavigate();
   const [text, setText] = useState('');
   const [fileImage, setFileImage] = useState('');
+  const { user } = useAuthState();
+  const goToProfilePage = () => {
+    navigate('/profile-page');
+  };
 
   const saveFileImage = (e) => {
     const ImageURL = URL.createObjectURL(e.target.files[0]);
@@ -39,6 +48,20 @@ const ProfileCRUD = () => {
 
   const onChangeName = (e) => {
     setText(e.target.value);
+  };
+
+  const createData = async () => {
+    try {
+      await addDoc(collection(dbService, 'users', user.uid, 'profile'), {
+        name: text,
+      });
+    } catch (error) {
+      console.log('Error creating data: ', error);
+    }
+  };
+
+  const onClick = async () => {
+    await createData();
   };
 
   return (
@@ -51,8 +74,16 @@ const ProfileCRUD = () => {
         />
       </StUploadImageView>
       <StImageFile type="file" onChange={saveFileImage} />
-      <StName onChange={onChangeName} value={text} />
-      <StProfileButton>저장</StProfileButton>
+      <StName type="text" onChange={onChangeName} value={text} />
+      <StProfileButton
+        type="submit"
+        onClick={() => {
+          onClick();
+          goToProfilePage();
+        }}
+      >
+        저장
+      </StProfileButton>
     </StLayoutProfile>
   );
 };
