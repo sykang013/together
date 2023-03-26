@@ -84,7 +84,7 @@ const LogoModal = () => {
         >
           <StProfileIcon>
             <StProfileImage
-              src="src/assets/profile_4.png"
+              src="/assets/profile_4.png"
               alt="계정 프로필 이미지"
             />
           </StProfileIcon>
