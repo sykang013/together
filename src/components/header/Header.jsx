@@ -10,6 +10,7 @@ import { searchKeywordState } from '@/store/search/index';
 import { modalAtomFamily } from '@/store/modalState';
 import useModal from '@/hooks/useModal';
 import LogoModal from '@/components/header/LogoModal';
+import ModalMiddlePortal from '@/components/modal/ModalMiddlePortal';
 
 const StHeader = styled.header`
   position: fixed;
@@ -21,7 +22,6 @@ const StHeader = styled.header`
   box-sizing: border-box;
   height: 38px;
   padding: ${rem(10)} ${rem(12)};
-  z-index: 9999;
   background: linear-gradient(var(--black), 20%, rgba(0, 0, 0, 0.05));
   transition: backdrop-filter 0.1s ease;
 
@@ -67,9 +67,6 @@ const StGnb = styled.div`
   button {
     svg {
       color: var(--gray200);
-      &:hover {
-        color: var(--white);
-      }
     }
   }
 `;
@@ -84,6 +81,9 @@ const StTab = styled.button`
 
   &:hover {
     color: var(--white);
+    svg {
+      color: var(--white);
+    }
   }
 
   @media (min-width: 768px) {
@@ -150,7 +150,7 @@ const Header = () => {
   }, []);
 
   return (
-    <>
+    <ModalMiddlePortal>
       {isSearchModal.isOpen && <SearchModal />}
       <StHeader backgroundColor={isBlackBackground ? 'black' : 'gradient'}>
         <StGnb direction="left">
@@ -197,7 +197,7 @@ const Header = () => {
             onClick={isSearchModal.isOpen ? closeSearchModal : openModal}
             type="button"
           >
-            {!isSearchModal.isOpen && (
+            {!isSearchModal.isOpen && !searchParams.get('keyword') && (
               <Svg
                 id="search-default"
                 width={18}
@@ -237,7 +237,7 @@ const Header = () => {
           </StProfile>
         </StGnb>
       </StHeader>
-    </>
+    </ModalMiddlePortal>
   );
 };
 

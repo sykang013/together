@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import ModalPortal from '@/components/modal/ModalPortal';
 import styled from 'styled-components/macro';
 import { rem } from '@/theme/utils';
 import SearchBar from '@/components/search/SearchBar';
@@ -72,7 +71,7 @@ const SearchModal = () => {
     };
   }, []);
   return (
-    <ModalPortal>
+    <>
       <StSearchModalOverlay onClick={closeModal} />
       <StSearchModal>
         <SearchBar />
@@ -86,7 +85,7 @@ const SearchModal = () => {
         )}
         {searchData.length > 0 && <SearchResult />}
       </StSearchModal>
-    </ModalPortal>
+    </>
   );
 };
 

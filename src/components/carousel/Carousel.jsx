@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { getFontStyle, rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
-import { bool, func, string, number } from 'prop-types';
+import { bool, func, string, number, array } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useReadData } from '@/firebase/firestore';
@@ -87,13 +87,6 @@ const StCarouselContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     gap: ${rem(5)};
-    padding-right: ${rem(8)};
-    @media (min-width: 768px) {
-      padding-right: ${rem(40)};
-    }
-    @media (min-width: 1920px) {
-      padding-right: ${rem(70)};
-    }
     margin: 0;
   }
 
@@ -129,20 +122,61 @@ const StSlider = styled(Slider)`
     @media (min-width: 1920px) {
       padding: ${rem(20)} ${rem(70)} 0;
     }
+
+    :not(:only-child) {
+      .slick-track {
+        padding-right: ${rem(8)};
+        @media (min-width: 768px) {
+          padding-right: ${rem(40)};
+        }
+        @media (min-width: 1920px) {
+          padding-right: ${rem(70)};
+        }
+      }
+      .slick-slide {
+        :last-child {
+          margin-right: ${rem(8)};
+          @media (min-width: 768px) {
+            margin-right: ${rem(40)};
+          }
+          @media (min-width: 1920px) {
+            margin-right: ${rem(70)};
+          }
+        }
+      }
+    }
+
+    ${(props) =>
+      props.desktopSlides === 1 &&
+      css`
+        .slick-track {
+          padding-right: ${rem(8)};
+          @media (min-width: 768px) {
+            padding-right: ${rem(40)};
+          }
+          @media (min-width: 1920px) {
+            padding-right: ${rem(70)};
+          }
+        }
+        .slick-slide {
+          :last-child {
+            margin-right: ${rem(8)};
+            @media (min-width: 768px) {
+              margin-right: ${rem(40)};
+            }
+            @media (min-width: 1920px) {
+              margin-right: ${rem(70)};
+            }
+          }
+        }
+      `}
   }
 
   .slick-slide {
     transition: transform 0.3s ease-in-out;
     position: relative;
-    &:last-child {
-      margin-right: ${rem(8)};
-      @media (min-width: 768px) {
-        margin-right: ${rem(40)};
-      }
-      @media (min-width: 1920px) {
-        margin-right: ${rem(70)};
-      }
-    }
+    padding-right: ${rem(8)};
+
     svg {
       position: absolute;
       top: 5px;
@@ -151,6 +185,9 @@ const StSlider = styled(Slider)`
 
     img {
       border-radius: 5px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     figCaption {
@@ -265,6 +302,7 @@ const Carousel = ({
   title,
   count,
   dataName,
+  dataProp,
   mobileSlides = 4,
   tabletSlides = 6,
   desktopSlides = 7,
@@ -300,7 +338,6 @@ const Carousel = ({
   };
 
   const { isLoading, readData, data } = useReadData(dataName);
-  // const { readSearchData } = useReadData();
 
   useEffect(() => {
     if (dataName) {
@@ -310,12 +347,12 @@ const Carousel = ({
 
   return (
     <>
-      {data && (
+      {(data || dataProp) && (
         <StCarouselContainer>
           <h2>{title}</h2>
           {count && <StCount>{data.length}개</StCount>}
-          <StSlider {...settings}>
-            {data?.slice(0, 20).map((data, index) => {
+          <StSlider {...settings} desktopSlides={desktopSlides}>
+            {(data || dataProp)?.slice(0, 20).map((data, index) => {
               return (
                 <Link key={data.id}>
                   <picture>
@@ -339,7 +376,6 @@ const Carousel = ({
           </StSlider>
         </StCarouselContainer>
       )}
-
       {isLoading && <SkeletonCarousel />}
     </>
   );
@@ -350,6 +386,7 @@ export default Carousel;
 Carousel.propTypes = {
   title: string,
   dataName: string,
+  dataProp: array,
   count: bool,
   mobileSlides: number,
   tabletSlides: number,

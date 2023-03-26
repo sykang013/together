@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import { useSearchParams } from 'react-router-dom';
@@ -14,16 +14,19 @@ import Carousel from '@/components/carousel/Carousel';
 import useReadSearchData from '@/firebase/firestore/useReadSearchData';
 import { StSearchInput } from '@/styles/SearchBarStyles';
 import Svg from '@/components/svg/Svg';
+import SkeletonCarousel from '@/components/loading/SkeletonCarousel';
+import { Helmet } from 'react-helmet-async';
 
 const StLayout = styled.div`
+  margin-top: ${rem(38)};
   padding: ${rem(20)} ${rem(47)} 0;
-
   @media (min-width: 768px) {
     padding: ${rem(28)} ${rem(122)} 0;
+    margin-top: ${rem(56)};
   }
-
   @media (min-width: 1920px) {
     padding: ${rem(52)} ${rem(158)} 0;
+    margin-top: ${rem(100)};
   }
 `;
 
@@ -68,12 +71,20 @@ const SearchPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>타잉 검색</title>
+        <meta
+          name="description"
+          content="타잉의 컨텐츠들을 검색할 수 있는 페이지 입니다."
+        />
+      </Helmet>
       <StLayout>
         <StSearchInput onClick={openModal}>
           <input
             type="text"
             placeholder="TV프로그램, 영화 제목 및 출연진으로 검색해보세요"
-            defaultValue={searchKeyword}
+            value={searchParams.get('keyword') || ''}
+            readOnly
           />
           <button>
             <Svg
@@ -91,9 +102,10 @@ const SearchPage = () => {
       <StMessage>{countSearchData > 0 ? resultMessage : noMessage}</StMessage>
       <StCarouselLayout>
         {tvPrograms.length > 0 && (
-          <Carousel title="TV프로그램" data={tvPrograms} />
+          <Carousel title="TV프로그램" dataProp={tvPrograms} />
         )}
-        {movies.length > 0 && <Carousel title="영화" data={movies} />}
+        {movies.length > 0 && <Carousel title="영화" dataProp={movies} />}
+        {isLoading && <SkeletonCarousel />}
       </StCarouselLayout>
     </>
   );
