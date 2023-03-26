@@ -62,61 +62,61 @@ const CarouselScroll = () => {
         <StImgContainer className="landingImgContainerAnimation">
           <StImgItem className="imgContainer">
             <source
-              srcSet="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
+              srcSet="/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
               media="(max-width: 999px)"
             />
             <source
-              srcSet="src/assets/landing-img/contents-img/org-love-desktop.png"
+              srcSet="/assets/landing-img/contents-img/org-love-desktop.png"
               media="(min-width: 1000px)"
             />
             <img
               className="imgSelf"
-              src="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
+              src="/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
               alt="러브캐쳐"
             />
           </StImgItem>
           <StImgItem className="imgContainer">
             <source
-              srcSet="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
+              srcSet="/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
               media="(max-width: 999px)"
             />
             <source
-              srcSet="src/assets/landing-img/contents-img/org-bomul-desktop.png"
+              srcSet="/assets/landing-img/contents-img/org-bomul-desktop.png"
               media="(min-width: 1000px)"
             />
             <img
               className="imgSelf"
-              src="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
+              src="/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
               alt="보물찾기"
             />
           </StImgItem>
           <StImgItem className="imgContainer">
             <source
-              srcSet="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
+              srcSet="/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
               media="(max-width: 999px)"
             />
             <source
-              srcSet="src/assets/landing-img/contents-img/org-love-desktop.png"
+              srcSet="/assets/landing-img/contents-img/org-love-desktop.png"
               media="(min-width: 1000px)"
             />
             <img
               className="imgSelf"
-              src="src/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
+              src="/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
               alt="러브캐쳐"
             />
           </StImgItem>
           <StImgItem className="imgContainer">
             <source
-              srcSet="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
+              srcSet="/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
               media="(max-width: 999px)"
             />
             <source
-              srcSet="src/assets/landing-img/contents-img/org-bomul-desktop.png"
+              srcSet="/assets/landing-img/contents-img/org-bomul-desktop.png"
               media="(min-width: 1000px)"
             />
             <img
               className="imgSelf"
-              src="src/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
+              src="/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
               alt="보물찾기"
             />
           </StImgItem>
