@@ -52,7 +52,7 @@ const ProfilePage = () => {
               <StProfileImage />
             </StProfileItem>
             <p>{profile.name}</p>
-            <StProfileButton select onClick={() => goToProfileEdit(profile)}>
+            <StProfileButton onClick={() => goToProfileEdit(profile)}>
               프로필 편집
             </StProfileButton>
           </li>
