@@ -63,9 +63,7 @@ const ProfilePage = () => {
           </li>
         ))}
       </StProfileItems>
-      <StProfileButton select onClick={goToProfileEdit}>
-        프로필 편집
-      </StProfileButton>
+      <StProfileButton onClick={goToProfileEdit}>프로필 편집</StProfileButton>
     </StLayoutProfile>
   );
 };
