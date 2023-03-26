@@ -11,8 +11,9 @@ import { modalAtomFamily } from '@/store/modalState';
 import useModal from '@/hooks/useModal';
 import LogoModal from '@/components/header/LogoModal';
 
-const StHeader = styled.nav`
-  position: sticky;
+const StHeader = styled.header`
+  position: fixed;
+  width: 100%;
   top: 0;
   left: 0;
   display: flex;
