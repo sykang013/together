@@ -1,22 +1,11 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import { useAuthState, useSignIn, useSignOut } from '@/firebase/auth';
+import { useAuthState, useSignIn } from '@/firebase/auth';
 import { StContainer, StForm, StInner, StTitle } from '@/styles/FormStyles';
 import { getFontStyle, rem } from '@/theme/utils';
 import { useRef } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import FormInput from '@/components/forminput/FormInput';
-
-const StLoading = styled.figure`
-  margin: 0;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  font-size: ${rem(20)};
-  text-align: center;
-  color: var(--primary);
-`;
+import LoadingSpinner from '@/components/loading/LoadingSpinner';
 
 const StInfo = styled.p`
   color: var(--gray500);
@@ -98,7 +87,7 @@ const StButton = styled.button`
 `;
 
 const initialFormState = {
-  email: '',
+  email: null,
   password: '',
 };
 
@@ -106,8 +95,8 @@ const LoginForm = () => {
   const formStateRef = useRef(initialFormState);
 
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
-  const { signOut } = useSignOut();
   const { isLoading, error, user } = useAuthState();
+  const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -117,25 +106,21 @@ const LoginForm = () => {
     await signIn(email, password);
   };
 
-  const handleSignOut = async () => {
-    signOut();
-  };
-
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     formStateRef.current[name] = value;
   };
 
   if (isLoading) {
-    return <StLoading role="alert">페이지를 준비 중입니다.</StLoading>;
+    return <LoadingSpinner />;
   }
 
   if (error) {
-    return <div role="alert">오류! {error.message}</div>;
+    return <div role="alert">오류!</div>;
   }
 
   if (user) {
-    return <Navigate to="/main" replace={true} />;
+    return navigate('/main');
   }
 
   return (

@@ -40,17 +40,19 @@ const StUtil = styled.div`
   }
 `;
 
-const StUtilList = styled.p`
+const StUtilLink = styled(Link)`
   color: var(--gray200);
+  text-decoration: none;
   &:hover {
     color: var(--white);
+    text-decoration: underline;
   }
 `;
 
 const StCopyrightUl = styled.ul`
   margin-top: ${rem(12)};
   display: none;
-  color: var(--gray500);
+  color: var(--gray400);
   @media (min-width: 768px) {
     display: block;
   }
@@ -66,7 +68,7 @@ const StLink = styled(Link)`
   }
 `;
 
-const StCopyrightli = styled.li`
+const StCopyrightli = styled.div`
   span:after {
     content: '';
     border: 1px solid;
@@ -93,6 +95,7 @@ const StIconBox = styled.div`
 
 const StCopyright = styled.p`
   margin-top: ${rem(12)};
+  color: var(--gray400);
 `;
 
 const Footer = () => {
@@ -100,24 +103,17 @@ const Footer = () => {
     <StFooter>
       <StContainer>
         <StUtil>
-          <StUtilList>
-            <Link to="/">고객센터</Link>
-          </StUtilList>
-          <StUtilList>
-            <Link to="/">이용약관</Link>
-          </StUtilList>
-          <StUtilList>
-            <Link to="/">개인정보처리방침</Link>
-          </StUtilList>
-          <StUtilList>
-            <Link to="/">청소년 보호정책</Link>
-          </StUtilList>
-          <StUtilList>
-            <Link to="/">법적고지</Link>
-          </StUtilList>
-          <StUtilList>
-            <Link to="/">인재채용</Link>
-          </StUtilList>
+          <StUtilLink to="/">고객센터</StUtilLink>
+
+          <StUtilLink to="/">이용약관</StUtilLink>
+
+          <StUtilLink to="/">개인정보처리방침</StUtilLink>
+
+          <StUtilLink to="/">청소년 보호정책</StUtilLink>
+
+          <StUtilLink to="/">법적고지</StUtilLink>
+
+          <StUtilLink to="/">인재채용</StUtilLink>
         </StUtil>
         <StCopyrightUl>
           <StCopyrightli>
@@ -157,6 +153,7 @@ const Footer = () => {
             tabletH={30}
             desktopW={38}
             desktopH={38}
+            aria-label="타잉 유튜브"
           />
           <Svg
             id="instagram"
@@ -166,6 +163,7 @@ const Footer = () => {
             tabletH={30}
             desktopW={38}
             desktopH={38}
+            aria-label="타잉 인스타그램"
           />
           <Svg
             id="twitter"
@@ -175,6 +173,7 @@ const Footer = () => {
             tabletH={30}
             desktopW={38}
             desktopH={38}
+            aria-label="타잉 트위터"
           />
           <Svg
             id="facebook"
@@ -184,6 +183,7 @@ const Footer = () => {
             tabletH={30}
             desktopW={38}
             desktopH={38}
+            aria-label="타잉 페이스북"
           />
         </StIconBox>
         <StCopyright>

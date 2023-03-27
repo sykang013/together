@@ -30,7 +30,7 @@ const App = () => {
               }
             />
             <Route
-              path="landing"
+              path="/"
               element={
                 <PrivateRoute>
                   <LandingPage />

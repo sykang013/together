@@ -10,13 +10,13 @@ const PrivateRoute = ({ children }) => {
   }
 
   if (user) {
-    if (children.type.name == 'LandingPage') {
+    if (location.pathname === '/') {
       return <Navigate to="/main" />;
     } else {
       return children;
     }
   } else {
-    if (children.type.name == 'LandingPage') {
+    if (location.pathname === '/') {
       return children;
     } else {
       return <Navigate to="/login" />;
