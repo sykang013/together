@@ -5,7 +5,8 @@ import {
   StProfileItem,
   StProfileImage,
   StProfileButton,
-  StLayoutProfile,
+  StProfileSvg,
+  StSvg,
 } from '@/components/profile/Profile';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from '@/firebase/auth';
@@ -49,7 +50,7 @@ const ProfilePage = () => {
   }, [user]);
 
   return (
-    <StLayoutProfile>
+    <>
       <StProfileTitle>프로필 선택</StProfileTitle>
       <StProfileSubTitle>시청할 프로필을 선택해주세요.</StProfileSubTitle>
       <StProfileItems>
@@ -66,9 +67,27 @@ const ProfilePage = () => {
             </li>
           );
         })}
+        {profiles.length < 4 && (
+          <li>
+            <StProfileSvg onClick={goToProfileCreate}>
+              <StSvg>
+                <svg
+                  width="30"
+                  height="30"
+                  viewBox="0 0 30 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M0 15H30" stroke="#565656" />
+                  <path d="M15 30L15 -8.9407e-07" stroke="#565656" />
+                </svg>
+              </StSvg>
+            </StProfileSvg>
+            <p>프로필 추가</p>
+          </li>
+        )}
       </StProfileItems>
-      <StProfileButton onClick={goToProfileCreate}>프로필 추가</StProfileButton>
-    </StLayoutProfile>
+    </>
   );
 };
 
