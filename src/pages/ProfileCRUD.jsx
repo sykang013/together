@@ -1,5 +1,5 @@
 import { StLayoutProfile, StProfileButton } from '@/components/profile/Profile';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components/macro';
 import { storageService } from '@/firebase/app';
 import { useAuthState } from '@/firebase/auth';
@@ -37,15 +37,12 @@ const ProfileCRUD = () => {
   const [text, setText] = useState('');
   const [fileImage, setFileImage] = useState('');
   const { user } = useAuthState();
-  const fileRef = useRef();
 
   const goToProfilePage = () => {
     navigate('/profile-page');
   };
 
-  const { createData, error, isLoading } = useCreateData(
-    user && `users/${user.uid}/profile`
-  );
+  const { createData } = useCreateData(user && `users/${user.uid}/profile`);
 
   const saveFileImage = () => {
     const {
@@ -93,7 +90,7 @@ const ProfileCRUD = () => {
           ImageURL
         />
       </StUploadImageView>
-      <StImageFile type="file" onChange={saveFileImage} ref={fileRef} />
+      <StImageFile type="file" onChange={saveFileImage} />
       <StName type="text" onChange={onChangeName} value={text} />
       <StProfileButton
         type="submit"
@@ -101,8 +98,6 @@ const ProfileCRUD = () => {
           onClick();
           goToProfilePage();
         }}
-        isLoading={isLoading}
-        error={error}
       >
         저장
       </StProfileButton>

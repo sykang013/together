@@ -24,8 +24,6 @@ const ProfileDeleteModal = ({ closeProfileDeleteModal, profileId }) => {
       message="정말 프로필을 삭제하시겠습니까?"
       onClickHandler={handleProfileDelete}
       cancelHandler={closeProfileDeleteModal}
-      isLoading={isLoading}
-      error={error}
     />
   );
 };
