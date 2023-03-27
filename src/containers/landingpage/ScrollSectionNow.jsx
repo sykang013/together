@@ -18,7 +18,7 @@ const StScrollSectionNow = styled.section`
   @media (min-width: 1920px) {
     ${getFontStyle('headingXXXL')};
   }
-  span {
+  h2 {
     margin-top: var(--spacingS);
   }
 `;
@@ -36,7 +36,7 @@ const ScrollSectionNow = () => {
         desktopW="279"
         desktopH="110"
       />
-      <span className="landingElementAnimation">지금 시작해보세요</span>
+      <h2 className="landingElementAnimation">지금 시작해보세요</h2>
       <PrimaryButton>새로워진 타잉을 만나보세요!</PrimaryButton>
     </StScrollSectionNow>
   );

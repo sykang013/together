@@ -7,34 +7,41 @@ const StMessageTitle = styled.div`
   color: var(--white);
   text-align: center;
   ${getFontStyle('headingM')};
-  span:last-child {
+  .landingSpanDetail {
     ${getFontStyle('ParagraphS')};
     color: var(--gray400);
     margin-top: var(--spacingXXS);
   }
   @media (min-width: 768px) {
     ${getFontStyle('headingL')};
-    span:last-child {
+    .landingSpanDetail {
       ${getFontStyle('ParagraphS')};
     }
   }
   @media (min-width: 1920px) {
     ${getFontStyle('headingXXXL')};
-    span:last-child {
+    .landingSpanDetail {
       ${getFontStyle('LabelXL')};
     }
+  }
+  h2 {
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
   }
 `;
 
 function MessageTitle() {
   return (
     <StMessageTitle>
-      <span className="landingElementAnimation">타잉 오리지널 콘텐츠,</span>
-      <span className="landingElementAnimation">
-        방송, 영화, 해외시리즈까지!
-      </span>
-      <span className="landingElementAnimation">재미를 플레이해보세요.</span>
-      <span className="landingElementAnimation">
+      <h2>
+        <span className="landingElementAnimation">타잉 오리지널 콘텐츠,</span>
+        <span className="landingElementAnimation">
+          방송, 영화, 해외시리즈까지!
+        </span>
+        <span className="landingElementAnimation">재미를 플레이해보세요.</span>
+      </h2>
+      <span className="landingElementAnimation landingSpanDetail">
         간편하게 가입하고, 원하실 때 해지할 수 있어요.
       </span>
     </StMessageTitle>
