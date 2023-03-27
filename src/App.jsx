@@ -63,14 +63,14 @@ const App = () => {
                 </PrivateRoute>
               }
             />
-            <Route
+            {/* <Route
               path="main"
               element={
                 <PrivateRoute>
                   <MainPage />
                 </PrivateRoute>
               }
-            />
+            /> */}
             <Route path="search" element={<SearchPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
