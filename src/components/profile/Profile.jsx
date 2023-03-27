@@ -105,7 +105,6 @@ export const StProfileEditImage = styled.img`
   left: 0;
   width: 100%;
   height: 100%;
-  background: lime;
   cursor: pointer;
   &:hover {
     border: 4px solid var(--primary);

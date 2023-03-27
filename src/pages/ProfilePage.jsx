@@ -17,7 +17,10 @@ const ProfilePage = () => {
   const { user } = useAuthState();
   const [profiles, setProfiles] = useState([]);
   const goToProfileEdit = (profile) => {
-    navigate(`/profile-edit?id=${profile.id}&name=${profile.name}`);
+    const encodedUrl = encodeURIComponent(profile.mobileUrl);
+    navigate(
+      `/profile-edit?id=${profile.id}&name=${profile.name}&url=${encodedUrl}`
+    );
   };
   const goToProfileCreate = () => {
     navigate('/profile-create');
@@ -33,7 +36,11 @@ const ProfilePage = () => {
           (querySnapshot) => {
             const profilesArray = [];
             querySnapshot.forEach((doc) => {
-              profilesArray.push({ id: doc.id, name: doc.data().name });
+              profilesArray.push({
+                id: doc.id,
+                name: doc.data().name,
+                mobileUrl: doc.data().mobileUrl,
+              });
             });
             setProfiles(profilesArray);
           },
@@ -52,7 +59,7 @@ const ProfilePage = () => {
         {profiles.map((profile) => (
           <li key={profile.id}>
             <StProfileItem>
-              <StProfileImage />
+              <StProfileImage src={profile.mobileUrl} />
             </StProfileItem>
             <p>{profile.name}</p>
             <StProfileButton onClick={() => goToProfileEdit(profile)}>
