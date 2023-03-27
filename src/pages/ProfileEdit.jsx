@@ -10,7 +10,6 @@ import {
   StProfileEditButton,
 } from '@/components/profile/Profile';
 import { useLocation, useNavigate } from 'react-router-dom';
-import ImageTest from '/assets/profile_1.png';
 import { useState } from 'react';
 import { dbService } from '@/firebase/app';
 import { useAuthState } from '@/firebase/auth';
@@ -84,8 +83,11 @@ ProfileNameForm.propTypes = {
 const ProfileEdit = () => {
   const { search } = useLocation();
   const params = new URLSearchParams(search);
+
   const id = params.get('id');
   const name = params.get('name');
+  const url = params.get('url');
+
   const [profileName, setProfileName] = useState(name);
 
   return (
@@ -95,7 +97,7 @@ const ProfileEdit = () => {
       <StProfileItems>
         <li>
           <StProfileItem>
-            <StProfileImage src={ImageTest} />
+            <StProfileImage src={url} />
             <StProfileEditImage />
           </StProfileItem>
           <ProfileNameForm
