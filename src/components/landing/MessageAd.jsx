@@ -46,7 +46,7 @@ const MessageAd = (props) => {
       sub={props.subText}
       detail={props.detailText}
     >
-      <span className="landingElementAnimation">{props.mainText}</span>
+      <h2 className="landingElementAnimation">{props.mainText}</h2>
       <span className="landingElementAnimation">{props.subText}</span>
       <span className="landingElementAnimation">{props.detailText}</span>
     </StMessageAd>
