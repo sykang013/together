@@ -1,9 +1,8 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import LogoutModal from '@/components/logout/LogoutModal';
-import { useEffect } from 'react';
 import { useRef } from 'react';
 
 const StModalContainer = styled.div`
