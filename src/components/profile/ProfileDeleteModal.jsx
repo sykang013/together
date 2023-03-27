@@ -1,28 +1,22 @@
 import propTypes from 'prop-types';
 import Modal from '@/components/modal/Modal';
 import { useNavigate } from 'react-router-dom';
-import { dbService } from '@/firebase/app';
 import { useAuthState } from '@/firebase/auth';
+import { useDeleteData } from '@/firebase/firestore/useDeleteData';
 
 const ProfileDeleteModal = ({ closeProfileDeleteModal, profileId }) => {
   const navigate = useNavigate();
   const { user } = useAuthState();
+  const { deleteData } = useDeleteData('users');
 
   const handleProfileDelete = async () => {
     try {
-      await dbService
-        .collection('users')
-        .doc(user.uid)
-        .collection('profile')
-        .doc(profileId)
-        .delete();
-
+      await deleteData(`${user.uid}/profile/${profileId}`);
       closeProfileDeleteModal();
+      navigate('/profile-page');
     } catch (error) {
       console.error('Error deleting profile: ', error);
     }
-    closeProfileDeleteModal();
-    navigate('/profile-page');
   };
 
   return (
