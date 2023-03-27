@@ -1,8 +1,10 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import LogoutModal from '@/components/logout/LogoutModal';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
 const StModalContainer = styled.div`
   width: ${rem(180)};
@@ -74,13 +76,24 @@ const LogoModal = () => {
     setIsModal(false);
   };
 
+  const stModalContainerRef = useRef(null);
+
   return (
     <>
       {isModal && <LogoutModal closeLogoutModal={closeLogoutModal} />}
-      <StModalContainer>
+      <StModalContainer ref={stModalContainerRef}>
         <StProfileBox
           aria-label="프로필 페이지로 이동합니다."
           to="/profile-page"
+          onClick={() => {
+            const modalContainer = stModalContainerRef.current;
+            if (stModalContainerRef.current) {
+              modalContainer.style.display = 'none';
+              setTimeout(() => {
+                modalContainer.style.removeProperty('display');
+              }, 10);
+            }
+          }}
         >
           <StProfileIcon>
             <StProfileImage
