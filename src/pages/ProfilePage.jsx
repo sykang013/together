@@ -17,7 +17,10 @@ const ProfilePage = () => {
   const { user } = useAuthState();
   const [profiles, setProfiles] = useState([]);
   const goToProfileEdit = (profile) => {
-    navigate(`/profile-edit?id=${profile.id}&name=${profile.name}`);
+    const encodedUrl = encodeURIComponent(profile.mobileUrl);
+    navigate(
+      `/profile-edit?id=${profile.id}&name=${profile.name}&url=${encodedUrl}`
+    );
   };
   const goToProfileCreate = () => {
     navigate('/profile-create');

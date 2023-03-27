@@ -13,6 +13,7 @@ import FormInput from '@/components/forminput/FormInput';
 import { useAuthState, useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import LoadingSpinner from '../loading/LoadingSpinner';
 
 const StHeaderDescription = styled.p`
   color: ${getColor('--gray400')};
@@ -157,11 +158,11 @@ const RegisterForm = () => {
   };
 
   if (isLoading) {
-    return <div role="alert">페이지를 준비 중입니다.</div>;
+    return <LoadingSpinner />;
   }
 
   if (error) {
-    return <div role="alert">오류! {error.message}</div>;
+    return <div role="alert">오류!</div>;
   }
 
   return (

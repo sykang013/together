@@ -10,7 +10,7 @@ const LogoutModal = ({ closeLogoutModal }) => {
   const handleSignOut = () => {
     signOut();
     closeLogoutModal();
-    navigate('/Landing');
+    navigate('/');
   };
 
   return (
