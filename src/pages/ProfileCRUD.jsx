@@ -1,10 +1,10 @@
 import { StLayoutProfile, StProfileButton } from '@/components/profile/Profile';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components/macro';
-import { dbService } from '@/firebase/app';
-import { collection, addDoc } from 'firebase/firestore';
+import { storageService } from '@/firebase/app';
 import { useAuthState } from '@/firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { useCreateData } from '@/firebase/firestore/useCreateData';
 
 const StUploadImageView = styled.div`
   width: 50%;
@@ -37,31 +37,51 @@ const ProfileCRUD = () => {
   const [text, setText] = useState('');
   const [fileImage, setFileImage] = useState('');
   const { user } = useAuthState();
+  const fileRef = useRef();
+
   const goToProfilePage = () => {
     navigate('/profile-page');
   };
 
-  const saveFileImage = (e) => {
-    const ImageURL = URL.createObjectURL(e.target.files[0]);
-    setFileImage(ImageURL);
+  const { createData, error, isLoading } = useCreateData(
+    user && `users/${user.uid}/profile`
+  );
+
+  const saveFileImage = () => {
+    const {
+      target: { files },
+    } = event;
+    const theFile = files[0];
+    const reader = new FileReader();
+    reader.onloadend = (finishedEvent) => {
+      const {
+        currentTarget: { result },
+      } = finishedEvent;
+      setFileImage(result);
+    };
+    reader.readAsDataURL(theFile);
   };
 
   const onChangeName = (e) => {
     setText(e.target.value);
   };
 
-  const createData = async () => {
-    try {
-      await addDoc(collection(dbService, 'users', user.uid, 'profile'), {
-        name: text,
-      });
-    } catch (error) {
-      console.log('Error creating data: ', error);
-    }
-  };
-
   const onClick = async () => {
-    await createData();
+    if (!fileImage || !text) {
+      alert('프로필 이미지와 이름을 입력해주세요.');
+      return;
+    }
+    let uuid = self.crypto.randomUUID();
+    const mobileRef = storageService
+      .ref()
+      .child(`profile/${user.uid}/${uuid}/mobile`);
+    const response1 = await mobileRef.putString(fileImage, 'data_url');
+    const mobileUrl = await response1.ref.getDownloadURL();
+    await createData({
+      name: text,
+      mobileUrl,
+    });
+    goToProfilePage();
   };
 
   return (
@@ -73,7 +93,7 @@ const ProfileCRUD = () => {
           ImageURL
         />
       </StUploadImageView>
-      <StImageFile type="file" onChange={saveFileImage} />
+      <StImageFile type="file" onChange={saveFileImage} ref={fileRef} />
       <StName type="text" onChange={onChangeName} value={text} />
       <StProfileButton
         type="submit"
@@ -81,6 +101,8 @@ const ProfileCRUD = () => {
           onClick();
           goToProfilePage();
         }}
+        isLoading={isLoading}
+        error={error}
       >
         저장
       </StProfileButton>

@@ -33,7 +33,11 @@ const ProfilePage = () => {
           (querySnapshot) => {
             const profilesArray = [];
             querySnapshot.forEach((doc) => {
-              profilesArray.push({ id: doc.id, name: doc.data().name });
+              profilesArray.push({
+                id: doc.id,
+                name: doc.data().name,
+                mobileUrl: doc.data().mobileUrl,
+              });
             });
             setProfiles(profilesArray);
           },
@@ -49,17 +53,19 @@ const ProfilePage = () => {
       <StProfileTitle>프로필 선택</StProfileTitle>
       <StProfileSubTitle>시청할 프로필을 선택해주세요.</StProfileSubTitle>
       <StProfileItems>
-        {profiles.map((profile) => (
-          <li key={profile.id}>
-            <StProfileItem>
-              <StProfileImage />
-            </StProfileItem>
-            <p>{profile.name}</p>
-            <StProfileButton onClick={() => goToProfileEdit(profile)}>
-              프로필 편집
-            </StProfileButton>
-          </li>
-        ))}
+        {profiles.map((profile) => {
+          return (
+            <li key={profile.id}>
+              <StProfileItem>
+                <StProfileImage src={profile.mobileUrl} alt="프로필 이미지" />
+              </StProfileItem>
+              <p>{profile.name}</p>
+              <StProfileButton onClick={() => goToProfileEdit(profile)}>
+                프로필 편집
+              </StProfileButton>
+            </li>
+          );
+        })}
       </StProfileItems>
       <StProfileButton onClick={goToProfileCreate}>프로필 추가</StProfileButton>
     </StLayoutProfile>

@@ -56,9 +56,9 @@ const MainPage = () => {
           content="타잉의 컨텐츠들을 즐길 수 있는 메인 페이지 입니다."
         />
       </Helmet>
-      <MainBanner />
+      {/* <MainBanner /> */}
       {isPopupModal && <Popup closeModal={closeModal} />}
-      <StCarouselLayout>
+      {/* <StCarouselLayout>
         <Carousel title="티빙에서 꼭 봐야하는 콘텐츠" dataName="programs" />
         <Carousel
           title="Quick VOD"
@@ -101,7 +101,7 @@ const MainPage = () => {
           tabletSlides={4}
           mobileSlides={3}
         />
-      </StCarouselLayout>
+  </StCarouselLayout> */}
     </>
   );
 };
