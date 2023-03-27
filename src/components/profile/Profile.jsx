@@ -111,7 +111,7 @@ export const StProfileSvg = styled.div`
   display: inline-flex;
   cursor: pointer;
   &:hover {
-    border: 2px solid white;
+    border: 2px solid var(--white);
   }
 `;
 export const StSvg = styled.div`
@@ -133,7 +133,7 @@ export const StProfileImage = styled.img`
   height: 100%;
   cursor: pointer;
   &:hover {
-    border: 2px solid white;
+    border: 2px solid var(--white);
   }
 `;
 
