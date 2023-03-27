@@ -7,7 +7,7 @@ import { useDeleteData } from '@/firebase/firestore/useDeleteData';
 const ProfileDeleteModal = ({ closeProfileDeleteModal, profileId }) => {
   const navigate = useNavigate();
   const { user } = useAuthState();
-  const { isLoading, error, deleteData } = useDeleteData('users');
+  const { deleteData } = useDeleteData('users');
 
   const handleProfileDelete = async () => {
     try {

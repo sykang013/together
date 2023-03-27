@@ -32,7 +32,7 @@ const StName = styled.input`
   margin: 10px auto 0 auto;
 `;
 
-const ProfileCRUD = () => {
+const ProfileCreate = () => {
   const navigate = useNavigate();
   const [text, setText] = useState('');
   const [fileImage, setFileImage] = useState('');
@@ -105,4 +105,4 @@ const ProfileCRUD = () => {
   );
 };
 
-export default ProfileCRUD;
+export default ProfileCreate;

@@ -9,7 +9,7 @@ import LandingPage from './pages/LandingPage';
 import PrivateRoute from './PrivateRoute';
 import NotFound from './pages/NotFound';
 import ProfilePage from './pages/ProfilePage';
-import ProfileCRUD from './pages/ProfileCRUD';
+import ProfileCreate from './pages/ProfileCreate';
 import ProfileEdit from './pages/ProfileEdit';
 import SearchPage from './pages/SearchPage';
 
@@ -59,7 +59,7 @@ const App = () => {
               path="profile-create"
               element={
                 <PrivateRoute>
-                  <ProfileCRUD />
+                  <ProfileCreate />
                 </PrivateRoute>
               }
             />
