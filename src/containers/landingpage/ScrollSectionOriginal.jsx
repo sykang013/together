@@ -18,7 +18,7 @@ const ScrollSectionOriginal = () => {
   return (
     <StScrollSectionOriginal className="landingSectionAnimation triggerOriginal">
       <MessageAd
-        mainText="티빙에만 있는 재미"
+        mainText="타잉에만 있는 재미"
         subText="오리지널 콘텐츠를 만나보세요!"
         detailText="차별화된 웰메이드 오리지널 콘텐츠"
       />
