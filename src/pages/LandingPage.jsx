@@ -3,6 +3,7 @@ import ScrollSectionTitle from '@/containers/landingpage/ScrollSectionTitle';
 import ScrollSectionOriginal from '@/containers/landingpage/ScrollSectionOriginal';
 import ScrollSectionAd from '@/containers/landingpage/ScrollSectionAd';
 import ScrollSectionNow from '@/containers/landingpage/ScrollSectionNow';
+import { Helmet } from 'react-helmet-async';
 import { useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -58,12 +59,18 @@ const LandingPage = () => {
     };
   }, []);
   return (
-    <StLandingPage>
-      <ScrollSectionTitle />
-      <ScrollSectionOriginal />
-      <ScrollSectionAd />
-      <ScrollSectionNow />
-    </StLandingPage>
+    <>
+      <Helmet>
+        <title>타잉</title>
+        <meta name="description" content="타잉을 소개하는 랜딩 페이지입니다." />
+      </Helmet>
+      <StLandingPage>
+        <ScrollSectionTitle />
+        <ScrollSectionOriginal />
+        <ScrollSectionAd />
+        <ScrollSectionNow />
+      </StLandingPage>
+    </>
   );
 };
 
