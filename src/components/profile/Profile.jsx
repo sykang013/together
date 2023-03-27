@@ -15,7 +15,7 @@ export const StLayoutProfile = styled.div`
 export const StProfileTitle = styled.h2`
   ${getFontStyle('headingM')};
   text-align: center;
-  margin-top: ${rem(72)};
+  margin-top: ${rem(122)};
   @media (min-width: 768px) {
     ${getFontStyle('headingXL')};
     margin-top: ${rem(130)};
@@ -44,38 +44,49 @@ export const StProfileSubTitle = styled.h3`
 export const StProfileItems = styled.ul`
   display: flex;
   flex-flow: row wrap;
-  width: 100%;
+  width: ${rem(252)};
   height: auto;
   margin-top: ${rem(20)};
-  justify-content: ${(props) => {
-    if (props.children.length > 3) return 'space-between';
-    else return 'space-evenly';
-  }};
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
   @media (min-width: 768px) {
+    gap: ${rem(15)};
+    width: ${rem(600)};
+    padding-top: ${rem(20)};
   }
   @media (min-width: 1920px) {
-    padding-top: ${rem(44)};
+    gap: ${rem(25)};
+    width: ${rem(1200)};
+    padding-top: ${rem(30)};
   }
   li {
-    width: 45.24%;
-    margin-top: ${rem(32)};
+    width: ${rem(114)};
+    margin-top: ${rem(16)};
     @media (min-width: 768px) {
-      width: 21.15%;
+      width: ${rem(132)};
       margin: 0;
     }
     @media (min-width: 1920px) {
-      width: 21.15%;
+      width: ${rem(234)};
     }
     p {
       ${getFontStyle('ParagraphS')};
       text-align: center;
-      margin-top: ${rem(12)};
+      width: ${rem(114)};
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin-top: ${rem(3)};
       color: var(--gray300);
       @media (min-width: 768px) {
         ${getFontStyle('ParagraphM')};
+        width: ${rem(132)};
+        margin-top: ${rem(6)};
       }
       @media (min-width: 1920px) {
         ${getFontStyle('ParagraphXL')};
+        width: ${rem(234)};
         margin-top: ${rem(16)};
       }
     }
@@ -83,10 +94,38 @@ export const StProfileItems = styled.ul`
 `;
 
 export const StProfileItem = styled.div`
+  display: inline-block;
   position: relative;
   width: 100%;
   aspect-ratio: auto 1/1;
   border-radius: 4px;
+  object-fit: cover;
+  text-align: center;
+  margin: 0 auto;
+`;
+
+export const StProfileSvg = styled.div`
+  background: var(--gray700);
+  width: 100%;
+  aspect-ratio: auto 1/1;
+  display: inline-flex;
+  cursor: pointer;
+  &:hover {
+    border: 2px solid white;
+  }
+`;
+export const StSvg = styled.div`
+  display: block;
+  margin: auto;
+  svg {
+    scale: 100%;
+  }
+  @media (min-width: 768px) {
+    scale: 150%;
+  }
+  @media (min-width: 1920px) {
+    scale: 200%;
+  }
 `;
 
 export const StProfileImage = styled.img`
@@ -94,7 +133,7 @@ export const StProfileImage = styled.img`
   height: 100%;
   cursor: pointer;
   &:hover {
-    border: 4px solid var(--primary);
+    border: 2px solid white;
   }
 `;
 
@@ -113,21 +152,23 @@ export const StProfileEditImage = styled.img`
 
 export const StProfileButton = styled.button`
   display: block;
-  margin: ${rem(32)} auto 0 auto;
-  width: 50%;
-  aspect-ratio: auto 1/0.2;
+  width: ${rem(114)};
+  height: ${rem(34)};
+  margin: ${rem(3)} auto 0 auto;
+  color: var(--gray300);
   background-color: var(--black);
-  color: var(--gray100);
   border: 1px solid var(--gray600);
   border-radius: 4px;
-  padding: ${rem(12)} 0;
   ${getFontStyle('LabelS')};
   @media (min-width: 768px) {
-    margin-top: ${rem(44)};
+    width: ${rem(132)};
+    height: ${rem(38)};
+    margin-top: ${rem(6)};
   }
   @media (min-width: 1920px) {
-    margin-top: ${rem(66)};
-    width: 75%;
+    width: ${rem(234)};
+    height: ${rem(60)};
+    margin-top: ${rem(15)};
     ${getFontStyle('LabelL')};
   }
   &:hover {
