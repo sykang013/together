@@ -3,6 +3,7 @@ import { getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import LogoutModal from '@/components/logout/LogoutModal';
+import { useRef } from 'react';
 
 const StModalContainer = styled.div`
   width: ${rem(180)};
@@ -14,6 +15,14 @@ const StModalContainer = styled.div`
   right: 0;
   z-index: 99;
   position: absolute;
+  @media (min-width: 768px) {
+    width: ${rem(234)};
+    height: ${rem(156)};
+  }
+  @media (min-width: 1920px) {
+    width: ${rem(360)};
+    height: ${rem(240)};
+  }
 `;
 
 const StProfileBox = styled(Link)`
@@ -23,6 +32,14 @@ const StProfileBox = styled(Link)`
   border-bottom: 1px solid var(--dark-bg2);
   display: flex;
   flex-flow: row nowrap;
+  @media (min-width: 768px) {
+    width: ${rem(233)};
+    height: ${rem(91)};
+  }
+  @media (min-width: 1920px) {
+    width: ${rem(357)};
+    height: ${rem(140)};
+  }
 `;
 
 const StProfileIcon = styled.div`
@@ -33,6 +50,16 @@ const StProfileIcon = styled.div`
   margin-top: auto;
   margin-bottom: auto;
   margin-left: ${rem(4)};
+  @media (min-width: 768px) {
+    margin-left: ${rem(8)};
+    width: ${rem(58.5)};
+    height: ${rem(58.5)};
+  }
+  @media (min-width: 1920px) {
+    margin-left: ${rem(12)};
+    width: ${rem(90)};
+    height: ${rem(90)};
+  }
 `;
 
 const StProfileImage = styled.img`
@@ -47,9 +74,23 @@ const StProfileName = styled.div`
   text-align: left;
   margin-top: auto;
   margin-bottom: auto;
+  @media (min-width: 768px) {
+    ${getFontStyle('LabelM')};
+    margin-left: ${rem(13)};
+  }
+  @media (min-width: 1920px) {
+    ${getFontStyle('LabelXL')};
+    margin-left: ${rem(20)};
+  }
   p {
     ${getFontStyle('ParagraphS')};
     color: var(--gray400);
+    @media (min-width: 768px) {
+      ${getFontStyle('ParagraphM')};
+    }
+    @media (min-width: 1920px) {
+      ${getFontStyle('ParagraphXL')};
+    }
   }
 `;
 
@@ -57,6 +98,14 @@ const StLogoutBox = styled.div`
   display: flex;
   width: ${rem(159)};
   height: ${rem(47)};
+  @media (min-width: 768px) {
+    width: ${rem(234)};
+    height: ${rem(62)};
+  }
+  @media (min-width: 1920px) {
+    width: ${rem(360)};
+    height: ${rem(97)};
+  }
 `;
 
 const StLogoutButton = styled.button`
@@ -65,6 +114,14 @@ const StLogoutButton = styled.button`
   margin-left: ${rem(13)};
   margin-top: auto;
   margin-bottom: auto;
+  @media (min-width: 768px) {
+    ${getFontStyle('ParagraphM')};
+    margin-left: ${rem(18)};
+  }
+  @media (min-width: 1920px) {
+    ${getFontStyle('ParagraphXL')};
+    margin-left: ${rem(25)};
+  }
 `;
 
 const LogoModal = () => {
@@ -74,13 +131,24 @@ const LogoModal = () => {
     setIsModal(false);
   };
 
+  const stModalContainerRef = useRef(null);
+
   return (
     <>
       {isModal && <LogoutModal closeLogoutModal={closeLogoutModal} />}
-      <StModalContainer>
+      <StModalContainer ref={stModalContainerRef}>
         <StProfileBox
           aria-label="프로필 페이지로 이동합니다."
           to="/profile-page"
+          onClick={() => {
+            const modalContainer = stModalContainerRef.current;
+            if (stModalContainerRef.current) {
+              modalContainer.style.display = 'none';
+              setTimeout(() => {
+                modalContainer.style.removeProperty('display');
+              }, 10);
+            }
+          }}
         >
           <StProfileIcon>
             <StProfileImage
