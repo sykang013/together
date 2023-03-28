@@ -146,46 +146,54 @@ const Footer = () => {
           </StCopyrightli>
         </StCopyrightUl>
         <StIconBox>
-          <Svg
-            id="youtube"
-            width={24}
-            height={24}
-            tabletW={30}
-            tabletH={30}
-            desktopW={38}
-            desktopH={38}
-            aria-label="타잉 유튜브"
-          />
-          <Svg
-            id="instagram"
-            width={24}
-            height={24}
-            tabletW={30}
-            tabletH={30}
-            desktopW={38}
-            desktopH={38}
-            aria-label="타잉 인스타그램"
-          />
-          <Svg
-            id="twitter"
-            width={24}
-            height={24}
-            tabletW={30}
-            tabletH={30}
-            desktopW={38}
-            desktopH={38}
-            aria-label="타잉 트위터"
-          />
-          <Svg
-            id="facebook"
-            width={24}
-            height={24}
-            tabletW={30}
-            tabletH={30}
-            desktopW={38}
-            desktopH={38}
-            aria-label="타잉 페이스북"
-          />
+          <Link to="/main">
+            <Svg
+              id="youtube"
+              width={24}
+              height={24}
+              tabletW={30}
+              tabletH={30}
+              desktopW={38}
+              desktopH={38}
+              aria-label="타잉 유튜브"
+            />
+          </Link>
+          <Link to="/main">
+            <Svg
+              id="instagram"
+              width={24}
+              height={24}
+              tabletW={30}
+              tabletH={30}
+              desktopW={38}
+              desktopH={38}
+              aria-label="타잉 인스타그램"
+            />
+          </Link>
+          <Link to="/main">
+            <Svg
+              id="twitter"
+              width={24}
+              height={24}
+              tabletW={30}
+              tabletH={30}
+              desktopW={38}
+              desktopH={38}
+              aria-label="타잉 트위터"
+            />
+          </Link>
+          <Link to="/main">
+            <Svg
+              id="facebook"
+              width={24}
+              height={24}
+              tabletW={30}
+              tabletH={30}
+              desktopW={38}
+              desktopH={38}
+              aria-label="타잉 페이스북"
+            />
+          </Link>
         </StIconBox>
         <StCopyright>
           <small>Copyright Ⓒ 주식회사 티빙 All right reserved</small>

@@ -2,7 +2,6 @@
 // import { withRouter } from 'storybook-addon-react-router-v6';
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 import { createGlobalStyle } from 'styled-components';
-import { getColor } from '../src/theme/utils';
 import ko from 'axe-core/locales/ko.json';
 
 const GlobalStyles = createGlobalStyle`
@@ -54,11 +53,10 @@ table {
   border-spacing: 0;
 }
 body {
-  background-color : ${getColor('--black')};
+  background-color : var(--black);
   button,
   a {cursor: pointer};
-  color: ${getColor('--white')};
-  }
+  color: var(--white);
   body,
   body::before,
   body::after,
@@ -96,7 +94,7 @@ body {
     --secondary: #1728C0;
     --dark-bg1: #191919;
     --dark-bg2: #212121;
-
+  }
     font-size: calc(8px + 0.5vw);
 
     * {

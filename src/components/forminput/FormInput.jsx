@@ -1,4 +1,4 @@
-import { getColor, getFontStyle, rem } from '@/theme/utils';
+import { getFontStyle, rem } from '@/theme/utils';
 import { string } from 'prop-types';
 import { useId } from 'react';
 import styled from 'styled-components/macro';
@@ -8,8 +8,8 @@ const StFormInput = styled.input`
   padding: ${rem(16)};
   border: none;
   border-radius: 4px;
-  background-color: ${getColor('--dark-bg2')};
-  color: ${getColor('--white')};
+  background-color: var(--dark-bg2);
+  color: var(--white);
   width: ${rem(288)};
   ${getFontStyle('ParagraphM')};
   @media (min-width: 768px) {
