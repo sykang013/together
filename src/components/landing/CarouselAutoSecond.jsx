@@ -70,24 +70,12 @@ const CarouselAutoSecond = ({ speed }) => {
       <StAutoContainer speed={speed} className="landingAutoContainerAnimation">
         {data?.map((data) => {
           return (
-            <>
-              <StImgItem
-                key={data.id}
-                src={data.desktopUrl}
-                alt={data.alt}
-              ></StImgItem>
-            </>
+            <StImgItem key={data.id} src={data.desktopUrl} alt={data.alt} />
           );
         })}
         {data?.map((data) => {
           return (
-            <>
-              <StImgItem
-                key={data.id}
-                src={data.desktopUrl}
-                alt={data.alt}
-              ></StImgItem>
-            </>
+            <StImgItem key={data.id} src={data.desktopUrl} alt={data.alt} />
           );
         })}
       </StAutoContainer>

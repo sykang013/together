@@ -1,3 +1,4 @@
+// 랜딩페이지의 오토캐러셀/스크롤 트리거 이미지의 경우, 이미지 크기가 딱 두 가지의 고정된 값만 있기 때문에, 여백 역시 고정된 px이 필요하여 px사용하였습니다.
 import styled from 'styled-components/macro';
 import ScrollSectionTitle from '@/containers/landingpage/ScrollSectionTitle';
 import ScrollSectionOriginal from '@/containers/landingpage/ScrollSectionOriginal';
