@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../loading/LoadingSpinner';
 
 const StHeaderDescription = styled.p`
-  color: ${getColor('--gray400')};
+  color: ${getColor('--gray300')};
   ${getFontStyle('LabelS')};
   @media (min-width: 768px) {
     ${getFontStyle('LabelM')};
@@ -27,7 +27,7 @@ const StHeaderDescription = styled.p`
 `;
 
 const StEmailDescription = styled.p`
-  color: ${(props) => (props.isEmail ? getColor('--gray500') : 'red')};
+  color: ${(props) => (props.isEmail ? getColor('--gray400') : 'red')};
   ${getFontStyle('ParagraphS')};
   @media (min-width: 768px) {
     ${getFontStyle('ParagraphM')};
@@ -38,7 +38,7 @@ const StEmailDescription = styled.p`
 `;
 
 const StPwDescription = styled.p`
-  color: ${(props) => (props.isPassword ? getColor('--gray500') : 'red')};
+  color: ${(props) => (props.isPassword ? getColor('--gray400') : 'red')};
   ${getFontStyle('ParagraphS')};
   @media (min-width: 768px) {
     ${getFontStyle('ParagraphM')};
@@ -50,7 +50,7 @@ const StPwDescription = styled.p`
 
 const StPwConfirmDescription = styled.p`
   color: ${(props) =>
-    props.isPasswordConfirm ? getColor('--gray500') : 'red'};
+    props.isPasswordConfirm ? getColor('--gray400') : 'red'};
   ${getFontStyle('ParagraphS')};
   @media (min-width: 768px) {
     ${getFontStyle('ParagraphM')};
