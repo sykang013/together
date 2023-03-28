@@ -11,6 +11,8 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 gsap.defaults({ ease: 'none', duration: 10 });
 
+let mm = gsap.matchMedia();
+
 const StLandingPage = styled.div`
   display: flex;
   flex-flow: column nowrap;
@@ -44,17 +46,33 @@ const LandingPage = () => {
       }
     );
     const carouselScrollAnimation = () => {
-      gsap.to('.imgContainer', {
-        scrollTrigger: {
-          trigger: '.triggerOriginal',
-          start: 'top top',
-          end: 'bottom 80%',
-          scrub: true,
-          pin: '.triggerOriginal',
-          anticipatePin: 1,
-          // markers: true,
-        },
-        x: -858,
+      mm.add('(max-width: 999px', () => {
+        gsap.to('.imgContainer', {
+          scrollTrigger: {
+            trigger: '.triggerOriginal',
+            start: 'top top',
+            end: 'bottom 80%',
+            scrub: true,
+            pin: '.triggerOriginal',
+            anticipatePin: 1,
+            // markers: true,
+          },
+          x: -858,
+        });
+      });
+      mm.add('(min-width: 1000px', () => {
+        gsap.to('.imgContainer', {
+          scrollTrigger: {
+            trigger: '.triggerOriginal',
+            start: 'top top',
+            end: 'bottom 80%',
+            scrub: true,
+            pin: '.triggerOriginal',
+            anticipatePin: 1,
+            // markers: true,
+          },
+          x: -2748,
+        });
       });
     };
   }, []);
