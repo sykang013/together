@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthState } from '@/firebase/auth';
 import { useEffect, useState } from 'react';
 import { dbService } from '@/firebase/app';
+import { Helmet } from 'react-helmet-async';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,9 @@ const ProfilePage = () => {
   };
   const goToProfileCreate = () => {
     navigate('/profile-create');
+  };
+  const goToMainPage = () => {
+    navigate('/main');
   };
 
   useEffect(() => {
@@ -54,13 +58,20 @@ const ProfilePage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>프로필 선택 페이지</title>
+        <meta
+          name="description"
+          content="타잉의 프로필들을 선택할 수 있는 선택 페이지 입니다."
+        />
+      </Helmet>
       <StProfileTitle>프로필 선택</StProfileTitle>
       <StProfileSubTitle>시청할 프로필을 선택해주세요.</StProfileSubTitle>
       <StProfileItems>
         {profiles.map((profile) => {
           return (
             <li key={profile.id}>
-              <StProfileItem>
+              <StProfileItem onClick={goToMainPage}>
                 <StProfileImage src={profile.mobileUrl} alt="프로필 이미지" />
               </StProfileItem>
               <p>{profile.name}</p>

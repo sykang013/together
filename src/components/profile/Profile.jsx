@@ -1,17 +1,6 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 
-export const StLayoutProfile = styled.div`
-  width: 78.75%;
-  margin: 0 auto;
-  @media (min-width: 768px) {
-    width: 81.25%;
-  }
-  @media (min-width: 1920px) {
-    width: 56.86%;
-  }
-`;
-
 export const StProfileTitle = styled.h2`
   ${getFontStyle('headingM')};
   text-align: center;
@@ -50,13 +39,13 @@ export const StProfileItems = styled.ul`
   margin-left: auto;
   margin-right: auto;
   justify-content: space-between;
+  align-self: center;
   @media (min-width: 768px) {
     gap: ${rem(15)};
     width: ${rem(600)};
     padding-top: ${rem(20)};
     justify-content: ${(props) => {
-      if (props.children.length > 3) return 'space-between';
-      else return 'space-evenly';
+      props.children.length > 3 ? 'space-between' : 'space-evenly';
     }};
   }
   @media (min-width: 1920px) {
@@ -65,6 +54,8 @@ export const StProfileItems = styled.ul`
     padding-top: ${rem(30)};
   }
   li {
+    margin-left: auto;
+    margin-right: auto;
     width: ${rem(114)};
     margin-top: ${rem(16)};
     @media (min-width: 768px) {
@@ -203,24 +194,53 @@ export const StProfileInput = styled.input`
     border: 1px solid;
   }
 `;
-
-export const StProfileEditButton = styled.button`
+export const StProfileEditButton = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  margin-top: ${rem(20)};
-  background-color: var(--primary);
-  color: var(--gray100);
-  border-radius: 4px;
-  ${getFontStyle('ParagraphM')};
+  height: 100%;
+  border: none;
+  background-color: var(--black);
+  opacity: 0.5;
   @media (min-width: 768px) {
-    ${getFontStyle('ParagraphL')};
+    width: ${rem(148)};
+    height: ${rem(148)};
   }
   @media (min-width: 1920px) {
-    ${getFontStyle('ParagraphXL')};
+    width: ${rem(226)};
+    height: ${rem(226)};
   }
-
-  &:hover {
-    background-color: var(--secondary);
-    color: var(--white);
+  button {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: transparent;
     border: none;
+    margin: auto;
+  }
+`;
+
+export const StDeleteButton = styled.button`
+  width: ${rem(100)};
+  height: ${rem(20)};
+  ${getFontStyle('LabelS')}
+  display: block;
+  margin-top: ${rem(20)};
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  background-color: transparent;
+  color: var(--gray300);
+  text-decoration: underline;
+  @media (min-width: 768px) {
+    width: ${rem(130)};
+    height: ${rem(30)};
+    ${getFontStyle('LabelM')}
+  }
+  @media (min-width: 1920px) {
+    width: ${rem(200)};
+    height: ${rem(45)};
+    ${getFontStyle('LabelXL')}
   }
 `;
