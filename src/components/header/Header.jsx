@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import SearchModal from '@/components/search/SearchModal';
 import Svg from '@/components/svg/Svg';
@@ -10,10 +10,11 @@ import { searchKeywordState } from '@/store/search/index';
 import { modalAtomFamily } from '@/store/modalState';
 import useModal from '@/hooks/useModal';
 import LogoModal from '@/components/header/LogoModal';
-import ModalMiddlePortal from '@/components/modal/ModalMiddlePortal';
+import { useAuthState } from '@/firebase/auth';
 
 const StHeader = styled.header`
   position: fixed;
+  z-index: 3;
   width: 100%;
   top: 0;
   left: 0;
@@ -64,27 +65,29 @@ const StGnb = styled.div`
     gap: ${(props) => (props.direction === 'left' ? rem(52) : rem(40))};
   }
 
-  button {
+  button,
+  a {
     svg {
       color: var(--gray200);
+    }
+
+    &:hover,
+    &:focus {
+      color: var(--white);
+      svg {
+        color: var(--white);
+      }
     }
   }
 `;
 
-const StTab = styled.button`
+const StLink = styled(Link)`
   ${getFontStyle('ParagraphS')}
   text-decoration: none;
   color: var(--gray200);
   display: flex;
   align-items: center;
   gap: ${rem(4)};
-
-  &:hover {
-    color: var(--white);
-    svg {
-      color: var(--white);
-    }
-  }
 
   @media (min-width: 768px) {
     ${getFontStyle('ParagraphM')}
@@ -149,13 +152,14 @@ const Header = () => {
     return () => window.removeEventListener('scroll', throttleScroll);
   }, []);
 
+  const { user } = useAuthState();
+
   return (
-    <ModalMiddlePortal>
-      {isSearchModal.isOpen && <SearchModal />}
+    <>
       <StHeader backgroundColor={isBlackBackground ? 'black' : 'gradient'}>
         <StGnb direction="left">
           <h1>
-            <StTab onClick={() => navigateToPage('/')}>
+            <button onClick={() => navigateToPage('/')}>
               <Svg
                 id="logo"
                 width={46}
@@ -166,78 +170,88 @@ const Header = () => {
                 desktopH={42}
                 aria-label="티빙"
               />
-            </StTab>
+            </button>
           </h1>
-          <StTab>
-            <Svg
-              id="live-default"
-              width={20}
-              height={20}
-              desktopW={34}
-              desktopH={34}
-              aria-label="실시간 방송"
-            />
-            실시간
-          </StTab>
-          <StTab>TV프로그램</StTab>
-          <StTab>영화</StTab>
-          <StTab>
-            <Svg
-              id="paramount-default"
-              width={60}
-              height={20}
-              desktopW={112}
-              desktopH={34}
-              aria-label="파라마운트"
-            />
-          </StTab>
+          {user && (
+            <>
+              <StLink to="/main">
+                <Svg
+                  id="live-default"
+                  width={20}
+                  height={20}
+                  desktopW={34}
+                  desktopH={34}
+                  aria-label="실시간 방송"
+                />
+                실시간
+              </StLink>
+              <StLink to="/main">TV프로그램</StLink>
+              <StLink to="/main">영화</StLink>
+              <StLink to="/main">
+                <Svg
+                  id="paramount-default"
+                  width={60}
+                  height={20}
+                  desktopW={112}
+                  desktopH={34}
+                  aria-label="파라마운트"
+                />
+              </StLink>
+            </>
+          )}
         </StGnb>
         <StGnb direction="right">
-          <button
-            onClick={isSearchModal.isOpen ? closeSearchModal : openModal}
-            type="button"
-          >
-            {!isSearchModal.isOpen && !searchParams.get('keyword') && (
-              <Svg
-                id="search-default"
-                width={18}
-                height={18}
-                tabletW={24}
-                tabletH={24}
-                desktopW={40}
-                desktopH={40}
-                aria-label="검색"
-              />
-            )}
-            {isSearchModal.isOpen && (
-              <Svg
-                id="cancel-default"
-                width={18}
-                height={18}
-                tabletW={24}
-                tabletH={24}
-                desktopW={40}
-                desktopH={40}
-                aria-label="닫기"
-              />
-            )}
-          </button>
-          <StProfile tabIndex={0}>
-            <Svg
-              id="profile"
-              width={18}
-              height={18}
-              tabletW={24}
-              tabletH={24}
-              desktopW={40}
-              desktopH={40}
-              aria-label="프로필"
-            />
-            <LogoModal />
-          </StProfile>
+          {user && (
+            <>
+              {(!searchParams.get('keyword') || isSearchModal.isOpen) && (
+                <button
+                  onClick={isSearchModal.isOpen ? closeSearchModal : openModal}
+                  type="button"
+                  aria-label={isSearchModal.isOpen ? '닫기' : '검색'}
+                >
+                  {!isSearchModal.isOpen && (
+                    <Svg
+                      id="search-default"
+                      width={18}
+                      height={18}
+                      tabletW={24}
+                      tabletH={24}
+                      desktopW={40}
+                      desktopH={40}
+                    />
+                  )}
+                  {isSearchModal.isOpen && (
+                    <Svg
+                      id="cancel-default"
+                      width={18}
+                      height={18}
+                      tabletW={24}
+                      tabletH={24}
+                      desktopW={40}
+                      desktopH={40}
+                    />
+                  )}
+                </button>
+              )}
+              <StProfile tabIndex={0}>
+                <Svg
+                  id="profile"
+                  width={18}
+                  height={18}
+                  tabletW={24}
+                  tabletH={24}
+                  desktopW={40}
+                  desktopH={40}
+                  aria-label="프로필"
+                />
+                <LogoModal />
+              </StProfile>
+            </>
+          )}
         </StGnb>
       </StHeader>
-    </ModalMiddlePortal>
+      {isSearchModal.isOpen && <SearchModal />}
+    </>
   );
 };
 

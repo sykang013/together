@@ -79,24 +79,22 @@ const SearchPage = () => {
         />
       </Helmet>
       <StLayout>
-        <StSearchInput onClick={openModal}>
+        <StSearchInput onClick={openModal} onFocus={openModal}>
           <input
             type="text"
             placeholder="TV프로그램, 영화 제목 및 출연진으로 검색해보세요"
             value={searchParams.get('keyword') || ''}
             readOnly
           />
-          <button>
-            <Svg
-              id="search-hover"
-              width={22}
-              height={22}
-              tabletW={28}
-              tabletH={28}
-              desktopW={50}
-              desktopH={50}
-            />
-          </button>
+          <Svg
+            id="search-hover"
+            width={22}
+            height={22}
+            tabletW={28}
+            tabletH={28}
+            desktopW={50}
+            desktopH={50}
+          />
         </StSearchInput>
       </StLayout>
       <StMessage>{countSearchData > 0 ? resultMessage : noMessage}</StMessage>

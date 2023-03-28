@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components/macro';
 import Svg from '@/components/svg/Svg';
 import { StSearchInput } from '@/styles/SearchBarStyles';
 import {
@@ -87,6 +86,7 @@ const SearchBar = ({ openModal }) => {
           value={keyword || ''}
           onChange={onChangeKeyword}
           onClick={openModal}
+          autoFocus
         />
         <button onClick={onSubmitHandler}>
           <Svg

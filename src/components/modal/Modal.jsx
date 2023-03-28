@@ -4,6 +4,7 @@ import ModalPortal from '@/components/modal/ModalPortal';
 import { string, func } from 'prop-types';
 
 const StModal = styled.div`
+  z-index: 20;
   width: ${rem(196)};
   height: ${rem(91)};
   background-color: var(--dark-bg2);
@@ -70,6 +71,7 @@ const StOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.9);
   top: 0;
   left: 0;
+  z-index: 10;
 `;
 
 const Modal = ({ message, onClickHandler, cancelHandler }) => {
