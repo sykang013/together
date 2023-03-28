@@ -13,7 +13,7 @@ const StScrollSectionTitle = styled.section`
   background: top no-repeat;
   background-image: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0) 85%,
       rgba(0, 0, 0, 1)
     ),
     url(/assets/landing-img/bg-mobile-modified.png);
@@ -21,7 +21,7 @@ const StScrollSectionTitle = styled.section`
   @media (min-width: 768px) {
     background-image: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0) 85%,
         rgba(0, 0, 0, 1)
       ),
       url(/assets/landing-img/bg-tablet.png);
@@ -29,7 +29,7 @@ const StScrollSectionTitle = styled.section`
   @media (min-width: 1920px) {
     background-image: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0) 85%,
         rgba(0, 0, 0, 1)
       ),
       url(/assets/landing-img/bg-desktop.png);
