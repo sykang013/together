@@ -11,7 +11,7 @@ const StButton = styled.button`
   background-color: ${(props) =>
     props.isActive ? getColor('--primary') : getColor('--gray700')};
   color: ${(props) =>
-    props.isActive ? getColor('--white') : getColor('--gray400')};
+    props.isActive ? getColor('--white') : getColor('--gray200')};
   border: none;
   border-radius: 4px;
   width: ${rem(288)};

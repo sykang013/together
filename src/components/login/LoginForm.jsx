@@ -8,7 +8,7 @@ import FormInput from '@/components/forminput/FormInput';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
 
 const StInfo = styled.p`
-  color: var(--gray500);
+  color: var(--gray400);
   margin-top: ${rem(20)};
   font-size: ${rem(14)};
   ${getFontStyle('ParagraphS')};
@@ -19,7 +19,7 @@ const StInfo = styled.p`
     ${getFontStyle('ParagraphL')};
   }
   a {
-    color: var(--gray300);
+    color: var(--gray200);
 
     &:hover {
       color: var(--gray100);

@@ -20,7 +20,7 @@ const ProfilePage = () => {
   const goToProfileEdit = (profile) => {
     const encodedUrl = encodeURIComponent(profile.mobileUrl);
     navigate(
-      `/profile-edit?id=${profile.id}&name=${profile.name}&url=${encodedUrl}`
+      `/profile-edit?id=${profile.id}&name=${profile.name}&url=${encodedUrl}&storage=${profile.storageID}`
     );
   };
   const goToProfileCreate = () => {
@@ -41,6 +41,7 @@ const ProfilePage = () => {
                 id: doc.id,
                 name: doc.data().name,
                 mobileUrl: doc.data().mobileUrl,
+                storageID: doc.data().storageID,
               });
             });
             setProfiles(profilesArray);

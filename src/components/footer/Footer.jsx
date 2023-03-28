@@ -68,7 +68,7 @@ const StLink = styled(Link)`
   }
 `;
 
-const StCopyrightli = styled.div`
+const StCopyrightli = styled.li`
   span:after {
     content: '';
     border: 1px solid;
@@ -124,7 +124,7 @@ const Footer = () => {
             <span>사업자등록번호 : 188-88-01893</span>
             <span>통신판매신고번호 : 2020-서울마포-3641호</span>
           </StCopyrightli>
-          <StCopyrightli as="address">
+          <StCopyrightli>
             <span>
               사업장 : 서울특별시 마포구 상암산로 34, DMC디지털큐브 15층(상암동)
             </span>

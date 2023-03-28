@@ -17,7 +17,7 @@ import { string } from 'prop-types';
 import StA11yHidden from '@/components/a11yhidden/A11yHidden';
 import ProfileDeleteModal from '@/components/profile/ProfileDeleteModal';
 
-const ProfileNameForm = ({ profileId, defaultName }) => {
+const ProfileNameForm = ({ profileId, defaultName, storageID }) => {
   const [name, setName] = useState(defaultName);
   const { user } = useAuthState();
   const navigate = useNavigate();
@@ -53,6 +53,7 @@ const ProfileNameForm = ({ profileId, defaultName }) => {
       {isProfileDeleteModal && (
         <ProfileDeleteModal
           profileId={profileId}
+          storageID={storageID}
           closeProfileDeleteModal={closeProfileDeleteModal}
         />
       )}
@@ -78,6 +79,7 @@ const ProfileNameForm = ({ profileId, defaultName }) => {
 ProfileNameForm.propTypes = {
   profileId: string,
   defaultName: string,
+  storageID: string,
 };
 
 const ProfileEdit = () => {
@@ -87,6 +89,7 @@ const ProfileEdit = () => {
   const id = params.get('id');
   const name = params.get('name');
   const url = params.get('url');
+  const storageID = params.get('storage');
 
   const [profileName, setProfileName] = useState(name);
 
@@ -103,6 +106,7 @@ const ProfileEdit = () => {
           <ProfileNameForm
             profileId={id}
             defaultName={profileName}
+            storageID={storageID}
             onClose={() => setProfileName(name)}
           />
         </li>
