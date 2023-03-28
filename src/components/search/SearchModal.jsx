@@ -23,7 +23,7 @@ const StSearchModal = styled.div`
   width: 100%;
   max-height: 100vh;
   padding: ${rem(58)} ${rem(47)};
-
+  z-index: 2;
   @media (min-width: 768px) {
     padding: ${rem(84)} ${rem(122)} ${rem(52)} ${rem(122)};
   }
@@ -40,6 +40,7 @@ const StSearchModalOverlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
 `;
 
 const StSearchContent = styled.div`

@@ -14,8 +14,8 @@ const useReadSearchData = (collectionKey, keyword, atomState) => {
   );
 
   const readSearchData = useCallback(async () => {
-    if (!keyword) return;
     setData([]);
+    if (!keyword) return;
     setIsLoading(true);
 
     try {
