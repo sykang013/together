@@ -9,7 +9,7 @@ const StModal = styled.div`
   height: ${rem(91)};
   background-color: var(--dark-bg2);
   border-radius: 4px;
-  position: absolute;
+  position: fixed;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;

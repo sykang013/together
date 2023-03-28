@@ -360,7 +360,7 @@ const Carousel = ({
     ],
   };
   const { isLoading, readData, data } = useReadData(dataName);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     if (dataName) {
@@ -382,7 +382,7 @@ const Carousel = ({
                     to={
                       searchParams.get('keyword')
                         ? `/search?keyword=${searchParams.get('keyword')}`
-                        : '/'
+                        : '/main'
                     }
                     onKeyUp={(e) => handleSlideKeyUp(e, index)}
                   >

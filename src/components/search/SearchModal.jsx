@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { rem } from '@/theme/utils';
 import SearchBar from '@/components/search/SearchBar';
 import SearchHistory from '@/components/search/SearchHistory';
-import SearchPopular from './SearchPopular';
+import SearchPopular from '@/components/search/SearchPopular';
 import { func } from 'prop-types';
 import { searchBarDataState, searchKeywordState } from '@/store/search/index';
 import { useRecoilValue } from 'recoil';

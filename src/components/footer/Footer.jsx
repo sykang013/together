@@ -41,6 +41,7 @@ const StUtil = styled.div`
 `;
 
 const StUtilLink = styled(Link)`
+  width: fit-content;
   color: var(--gray200);
   text-decoration: none;
   &:hover {
@@ -103,17 +104,17 @@ const Footer = () => {
     <StFooter>
       <StContainer>
         <StUtil>
-          <StUtilLink to="/">고객센터</StUtilLink>
+          <StUtilLink to="/main">고객센터</StUtilLink>
 
-          <StUtilLink to="/">이용약관</StUtilLink>
+          <StUtilLink to="/main">이용약관</StUtilLink>
 
-          <StUtilLink to="/">개인정보처리방침</StUtilLink>
+          <StUtilLink to="/main">개인정보처리방침</StUtilLink>
 
-          <StUtilLink to="/">청소년 보호정책</StUtilLink>
+          <StUtilLink to="/main">청소년 보호정책</StUtilLink>
 
-          <StUtilLink to="/">법적고지</StUtilLink>
+          <StUtilLink to="/main">법적고지</StUtilLink>
 
-          <StUtilLink to="/">인재채용</StUtilLink>
+          <StUtilLink to="/main">인재채용</StUtilLink>
         </StUtil>
         <StCopyrightUl>
           <StCopyrightli>

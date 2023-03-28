@@ -1,9 +1,8 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import LogoutModal from '@/components/logout/LogoutModal';
-import { useRef } from 'react';
 
 const StModalContainer = styled.div`
   width: ${rem(180)};
@@ -157,7 +156,7 @@ const LogoModal = () => {
             />
           </StProfileIcon>
           <StProfileName>
-            강수영
+            사용자
             <p>프로필 전환</p>
           </StProfileName>
         </StProfileBox>

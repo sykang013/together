@@ -61,7 +61,8 @@ const StImgItem = styled.img`
 `;
 
 const CarouselAutoFirst = ({ speed }) => {
-  const { isLoading, readData, data } = useReadData('landing-contents-first');
+  const { readData, data } = useReadData('landing-contents-first');
+
   useEffect(() => {
     readData();
   }, []);
@@ -70,7 +71,9 @@ const CarouselAutoFirst = ({ speed }) => {
     <StCarouselAutoFirst className="landingElementAnimation">
       <StAutoContainer speed={speed} className="landingAutoContainerAnimation">
         {data?.map((data) => {
-          return <StImg key={data.id} src={data.desktopUrl} alt={data.alt} />;
+          return (
+            <StImgItem key={data.id} src={data.desktopUrl} alt={data.alt} />
+          );
         })}
         {data?.map((data) => {
           return (

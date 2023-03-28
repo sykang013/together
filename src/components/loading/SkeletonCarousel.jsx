@@ -2,7 +2,7 @@ import {
   StImageBox,
   StImageBoxGroup,
   StTextBox,
-} from '@/components/loading/Skeleton';
+} from '@/styles/SkeletonStyles';
 
 const SkeletonCarousel = () => {
   return (

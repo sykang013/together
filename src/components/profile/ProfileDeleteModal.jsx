@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthState } from '@/firebase/auth';
 import { useDeleteData } from '@/firebase/firestore/useDeleteData';
 import { useDeleteFile } from '@/firebase/storage/useDeleteFile';
+
 const ProfileDeleteModal = ({
   closeProfileDeleteModal,
   profileId,
@@ -18,10 +19,11 @@ const ProfileDeleteModal = ({
     try {
       await deleteData(`${user.uid}/profile/${profileId}`);
       await deleteFile(`profile/${user.uid}/${storageID}/mobile`);
+
       await closeProfileDeleteModal();
       navigate('/profile-page');
     } catch (error) {
-      console.error('Error deleting profile: ', error);
+      navigate('/*');
     }
   };
 

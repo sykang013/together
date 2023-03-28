@@ -7,7 +7,7 @@ import {
   StProfileButton,
   StProfileSvg,
   StSvg,
-} from '@/components/profile/Profile';
+} from '@/styles/ProfileStyles';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from '@/firebase/auth';
 import { useEffect, useState } from 'react';

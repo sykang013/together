@@ -1,5 +1,5 @@
 import { rem } from '@/theme/utils';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export const SkeletonAnimation = styled.div`
   background: linear-gradient(

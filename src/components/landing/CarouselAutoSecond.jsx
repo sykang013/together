@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useReadData } from '@/firebase/firestore';
 import styled, { keyframes } from 'styled-components/macro';
 import { string } from 'prop-types';
+
 const StCarouselAutoSecond = styled.section`
   position: relative;
   overflow: hidden;
@@ -60,7 +61,7 @@ const StImgItem = styled.img`
 `;
 
 const CarouselAutoSecond = ({ speed }) => {
-  const { isLoading, readData, data } = useReadData('landing-contents-second');
+  const { readData, data } = useReadData('landing-contents-second');
   useEffect(() => {
     readData();
   }, []);

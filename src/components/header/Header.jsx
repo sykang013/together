@@ -11,6 +11,7 @@ import { modalAtomFamily } from '@/store/modalState';
 import useModal from '@/hooks/useModal';
 import LogoModal from '@/components/header/LogoModal';
 import { useAuthState } from '@/firebase/auth';
+import StA11yHidden from '../a11yhidden/A11yHidden';
 
 const StHeader = styled.header`
   position: fixed;
@@ -120,7 +121,7 @@ const Header = () => {
   const isSearchModal = useRecoilValue(modalAtomFamily('search'));
   const { openModal, closeModal } = useModal('search');
   const [isBlackBackground, setIsBlackBackground] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const setSearchKeyword = useSetRecoilState(searchKeywordState);
   const navigate = useNavigate();
 
@@ -158,20 +159,19 @@ const Header = () => {
     <>
       <StHeader backgroundColor={isBlackBackground ? 'black' : 'gradient'}>
         <StGnb direction="left">
-          <h1>
-            <button onClick={() => navigateToPage('/')}>
-              <Svg
-                id="logo"
-                width={46}
-                height={13}
-                tabletW={77}
-                tabletH={24}
-                desktopW={132}
-                desktopH={42}
-                aria-label="티빙"
-              />
-            </button>
-          </h1>
+          <StA11yHidden as="h1">타잉</StA11yHidden>
+          <button onClick={() => navigateToPage('/')}>
+            <Svg
+              id="logo"
+              width={46}
+              height={13}
+              tabletW={77}
+              tabletH={24}
+              desktopW={132}
+              desktopH={42}
+              aria-label="로고"
+            />
+          </button>
           {user && (
             <>
               <StLink to="/main">
