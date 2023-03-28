@@ -13,7 +13,7 @@ import FormInput from '@/components/forminput/FormInput';
 import { useAuthState, useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import LoadingSpinner from '../loading/LoadingSpinner';
+import LoadingSpinner from '@/components/loading/LoadingSpinner';
 
 const StHeaderDescription = styled.p`
   color: ${getColor('--gray300')};
@@ -83,6 +83,7 @@ const RegisterForm = () => {
   const formStateRef = useRef(initialFormState);
   const { email, password, passwordConfirm } = formStateRef.current;
   const navigate = useNavigate();
+
   const handleChangeEmail = (e) => {
     const { name, value } = e.target;
     formStateRef.current[name] = value;
@@ -162,7 +163,7 @@ const RegisterForm = () => {
   }
 
   if (error) {
-    return <div role="alert">오류!</div>;
+    return navigate('/*');
   }
 
   return (

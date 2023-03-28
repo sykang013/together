@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import { useReadData } from '@/firebase/firestore';
 import styled from 'styled-components/macro';
 
@@ -59,7 +59,7 @@ const StImgItem = styled.picture`
   }
 `;
 const CarouselScroll = () => {
-  const { isLoading, readData, data } = useReadData('landing-originals');
+  const { readData, data } = useReadData('landing-originals');
   useEffect(() => {
     readData();
   }, []);
@@ -75,72 +75,8 @@ const CarouselScroll = () => {
                 <source srcSet={data.desktopUrl} media="(min-width: 1000px)" />
                 <img className="imgSelf" src={data.mobileUrl} alt={data.alt} />
               </StImgItem>
-              // <div key={data.id}>
-              //   <StImgItem src={data.imgUrl} alt={data.alt} />
-              // </div>
             );
           })}
-          ;
-          {/* <StImgItem className="imgContainer">
-            <source
-              srcSet="/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
-              media="(max-width: 999px)"
-            />
-            <source
-              srcSet="/assets/landing-img/contents-img/org-love-desktop.png"
-              media="(min-width: 1000px)"
-            />
-            <img
-              className="imgSelf"
-              src="/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
-              alt="러브캐쳐"
-            />
-          </StImgItem>
-          <StImgItem className="imgContainer">
-            <source
-              srcSet="/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
-              media="(max-width: 999px)"
-            />
-            <source
-              srcSet="/assets/landing-img/contents-img/org-bomul-desktop.png"
-              media="(min-width: 1000px)"
-            />
-            <img
-              className="imgSelf"
-              src="/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
-              alt="보물찾기"
-            />
-          </StImgItem>
-          <StImgItem className="imgContainer">
-            <source
-              srcSet="/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
-              media="(max-width: 999px)"
-            />
-            <source
-              srcSet="/assets/landing-img/contents-img/org-love-desktop.png"
-              media="(min-width: 1000px)"
-            />
-            <img
-              className="imgSelf"
-              src="/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
-              alt="러브캐쳐"
-            />
-          </StImgItem>
-          <StImgItem className="imgContainer">
-            <source
-              srcSet="/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
-              media="(max-width: 999px)"
-            />
-            <source
-              srcSet="/assets/landing-img/contents-img/org-bomul-desktop.png"
-              media="(min-width: 1000px)"
-            />
-            <img
-              className="imgSelf"
-              src="/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
-              alt="보물찾기"
-            />
-          </StImgItem> */}
         </StImgContainer>
       </StScrollContainer>
     </StCarouselScroll>

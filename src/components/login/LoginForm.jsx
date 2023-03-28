@@ -116,7 +116,7 @@ const LoginForm = () => {
   }
 
   if (error) {
-    return <div role="alert">오류!</div>;
+    return navigate('/*');
   }
 
   if (user) {

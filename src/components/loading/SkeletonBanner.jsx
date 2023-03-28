@@ -1,4 +1,4 @@
-import { StBanner } from '@/components/loading/Skeleton';
+import { StBanner } from '@/styles/SkeletonStyles';
 
 const SkeletonBanner = () => {
   return (

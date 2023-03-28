@@ -1,4 +1,4 @@
-import { StProfileSvg } from '@/components/profile/Profile';
+import { StProfileSvg } from '@/styles/ProfileStyles';
 import styled from 'styled-components/macro';
 import { storageService } from '@/firebase/app';
 import { useAuthState } from '@/firebase/auth';
@@ -234,15 +234,20 @@ const ProfileCreate = () => {
         {imageFile == null && (
           <StCreateSvgBox>
             <StProfileSvg>
-              <StA11yHidden>
+              <StA11yHidden as="label" htmlFor="imgUpload">
+                이미지 업로드
                 <input
+                  id="imgUpload"
                   type="file"
                   accept="image/*"
                   ref={inputRef}
                   onChange={saveFileImage}
                 />
               </StA11yHidden>
-              <button label="이미지 업로드" onClick={onUploadImageButtonClick}>
+              <button
+                label="이미지 업로드 버튼"
+                onClick={onUploadImageButtonClick}
+              >
                 <Svg
                   id="profile-edit-pencil"
                   width={35}
@@ -257,7 +262,11 @@ const ProfileCreate = () => {
           </StCreateSvgBox>
         )}
       </StUploadImageView>
+      <StA11yHidden as="label" htmlFor="nickname">
+        닉네임 입력란
+      </StA11yHidden>
       <StName
+        id="nickname"
         type="text"
         onChange={onChangeName}
         value={text}

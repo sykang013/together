@@ -108,7 +108,7 @@ const SearchPopular = () => {
         {popular.map((title, index) => (
           <StKeyword key={index}>
             <span>{+index + 1}</span>
-            <Link>{title}</Link>
+            <Link to="/main">{title}</Link>
           </StKeyword>
         ))}
         <li>2023.03.15 오후 03:46 기준</li>

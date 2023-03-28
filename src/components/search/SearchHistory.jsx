@@ -142,7 +142,11 @@ const SearchHistory = () => {
             >
               {keyword.keyword}
             </StKeyword>
-            <StRemove type="button" onClick={() => removeKeyword(keyword.id)}>
+            <StRemove
+              type="button"
+              aria-label="삭제"
+              onClick={() => removeKeyword(keyword.id)}
+            >
               <Svg
                 id="delete-not-filled"
                 desktopW={20}

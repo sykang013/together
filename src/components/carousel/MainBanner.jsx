@@ -245,7 +245,7 @@ const MainBanner = () => {
     autoplaySpeed: 5000,
     prevArrow: <Arrow direction="prev" />,
     nextArrow: <Arrow direction="next" />,
-    beforeChange: (current, next) => {
+    beforeChange: (_, next) => {
       setActiveSlide(next);
     },
     responsive: [
@@ -290,7 +290,7 @@ const MainBanner = () => {
             return (
               <div key={data.id}>
                 <Link
-                  to="/"
+                  to="/main"
                   tabIndex={activeSlide === index ? 0 : -1}
                   onKeyUp={(e) => handleSlideKeyUp(e, index)}
                 >

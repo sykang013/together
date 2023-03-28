@@ -2,7 +2,7 @@ import {
   StProfileTitle,
   StProfileEditButton,
   StDeleteButton,
-} from '@/components/profile/Profile';
+} from '@/styles/ProfileStyles';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { dbService } from '@/firebase/app';

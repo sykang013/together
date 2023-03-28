@@ -13,6 +13,7 @@ import Modal from '@/components/modal/Modal';
 import { useNavigate } from 'react-router-dom';
 import { func } from 'prop-types';
 import useModal from '@/hooks/useModal';
+import StA11yHidden from '../a11yhidden/A11yHidden';
 
 const SearchBar = ({ openModal }) => {
   const [keywords, setKeywords] = useRecoilState(searchHistoryState);
@@ -79,9 +80,13 @@ const SearchBar = ({ openModal }) => {
           onClickHandler={toggleGuideModal}
         />
       )}
+      <StA11yHidden as="label" htmlFor="search">
+        검색 키워드
+      </StA11yHidden>
       <StSearchInput>
         <input
           type="text"
+          id="search"
           placeholder="TV프로그램, 영화 제목 및 출연진으로 검색해보세요"
           value={keyword || ''}
           onChange={onChangeKeyword}
