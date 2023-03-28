@@ -1,4 +1,4 @@
-import { getColor, getFontStyle, rem } from '@/theme/utils';
+import { getFontStyle, rem } from '@/theme/utils';
 import { string } from 'prop-types';
 import styled from 'styled-components/macro';
 
@@ -9,15 +9,15 @@ const StButton = styled.button`
   height: ${rem(42)};
   padding: ${rem(16)};
   background-color: ${(props) =>
-    props.isActive ? getColor('--primary') : getColor('--gray700')};
-  color: ${(props) =>
-    props.isActive ? getColor('--white') : getColor('--gray200')};
+    props.isActive ? `var(--primary)` : `var(--gray700)`};
+
+  color: ${(props) => (props.isActive ? `var(--white)` : `var(--gray200)`)};
   border: none;
   border-radius: 4px;
   width: ${rem(288)};
   ${getFontStyle('LabelS')};
   &:hover {
-    background-color: ${getColor('--gray600')};
+    background-color: var(--gray600);
   }
   @media (min-width: 768px) {
     width: ${rem(416)};

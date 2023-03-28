@@ -517,5 +517,13 @@
   <symbol id="pause-button" viewBox="0 0 18 18">
     <path fill="#fff" d="M2 1h5v16H2zm9 0h5v16h-5z" />
   </symbol>
+  <symbol
+  id="profile-plus"
+  viewBox="0 0 30 30"
+  fill="none"
+>
+  <path d="M0 15H30" stroke="#565656" />
+  <path d="M15 30L15 -8.9407e-07" stroke="#565656" />
+</symbol>
 </svg>
 
