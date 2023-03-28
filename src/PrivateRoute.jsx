@@ -1,12 +1,13 @@
 import { node } from 'prop-types';
 import { Navigate } from 'react-router-dom';
+import LoadingSpinner from './components/loading/LoadingSpinner';
 import { useAuthState } from './firebase/auth';
 
 const PrivateRoute = ({ children }) => {
   const { user, isLoading } = useAuthState();
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <LoadingSpinner />;
   }
 
   if (user) {
