@@ -1,5 +1,4 @@
 import { StProfileSvg } from '@/components/profile/Profile';
-import { useState } from 'react';
 import styled from 'styled-components/macro';
 import { storageService } from '@/firebase/app';
 import { useAuthState } from '@/firebase/auth';
@@ -8,8 +7,8 @@ import { useCreateData } from '@/firebase/firestore/useCreateData';
 import { getFontStyle, rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
 import StA11yHidden from '@/components/a11yhidden/A11yHidden';
-import { useRef } from 'react';
-import { useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const StCreateText = styled.h2`
   ${getFontStyle('headingM')};
@@ -24,14 +23,13 @@ const StCreateText = styled.h2`
   }
 `;
 
-const StUploadImageView = styled.div`
+export const StUploadImageView = styled.div`
   position: relative;
   width: ${rem(114)};
   height: ${rem(114)};
   margin-top: ${rem(44)};
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid var(--gray600);
   @media (min-width: 768px) {
     width: ${rem(150)};
     height: ${rem(150)};
@@ -42,10 +40,10 @@ const StUploadImageView = styled.div`
   }
 `;
 
-const StCreateSvgBox = styled.div`
+export const StCreateSvgBox = styled.div`
   position: absolute;
-  width: ${rem(112)};
-  height: ${rem(112)};
+  width: ${rem(113)};
+  height: ${rem(113)};
   border: 1px solid var(--gray600);
   background-color: var(--gray700);
   top: 0;
@@ -67,12 +65,12 @@ const StCreateSvgBox = styled.div`
   }
 `;
 
-const StUploadImage = styled.img`
+export const StUploadImage = styled.img`
   width: 100%;
   height: 100%;
 `;
 
-const StName = styled.input`
+export const StName = styled.input`
   width: ${rem(276)};
   height: ${rem(42)};
   ${getFontStyle('LabelS')};
@@ -97,7 +95,7 @@ const StName = styled.input`
   }
 `;
 
-const StCreatePageGroupButton = styled.div`
+export const StCreatePageGroupButton = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -219,6 +217,13 @@ const ProfileCreate = () => {
 
   return (
     <>
+      <Helmet>
+        <title>프로필 생성 페이지</title>
+        <meta
+          name="description"
+          content="타잉의 프로필들을 생성할 수 있는 생성 페이지 입니다."
+        />
+      </Helmet>
       <StCreateText>프로필 추가</StCreateText>
       <StUploadImageView>
         <StUploadImage
@@ -268,7 +273,9 @@ const ProfileCreate = () => {
         >
           확인
         </button>
-        <button onClick={goToProfilePage}>취소</button>
+        <button type="button" onClick={goToProfilePage}>
+          취소
+        </button>
       </StCreatePageGroupButton>
     </>
   );
