@@ -70,21 +70,11 @@ const CarouselAutoFirst = ({ speed }) => {
     <StCarouselAutoFirst className="landingElementAnimation">
       <StAutoContainer speed={speed} className="landingAutoContainerAnimation">
         {data?.map((data) => {
-          return (
-            <StImgItem
-              key={data.id}
-              src={data.desktopUrl}
-              alt={data.alt}
-            ></StImgItem>
-          );
+          return <StImg key={data.id} src={data.desktopUrl} alt={data.alt} />;
         })}
         {data?.map((data) => {
           return (
-            <StImgItem
-              key={data.id}
-              src={data.desktopUrl}
-              alt={data.alt}
-            ></StImgItem>
+            <StImgItem key={data.id} src={data.desktopUrl} alt={data.alt} />
           );
         })}
       </StAutoContainer>
