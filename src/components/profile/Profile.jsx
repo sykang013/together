@@ -54,6 +54,10 @@ export const StProfileItems = styled.ul`
     gap: ${rem(15)};
     width: ${rem(600)};
     padding-top: ${rem(20)};
+    justify-content: ${(props) => {
+      if (props.children.length > 3) return 'space-between';
+      else return 'space-evenly';
+    }};
   }
   @media (min-width: 1920px) {
     gap: ${rem(25)};
