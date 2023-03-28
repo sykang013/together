@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro';
 import MessageAd from '@/components/landing/MessageAd';
-import CarouselAuto from '@/components/landing/CarouselAuto';
+import CarouselAutoFirst from '@/components/landing/CarouselAutoFirst';
+import CarouselAutoSecond from '@/components/landing/CarouselAutoSecond';
 
 const StScrollSectionAd = styled.section`
   /* border: 1px solid yellow; */
@@ -20,8 +21,8 @@ const ScrollSectionAd = () => {
         subText="보고 싶은 콘텐츠를 발견하세요!"
         detailText="최신, 인기 TV프로그램, 영화, 해외시리즈, 파라마운트+ 오리지널 및 독점"
       />
-      <CarouselAuto speed="28s"></CarouselAuto>
-      <CarouselAuto speed="26s"></CarouselAuto>
+      <CarouselAutoFirst speed="28s"></CarouselAutoFirst>
+      <CarouselAutoSecond speed="26s"></CarouselAutoSecond>
     </StScrollSectionAd>
   );
 };

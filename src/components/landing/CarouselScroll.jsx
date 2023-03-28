@@ -1,12 +1,14 @@
+import { useEffect, useRef, useState } from 'react';
+import { useReadData } from '@/firebase/firestore';
 import styled from 'styled-components/macro';
 
 const StCarouselScroll = styled.section`
-  /* border: 1px dashed blue; */
+  /* border: 1px dashed blue.; */
   position: relative;
   overflow: hidden;
   height: 400px;
   @media (min-width: 1000px) {
-    height: 510px;
+    height: 504px;
   }
   display: flex;
   min-width: 100%;
@@ -20,7 +22,7 @@ const StScrollContainer = styled.div`
   position: relative;
   left: 50vw;
   @media (min-width: 1000px) {
-    height: 510px;
+    height: 504px;
   }
 `;
 
@@ -33,8 +35,9 @@ const StImgContainer = styled.div`
   position: absolute;
   left: -${(278 + 8) / 2}px;
   @media (min-width: 1000px) {
-    height: 510px;
-    left: -${(907 + 16) / 2}px;
+    /* height: 510px; */
+    height: 504px;
+    left: -${(900 + 16) / 2}px;
   }
 `;
 
@@ -47,8 +50,8 @@ const StImgItem = styled.picture`
     border-radius: 4px;
   }
   @media (min-width: 1000px) {
-    height: 510px;
-    min-width: 907px;
+    height: 504px;
+    min-width: 900px;
     margin-right: 16px;
     img {
       border-radius: 8px;
@@ -56,11 +59,29 @@ const StImgItem = styled.picture`
   }
 `;
 const CarouselScroll = () => {
+  const { isLoading, readData, data } = useReadData('landing-originals');
+  useEffect(() => {
+    readData();
+  }, []);
+
   return (
     <StCarouselScroll className="landingElementAnimation sliderSection">
       <StScrollContainer className="landingScrollContainerAnimation">
         <StImgContainer className="landingImgContainerAnimation">
-          <StImgItem className="imgContainer">
+          {data?.map((data) => {
+            return (
+              <StImgItem key={data.id} className="imgContainer">
+                <source srcSet={data.mobileUrl} media="(max-width: 999px)" />
+                <source srcSet={data.desktopUrl} media="(min-width: 1000px)" />
+                <img className="imgSelf" src={data.mobileUrl} alt={data.alt} />
+              </StImgItem>
+              // <div key={data.id}>
+              //   <StImgItem src={data.imgUrl} alt={data.alt} />
+              // </div>
+            );
+          })}
+          ;
+          {/* <StImgItem className="imgContainer">
             <source
               srcSet="/assets/landing-img/contents-img/org-love-mob-and-tabl.png"
               media="(max-width: 999px)"
@@ -119,7 +140,7 @@ const CarouselScroll = () => {
               src="/assets/landing-img/contents-img/org-bomul-mob-and-tabl.png"
               alt="보물찾기"
             />
-          </StImgItem>
+          </StImgItem> */}
         </StImgContainer>
       </StScrollContainer>
     </StCarouselScroll>
