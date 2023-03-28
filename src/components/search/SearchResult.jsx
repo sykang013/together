@@ -1,4 +1,4 @@
-import { searchBarDataState } from '@/store/search/searchDataState';
+import { searchBarDataState, searchKeywordState } from '@/store/search';
 import styled from 'styled-components/macro';
 import { useRecoilValue } from 'recoil';
 import { getFontStyle, rem } from '@/theme/utils';
@@ -72,13 +72,14 @@ const StListContents = styled.ul`
 
 const SearchResult = () => {
   const searchData = useRecoilValue(searchBarDataState);
+  const searchKeyword = useRecoilValue(searchKeywordState);
 
   return (
     <div>
       <StImageContents>
         {searchData?.slice(0, 7).map((data) => {
           return (
-            <Link key={data.id}>
+            <Link key={data.id} to={`/search?keyword=${searchKeyword}`}>
               <figure>
                 <picture>
                   <source srcSet={data.desktopUrl} media="(min-width:1920px)" />
@@ -95,7 +96,7 @@ const SearchResult = () => {
         {searchData?.slice(3, 10).map((data) => {
           return (
             <li key={data.id}>
-              <Link>
+              <Link to={`/search?keyword=${searchKeyword}`}>
                 <span>{data.title}</span>
               </Link>
             </li>

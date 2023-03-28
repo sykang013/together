@@ -5,16 +5,41 @@ import 'slick-carousel/slick/slick-theme.css';
 import styled, { css } from 'styled-components/macro';
 import { rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
-import { func, string } from 'prop-types';
+import { func, number, string } from 'prop-types';
 import { useReadData } from '@/firebase/firestore';
 import SkeletonBanner from '@/components/loading/SkeletonBanner';
+import { Link } from 'react-router-dom';
 
-const StArrow = styled.div`
+const CustomDots = (props) => {
+  const { onClick, activeIndex, dotsCount } = props;
+
+  return (
+    <>
+      {Array.from({ length: dotsCount }, (_, index) => (
+        <li key={index} aria-label={`${index + 1}번째 슬라이드`}>
+          <button
+            className={index === activeIndex ? 'active' : ''}
+            onClick={() => onClick(index)}
+          />
+        </li>
+      ))}
+    </>
+  );
+};
+
+CustomDots.propTypes = {
+  onClick: func,
+  activeIndex: number,
+  dotsCount: number,
+};
+
+const StArrow = styled.button`
   position: absolute;
   top: 50%;
   ${(props) =>
     props.direction === 'prev' &&
     css`
+      z-index: 1;
       left: 0;
       svg {
         color: var(--gray200);
@@ -27,13 +52,16 @@ const StArrow = styled.div`
       right: 0;
       svg {
         color: var(--gray200);
-        &:hover {
+      }
+      &:hover,
+      &:focus {
+        svg {
           color: var(--white);
         }
       }
     `}
   transform: translateY(-50%);
-  height: 100%;
+  height: fit-content;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -41,7 +69,12 @@ const StArrow = styled.div`
 
 const Arrow = ({ onClick, direction }) => {
   return (
-    <StArrow onClick={onClick} direction={direction} className={direction}>
+    <StArrow
+      onClick={onClick}
+      direction={direction}
+      className={direction}
+      aria-label={direction === 'prev' ? '이전 슬라이드' : '다음 슬라이드'}
+    >
       <Svg
         id={direction === 'prev' ? 'banner-arrow-left' : 'banner-arrow-right'}
         width="3.8rem"
@@ -57,10 +90,6 @@ Arrow.propTypes = {
 };
 
 const StSlider = styled(Slider)`
-  .slick-list {
-    z-index: -1;
-  }
-
   .slick-slider {
     position: relative;
   }
@@ -74,6 +103,9 @@ const StSlider = styled(Slider)`
       width: 100%;
       height: 20%;
       background: linear-gradient(to bottom, transparent, 70%, var(--black));
+    }
+    a {
+      outline-offset: -10px;
     }
   }
 
@@ -96,6 +128,24 @@ const StSlider = styled(Slider)`
     @media (min-width: 768px) {
       margin: auto;
     }
+    &:first-child :before {
+      font-size: 0;
+      &:hover {
+        font-size: 0;
+      }
+    }
+    &:first-child {
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+      }
+    }
+  }
+
+  .slick-dots li button:focus {
+    outline: rgba(0, 150, 255, 1) auto 1px;
   }
 
   .slick-dots button:before {
@@ -131,6 +181,7 @@ const StDescription = styled.span`
 
 const MainBanner = () => {
   const [isPaused, setIsPaused] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   const sliderRef = useRef(null);
 
@@ -152,20 +203,38 @@ const MainBanner = () => {
     }
   };
 
+  const handleSlideKeyUp = (e, index) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      if (index < sliderRef.current.props.children.length - 1) {
+        sliderRef.current.slickNext();
+      } else {
+        sliderRef.current.slickGoTo(0);
+      }
+    }
+  };
+
   const settings = {
     dots: true,
     appendDots: (dots) => (
-      <div>
-        <button className="slick-pause-button" onClick={togglePlayPause}>
-          {isPaused ? (
-            <Svg id="play-button" width={15} height={15} />
-          ) : (
-            <Svg id="pause-button" width={15} height={15} />
-          )}
-        </button>
+      <ul>
+        <li>
+          <button
+            className="slick-pause-button"
+            aria-label={isPaused ? '재생' : '정지'}
+            onClick={togglePlayPause}
+          >
+            {isPaused ? (
+              <Svg id="play-button" width={15} height={15} />
+            ) : (
+              <Svg id="pause-button" width={15} height={15} />
+            )}
+          </button>
+        </li>
         {dots}
-      </div>
+      </ul>
     ),
+    customPaging: (i) => <button aria-label={`${i + 1}번째 슬라이드`} />,
     dotsClass: 'slick-dots custom-dots',
     infinite: true,
     speed: 500,
@@ -176,6 +245,9 @@ const MainBanner = () => {
     autoplaySpeed: 5000,
     prevArrow: <Arrow direction="prev" />,
     nextArrow: <Arrow direction="next" />,
+    beforeChange: (current, next) => {
+      setActiveSlide(next);
+    },
     responsive: [
       {
         breakpoint: 1024,
@@ -214,11 +286,17 @@ const MainBanner = () => {
     <>
       {data && (
         <StSlider ref={sliderRef} {...settings}>
-          {data?.map((data) => {
+          {data?.map((data, index) => {
             return (
               <div key={data.id}>
-                <StImage src={data.imgUrl} alt={data.title} />
-                <StDescription>{data.description}</StDescription>
+                <Link
+                  to="/"
+                  tabIndex={activeSlide === index ? 0 : -1}
+                  onKeyUp={(e) => handleSlideKeyUp(e, index)}
+                >
+                  <StImage src={data.imgUrl} alt={data.title} />
+                  <StDescription>{data.description}</StDescription>
+                </Link>
               </div>
             );
           })}

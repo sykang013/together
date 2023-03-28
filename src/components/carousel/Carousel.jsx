@@ -5,12 +5,13 @@ import 'slick-carousel/slick/slick-theme.css';
 import { getFontStyle, rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
 import { bool, func, string, number, array } from 'prop-types';
-import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 import { useReadData } from '@/firebase/firestore';
 import SkeletonCarousel from '@/components/loading/SkeletonCarousel';
 
-const StArrow = styled.div`
+const StArrow = styled.button`
+  border: 0;
   position: absolute;
   top: 50%;
   width: ${rem(8)};
@@ -52,7 +53,12 @@ const StArrow = styled.div`
 
 const Arrow = ({ onClick, direction }) => {
   return (
-    <StArrow onClick={onClick} direction={direction} className={direction}>
+    <StArrow
+      onClick={onClick}
+      direction={direction}
+      className={direction}
+      aria-label={direction === 'prev' ? '이전 슬라이드' : '다음 슬라이드'}
+    >
       <Svg
         id={direction === 'prev' ? 'banner-arrow-left' : 'banner-arrow-right'}
         width="3.8rem"
@@ -67,20 +73,26 @@ Arrow.propTypes = {
   direction: string,
 };
 
-const StCarouselContainer = styled.div`
+const StCarouselContainer = styled.section`
   position: relative;
   .prev,
   .next,
   .dots-css {
-    visibility: hidden;
+    opacity: 0;
   }
 
   &:hover {
     .prev,
     .next,
     .dots-css {
-      visibility: visible;
+      opacity: 1;
     }
+  }
+
+  .prev:focus,
+  .next:focus,
+  .dots-css:focus {
+    opacity: 1;
   }
 
   .slick-track {
@@ -243,6 +255,8 @@ const StSlider = styled(Slider)`
     display: block;
     border: 0;
     background: 0 0;
+    width: inherit;
+    height: inherit;
   }
 
   .dots-css li button:before {
@@ -309,6 +323,15 @@ const Carousel = ({
   vod,
   number,
 }) => {
+  const sliderRef = useRef(null);
+
+  const handleSlideKeyUp = (e, index) => {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      sliderRef.current.slickGoTo(index + 1);
+    }
+  };
+
   const settings = {
     dots: true,
     dotsClass: 'dots-css',
@@ -336,8 +359,8 @@ const Carousel = ({
       },
     ],
   };
-
   const { isLoading, readData, data } = useReadData(dataName);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     if (dataName) {
@@ -351,26 +374,38 @@ const Carousel = ({
         <StCarouselContainer>
           <h2>{title}</h2>
           {count && <StCount>{data.length}개</StCount>}
-          <StSlider {...settings} desktopSlides={desktopSlides}>
+          <StSlider {...settings} ref={sliderRef} desktopSlides={desktopSlides}>
             {(data || dataProp)?.slice(0, 20).map((data, index) => {
               return (
-                <Link key={data.id}>
-                  <picture>
-                    <source
-                      srcSet={data.desktopUrl}
-                      media="(min-width:1920px)"
-                    />
-                    <source srcSet={data.tabletUrl} media="(min-width:768px)" />
-                    <img src={data.mobileUrl} alt={data.title} />
-                  </picture>
-                  <StInfo number={number}>
-                    {number && <StNumber>{index + 1}</StNumber>}
-                    {data.title && (
-                      <StTitle number={number}>{data.title}</StTitle>
-                    )}
-                  </StInfo>
-                  {vod && <Svg id="quick-vod" width={96} height={30} />}
-                </Link>
+                <div key={data.id}>
+                  <Link
+                    to={
+                      searchParams.get('keyword')
+                        ? `/search?keyword=${searchParams.get('keyword')}`
+                        : '/'
+                    }
+                    onKeyUp={(e) => handleSlideKeyUp(e, index)}
+                  >
+                    <picture>
+                      <source
+                        srcSet={data.desktopUrl}
+                        media="(min-width:1920px)"
+                      />
+                      <source
+                        srcSet={data.tabletUrl}
+                        media="(min-width:768px)"
+                      />
+                      <img src={data.mobileUrl} alt={data.title || data.alt} />
+                    </picture>
+                    <StInfo number={number}>
+                      {number && <StNumber>{index + 1}</StNumber>}
+                      {data.title && (
+                        <StTitle number={number}>{data.title}</StTitle>
+                      )}
+                    </StInfo>
+                    {vod && <Svg id="quick-vod" width={96} height={30} />}
+                  </Link>
+                </div>
               );
             })}
           </StSlider>
