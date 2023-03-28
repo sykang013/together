@@ -74,10 +74,14 @@ const ProfileCreate = () => {
       .child(`profile/${user.uid}/${uuid}/mobile`);
     const response1 = await mobileRef.putString(fileImage, 'data_url');
     const mobileUrl = await response1.ref.getDownloadURL();
+    const storageID = uuid;
+
     await createData({
       name: text,
       mobileUrl,
+      storageID,
     });
+
     goToProfilePage();
   };
 
