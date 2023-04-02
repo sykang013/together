@@ -42,7 +42,7 @@ body {
     --gray800: #2b2b2b;
     --gray900: #151515;
     --primary: #FF153C;
-    --secondary: #E93945;
+    --secondary: #DB1033;
     --dark-bg1: #191919;
     --dark-bg2: #212121;
 
