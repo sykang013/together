@@ -1,16 +1,63 @@
 /** @type { import('@storybook/react').Preview } */
-import { withRouter } from 'storybook-addon-react-router-v6';
 import { withThemeFromJSXProvider } from '@storybook/addon-styling';
 import { createGlobalStyle } from 'styled-components';
-import { getColor } from '../src/theme/utils';
+import { rem } from '@/theme/utils';
+import ko from 'axe-core/locales/ko.json';
 
 const GlobalStyles = createGlobalStyle`
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, menu, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+main, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+  display: block;
+}
+/* HTML5 hidden-attribute fix for newer browsers */
+*[hidden] {
+    display: none;
+}
 body {
-  background-color : ${getColor('--black')};
+  line-height: 1;
+}
+menu, ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+body {
+  background-color : var(--black);
   button,
   a {cursor: pointer};
-  color: ${getColor('--white')};
-}
+  color: var(--white);
+  }
   body,
   body::before,
   body::after,
@@ -30,7 +77,7 @@ body {
   video {
     width: 100%;
     height: auto;
-}
+  }
 
   :root{
     --black: #000000;
@@ -44,15 +91,28 @@ body {
     --gray700: #404040;
     --gray800: #2b2b2b;
     --gray900: #151515;
-    --primary: #182FFF;
-    --secondary: #1728C0;
+    --primary: #FF153C;
+    --secondary: #DB1033;
     --dark-bg1: #191919;
     --dark-bg2: #212121;
+
+    --spacingXXS: ${rem(4)};
+    --spacingXS: ${rem(12)};;
+    --spacingS: ${rem(21)};
+    --spacingM: ${rem(40)};
+
+    --paddingL: 11vh 0 ;
+
+
+    font-size: calc(8px + 0.5vw);
+
+    * {
+      transition: 0.1ms;
+    } 
   }
 `;
 
 export const decorators = [
-  withRouter,
   withThemeFromJSXProvider({
     GlobalStyles, // Adds your GlobalStyle component to all stories
   }),
@@ -62,6 +122,13 @@ export const parameters = {
   reactRouter: {
     routePath: '/',
   },
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
 };
 
 const customViewports = {
@@ -69,36 +136,43 @@ const customViewports = {
     name: 'mobile_min:320px',
     styles: {
       width: '320px',
-      height: '100vh',
+      height: '50vh',
     },
   },
   tablet: {
     name: 'tablet_min:768px',
     styles: {
       width: '768px',
-      height: '100vh',
+      height: '50vh',
     },
   },
   desktop: {
     name: 'desktop_min:1920px',
     styles: {
       width: '1920px',
-      height: '100vh',
+      height: '50vh',
     },
   },
 };
 
 const preview = {
   parameters: {
-    backgrounds: {
-      default: 'light',
+    a11y: {
+      config: { locale: ko },
     },
-    actions: { argTypesRegex: '^on[A-Z].*' },
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/,
-      },
+    layout: 'centered',
+    backgrounds: {
+      default: 'dark',
+      values: [
+        {
+          name: 'dark',
+          value: 'var(--black)',
+        },
+        {
+          name: 'light',
+          value: '#E1E1E1',
+        },
+      ],
     },
     viewport: {
       viewports: customViewports,
