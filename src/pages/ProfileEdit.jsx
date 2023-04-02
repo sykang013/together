@@ -18,18 +18,20 @@ import {
 } from '@/pages/ProfileCreate';
 import Svg from '@/components/svg/Svg';
 import { Helmet } from 'react-helmet-async';
+import { modalAtomFamily } from '@/store/modalState';
+import { useRecoilValue } from 'recoil';
+import useModal from '@/hooks/useModal';
 
 const ProfileNameForm = ({ profileId, defaultName, storageID }) => {
   const [name, setName] = useState(defaultName);
   const { user } = useAuthState();
   const navigate = useNavigate();
-  const [isProfileDeleteModal, setIsProfileDeleteModal] = useState(false);
-  const openProfileDeleteModal = () => {
-    setIsProfileDeleteModal(true);
-  };
-  const closeProfileDeleteModal = () => {
-    setIsProfileDeleteModal(false);
-  };
+
+  const isProfileDeleteModal = useRecoilValue(
+    modalAtomFamily('profile-delete')
+  );
+  const { openModal } = useModal('profile-delete');
+
   const goToProfile = () => {
     navigate('/profile-page');
   };
@@ -50,12 +52,8 @@ const ProfileNameForm = ({ profileId, defaultName, storageID }) => {
   };
   return (
     <>
-      {isProfileDeleteModal && (
-        <ProfileDeleteModal
-          profileId={profileId}
-          storageID={storageID}
-          closeProfileDeleteModal={closeProfileDeleteModal}
-        />
+      {isProfileDeleteModal.isOpen && (
+        <ProfileDeleteModal profileId={profileId} storageID={storageID} />
       )}
       <form onSubmit={handleSubmit}>
         <StA11yHidden as="label" htmlFor={name}>
@@ -74,7 +72,7 @@ const ProfileNameForm = ({ profileId, defaultName, storageID }) => {
             취소
           </button>
         </StCreatePageGroupButton>
-        <StDeleteButton type="button" onClick={openProfileDeleteModal}>
+        <StDeleteButton type="button" onClick={openModal}>
           프로필 삭제
         </StDeleteButton>
       </form>

@@ -11,7 +11,7 @@ import { modalAtomFamily } from '@/store/modalState';
 import useModal from '@/hooks/useModal';
 import LogoModal from '@/components/header/LogoModal';
 import { useAuthState } from '@/firebase/auth';
-import StA11yHidden from '../a11yhidden/A11yHidden';
+import StA11yHidden from '@/components/a11yhidden/A11yHidden';
 
 const StHeader = styled.header`
   position: fixed;

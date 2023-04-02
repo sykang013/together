@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Svg from '@/components/svg/Svg';
 import { StSearchInput } from '@/styles/SearchBarStyles';
 import {
@@ -6,26 +6,24 @@ import {
   searchHistoryState,
   searchKeywordState,
 } from '@/store/search/index';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import useDebounce from '@/hooks/useDebounce';
 import useReadSearchData from '@/firebase/firestore/useReadSearchData';
 import Modal from '@/components/modal/Modal';
 import { useNavigate } from 'react-router-dom';
-import { func } from 'prop-types';
 import useModal from '@/hooks/useModal';
 import StA11yHidden from '../a11yhidden/A11yHidden';
+import { modalAtomFamily } from '@/store/modalState';
 
-const SearchBar = ({ openModal }) => {
+const SearchBar = () => {
   const [keywords, setKeywords] = useRecoilState(searchHistoryState);
   const [keyword, setKeyword] = useRecoilState(searchKeywordState);
   const setSearchData = useSetRecoilState(searchBarDataState);
-  const [isGuideModal, setIsGuideModal] = useState(false);
+
+  const isGuideModal = useRecoilValue(modalAtomFamily('search-guide'));
+  const { openModal, closeModal } = useModal('search-guide');
   const { toggleModal } = useModal('search');
   const navigate = useNavigate();
-
-  const toggleGuideModal = () => {
-    setIsGuideModal((isGuideModal) => !isGuideModal);
-  };
 
   const onChangeKeyword = (e) => {
     setKeyword(e.target.value);
@@ -34,7 +32,7 @@ const SearchBar = ({ openModal }) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (!keyword) {
-      toggleGuideModal();
+      openModal();
       return;
     }
 
@@ -74,11 +72,8 @@ const SearchBar = ({ openModal }) => {
 
   return (
     <>
-      {isGuideModal && (
-        <Modal
-          message="검색어를 입력해주세요."
-          onClickHandler={toggleGuideModal}
-        />
+      {isGuideModal.isOpen && (
+        <Modal message="검색어를 입력해주세요." onClickHandler={closeModal} />
       )}
       <StA11yHidden as="label" htmlFor="search">
         검색 키워드
@@ -90,7 +85,6 @@ const SearchBar = ({ openModal }) => {
           placeholder="TV프로그램, 영화 제목 및 출연진으로 검색해보세요"
           value={keyword || ''}
           onChange={onChangeKeyword}
-          onClick={openModal}
           autoFocus
         />
         <button onClick={onSubmitHandler}>
@@ -110,7 +104,3 @@ const SearchBar = ({ openModal }) => {
 };
 
 export default SearchBar;
-
-SearchBar.propTypes = {
-  openModal: func,
-};
