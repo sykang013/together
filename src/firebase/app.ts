@@ -1,4 +1,6 @@
-import { initializeApp } from 'firebase/app';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/storage';
 
 const {
   VITE_API_KEY,
@@ -18,4 +20,6 @@ export const firebaseConfig = {
   appId: VITE_APP_ID,
 };
 
-export const app = initializeApp(firebaseConfig);
+export const app = firebase.initializeApp(firebaseConfig);
+export const dbService = firebase.firestore();
+export const storageService = firebase.storage();

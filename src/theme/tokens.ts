@@ -1,7 +1,4 @@
 interface ITokens {
-  colors: {
-    [key: string]: string;
-  };
   fonts: {
     [key: string]: {
       [key: string]: string;
@@ -10,23 +7,6 @@ interface ITokens {
 }
 
 export const tokens: ITokens = {
-  colors: {
-    '--black': '#000000',
-    '--white': '#ffffff',
-    '--gray100': '#e1e1e1',
-    '--gray200': '#c4c4c4',
-    '--gray300': '#a6a6a6',
-    '--gray400': '#898989',
-    '--gray500': '#6b6b6b',
-    '--gray600': '#565656',
-    '--gray700': '#404040',
-    '--gray800': '#2b2b2b',
-    '--gray900': '#151515',
-    '--primary': '#182FFF',
-    '--secondary': '#1728C0',
-    '--dark-bg1': '#191919',
-    '--dark-bg2': '#212121',
-  },
   fonts: {
     headingM: {
       'font-family': 'Pretendard',
@@ -125,6 +105,36 @@ export const tokens: ITokens = {
       'font-weight': '400',
       'font-size': '1.775rem', //28.4px
       'line-height': '160%;',
+    },
+    CarouselS: {
+      'font-family': 'Noto Sans KR',
+      'font-size': '10.6682px',
+      'line-height': '15.6822px',
+    },
+    CarouselM: {
+      'font-family': 'Noto Sans KR',
+      'font-size': '13.3301px',
+      'line-height': '19.5953px',
+    },
+    CarouselL: {
+      'font-family': 'Noto Sans KR',
+      'font-size': '17.8181px',
+      'line-height': '26.1926px',
+    },
+    CarouselNumberS: {
+      'font-family': 'Noto Sans KR',
+      'font-size': '34px',
+      'font-weight': '700',
+    },
+    CarouselNumberM: {
+      'font-family': 'Noto Sans KR',
+      'font-size': '46px',
+      'font-weight': '700',
+    },
+    CarouselNumberL: {
+      'font-family': 'Noto Sans KR',
+      'font-size': '70px',
+      'font-weight': '700',
     },
   },
 };

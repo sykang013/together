@@ -13,7 +13,7 @@ import { auth } from './index';
  * }}
  */
 export function useAuthState() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
 

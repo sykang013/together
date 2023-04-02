@@ -1,77 +1,33 @@
 import { useRef, useState } from 'react';
-import { getColor, getFontStyle, rem } from '@/theme/utils';
+import { getFontStyle } from '@/theme/utils';
+import {
+  StContainer,
+  StForm,
+  StFormInner,
+  StInner,
+  StTitle,
+} from '@/styles/FormStyles';
 import styled from 'styled-components/macro';
 import FormButton from '@/components/button/FormButton';
 import FormInput from '@/components/forminput/FormInput';
 import { useAuthState, useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
-import { Navigate } from 'react-router';
-
-const StContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
-`;
-const StInner = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: ${rem(60)};
-  width: ${rem(319)};
-  text-align: center;
-
-  @media (min-width: 768px) {
-    width: ${rem(416)};
-  }
-  @media (min-width: 1920px) {
-    width: ${rem(732)};
-  }
-  div {
-    display: flex;
-    flex-direction: column;
-    gap: ${rem(20)};
-  }
-`;
-
-const StTitle = styled.h1`
-  ${getFontStyle('headingMedium')};
-  @media (min-width: 768px) {
-    ${getFontStyle('headingXL')};
-  }
-  @media (min-width: 1920px) {
-    ${getFontStyle('headingXXL')};
-  }
-`;
+import { useNavigate } from 'react-router-dom';
+import LoadingSpinner from '@/components/loading/LoadingSpinner';
 
 const StHeaderDescription = styled.p`
-  color: ${getColor('--gray400')};
-  ${getFontStyle('LabelSmall')};
+  color: var(--gray300);
+  ${getFontStyle('LabelS')};
   @media (min-width: 768px) {
-    ${getFontStyle('LabelMedium')};
+    ${getFontStyle('LabelM')};
   }
   @media (min-width: 1920px) {
     ${getFontStyle('LabelXL')};
   }
 `;
-const StForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: ${rem(16)};
-  @media (min-width: 768px) {
-    gap: ${rem(18)};
-  }
-  @media (min-width: 1920px) {
-    gap: ${rem(34)};
-  }
-  div {
-    display: flex;
-    text-align: left;
-    gap: 0;
-  }
-`;
 
 const StEmailDescription = styled.p`
-  color: ${(props) => (props.isEmail ? getColor('--gray500') : 'red')};
+  color: ${(props) => (props.isEmail ? `var(--gray400)` : `var(--primary)`)};
   ${getFontStyle('ParagraphS')};
   @media (min-width: 768px) {
     ${getFontStyle('ParagraphM')};
@@ -82,7 +38,7 @@ const StEmailDescription = styled.p`
 `;
 
 const StPwDescription = styled.p`
-  color: ${(props) => (props.isPassword ? getColor('--gray500') : 'red')};
+  color: ${(props) => (props.isPassword ? `var(--gray400)` : `var(--primary)`)};
   ${getFontStyle('ParagraphS')};
   @media (min-width: 768px) {
     ${getFontStyle('ParagraphM')};
@@ -94,7 +50,7 @@ const StPwDescription = styled.p`
 
 const StPwConfirmDescription = styled.p`
   color: ${(props) =>
-    props.isPasswordConfirm ? getColor('--gray500') : 'red'};
+    props.isPasswordConfirm ? `var(--gray400)` : `var(--primary)`};
   ${getFontStyle('ParagraphS')};
   @media (min-width: 768px) {
     ${getFontStyle('ParagraphM')};
@@ -126,6 +82,7 @@ const RegisterForm = () => {
 
   const formStateRef = useRef(initialFormState);
   const { email, password, passwordConfirm } = formStateRef.current;
+  const navigate = useNavigate();
 
   const handleChangeEmail = (e) => {
     const { name, value } = e.target;
@@ -198,16 +155,15 @@ const RegisterForm = () => {
     await createAuthUser(user);
 
     alert('회원가입 및 유저 생성');
-    // const navigate = Navigate();
-    // navigate('/login');
+    return navigate('/main');
   };
 
   if (isLoading) {
-    return <div role="alert">페이지를 준비 중입니다.</div>;
+    return <LoadingSpinner />;
   }
 
   if (error) {
-    return <div role="alert">오류! {error.message}</div>;
+    return navigate('/*');
   }
 
   return (
@@ -220,8 +176,9 @@ const RegisterForm = () => {
           </StHeaderDescription>
         </div>
         <StForm onSubmit={handleSubmit}>
-          <div>
+          <StFormInner>
             <FormInput
+              label="이메일"
               name="email"
               type="email"
               placeholder="이메일"
@@ -234,9 +191,10 @@ const RegisterForm = () => {
                 ? '올바른 이메일 형식을 작성해주세요(예: euid@euid.dev)'
                 : '올바르지 않은 이메일입니다.'}
             </StEmailDescription>
-          </div>
-          <div>
+          </StFormInner>
+          <StFormInner>
             <FormInput
+              label="비밀번호"
               name="password"
               type="password"
               placeholder="비밀번호"
@@ -248,9 +206,10 @@ const RegisterForm = () => {
                 ? '영문, 숫자, 특수문자(~!@#$&^&*) 조합 8~15자리'
                 : '올바르지 않은 비밀번호입니다.'}
             </StPwDescription>
-          </div>
-          <div>
+          </StFormInner>
+          <StFormInner>
             <FormInput
+              label="비밀번호 확인"
               name="passwordConfirm"
               type="password"
               placeholder="비밀번호 확인"
@@ -262,7 +221,7 @@ const RegisterForm = () => {
                 ? '위와 같은 비밀번호를 입력해주세요.'
                 : '비밀번호가 일치하지 않습니다.'}
             </StPwConfirmDescription>
-          </div>
+          </StFormInner>
           <FormButton type="submit" isActive={isActive}>
             가입하기
           </FormButton>

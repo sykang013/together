@@ -1,4 +1,6 @@
-import { getColor, rem } from '@/theme/utils';
+import Footer from '@/components/footer/Footer';
+import Header from '@/components/header/Header';
+import { rem } from '@/theme/utils';
 import { Outlet } from 'react-router';
 import styled from 'styled-components/macro';
 
@@ -8,23 +10,20 @@ const StBaseLayout = styled.div`
     BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
     'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-  color: ${getColor('--white')};
+  color: var(--white);
   margin-left: auto;
   margin-right: auto;
-  padding: 0 ${rem(8)};
-  @media (min-width: 768px) {
-    padding: 0 ${rem(40)};
-  }
-  @media (min-width: 1920px) {
-    padding: 0 ${rem(70)};
-  }
 `;
 
 const BaseLayout = () => {
   return (
-    <StBaseLayout>
-      <Outlet />
-    </StBaseLayout>
+    <>
+      <Header />
+      <StBaseLayout>
+        <Outlet />
+      </StBaseLayout>
+      <Footer />
+    </>
   );
 };
 
