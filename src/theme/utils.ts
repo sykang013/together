@@ -1,16 +1,6 @@
 import { tokens } from './tokens';
 
 /**
- * Color 변환 유틸 함수
- * put string in parameters
- * @param {string} colorNameAndVariant (ex: 'gray-100')
- * @returns {string} colorName (ex: #e1e1e1)
- */
-export const getColor = (colorNameAndVariant: string): string => {
-  const colorName = tokens.colors[colorNameAndVariant];
-  return colorName;
-};
-/**
  * rem 단위 변환 유틸 함수
  * @param {string} value (ex: rem(16))
  * @param {string} baseValue
