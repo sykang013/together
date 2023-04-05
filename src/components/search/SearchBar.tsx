@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Svg from '@/components/svg/Svg';
 import { StSearchInput } from '@/styles/SearchBarStyles';
 import {
@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import useModal from '@/hooks/useModal';
 import StA11yHidden from '../a11yhidden/A11yHidden';
 import { modalAtomFamily } from '@/store/modalState';
+import { ISearchHistory } from '@/types/search';
 
 const SearchBar = () => {
   const [keywords, setKeywords] = useRecoilState(searchHistoryState);
@@ -25,28 +26,27 @@ const SearchBar = () => {
   const { toggleModal } = useModal('search');
   const navigate = useNavigate();
 
-  const onChangeKeyword = (e) => {
+  const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
+  const onSubmitHandler = () => {
     if (!keyword) {
       openModal();
       return;
     }
 
-    let uuid = self.crypto.randomUUID();
+    const uuid = self.crypto.randomUUID();
     const newKeyword = {
       id: uuid,
       keyword: keyword,
     };
 
     if (keywords.length === 10) {
-      setKeywords((keywords) => keywords.slice(0, 9));
+      setKeywords((keywords: ISearchHistory[]) => keywords.slice(0, 9));
     }
 
-    setKeywords((keywords) => [newKeyword, ...keywords]);
+    setKeywords((keywords: ISearchHistory[]) => [newKeyword, ...keywords]);
     setSearchData([]);
     toggleModal();
     navigate(`/search?keyword=${keyword}`);

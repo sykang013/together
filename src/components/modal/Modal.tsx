@@ -1,7 +1,12 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import ModalPortal from '@/components/modal/ModalPortal';
-import { string, func } from 'prop-types';
+
+interface IModalProps {
+  message: string;
+  onClickHandler: () => void;
+  cancelHandler?: () => void;
+}
 
 const StModal = styled.div`
   z-index: 20;
@@ -74,7 +79,7 @@ const StOverlay = styled.div`
   z-index: 10;
 `;
 
-const Modal = ({ message, onClickHandler, cancelHandler }) => {
+const Modal = ({ message, onClickHandler, cancelHandler }: IModalProps) => {
   return (
     <ModalPortal>
       <StOverlay />
@@ -96,9 +101,3 @@ const Modal = ({ message, onClickHandler, cancelHandler }) => {
 };
 
 export default Modal;
-
-Modal.propTypes = {
-  message: string.isRequired,
-  onClickHandler: func.isRequired,
-  cancelHandler: func,
-};

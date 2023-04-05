@@ -1,3 +1,4 @@
+import { IPrograms } from '@/types/programs';
 import { atom, selector } from 'recoil';
 
 export const searchDataState = atom({
@@ -24,7 +25,7 @@ export const searchTvProgramsState = selector({
     const searchData = get(searchDataState);
 
     const tvPrograms = searchData.filter(
-      (data) => data.category === 'TV프로그램'
+      (data: IPrograms) => data.category === 'TV프로그램'
     );
 
     return tvPrograms;
@@ -36,7 +37,9 @@ export const searchMoviesState = selector({
   get: ({ get }) => {
     const searchData = get(searchDataState);
 
-    const movies = searchData.filter((data) => data.category === '영화');
+    const movies = searchData.filter(
+      (data: IPrograms) => data.category === '영화'
+    );
 
     return movies;
   },

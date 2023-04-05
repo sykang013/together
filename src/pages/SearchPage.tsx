@@ -58,7 +58,7 @@ const SearchPage = () => {
   );
 
   useEffect(() => {
-    setSearchKeyword(searchParams.get('keyword'));
+    setSearchKeyword(searchParams.get('keyword') ?? '');
     readSearchData();
   }, [searchParams.get('keyword')]);
 
@@ -83,7 +83,7 @@ const SearchPage = () => {
           <input
             type="text"
             placeholder="TV프로그램, 영화 제목 및 출연진으로 검색해보세요"
-            value={searchParams.get('keyword') || ''}
+            value={searchParams.get('keyword') ?? ''}
             readOnly
           />
           <Svg
@@ -100,9 +100,11 @@ const SearchPage = () => {
       <StMessage>{countSearchData > 0 ? resultMessage : noMessage}</StMessage>
       <StCarouselLayout>
         {tvPrograms.length > 0 && (
-          <Carousel title="TV프로그램" dataProp={tvPrograms} />
+          <Carousel title="TV프로그램" dataProp={tvPrograms} count={true} />
         )}
-        {movies.length > 0 && <Carousel title="영화" dataProp={movies} />}
+        {movies.length > 0 && (
+          <Carousel title="영화" dataProp={movies} count={true} />
+        )}
         {isLoading && <SkeletonCarousel />}
       </StCarouselLayout>
     </>
