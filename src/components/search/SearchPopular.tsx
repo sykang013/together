@@ -101,6 +101,13 @@ const SearchPopular = () => {
     '술꾼도시여자들',
   ];
 
+  const nowDate = new Date();
+  const year = nowDate.getFullYear();
+  const month = (nowDate.getMonth() + 1 + '').padStart(2, '0');
+  const date = (nowDate.getDate() + '').padStart(2, '0');
+  const hours = nowDate.getHours();
+  const minutes = (nowDate.getMinutes() + '').padStart(2, '0');
+
   return (
     <StPopular>
       <h2>실시간 인기 검색어</h2>
@@ -111,7 +118,13 @@ const SearchPopular = () => {
             <Link to="/main">{title}</Link>
           </StKeyword>
         ))}
-        <li>2023.03.15 오후 03:46 기준</li>
+        <li>
+          {`${year}.${month}.${date} ${hours >= 12 ? '오후' : '오전'} ${
+            hours > 12
+              ? (hours - 12 + '').padStart(2, '0')
+              : (hours + '').padStart(2, '0')
+          }:${minutes} 기준`}
+        </li>
       </ul>
     </StPopular>
   );

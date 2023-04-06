@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import { useSearchParams } from 'react-router-dom';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   countSearchDataState,
   searchKeywordState,
@@ -43,11 +43,11 @@ const StCarouselLayout = styled.div`
 `;
 
 const SearchPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const countSearchData = useRecoilValue(countSearchDataState);
   const tvPrograms = useRecoilValue(searchTvProgramsState);
   const movies = useRecoilValue(searchMoviesState);
-  const [searchKeyword, setSearchKeyword] = useRecoilState(searchKeywordState);
+  const setSearchKeyword = useSetRecoilState(searchKeywordState);
 
   const { openModal } = useModal('search');
 

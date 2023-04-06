@@ -1,4 +1,3 @@
-import propTypes from 'prop-types';
 import Modal from '@/components/modal/Modal';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from '@/firebase/auth';
@@ -6,11 +5,18 @@ import { useDeleteData } from '@/firebase/firestore/useDeleteData';
 import { useDeleteFile } from '@/firebase/storage/useDeleteFile';
 import useModal from '@/hooks/useModal';
 
-const ProfileDeleteModal = ({ profileId, storageID }) => {
+interface IProfileDeleteModalProps {
+  profileId: string;
+  storageID: string;
+}
+const ProfileDeleteModal = ({
+  profileId,
+  storageID,
+}: IProfileDeleteModalProps) => {
   const navigate = useNavigate();
   const { user } = useAuthState();
   const { deleteData } = useDeleteData('users');
-  const { deleteFile } = useDeleteFile('profile');
+  const { deleteFile } = useDeleteFile();
 
   const { closeModal } = useModal('profile-delete');
 
@@ -36,8 +42,3 @@ const ProfileDeleteModal = ({ profileId, storageID }) => {
 };
 
 export default ProfileDeleteModal;
-
-ProfileDeleteModal.propTypes = {
-  profileId: propTypes.string,
-  storageID: propTypes.string,
-};

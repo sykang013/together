@@ -127,7 +127,7 @@ const StLogoutButton = styled.button`
 const LogoModal = () => {
   const { modalState: isLogoutModal, openModal } = useModal('logout');
 
-  const stModalContainerRef = useRef(null);
+  const stModalContainerRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
@@ -138,7 +138,7 @@ const LogoModal = () => {
           to="/profile-page"
           onClick={() => {
             const modalContainer = stModalContainerRef.current;
-            if (stModalContainerRef.current) {
+            if (modalContainer) {
               modalContainer.style.display = 'none';
               setTimeout(() => {
                 modalContainer.style.removeProperty('display');

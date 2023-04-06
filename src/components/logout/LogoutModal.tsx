@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import propTypes from 'prop-types';
 import { useSignOut } from '@/firebase/auth';
 import Modal from '@/components/modal/Modal';
 import useModal from '@/hooks/useModal';

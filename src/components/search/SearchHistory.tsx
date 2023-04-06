@@ -5,7 +5,6 @@ import { useRecoilState } from 'recoil';
 import { searchHistoryState } from '@/store/search/index';
 import { useNavigate } from 'react-router-dom';
 import useModal from '@/hooks/useModal';
-import { ISearchHistory } from '@/types/search';
 
 const StRecent = styled.div`
   width: 50%;
@@ -104,9 +103,7 @@ const SearchHistory = () => {
   const navigate = useNavigate();
 
   const removeKeyword = (id: string) => {
-    setKeywords((keywords: ISearchHistory[]) =>
-      keywords.filter((keyword) => keyword.id !== id)
-    );
+    setKeywords((keywords) => keywords.filter((keyword) => keyword.id !== id));
   };
 
   const removeKeywordAll = () => {
@@ -137,7 +134,7 @@ const SearchHistory = () => {
       </div>
       <ul>
         {keywords.length === 0 && <li>검색 내역이 없습니다.</li>}
-        {keywords?.map((keyword: ISearchHistory) => (
+        {keywords?.map((keyword) => (
           <li key={keyword.id}>
             <StKeyword
               type="button"

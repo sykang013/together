@@ -6,14 +6,13 @@ import {
   searchHistoryState,
   searchKeywordState,
 } from '@/store/search/index';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import useDebounce from '@/hooks/useDebounce';
 import useReadSearchData from '@/firebase/firestore/useReadSearchData';
 import Modal from '@/components/modal/Modal';
 import { useNavigate } from 'react-router-dom';
 import useModal from '@/hooks/useModal';
-import StA11yHidden from '../a11yhidden/A11yHidden';
-import { ISearchHistory } from '@/types/search';
+import StA11yHidden from '@/components/a11yhidden/A11yHidden';
 
 const SearchBar = () => {
   const [keywords, setKeywords] = useRecoilState(searchHistoryState);
@@ -32,7 +31,8 @@ const SearchBar = () => {
     setKeyword(e.target.value);
   };
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!keyword) {
       openSearchGuideModal();
       return;
@@ -45,16 +45,16 @@ const SearchBar = () => {
     };
 
     if (keywords.length === 10) {
-      setKeywords((keywords: ISearchHistory[]) => keywords.slice(0, 9));
+      setKeywords((keywords) => keywords.slice(0, 9));
     }
 
-    setKeywords((keywords: ISearchHistory[]) => [newKeyword, ...keywords]);
+    setKeywords((keywords) => [newKeyword, ...keywords]);
     setSearchData([]);
     toggleSearchModal();
     navigate(`/search?keyword=${keyword}`);
   };
 
-  const { readSearchData, isLoading, error } = useReadSearchData(
+  const { readSearchData } = useReadSearchData(
     'programs',
     keyword,
     'searchBarDataState'
@@ -83,7 +83,7 @@ const SearchBar = () => {
       <StA11yHidden as="label" htmlFor="search">
         검색 키워드
       </StA11yHidden>
-      <StSearchInput>
+      <StSearchInput onSubmit={onSubmitHandler}>
         <input
           type="text"
           id="search"
@@ -92,7 +92,7 @@ const SearchBar = () => {
           onChange={onChangeKeyword}
           autoFocus
         />
-        <button onClick={onSubmitHandler}>
+        <button>
           <Svg
             id="search-hover"
             width={22}
