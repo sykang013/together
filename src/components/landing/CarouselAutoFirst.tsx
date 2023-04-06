@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useReadData } from '@/firebase/firestore';
 import styled, { keyframes } from 'styled-components/macro';
-import { string } from 'prop-types';
-
+interface ICarouselAutoFirst {
+  speed: string;
+}
 const StCarouselAutoFirst = styled.section`
   position: relative;
   overflow: hidden;
@@ -31,7 +32,7 @@ const autoPlayL = keyframes`
     }
 `;
 
-const StAutoContainer = styled.div`
+const StAutoContainer = styled.div<{ speed: string }>`
   object-fit: contain;
   width: calc(189px * 5);
   display: flex;
@@ -60,7 +61,7 @@ const StImgItem = styled.img`
   }
 `;
 
-const CarouselAutoFirst = ({ speed }) => {
+const CarouselAutoFirst = (props: ICarouselAutoFirst) => {
   const { readData, data } = useReadData('landing-contents-first');
 
   useEffect(() => {
@@ -69,7 +70,10 @@ const CarouselAutoFirst = ({ speed }) => {
 
   return (
     <StCarouselAutoFirst className="landingElementAnimation">
-      <StAutoContainer speed={speed} className="landingAutoContainerAnimation">
+      <StAutoContainer
+        speed={props.speed}
+        className="landingAutoContainerAnimation"
+      >
         {data?.map((data) => {
           return (
             <StImgItem key={data.id} src={data.desktopUrl} alt={data.alt} />
@@ -86,13 +90,6 @@ const CarouselAutoFirst = ({ speed }) => {
 };
 
 export default CarouselAutoFirst;
-
-CarouselAutoFirst.propTypes = {
-  /**
-   * 문자만 가능합니다. ex)'20s'
-   */
-  speed: string.isRequired,
-};
 
 CarouselAutoFirst.defaultProps = {
   speed: '30s',

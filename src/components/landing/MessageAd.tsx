@@ -1,8 +1,7 @@
 import styled from 'styled-components/macro';
 import { getFontStyle } from '@/theme/utils';
-
 interface IMessageProps {
-  mainText?: string;
+  mainText: string;
   subText?: string;
   detailText?: string;
 }
@@ -57,8 +56,7 @@ const MessageAd = (props: IMessageProps) => {
 export default MessageAd;
 
 MessageAd.defaultProps = {
-  mainText: '내가 찾던 재미',
-  subText: '보고 싶은 콘텐츠를 발견하세요!',
-  detailText:
-    '최신, 인기 TV프로그램, 영화, 해외시리즈, 파라마운트+ 오리지널 및 독점',
+  mainText: '메인텍스트 ',
+  subText: '서브텍스트를 입력하세요',
+  detailText: '자세한 사항을 입력하세요!',
 };

@@ -35,7 +35,6 @@ const StImgContainer = styled.div`
   position: absolute;
   left: -${(278 + 8) / 2}px;
   @media (min-width: 1000px) {
-    /* height: 510px; */
     height: 504px;
     left: -${(900 + 16) / 2}px;
   }
