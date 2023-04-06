@@ -1,9 +1,9 @@
-import { node } from 'prop-types';
 import { Navigate } from 'react-router-dom';
 import LoadingSpinner from './components/loading/LoadingSpinner';
 import { useAuthState } from './firebase/auth';
+import { FC, ReactNode } from 'react';
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute: FC<{ children: ReactNode }> = ({ children }) => {
   const { user, isLoading } = useAuthState();
 
   if (isLoading) {
@@ -14,19 +14,15 @@ const PrivateRoute = ({ children }) => {
     if (location.pathname === '/') {
       return <Navigate to="/main" />;
     } else {
-      return children;
+      return <>{children}</>;
     }
   } else {
     if (location.pathname === '/') {
-      return children;
+      return <>{children}</>;
     } else {
       return <Navigate to="/login" />;
     }
   }
-};
-
-PrivateRoute.propTypes = {
-  children: node,
 };
 
 export default PrivateRoute;

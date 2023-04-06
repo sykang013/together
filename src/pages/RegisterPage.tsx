@@ -11,7 +11,7 @@ const RegisterPage = () => {
           content="타잉의 컨텐츠들을 즐기기 위한 계정 회원가입 페이지입니다."
         />
       </Helmet>
-      <RegisterForm></RegisterForm>
+      <RegisterForm />
     </>
   );
 };

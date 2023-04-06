@@ -14,6 +14,13 @@ import { useAuthState, useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
+import { IFormState } from '@/types/signForm';
+
+interface DescriptionProps {
+  isEmail?: boolean;
+  isPassword?: boolean;
+  isPasswordConfirm?: boolean;
+}
 
 const StHeaderDescription = styled.p`
   color: var(--gray300);
@@ -26,7 +33,7 @@ const StHeaderDescription = styled.p`
   }
 `;
 
-const StEmailDescription = styled.p`
+const StEmailDescription = styled.p<DescriptionProps>`
   color: ${(props) => (props.isEmail ? `var(--gray400)` : `var(--primary)`)};
   ${getFontStyle('ParagraphS')};
   @media (min-width: 768px) {
@@ -37,7 +44,7 @@ const StEmailDescription = styled.p`
   }
 `;
 
-const StPwDescription = styled.p`
+const StPwDescription = styled.p<DescriptionProps>`
   color: ${(props) => (props.isPassword ? `var(--gray400)` : `var(--primary)`)};
   ${getFontStyle('ParagraphS')};
   @media (min-width: 768px) {
@@ -48,7 +55,7 @@ const StPwDescription = styled.p`
   }
 `;
 
-const StPwConfirmDescription = styled.p`
+const StPwConfirmDescription = styled.p<DescriptionProps>`
   color: ${(props) =>
     props.isPasswordConfirm ? `var(--gray400)` : `var(--primary)`};
   ${getFontStyle('ParagraphS')};
@@ -60,8 +67,8 @@ const StPwConfirmDescription = styled.p`
   }
 `;
 
-const RegisterForm = () => {
-  const initialFormState = {
+const RegisterForm = (): JSX.Element => {
+  const initialFormState: IFormState = {
     email: '',
     password: '',
     passwordConfirm: '',
@@ -84,11 +91,15 @@ const RegisterForm = () => {
   const { email, password, passwordConfirm } = formStateRef.current;
   const navigate = useNavigate();
 
-  const handleChangeEmail = (e) => {
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    formStateRef.current[name] = value;
+    formStateRef.current[name as keyof IFormState] = value || '';
 
-    if (!REGEXP_EMAIL.test(formStateRef.current[name])) {
+    if (
+      !REGEXP_EMAIL.test(
+        formStateRef.current[name as keyof IFormState] as string
+      )
+    ) {
       setIsEmail(false);
       setIsActive(false);
       return;
@@ -100,11 +111,13 @@ const RegisterForm = () => {
     }
   };
 
-  const handleChangePw = (e) => {
+  const handleChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    formStateRef.current[name] = value;
+    formStateRef.current[name as keyof IFormState] = value;
 
-    if (!REGEXP_PW.test(formStateRef.current[name])) {
+    if (
+      !REGEXP_PW.test(formStateRef.current[name as keyof IFormState] as string)
+    ) {
       setIsPassword(false);
       setIsActive(false);
       return;
@@ -116,11 +129,11 @@ const RegisterForm = () => {
     }
   };
 
-  const handleChangePwConfirm = (e) => {
+  const handleChangePwConfirm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    formStateRef.current[name] = value;
+    formStateRef.current[name as keyof IFormState] = value;
 
-    if (!Object.is(password, formStateRef.current[name])) {
+    if (!Object.is(password, formStateRef.current[name as keyof IFormState])) {
       setIsPasswordConfirm(false);
       setIsActive(false);
       return;
@@ -132,7 +145,7 @@ const RegisterForm = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!REGEXP_EMAIL.test(email)) {
@@ -152,10 +165,10 @@ const RegisterForm = () => {
     }
 
     const user = await signUp(email, password);
-    await createAuthUser(user);
+    await createAuthUser(user, {});
 
     alert('회원가입 및 유저 생성');
-    return navigate('/main');
+    navigate('/main');
   };
 
   if (isLoading) {
@@ -163,71 +176,73 @@ const RegisterForm = () => {
   }
 
   if (error) {
-    return navigate('/*');
+    navigate('/*');
   }
 
   return (
-    <StContainer>
-      <StInner>
-        <div>
-          <StTitle>티빙 회원가입</StTitle>
-          <StHeaderDescription>
-            이메일과 비밀번호로 간편하게 티빙을 시작하세요!
-          </StHeaderDescription>
-        </div>
-        <StForm onSubmit={handleSubmit}>
-          <StFormInner>
-            <FormInput
-              label="이메일"
-              name="email"
-              type="email"
-              placeholder="이메일"
-              onChange={handleChangeEmail}
-              autoComplete="email"
-              required
-            />
-            <StEmailDescription isEmail={isEmail}>
-              {isEmail
-                ? '올바른 이메일 형식을 작성해주세요(예: euid@euid.dev)'
-                : '올바르지 않은 이메일입니다.'}
-            </StEmailDescription>
-          </StFormInner>
-          <StFormInner>
-            <FormInput
-              label="비밀번호"
-              name="password"
-              type="password"
-              placeholder="비밀번호"
-              onChange={handleChangePw}
-              required
-            />
-            <StPwDescription isPassword={isPassword}>
-              {isPassword
-                ? '영문, 숫자, 특수문자(~!@#$&^&*) 조합 8~15자리'
-                : '올바르지 않은 비밀번호입니다.'}
-            </StPwDescription>
-          </StFormInner>
-          <StFormInner>
-            <FormInput
-              label="비밀번호 확인"
-              name="passwordConfirm"
-              type="password"
-              placeholder="비밀번호 확인"
-              onChange={handleChangePwConfirm}
-              required
-            />
-            <StPwConfirmDescription isPasswordConfirm={isPasswordConfirm}>
-              {isPasswordConfirm
-                ? '위와 같은 비밀번호를 입력해주세요.'
-                : '비밀번호가 일치하지 않습니다.'}
-            </StPwConfirmDescription>
-          </StFormInner>
-          <FormButton type="submit" isActive={isActive}>
-            가입하기
-          </FormButton>
-        </StForm>
-      </StInner>
-    </StContainer>
+    <>
+      <StContainer>
+        <StInner>
+          <div>
+            <StTitle>티빙 회원가입</StTitle>
+            <StHeaderDescription>
+              이메일과 비밀번호로 간편하게 티빙을 시작하세요!
+            </StHeaderDescription>
+          </div>
+          <StForm onSubmit={handleSubmit}>
+            <StFormInner>
+              <FormInput
+                label="이메일"
+                name="email"
+                type="email"
+                placeholder="이메일"
+                onChange={handleChangeEmail}
+                autoComplete="email"
+                required
+              />
+              <StEmailDescription isEmail={isEmail}>
+                {isEmail
+                  ? '올바른 이메일 형식을 작성해주세요(예: euid@euid.dev)'
+                  : '올바르지 않은 이메일입니다.'}
+              </StEmailDescription>
+            </StFormInner>
+            <StFormInner>
+              <FormInput
+                label="비밀번호"
+                name="password"
+                type="password"
+                placeholder="비밀번호"
+                onChange={handleChangePw}
+                required
+              />
+              <StPwDescription isPassword={isPassword}>
+                {isPassword
+                  ? '영문, 숫자, 특수문자(~!@#$&^&*) 조합 8~15자리'
+                  : '올바르지 않은 비밀번호입니다.'}
+              </StPwDescription>
+            </StFormInner>
+            <StFormInner>
+              <FormInput
+                label="비밀번호 확인"
+                name="passwordConfirm"
+                type="password"
+                placeholder="비밀번호 확인"
+                onChange={handleChangePwConfirm}
+                required
+              />
+              <StPwConfirmDescription isPasswordConfirm={isPasswordConfirm}>
+                {isPasswordConfirm
+                  ? '위와 같은 비밀번호를 입력해주세요.'
+                  : '비밀번호가 일치하지 않습니다.'}
+              </StPwConfirmDescription>
+            </StFormInner>
+            <FormButton type="submit" isActive={isActive}>
+              가입하기
+            </FormButton>
+          </StForm>
+        </StInner>
+      </StContainer>
+    </>
   );
 };
 

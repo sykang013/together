@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import FormInput from '@/components/forminput/FormInput';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
+import { IFormState } from '@/types/signForm';
 
 const StInfo = styled.p`
   color: var(--gray400);
@@ -86,19 +87,19 @@ const StButton = styled.button`
   }
 `;
 
-const initialFormState = {
-  email: null,
+const initialFormState: IFormState = {
+  email: '',
   password: '',
 };
 
-const LoginForm = () => {
+const LoginForm = (): JSX.Element => {
   const formStateRef = useRef(initialFormState);
 
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
   const { isLoading, error, user } = useAuthState();
   const navigate = useNavigate();
 
-  const handleSignIn = async (e) => {
+  const handleSignIn = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { email, password } = formStateRef.current;
@@ -106,9 +107,9 @@ const LoginForm = () => {
     await signIn(email, password);
   };
 
-  const handleChangeInput = (e) => {
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    formStateRef.current[name] = value;
+    formStateRef.current[name as keyof IFormState] = value;
   };
 
   if (isLoading) {
@@ -116,11 +117,11 @@ const LoginForm = () => {
   }
 
   if (error) {
-    return navigate('/*');
+    navigate('/*');
   }
 
   if (user) {
-    return navigate('/main');
+    navigate('/main');
   }
 
   return (
