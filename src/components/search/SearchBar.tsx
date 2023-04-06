@@ -13,7 +13,6 @@ import Modal from '@/components/modal/Modal';
 import { useNavigate } from 'react-router-dom';
 import useModal from '@/hooks/useModal';
 import StA11yHidden from '../a11yhidden/A11yHidden';
-import { modalAtomFamily } from '@/store/modalState';
 import { ISearchHistory } from '@/types/search';
 
 const SearchBar = () => {
@@ -21,9 +20,12 @@ const SearchBar = () => {
   const [keyword, setKeyword] = useRecoilState(searchKeywordState);
   const setSearchData = useSetRecoilState(searchBarDataState);
 
-  const isGuideModal = useRecoilValue(modalAtomFamily('search-guide'));
-  const { openModal, closeModal } = useModal('search-guide');
-  const { toggleModal } = useModal('search');
+  const {
+    modalState: isGuideModal,
+    openModal: openSearchGuideModal,
+    closeModal: closeSearchGuideModal,
+  } = useModal('search-guide');
+  const { toggleModal: toggleSearchModal } = useModal('search');
   const navigate = useNavigate();
 
   const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +34,7 @@ const SearchBar = () => {
 
   const onSubmitHandler = () => {
     if (!keyword) {
-      openModal();
+      openSearchGuideModal();
       return;
     }
 
@@ -48,7 +50,7 @@ const SearchBar = () => {
 
     setKeywords((keywords: ISearchHistory[]) => [newKeyword, ...keywords]);
     setSearchData([]);
-    toggleModal();
+    toggleSearchModal();
     navigate(`/search?keyword=${keyword}`);
   };
 
@@ -73,7 +75,10 @@ const SearchBar = () => {
   return (
     <>
       {isGuideModal.isOpen && (
-        <Modal message="검색어를 입력해주세요." onClickHandler={closeModal} />
+        <Modal
+          message="검색어를 입력해주세요."
+          onClickHandler={closeSearchGuideModal}
+        />
       )}
       <StA11yHidden as="label" htmlFor="search">
         검색 키워드

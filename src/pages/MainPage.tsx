@@ -5,8 +5,6 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components/macro';
 import MainBanner from '@/components/carousel/MainBanner';
-import { modalAtomFamily } from '@/store/modalState';
-import { useRecoilValue } from 'recoil';
 import useModal from '@/hooks/useModal';
 
 const StCarouselLayout = styled.main`
@@ -22,8 +20,7 @@ const StCarouselLayout = styled.main`
 `;
 
 const MainPage = () => {
-  const isPopupModal = useRecoilValue(modalAtomFamily('popup'));
-  const { openModal } = useModal('popup');
+  const { modalState: isPopupModal, openModal } = useModal('popup');
 
   useEffect(() => {
     const expiryDate = JSON.parse(

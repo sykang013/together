@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { useRef } from 'react';
 import LogoutModal from '@/components/logout/LogoutModal';
 import useModal from '@/hooks/useModal';
-import { modalAtomFamily } from '@/store/modalState';
-import { useRecoilValue } from 'recoil';
 
 const StModalContainer = styled.div`
   width: ${rem(180)};
@@ -127,8 +125,7 @@ const StLogoutButton = styled.button`
 `;
 
 const LogoModal = () => {
-  const isLogoutModal = useRecoilValue(modalAtomFamily('logout'));
-  const { openModal } = useModal('logout');
+  const { modalState: isLogoutModal, openModal } = useModal('logout');
 
   const stModalContainerRef = useRef(null);
 

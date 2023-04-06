@@ -18,8 +18,6 @@ import {
 } from '@/pages/ProfileCreate';
 import Svg from '@/components/svg/Svg';
 import { Helmet } from 'react-helmet-async';
-import { modalAtomFamily } from '@/store/modalState';
-import { useRecoilValue } from 'recoil';
 import useModal from '@/hooks/useModal';
 
 const ProfileNameForm = ({ profileId, defaultName, storageID }) => {
@@ -27,10 +25,8 @@ const ProfileNameForm = ({ profileId, defaultName, storageID }) => {
   const { user } = useAuthState();
   const navigate = useNavigate();
 
-  const isProfileDeleteModal = useRecoilValue(
-    modalAtomFamily('profile-delete')
-  );
-  const { openModal } = useModal('profile-delete');
+  const { modalState: isProfileDeleteModal, openModal } =
+    useModal('profile-delete');
 
   const goToProfile = () => {
     navigate('/profile-page');

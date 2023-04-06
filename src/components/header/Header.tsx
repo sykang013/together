@@ -5,9 +5,8 @@ import { useEffect, useState } from 'react';
 import SearchModal from '@/components/search/SearchModal';
 import Svg from '@/components/svg/Svg';
 import useThrottle from '@/hooks/useThrottle';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { searchKeywordState } from '@/store/search/index';
-import { modalAtomFamily } from '@/store/modalState';
 import useModal from '@/hooks/useModal';
 import LogoModal from '@/components/header/LogoModal';
 import { useAuthState } from '@/firebase/auth';
@@ -123,8 +122,11 @@ const StProfile = styled.div`
 `;
 
 const Header = () => {
-  const isSearchModal = useRecoilValue(modalAtomFamily('search'));
-  const { openModal, closeModal } = useModal('search');
+  const {
+    modalState: isSearchModal,
+    openModal,
+    closeModal,
+  } = useModal('search');
   const [isBlackBackground, setIsBlackBackground] = useState(false);
   const [searchParams] = useSearchParams();
   const setSearchKeyword = useSetRecoilState(searchKeywordState);
