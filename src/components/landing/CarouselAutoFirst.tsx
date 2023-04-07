@@ -32,7 +32,7 @@ const autoPlayL = keyframes`
     }
 `;
 
-const StAutoContainer = styled.div<{ speed: string }>`
+const StAutoContainer = styled.div<ICarouselAutoFirst>`
   object-fit: contain;
   width: calc(189px * 5);
   display: flex;
