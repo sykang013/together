@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useReadData } from '@/firebase/firestore';
 import styled, { keyframes } from 'styled-components/macro';
-import { ICarouselAuto } from '@/types/ICarouselAuto';
+import { ICarousel } from '@/types/carousel';
 
 const StCarouselAutoFirst = styled.section`
   position: relative;
@@ -31,7 +31,7 @@ const autoPlayL = keyframes`
     }
 `;
 
-const StAutoContainer = styled.div<ICarouselAuto>`
+const StAutoContainer = styled.div<ICarousel>`
   object-fit: contain;
   width: calc(189px * 5);
   display: flex;
@@ -60,7 +60,7 @@ const StImgItem = styled.img`
   }
 `;
 
-const CarouselAutoFirst = (props: ICarouselAuto) => {
+const CarouselAutoFirst = (props: ICarousel) => {
   const { readData, data } = useReadData('landing-contents-first');
 
   useEffect(() => {
