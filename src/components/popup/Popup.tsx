@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import ModalPortal from '@/components/modal/ModalPortal';
-import propTypes from 'prop-types';
+import useModal from '@/hooks/useModal';
 
 const StPopUp = styled.div`
   width: ${rem(252)};
@@ -45,7 +45,9 @@ const StButton = styled.div`
   }
 `;
 
-const Popup = ({ closeModal }) => {
+const Popup = () => {
+  const { closeModal } = useModal('popup');
+
   const dayClose = () => {
     const expiry = new Date();
     const expiryTime = expiry.getTime() + 1000 * 60 * 60 * 24;
@@ -82,7 +84,3 @@ const Popup = ({ closeModal }) => {
 };
 
 export default Popup;
-
-Popup.propTypes = {
-  closeModal: propTypes.func,
-};

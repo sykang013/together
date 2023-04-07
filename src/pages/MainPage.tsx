@@ -1,10 +1,11 @@
 import Carousel from '@/components/carousel/Carousel';
 import Popup from '@/components/popup/Popup';
 import { rem } from '@/theme/utils';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components/macro';
 import MainBanner from '@/components/carousel/MainBanner';
+import useModal from '@/hooks/useModal';
 
 const StCarouselLayout = styled.main`
   display: flex;
@@ -19,18 +20,13 @@ const StCarouselLayout = styled.main`
 `;
 
 const MainPage = () => {
-  const [isPopupModal, setIsPopupModal] = useState(false);
-
-  const openModal = () => {
-    setIsPopupModal(true);
-  };
-
-  const closeModal = () => {
-    setIsPopupModal(false);
-  };
+  const { modalState: isPopupModal, openModal } = useModal('popup');
 
   useEffect(() => {
-    const expiryDate = JSON.parse(localStorage.getItem('visitCookieExpiry'));
+    const expiryDate = JSON.parse(
+      localStorage.getItem('visitCookieExpiry') || 'null'
+    );
+
     if (expiryDate) {
       const currentDate = new Date().getTime();
 
@@ -52,7 +48,7 @@ const MainPage = () => {
           content="타잉의 컨텐츠들을 즐길 수 있는 메인 페이지 입니다."
         />
       </Helmet>
-      {isPopupModal && <Popup closeModal={closeModal} />}
+      {isPopupModal.isOpen && <Popup />}
       <MainBanner />
       <StCarouselLayout>
         <Carousel title="티빙에서 꼭 봐야하는 콘텐츠" dataName="programs" />

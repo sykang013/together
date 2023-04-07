@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { useRecoilValue } from 'recoil';
 import { getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
+import { IPrograms } from '@/types/programs';
 
 const StTitle = styled.figcaption`
   ${getFontStyle('ParagraphS')};
@@ -77,7 +78,7 @@ const SearchResult = () => {
   return (
     <div>
       <StImageContents>
-        {searchData?.slice(0, 7).map((data) => {
+        {searchData?.slice(0, 7).map((data: IPrograms) => {
           return (
             <Link key={data.id} to={`/search?keyword=${searchKeyword}`}>
               <figure>
@@ -93,7 +94,7 @@ const SearchResult = () => {
         })}
       </StImageContents>
       <StListContents>
-        {searchData?.slice(3, 10).map((data) => {
+        {searchData?.slice(3, 10).map((data: IPrograms) => {
           return (
             <li key={data.id}>
               <Link to={`/search?keyword=${searchKeyword}`}>

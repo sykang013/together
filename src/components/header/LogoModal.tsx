@@ -1,8 +1,9 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
 import { Link } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import LogoutModal from '@/components/logout/LogoutModal';
+import useModal from '@/hooks/useModal';
 
 const StModalContainer = styled.div`
   width: ${rem(180)};
@@ -124,24 +125,20 @@ const StLogoutButton = styled.button`
 `;
 
 const LogoModal = () => {
-  const [isModal, setIsModal] = useState(false);
+  const { modalState: isLogoutModal, openModal } = useModal('logout');
 
-  const closeLogoutModal = () => {
-    setIsModal(false);
-  };
-
-  const stModalContainerRef = useRef(null);
+  const stModalContainerRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
-      {isModal && <LogoutModal closeLogoutModal={closeLogoutModal} />}
+      {isLogoutModal.isOpen && <LogoutModal />}
       <StModalContainer ref={stModalContainerRef}>
         <StProfileBox
           aria-label="프로필 페이지로 이동합니다."
           to="/profile-page"
           onClick={() => {
             const modalContainer = stModalContainerRef.current;
-            if (stModalContainerRef.current) {
+            if (modalContainer) {
               modalContainer.style.display = 'none';
               setTimeout(() => {
                 modalContainer.style.removeProperty('display');
@@ -163,7 +160,7 @@ const LogoModal = () => {
         <StLogoutBox>
           <StLogoutButton
             aria-label="로그아웃 페이지로 이동합니다."
-            onClick={() => setIsModal(true)}
+            onClick={openModal}
           >
             로그아웃
           </StLogoutButton>

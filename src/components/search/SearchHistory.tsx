@@ -102,7 +102,7 @@ const SearchHistory = () => {
   const { toggleModal } = useModal('search');
   const navigate = useNavigate();
 
-  const removeKeyword = (id) => {
+  const removeKeyword = (id: string) => {
     setKeywords((keywords) => keywords.filter((keyword) => keyword.id !== id));
   };
 
@@ -110,7 +110,7 @@ const SearchHistory = () => {
     setKeywords([]);
   };
 
-  const searchKeyword = (keyword) => {
+  const searchKeyword = (keyword: string) => {
     toggleModal();
     navigate(`/search?keyword=${keyword}`);
   };

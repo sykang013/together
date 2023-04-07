@@ -10,9 +10,10 @@ import { db } from './index';
  *   isLoading: boolean;
  *   error: null | Error;
  *   data: null | any[];
- *   readData: (documentKey: string) => void;
+ *   readData: (documentKey?: string) => void;
  * }}
  */
+
 export function useReadData(collectionKey) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);

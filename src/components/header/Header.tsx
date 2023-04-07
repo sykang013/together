@@ -5,15 +5,19 @@ import { useEffect, useState } from 'react';
 import SearchModal from '@/components/search/SearchModal';
 import Svg from '@/components/svg/Svg';
 import useThrottle from '@/hooks/useThrottle';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { searchKeywordState } from '@/store/search/index';
-import { modalAtomFamily } from '@/store/modalState';
 import useModal from '@/hooks/useModal';
 import LogoModal from '@/components/header/LogoModal';
 import { useAuthState } from '@/firebase/auth';
-import StA11yHidden from '../a11yhidden/A11yHidden';
+import StA11yHidden from '@/components/a11yhidden/A11yHidden';
 
-const StHeader = styled.header`
+interface IHeader {
+  backgroundColor?: 'gradient' | 'black';
+  direction?: 'left' | 'right';
+}
+
+const StHeader = styled.header<IHeader>`
   position: fixed;
   z-index: 3;
   width: 100%;
@@ -55,7 +59,7 @@ const StHeader = styled.header`
   }
 `;
 
-const StGnb = styled.div`
+const StGnb = styled.div<IHeader>`
   display: flex;
   gap: ${(props) => (props.direction === 'left' ? rem(14) : rem(16))};
   align-items: center;
@@ -118,8 +122,11 @@ const StProfile = styled.div`
 `;
 
 const Header = () => {
-  const isSearchModal = useRecoilValue(modalAtomFamily('search'));
-  const { openModal, closeModal } = useModal('search');
+  const {
+    modalState: isSearchModal,
+    openModal,
+    closeModal,
+  } = useModal('search');
   const [isBlackBackground, setIsBlackBackground] = useState(false);
   const [searchParams] = useSearchParams();
   const setSearchKeyword = useSetRecoilState(searchKeywordState);
@@ -132,7 +139,7 @@ const Header = () => {
     closeModal();
   };
 
-  const navigateToPage = (page) => {
+  const navigateToPage = (page: string) => {
     closeModal();
     setSearchKeyword('');
     navigate(page);

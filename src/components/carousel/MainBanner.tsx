@@ -5,35 +5,12 @@ import 'slick-carousel/slick/slick-theme.css';
 import styled, { css } from 'styled-components/macro';
 import { rem } from '@/theme/utils';
 import Svg from '@/components/svg/Svg';
-import { func, number, string } from 'prop-types';
 import { useReadData } from '@/firebase/firestore';
 import SkeletonBanner from '@/components/loading/SkeletonBanner';
 import { Link } from 'react-router-dom';
+import { IArrow } from '@/types/carousel';
 
-const CustomDots = (props) => {
-  const { onClick, activeIndex, dotsCount } = props;
-
-  return (
-    <>
-      {Array.from({ length: dotsCount }, (_, index) => (
-        <li key={index} aria-label={`${index + 1}번째 슬라이드`}>
-          <button
-            className={index === activeIndex ? 'active' : ''}
-            onClick={() => onClick(index)}
-          />
-        </li>
-      ))}
-    </>
-  );
-};
-
-CustomDots.propTypes = {
-  onClick: func,
-  activeIndex: number,
-  dotsCount: number,
-};
-
-const StArrow = styled.button`
+const StArrow = styled.button<IArrow>`
   position: absolute;
   top: 50%;
   ${(props) =>
@@ -67,7 +44,7 @@ const StArrow = styled.button`
   cursor: pointer;
 `;
 
-const Arrow = ({ onClick, direction }) => {
+const Arrow = ({ onClick, direction }: IArrow) => {
   return (
     <StArrow
       onClick={onClick}
@@ -82,11 +59,6 @@ const Arrow = ({ onClick, direction }) => {
       />
     </StArrow>
   );
-};
-
-Arrow.propTypes = {
-  onClick: func,
-  direction: string,
 };
 
 const StSlider = styled(Slider)`
@@ -183,15 +155,15 @@ const MainBanner = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
 
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<Slider | null>(null);
 
   const play = () => {
-    sliderRef.current.slickPlay();
+    sliderRef.current?.slickPlay();
     setIsPaused(false);
   };
 
   const pause = () => {
-    sliderRef.current.slickPause();
+    sliderRef.current?.slickPause();
     setIsPaused(true);
   };
 
@@ -203,20 +175,26 @@ const MainBanner = () => {
     }
   };
 
-  const handleSlideKeyUp = (e, index) => {
+  const handleSlideKeyUp = (
+    e: React.KeyboardEvent<HTMLAnchorElement>,
+    index: number
+  ) => {
     if (e.key === 'Tab') {
       e.preventDefault();
-      if (index < sliderRef.current.props.children.length - 1) {
-        sliderRef.current.slickNext();
+      if (
+        index <
+        (sliderRef.current?.props.children as React.ReactNode[])?.length - 1
+      ) {
+        sliderRef.current?.slickNext();
       } else {
-        sliderRef.current.slickGoTo(0);
+        sliderRef.current?.slickGoTo(0);
       }
     }
   };
 
   const settings = {
     dots: true,
-    appendDots: (dots) => (
+    appendDots: (dots: React.ReactNode): JSX.Element => (
       <ul>
         <li>
           <button
@@ -234,7 +212,9 @@ const MainBanner = () => {
         {dots}
       </ul>
     ),
-    customPaging: (i) => <button aria-label={`${i + 1}번째 슬라이드`} />,
+    customPaging: (i: number): JSX.Element => (
+      <button aria-label={`${i + 1}번째 슬라이드`} />
+    ),
     dotsClass: 'slick-dots custom-dots',
     infinite: true,
     speed: 500,
@@ -245,7 +225,7 @@ const MainBanner = () => {
     autoplaySpeed: 5000,
     prevArrow: <Arrow direction="prev" />,
     nextArrow: <Arrow direction="next" />,
-    beforeChange: (_, next) => {
+    beforeChange: (_: number, next: number): void => {
       setActiveSlide(next);
     },
     responsive: [

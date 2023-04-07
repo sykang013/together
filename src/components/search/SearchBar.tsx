@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Svg from '@/components/svg/Svg';
 import { StSearchInput } from '@/styles/SearchBarStyles';
 import {
@@ -11,34 +11,34 @@ import useDebounce from '@/hooks/useDebounce';
 import useReadSearchData from '@/firebase/firestore/useReadSearchData';
 import Modal from '@/components/modal/Modal';
 import { useNavigate } from 'react-router-dom';
-import { func } from 'prop-types';
 import useModal from '@/hooks/useModal';
-import StA11yHidden from '../a11yhidden/A11yHidden';
+import StA11yHidden from '@/components/a11yhidden/A11yHidden';
 
-const SearchBar = ({ openModal }) => {
+const SearchBar = () => {
   const [keywords, setKeywords] = useRecoilState(searchHistoryState);
   const [keyword, setKeyword] = useRecoilState(searchKeywordState);
   const setSearchData = useSetRecoilState(searchBarDataState);
-  const [isGuideModal, setIsGuideModal] = useState(false);
-  const { toggleModal } = useModal('search');
+
+  const {
+    modalState: isGuideModal,
+    openModal: openSearchGuideModal,
+    closeModal: closeSearchGuideModal,
+  } = useModal('search-guide');
+  const { toggleModal: toggleSearchModal } = useModal('search');
   const navigate = useNavigate();
 
-  const toggleGuideModal = () => {
-    setIsGuideModal((isGuideModal) => !isGuideModal);
-  };
-
-  const onChangeKeyword = (e) => {
+  const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!keyword) {
-      toggleGuideModal();
+      openSearchGuideModal();
       return;
     }
 
-    let uuid = self.crypto.randomUUID();
+    const uuid = self.crypto.randomUUID();
     const newKeyword = {
       id: uuid,
       keyword: keyword,
@@ -50,11 +50,11 @@ const SearchBar = ({ openModal }) => {
 
     setKeywords((keywords) => [newKeyword, ...keywords]);
     setSearchData([]);
-    toggleModal();
+    toggleSearchModal();
     navigate(`/search?keyword=${keyword}`);
   };
 
-  const { readSearchData, isLoading, error } = useReadSearchData(
+  const { readSearchData } = useReadSearchData(
     'programs',
     keyword,
     'searchBarDataState'
@@ -74,26 +74,25 @@ const SearchBar = ({ openModal }) => {
 
   return (
     <>
-      {isGuideModal && (
+      {isGuideModal.isOpen && (
         <Modal
           message="검색어를 입력해주세요."
-          onClickHandler={toggleGuideModal}
+          onClickHandler={closeSearchGuideModal}
         />
       )}
       <StA11yHidden as="label" htmlFor="search">
         검색 키워드
       </StA11yHidden>
-      <StSearchInput>
+      <StSearchInput onSubmit={onSubmitHandler}>
         <input
           type="text"
           id="search"
           placeholder="TV프로그램, 영화 제목 및 출연진으로 검색해보세요"
           value={keyword || ''}
           onChange={onChangeKeyword}
-          onClick={openModal}
           autoFocus
         />
-        <button onClick={onSubmitHandler}>
+        <button>
           <Svg
             id="search-hover"
             width={22}
@@ -110,7 +109,3 @@ const SearchBar = ({ openModal }) => {
 };
 
 export default SearchBar;
-
-SearchBar.propTypes = {
-  openModal: func,
-};
