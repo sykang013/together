@@ -120,7 +120,7 @@ const StCarouselContainer = styled.section`
   }
 `;
 
-const StSlider = styled(Slider)<{ desktopSlides: number }>`
+const StSlider = styled(Slider)<ICarousel>`
   .slick-list {
     padding: ${rem(20)} ${rem(8)} 0;
     @media (min-width: 768px) {
@@ -269,7 +269,7 @@ const StSlider = styled(Slider)<{ desktopSlides: number }>`
   }
 `;
 
-const StInfo = styled.div<{ number: boolean | undefined }>`
+const StInfo = styled.div<ICarousel>`
   margin-top: ${rem(8)};
   ${(props) =>
     props.number &&
@@ -278,7 +278,7 @@ const StInfo = styled.div<{ number: boolean | undefined }>`
     `};
 `;
 
-const StTitle = styled.span<{ number: boolean | undefined }>`
+const StTitle = styled.span<ICarousel>`
   ${(props) =>
     props.number &&
     css`
