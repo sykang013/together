@@ -1,3 +1,3 @@
-export interface ICarousel {
-  speed?: string;
+export interface ICarouselAuto {
+  speed: string;
 }
