@@ -16,3 +16,7 @@ export interface ICarousel {
   vod?: boolean;
   number?: boolean;
 }
+  
+export interface ICarouselAuto {
+  speed: string;
+}

@@ -37,7 +37,7 @@ const ScrollSectionNow = () => {
         desktopH="110"
       />
       <h2 className="landingElementAnimation">지금 시작해보세요</h2>
-      <PrimaryButton>새로워진 타잉을 만나보세요!</PrimaryButton>
+      <PrimaryButton buttonText="새로워진 타잉을 만나보세요!"></PrimaryButton>
     </StScrollSectionNow>
   );
 };

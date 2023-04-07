@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useReadData } from '@/firebase/firestore';
 import styled, { keyframes } from 'styled-components/macro';
-import { string } from 'prop-types';
+import { ICarouselAuto } from '@/types/carousel';
 
 const StCarouselAutoSecond = styled.section`
   position: relative;
@@ -31,7 +31,7 @@ const autoPlayL = keyframes`
     }
 `;
 
-const StAutoContainer = styled.div`
+const StAutoContainer = styled.div<ICarouselAuto>`
   object-fit: contain;
   width: calc(189px * 5);
   display: flex;
@@ -60,7 +60,7 @@ const StImgItem = styled.img`
   }
 `;
 
-const CarouselAutoSecond = ({ speed }) => {
+const CarouselAutoSecond = (props: ICarouselAuto) => {
   const { readData, data } = useReadData('landing-contents-second');
   useEffect(() => {
     readData();
@@ -68,7 +68,10 @@ const CarouselAutoSecond = ({ speed }) => {
 
   return (
     <StCarouselAutoSecond className="landingElementAnimation">
-      <StAutoContainer speed={speed} className="landingAutoContainerAnimation">
+      <StAutoContainer
+        speed={props.speed}
+        className="landingAutoContainerAnimation"
+      >
         {data?.map((data) => {
           return (
             <StImgItem key={data.id} src={data.desktopUrl} alt={data.alt} />
@@ -85,13 +88,6 @@ const CarouselAutoSecond = ({ speed }) => {
 };
 
 export default CarouselAutoSecond;
-
-CarouselAutoSecond.propTypes = {
-  /**
-   * 문자만 가능합니다. ex)'20s'
-   */
-  speed: string.isRequired,
-};
 
 CarouselAutoSecond.defaultProps = {
   speed: '30s',
