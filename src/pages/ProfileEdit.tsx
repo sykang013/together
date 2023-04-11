@@ -7,7 +7,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { dbService } from '@/firebase/app';
 import { useAuthState } from '@/firebase/auth';
-import { string } from 'prop-types';
 import StA11yHidden from '@/components/a11yhidden/A11yHidden';
 import ProfileDeleteModal from '@/components/profile/ProfileDeleteModal';
 import {
@@ -19,11 +18,23 @@ import {
 import Svg from '@/components/svg/Svg';
 import { Helmet } from 'react-helmet-async';
 
-const ProfileNameForm = ({ profileId, defaultName, storageID }) => {
-  const [name, setName] = useState(defaultName);
+interface IProfileNameForm {
+  profileId: string;
+  defaultName: string;
+  storageID: string;
+  onClose: () => void;
+}
+
+const ProfileNameForm = ({
+  profileId,
+  defaultName,
+  storageID,
+}: IProfileNameForm) => {
+  const [name, setName] = useState<string>(defaultName);
   const { user } = useAuthState();
   const navigate = useNavigate();
-  const [isProfileDeleteModal, setIsProfileDeleteModal] = useState(false);
+  const [isProfileDeleteModal, setIsProfileDeleteModal] =
+    useState<boolean>(false);
   const openProfileDeleteModal = () => {
     setIsProfileDeleteModal(true);
   };
@@ -33,7 +44,7 @@ const ProfileNameForm = ({ profileId, defaultName, storageID }) => {
   const goToProfile = () => {
     navigate('/profile-page');
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await dbService
@@ -82,12 +93,6 @@ const ProfileNameForm = ({ profileId, defaultName, storageID }) => {
   );
 };
 
-ProfileNameForm.propTypes = {
-  profileId: string,
-  defaultName: string,
-  storageID: string,
-};
-
 const ProfileEdit = () => {
   const { search } = useLocation();
   const params = new URLSearchParams(search);
@@ -96,7 +101,7 @@ const ProfileEdit = () => {
   const url = params.get('url');
   const storageID = params.get('storage');
 
-  const [profileName, setProfileName] = useState(name);
+  const [profileName, setProfileName] = useState<string | null>(name);
 
   return (
     <>
@@ -109,8 +114,8 @@ const ProfileEdit = () => {
       </Helmet>
       <StProfileTitle>프로필 편집</StProfileTitle>
       <StUploadImageView>
-        <StUploadImage src={url} alt="변경할 프로필 사진입니다." ImageURL />
-        <StProfileEditButton label="이미지 업로드">
+        <StUploadImage src={url || undefined} alt="변경할 프로필 사진입니다." />
+        <StProfileEditButton aria-label="이미지 업로드">
           <button>
             <Svg
               id="profile-edit-pencil"
@@ -125,8 +130,9 @@ const ProfileEdit = () => {
         </StProfileEditButton>
       </StUploadImageView>
       <ProfileNameForm
-        profileId={id}
-        defaultName={profileName}
+        profileId={id || ''}
+        defaultName={profileName || ''}
+        storageID={storageID || ''}
         onClose={() => setProfileName(name)}
       />
     </>

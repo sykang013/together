@@ -12,7 +12,7 @@ import FormButton from '@/components/button/FormButton';
 import FormInput from '@/components/forminput/FormInput';
 import { useAuthState, useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
 import { IFormState } from '@/types/signForm';
 
@@ -78,18 +78,18 @@ const RegisterForm = (): JSX.Element => {
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*])[A-Za-z\d@$!%*#?&]{8,15}$/;
   const REGEXP_EMAIL = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
 
-  const [isEmail, setIsEmail] = useState(true);
-  const [isPassword, setIsPassword] = useState(true);
-  const [isPasswordConfirm, setIsPasswordConfirm] = useState(true);
-  const [isActive, setIsActive] = useState(false);
+  const [isEmail, setIsEmail] = useState<boolean>(true);
+  const [isPassword, setIsPassword] = useState<boolean>(true);
+  const [isPasswordConfirm, setIsPasswordConfirm] = useState<boolean>(true);
+  const [isActive, setIsActive] = useState<boolean>(false);
 
   const { signUp } = useSignUp();
   const { createAuthUser } = useCreateAuthUser();
   const { isLoading, error } = useAuthState();
 
-  const formStateRef = useRef(initialFormState);
+  const formStateRef = useRef<IFormState>(initialFormState);
   const { email, password, passwordConfirm } = formStateRef.current;
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
