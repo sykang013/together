@@ -2,7 +2,7 @@ import { useAuthState, useSignIn } from '@/firebase/auth';
 import { StContainer, StForm, StInner, StTitle } from '@/styles/FormStyles';
 import { getFontStyle, rem } from '@/theme/utils';
 import { useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import FormInput from '@/components/forminput/FormInput';
 import LoadingSpinner from '@/components/loading/LoadingSpinner';
@@ -93,11 +93,11 @@ const initialFormState: IFormState = {
 };
 
 const LoginForm = (): JSX.Element => {
-  const formStateRef = useRef(initialFormState);
+  const formStateRef = useRef<IFormState>(initialFormState);
 
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
   const { isLoading, error, user } = useAuthState();
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
   const handleSignIn = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();

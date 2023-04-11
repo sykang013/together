@@ -15,11 +15,18 @@ import { dbService } from '@/firebase/app';
 import { Helmet } from 'react-helmet-async';
 import Svg from '@/components/svg/Svg';
 
-const ProfilePage = () => {
+interface IProfile {
+  id: string;
+  name: string;
+  mobileUrl: string;
+  storageID: string;
+}
+
+const ProfilePage = (): JSX.Element => {
   const navigate = useNavigate();
   const { user } = useAuthState();
-  const [profiles, setProfiles] = useState([]);
-  const goToProfileEdit = (profile) => {
+  const [profiles, setProfiles] = useState<IProfile[]>([]);
+  const goToProfileEdit = (profile: IProfile) => {
     const encodedUrl = encodeURIComponent(profile.mobileUrl);
     navigate(
       `/profile-edit?id=${profile.id}&name=${profile.name}&url=${encodedUrl}&storage=${profile.storageID}`
@@ -40,7 +47,7 @@ const ProfilePage = () => {
         .collection('profile')
         .onSnapshot(
           (querySnapshot) => {
-            const profilesArray = [];
+            const profilesArray: IProfile[] = [];
             querySnapshot.forEach((doc) => {
               profilesArray.push({
                 id: doc.id,
