@@ -1,8 +1,16 @@
 import { getFontStyle, rem } from '@/theme/utils';
-import { string } from 'prop-types';
+import { ButtonHTMLAttributes } from 'react';
 import styled from 'styled-components/macro';
 
-const StButton = styled.button`
+interface IStButton {
+  isActive: boolean;
+}
+
+interface IFormButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  isActive: boolean;
+}
+
+const StButton = styled.button<IStButton>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,22 +38,17 @@ const StButton = styled.button`
     ${getFontStyle('LabelXL')};
   }
 `;
-const FormButton = ({ type, children, ...restProps }) => {
+
+const FormButton = ({
+  type = 'submit',
+  children = '버튼',
+  ...restProps
+}: IFormButtonProps) => {
   return (
     <StButton type={type} {...restProps}>
       {children}
     </StButton>
   );
-};
-
-FormButton.defaultProps = {
-  type: 'submit',
-  children: '버튼',
-};
-
-FormButton.propTypes = {
-  type: string,
-  children: string.isRequired,
 };
 
 export default FormButton;
