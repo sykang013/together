@@ -16,7 +16,14 @@ export interface ICarousel {
   vod?: boolean;
   number?: boolean;
 }
-  
+
 export interface ICarouselAuto {
   speed: string;
+}
+
+export interface ICarouselAutoData {
+  id: string;
+  mobileUrl: string;
+  desktopUrl: string;
+  alt: string;
 }

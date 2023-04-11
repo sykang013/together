@@ -9,7 +9,7 @@ import { IPrograms } from '@/types/programs';
 
 const useReadSearchData = (
   collectionKey: string,
-  keyword: string,
+  keyword: string | null,
   atomState: string
 ) => {
   const [isLoading, setIsLoading] = useState(false);
