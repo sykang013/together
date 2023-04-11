@@ -6,8 +6,8 @@ import { tokens } from './tokens';
  * @param {string} baseValue
  * @returns {{value / baseValue}} (ex: 1rem)
  */
-export const rem = (value: number, baseValue = 16): string => {
-  return `${Number(value / baseValue)}rem`;
+export const rem = (value: number | string, baseValue = 16): string => {
+  return `${Number(value) / baseValue}rem`;
 };
 
 /**
