@@ -1,24 +1,13 @@
 import { useState, useCallback, useMemo } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, UserCredential } from 'firebase/auth';
 import { auth } from './index';
 
-/* -------------------------------------------------------------------------- */
-
-/**
- * Firebase 인증: 이메일/패스워드 로그인 유틸리티 훅
- * @returns {{
- *  isLoading: boolean;
- *  error: null | Error;
- *  user: null | import('firebase/auth').UserCredential;
- *  signIn: (email: string, password: string) => Promise<import('firebase/auth').UserCredential>;
- * }}
- */
 export function useSignIn() {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [user, setUser] = useState(null);
+  const [error, setError] = useState<null | void>(null);
+  const [user, setUser] = useState<null | UserCredential>(null);
 
-  const signIn = useCallback(async (email, password) => {
+  const signIn = useCallback(async (email: string, password: string) => {
     setIsLoading(true);
     try {
       const userCredentials = await signInWithEmailAndPassword(
