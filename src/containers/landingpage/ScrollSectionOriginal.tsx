@@ -9,8 +9,6 @@ const StScrollSectionOriginal = styled.section`
   flex-flow: column nowrap;
   justify-content: center;
   width: 100%;
-  /* height: 100vh; */
-  /* padding-bottom: 100vw; */
   padding-bottom: 100vh;
 `;
 

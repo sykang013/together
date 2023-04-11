@@ -16,7 +16,7 @@ export const rem = (value: number | string, baseValue = 16): string => {
  * @param {string} fontStyleAndVariant (ex: 'headingM')
  * @returns {string} fontStyle
  */
-export const getFontStyle = (fontStyleAndVariant: string): object => {
+export const getFontStyle = (fontStyleAndVariant: string): any => {
   const fontStyles = fontStyleAndVariant;
   return tokens.fonts[fontStyles];
 };

@@ -39,7 +39,7 @@ const StButton = styled.button`
   }
 `;
 
-const NotFound = () => {
+const NotFound = (): JSX.Element => {
   const navigate = useNavigate();
   return (
     <>

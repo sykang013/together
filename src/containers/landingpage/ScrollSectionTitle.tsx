@@ -40,7 +40,7 @@ const ScrollSectionTitle = () => {
   return (
     <StScrollSectionTitle className="landingSectionAnimation">
       <MessageTitle />
-      <PrimaryButton>새로워진 타잉을 만나보세요!</PrimaryButton>
+      <PrimaryButton buttonText="새로워진 타잉을 만나보세요!"></PrimaryButton>
     </StScrollSectionTitle>
   );
 };

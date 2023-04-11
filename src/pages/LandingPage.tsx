@@ -12,7 +12,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 gsap.defaults({ ease: 'none', duration: 10 });
 
-let mm = gsap.matchMedia();
+const mm = gsap.matchMedia();
 
 const StLandingPage = styled.div`
   display: flex;
