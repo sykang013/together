@@ -1,8 +1,9 @@
+export interface IFontTokens {
+  [key: string]: string;
+}
 interface ITokens {
   fonts: {
-    [key: string]: {
-      [key: string]: string;
-    };
+    [key: string]: IFontTokens;
   };
 }
 
