@@ -160,7 +160,7 @@ const ProfileCreate = () => {
     navigate('/profile-page');
   };
 
-  const { createData } = useCreateData(user && `users/${user.uid}/profile`);
+  const { createData } = useCreateData(`users/${user!.uid}/profile`);
 
   const [imageFile, setImageFile] = useState<File | null | number>(null);
 
@@ -193,7 +193,7 @@ const ProfileCreate = () => {
     const uuid = self.crypto.randomUUID();
     const mobileRef = storageService
       .ref()
-      .child(`profile/${user.uid}/${uuid}/mobile`);
+      .child(`profile/${user!.uid}/${uuid}/mobile`);
 
     if (typeof fileImage === 'string') {
       const response1 = await mobileRef.putString(fileImage, 'data_url');

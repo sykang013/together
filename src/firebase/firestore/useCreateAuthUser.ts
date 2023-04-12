@@ -2,22 +2,20 @@ import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
 import { db } from './index';
 
-/**
- * Firestore 인증 사용자 데이터 쓰기 훅
- * @param {string} collectionKey 콜렉션 키, 옵션(기본 값: 'users')
- * @returns {{
- *   isLoading: boolean;
- *   error: null | Error;
- *   createAuthUser: (userAuth: import('firebase/auth').UserCredential.user, additionData: {}) => void
- * }}
- */
+interface IUserAuth {
+  email: string;
+  displayName: string;
+  createAt: string;
+  uid: string;
+}
+
 export function useCreateAuthUser(collectionKey = 'users') {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  let uuid = self.crypto.randomUUID();
+  const [error, setError] = useState<null | Error>(null);
+  const uuid = self.crypto.randomUUID();
 
   const createAuthUser = useCallback(
-    async (userAuth, additionData = {}) => {
+    async (userAuth: IUserAuth, additionData = {}) => {
       if (!userAuth) {
         return;
       }
@@ -48,7 +46,7 @@ export function useCreateAuthUser(collectionKey = 'users') {
           );
         }
       } catch (error) {
-        setError(error);
+        setError(error as Error);
       } finally {
         setIsLoading(false);
       }

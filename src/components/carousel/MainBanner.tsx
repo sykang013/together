@@ -10,6 +10,13 @@ import SkeletonBanner from '@/components/loading/SkeletonBanner';
 import { Link } from 'react-router-dom';
 import { IArrow } from '@/types/carousel';
 
+interface IMainBanner {
+  id: string;
+  imgUrl: string;
+  title: string;
+  description: string;
+}
+
 const StArrow = styled.button<IArrow>`
   position: absolute;
   top: 50%;
@@ -266,7 +273,7 @@ const MainBanner = () => {
     <>
       {data && (
         <StSlider ref={sliderRef} {...settings}>
-          {data?.map((data, index) => {
+          {(data as IMainBanner[])?.map((data, index) => {
             return (
               <div key={data.id}>
                 <Link

@@ -5,10 +5,15 @@ import {
   searchDataState,
   searchBarDataState,
 } from '@/store/search/searchDataState';
+import { IPrograms } from '@/types/programs';
 
-const useReadSearchData = (collectionKey, keyword, atomState) => {
+const useReadSearchData = (
+  collectionKey: string,
+  keyword: string | null,
+  atomState: string
+) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<null | Error>(null);
   const setData = useSetRecoilState(
     atomState === 'searchDataState' ? searchDataState : searchBarDataState
   );
@@ -25,10 +30,10 @@ const useReadSearchData = (collectionKey, keyword, atomState) => {
         .where('title', '<=', keyword + '\uf8ff')
         .get();
       snapshot.forEach((doc) =>
-        setData((data) => [...data, { ...doc.data() }])
+        setData((data) => [...data, { ...doc.data() } as IPrograms])
       );
     } catch (error) {
-      setError(error);
+      setError(error as Error);
     } finally {
       setIsLoading(false);
     }

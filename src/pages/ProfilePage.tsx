@@ -22,7 +22,7 @@ interface IProfile {
   storageID: string;
 }
 
-const ProfilePage = (): JSX.Element => {
+const ProfilePage = () => {
   const navigate = useNavigate();
   const { user } = useAuthState();
   const [profiles, setProfiles] = useState<IProfile[]>([]);
@@ -59,7 +59,7 @@ const ProfilePage = (): JSX.Element => {
             setProfiles(profilesArray);
           },
           (error) => {
-            console.log('Error getting documents: ', error);
+            navigate('/*');
           }
         );
     }
