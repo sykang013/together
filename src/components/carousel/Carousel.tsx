@@ -9,6 +9,7 @@ import { useEffect, useRef } from 'react';
 import { useReadData } from '@/firebase/firestore';
 import SkeletonCarousel from '@/components/loading/SkeletonCarousel';
 import { IArrow, ICarousel } from '@/types/carousel';
+import { IPrograms } from '@/types/programs';
 
 const StArrow = styled.button<IArrow>`
   border: 0;
@@ -373,45 +374,54 @@ const Carousel = ({
       {(data || dataProp) && (
         <StCarouselContainer>
           <h2>{title}</h2>
-          {count && <StCount>{data?.length ?? dataProp?.length}개</StCount>}
+          {count && (
+            <StCount>
+              {(data as IPrograms[])?.length ?? dataProp?.length}개
+            </StCount>
+          )}
           <StSlider
             {...settings}
             ref={sliderRef}
             data-desktopSlides={desktopSlides}
           >
-            {(data || dataProp)?.slice(0, 20).map((data, index) => {
-              return (
-                <div key={data.id}>
-                  <Link
-                    to={
-                      searchParams.get('keyword')
-                        ? `/search?keyword=${searchParams.get('keyword')}`
-                        : '/main'
-                    }
-                    onKeyUp={(e) => handleSlideKeyUp(e, index)}
-                  >
-                    <picture>
-                      <source
-                        srcSet={data.desktopUrl}
-                        media="(min-width:1920px)"
-                      />
-                      <source
-                        srcSet={data.tabletUrl}
-                        media="(min-width:768px)"
-                      />
-                      <img src={data.mobileUrl} alt={data.title || data.alt} />
-                    </picture>
-                    <StInfo number={number}>
-                      {number && <StNumber>{index + 1}</StNumber>}
-                      {data.title && (
-                        <StTitle number={number}>{data.title}</StTitle>
-                      )}
-                    </StInfo>
-                    {vod && <Svg id="quick-vod" width={96} height={30} />}
-                  </Link>
-                </div>
-              );
-            })}
+            {((data as IPrograms[]) || dataProp)
+              ?.slice(0, 20)
+              .map((data, index) => {
+                return (
+                  <div key={data.id}>
+                    <Link
+                      to={
+                        searchParams.get('keyword')
+                          ? `/search?keyword=${searchParams.get('keyword')}`
+                          : '/main'
+                      }
+                      onKeyUp={(e) => handleSlideKeyUp(e, index)}
+                    >
+                      <picture>
+                        <source
+                          srcSet={data.desktopUrl}
+                          media="(min-width:1920px)"
+                        />
+                        <source
+                          srcSet={data.tabletUrl}
+                          media="(min-width:768px)"
+                        />
+                        <img
+                          src={data.mobileUrl}
+                          alt={data.title || data.alt}
+                        />
+                      </picture>
+                      <StInfo number={number}>
+                        {number && <StNumber>{index + 1}</StNumber>}
+                        {data.title && (
+                          <StTitle number={number}>{data.title}</StTitle>
+                        )}
+                      </StInfo>
+                      {vod && <Svg id="quick-vod" width={96} height={30} />}
+                    </Link>
+                  </div>
+                );
+              })}
           </StSlider>
         </StCarouselContainer>
       )}

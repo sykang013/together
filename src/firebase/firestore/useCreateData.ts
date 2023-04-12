@@ -2,22 +2,13 @@ import { addDoc, collection } from 'firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
 import { db } from './index';
 
-/**
- * Firestore 데이터 생성 훅
- * @param {string} collectionKey 콜렉션 키 (필수)
- * @returns {{
- *   isLoading: boolean;
- *   error: null | Error;
- *   createData: (data: any) => Promise<any>
- * }}
- */
-export function useCreateData(collectionKey) {
+export function useCreateData(collectionKey: string) {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<null | Error>(null);
   const [docId, setDocId] = useState('');
 
   const createData = useCallback(
-    async (data) => {
+    async (data: unknown) => {
       const collectionRef = collection(db, collectionKey);
 
       setIsLoading(true);
@@ -26,7 +17,7 @@ export function useCreateData(collectionKey) {
         const { id } = await addDoc(collectionRef, data);
         setDocId(id);
       } catch (error) {
-        setError(error);
+        setError(error as Error);
       } finally {
         setIsLoading(false);
       }

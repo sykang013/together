@@ -2,21 +2,12 @@ import { deleteDoc, doc } from 'firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
 import { db } from './index';
 
-/**
- * Firestore 데이터 삭제 훅
- * @param {string} collectionKey 콜렉션 키 (필수)
- * @returns {{
- *   isLoading: boolean;
- *   error: null | Error;
- *   deleteData: (documentKey: string) => void;
- * }}
- */
-export function useDeleteData(collectionKey) {
+export function useDeleteData(collectionKey: string) {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<null | Error>(null);
 
   const deleteData = useCallback(
-    async (documentKey) => {
+    async (documentKey: string) => {
       const documentRef = doc(db, collectionKey, documentKey);
 
       setIsLoading(true);
@@ -24,7 +15,7 @@ export function useDeleteData(collectionKey) {
       try {
         await deleteDoc(documentRef);
       } catch (error) {
-        setError(error);
+        setError(error as Error);
       } finally {
         setIsLoading(false);
       }

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useReadData } from '@/firebase/firestore';
 import styled, { keyframes } from 'styled-components/macro';
-import { ICarouselAuto } from '@/types/carousel';
+import { ICarouselAuto, ICarouselAutoData } from '@/types/carousel';
 
 const StCarouselAutoSecond = styled.section`
   position: relative;
@@ -72,12 +72,12 @@ const CarouselAutoSecond = (props: ICarouselAuto) => {
         speed={props.speed}
         className="landingAutoContainerAnimation"
       >
-        {data?.map((data) => {
+        {(data as ICarouselAutoData[])?.map((data) => {
           return (
             <StImgItem key={data.id} src={data.desktopUrl} alt={data.alt} />
           );
         })}
-        {data?.map((data) => {
+        {(data as ICarouselAutoData[])?.map((data) => {
           return (
             <StImgItem key={data.id} src={data.desktopUrl} alt={data.alt} />
           );

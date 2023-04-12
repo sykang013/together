@@ -2,25 +2,13 @@ import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { useCallback, useMemo, useState } from 'react';
 import { db } from './index';
 
-/**
- * Firestore 데이터 읽기 훅
- * @param {string} collectionKey 콜렉션 키 (필수)
- * @param {string} documentKey 도큐멘트 키 (옵션): 특정 도큐멘트만 가져올 경우 설정
- * @returns {{
- *   isLoading: boolean;
- *   error: null | Error;
- *   data: null | any[];
- *   readData: (documentKey?: string) => void;
- * }}
- */
-
-export function useReadData(collectionKey) {
+export function useReadData(collectionKey: string) {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
+  const [error, setError] = useState<null | Error>(null);
+  const [data, setData] = useState<null | unknown | unknown[]>(null);
 
   const readData = useCallback(
-    async (documentKey) => {
+    async (documentKey?: string) => {
       setIsLoading(true);
 
       try {
@@ -39,7 +27,7 @@ export function useReadData(collectionKey) {
           const docSnapshot = await getDoc(documentRef);
 
           if (docSnapshot.exists()) {
-            let docData = {
+            const docData = {
               id: docSnapshot.id,
               ...docSnapshot.data(),
             };
@@ -48,7 +36,7 @@ export function useReadData(collectionKey) {
           }
         }
       } catch (error) {
-        setError(error);
+        setError(error as Error);
       } finally {
         setIsLoading(false);
       }

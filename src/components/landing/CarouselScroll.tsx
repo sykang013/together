@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useReadData } from '@/firebase/firestore';
 import styled from 'styled-components/macro';
+import { ICarouselAutoData } from '@/types/carousel';
 
 const StCarouselScroll = styled.section`
   /* border: 1px dashed blue.; */
@@ -67,7 +68,7 @@ const CarouselScroll = () => {
     <StCarouselScroll className="landingElementAnimation sliderSection">
       <StScrollContainer className="landingScrollContainerAnimation">
         <StImgContainer className="landingImgContainerAnimation">
-          {data?.map((data) => {
+          {(data as ICarouselAutoData[])?.map((data) => {
             return (
               <StImgItem key={data.id} className="imgContainer">
                 <source srcSet={data.mobileUrl} media="(max-width: 999px)" />

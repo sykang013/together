@@ -1,21 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from './index';
 
-/* -------------------------------------------------------------------------- */
-
-/**
- * Firebase 인증: 인증 상태 감지 훅
- * @returns {{
- *  isLoading: boolean;
- *  error: null | Error;
- *  user: null | UserCredential;
- * }}
- */
 export function useAuthState() {
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [user, setUser] = useState(null);
+  const [error, setError] = useState<null | Error>(null);
+  const [user, setUser] = useState<null | User>(null);
 
   useEffect(() => {
     setIsLoading(true);
