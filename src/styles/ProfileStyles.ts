@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { getFontStyle, rem } from '@/theme/utils';
+import React from 'react';
 
 export const StProfileTitle = styled.h2`
   ${getFontStyle('headingM')};
@@ -45,7 +46,7 @@ export const StProfileItems = styled.ul`
     width: ${rem(600)};
     padding-top: ${rem(20)};
     justify-content: ${(props) => {
-      if (props.children.length > 3) return 'space-between';
+      if (React.Children.count(props.children) > 3) return 'space-between';
       else return 'space-evenly';
     }};
   }

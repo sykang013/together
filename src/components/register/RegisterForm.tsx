@@ -93,13 +93,9 @@ const RegisterForm = (): JSX.Element => {
 
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    formStateRef.current[name as keyof IFormState] = value || '';
+    formStateRef.current[name] = value || '';
 
-    if (
-      !REGEXP_EMAIL.test(
-        formStateRef.current[name as keyof IFormState] as string
-      )
-    ) {
+    if (!REGEXP_EMAIL.test(formStateRef.current[name] as string)) {
       setIsEmail(false);
       setIsActive(false);
       return;
@@ -113,11 +109,9 @@ const RegisterForm = (): JSX.Element => {
 
   const handleChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    formStateRef.current[name as keyof IFormState] = value;
+    formStateRef.current[name] = value;
 
-    if (
-      !REGEXP_PW.test(formStateRef.current[name as keyof IFormState] as string)
-    ) {
+    if (!REGEXP_PW.test(formStateRef.current[name] as string)) {
       setIsPassword(false);
       setIsActive(false);
       return;
@@ -131,9 +125,9 @@ const RegisterForm = (): JSX.Element => {
 
   const handleChangePwConfirm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    formStateRef.current[name as keyof IFormState] = value;
+    formStateRef.current[name] = value;
 
-    if (!Object.is(password, formStateRef.current[name as keyof IFormState])) {
+    if (!Object.is(password, formStateRef.current[name])) {
       setIsPasswordConfirm(false);
       setIsActive(false);
       return;
@@ -165,6 +159,12 @@ const RegisterForm = (): JSX.Element => {
     }
 
     const user = await signUp(email, password);
+
+    if (!user) {
+      alert('회원가입에 실패하였습니다.');
+      return;
+    }
+
     await createAuthUser(user, {});
 
     alert('회원가입 및 유저 생성');
