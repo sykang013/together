@@ -3,9 +3,9 @@ import { useCallback, useMemo, useState } from 'react';
 import { db } from './index';
 
 interface IUserAuth {
-  email: string;
-  displayName: string;
-  createAt: string;
+  email: string | null;
+  displayName: string | null;
+  createAt?: string;
   uid: string;
 }
 
