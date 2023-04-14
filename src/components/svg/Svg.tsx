@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components/macro';
 import { rem } from '@/theme/utils';
 
 interface IStSvg {
+  className?: string;
   desktopW?: number | string;
   desktopH?: number | string;
   tabletW?: number | string;
