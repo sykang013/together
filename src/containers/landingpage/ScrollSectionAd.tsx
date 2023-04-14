@@ -4,13 +4,15 @@ import CarouselAutoFirst from '@/components/landing/CarouselAutoFirst';
 import CarouselAutoSecond from '@/components/landing/CarouselAutoSecond';
 
 const StScrollSectionAd = styled.section`
-  /* border: 1px solid yellow; */
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   padding: var(--paddingL);
   overflow: hidden;
+  @media (min-width: 1000px) {
+    padding-top: 40vw;
+  }
 `;
 
 const ScrollSectionAd = () => {

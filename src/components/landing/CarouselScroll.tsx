@@ -4,7 +4,6 @@ import styled from 'styled-components/macro';
 import { ICarouselAutoData } from '@/types/carousel';
 
 const StCarouselScroll = styled.section`
-  /* border: 1px dashed blue.; */
   position: relative;
   overflow: hidden;
   height: 400px;
@@ -16,7 +15,6 @@ const StCarouselScroll = styled.section`
 `;
 
 const StScrollContainer = styled.div`
-  /* border: 1px dashed violet; */
   width: 100%;
   display: flex;
   height: 400px;
@@ -28,7 +26,6 @@ const StScrollContainer = styled.div`
 `;
 
 const StImgContainer = styled.div`
-  /* border: 1px dashed yellow; */
   object-fit: contain;
   width: contain;
   display: flex;
@@ -42,7 +39,6 @@ const StImgContainer = styled.div`
 `;
 
 const StImgItem = styled.picture`
-  /* border: 1px solid yellow; */
   height: 400px;
   min-width: 278px;
   margin-right: 8px;
